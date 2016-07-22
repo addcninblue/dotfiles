@@ -76,7 +76,7 @@ bindsym $mod+v split v
 bindsym $mod+f fullscreen toggle
 
 # change container layout (stacked, tabbed, toggle split)
-bindsym $mod+s layout stacking
+#bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
@@ -91,6 +91,8 @@ bindsym $mod+a focus parent
 
 # focus the child container
 #bindsym $mod+d focus child
+
+new_window 1pixel
 
 #workspace variables
 set $workspace1 "1: "
@@ -124,6 +126,9 @@ bindsym $mod+9 workspace $workspace9
 bindsym $mod+0 workspace $workspace10
 bindsym $mod+minus workspace $workspace11
 bindsym $mod+equal workspace $workspace12
+bindsym XF86Tools workspace $workspace1
+bindsym XF86Launch5 workspace $workspace2
+bindsym XF86Launch6 workspace $workspace3
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace1
@@ -145,6 +150,9 @@ bindsym $mod+z move workspace to output up
 #assign certain applications to certain workspaces
 assign [class="google-chrome-beta"] $workspace2
 for_window [class="Spotify"] move to workspace $workspace10
+
+#scratchpad
+bindsym $mod+grave scratchpad show
 
 # reload the configuration file
 bindsym $mod+Shift+c reload
@@ -179,10 +187,12 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-set $bg-color 	         #2f343f
-set $inactive-bg-color   #2f343f
+#2f343f
+set $bg-color 	         #002b36
+set $inactive-bg-color   #002b36
 set $text-color          #f3f4f5
-set $inactive-text-color #676E7D
+set $inactive-text-color #657b83
+#676E7D
 set $urgent-bg-color     #E53935
 
 # window colors
@@ -239,7 +249,7 @@ bindsym XF86Launch1 exec --no-startup-id amixer -D pulse set Master 1+ toggle &&
 
 mode "Power" {
 	bindsym h exec "sudo pm-hibernate; /home/addison/cooli3lock.sh"; mode "default"
-	bindsym o exec "sudo pm-suspend; /home/addison/cooli3lock.sh"; mode "default"
+	bindsym XF86Sleep exec "sudo pm-suspend; /home/addison/cooli3lock.sh"; mode "default"
 	bindsym s exec "shutdown -h now"
 	bindsym r exec "shutdown -r now"
 	bindsym Escape mode "default"
@@ -260,7 +270,13 @@ bindsym $mod+p exec --no-startup-id python /home/addison/.power/start.py
 
 #screenshot
 bindsym --release Print exec --no-startup-id scrot -s /home/addison/screenshots/%Y-%m-%d_%X.png 
+bindsym XF86Launch8 exec --no-startup-id scrot -s /home/addison/screenshots/%Y-%m-%d_%X.png
 bindsym --release Shift+Print exec --no-startup-id scrot /home/addison/screenshots/%Y-%m-%d_%X.png
+
+#custom bindsyms
+bindsym $mod+c exec --no-startup-id google-chrome-beta
+bindsym $mod+backslash exec --no-startup-id "st vim"
+bindsym $mod+s exec --no-startup-id "spotify"
 
 exec_always xrdb -load ~/.Xresources #load xterm customizations
 exec_always compton #load nice window compositing thing 
@@ -271,3 +287,12 @@ exec_always xinput set-prop 17 291 1
 #touchpad natural scroll
 exec_always xinput set-prop 17 274 1
 exec --no-startup-id /home/addison/cooli3lock.sh
+#scratchpad vim
+#exec_always "st -c st_scratchpad vim /home/addison/scratchpad" 
+#for_window [instance="st_scratchpad"] move scratchpad
+#scratchpad Google Keep
+exec_always "google-chrome-beta --user-data-dir=$HOME/.config/google-chrome-beta --profile-directory=Default --app-id=hmjkmjkepdijhoojdojkdfohbdgmmhki"
+for_window [instance="crx_hmjkmjkepdijhoojdojkdfohbdgmmhki"] move scratchpad
+#redshift
+exec --no-startup-id redshift-gtk
+exec xmodmap /home/addison/.Xmodmap
