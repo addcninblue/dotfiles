@@ -1,6 +1,6 @@
 "limelight settings
 let g:limelight_conceal_ctermfg = 240
-autocmd FileType text	      :Limelight
+"autocmd FileType text	      :Limelight
 let g:UltiSnipsExpandTrigger="<tab>"
 let g:UltiSnipsJumpForwardTrigger="<tab>"
 let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
