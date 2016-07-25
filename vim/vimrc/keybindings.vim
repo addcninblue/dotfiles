@@ -9,3 +9,7 @@ inoremap <C-space> <C-x><C-o>
 inoremap <C-BS> <C-W>
 " testing in python
 nnoremap <silent> <F5> :!clear;python %<CR>
+nnoremap <leader>f zA
+nnoremap <leader>F zi
+nnoremap <leader>p :execute "rightbelow vsplit " . bufname("#")<CR>
+nnoremap <leader>s :so $MYVIMRC<CR>

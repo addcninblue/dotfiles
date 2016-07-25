@@ -7,4 +7,4 @@ let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 let g:SuperTabDefaultCompletionType = "context"
 let g:minimap_highlight='Question'
-let g:ctrlp_show_hidden = 1
+"let g:ctrlp_show_hidden = 1

@@ -11,5 +11,6 @@ Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-surround'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jreybert/vimagit'
+Plug 'tpope/vim-commentary'
 call plug#end()
 map <C-n> :NERDTreeToggle<CR>
