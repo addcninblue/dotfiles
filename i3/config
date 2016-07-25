@@ -263,7 +263,11 @@ bindsym $mod+Print exec --no-startup-id python /home/addison/.screenlayout/start
 #paste and num things
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
 bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
-bindsym $mod+space exec rofi -show run -lines 3 -eh 2 -width 100 -fullscreen -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "Ubuntu 18"
+bindsym $mod+space exec rofi -show run -lines 4 -bw 20 -eh 2 -width 600 -padding 40
+# https://www.reddit.com/r/unixporn/comments/4t7n91/i3_good_ol_solarized/
+# 
+# old rofi settings
+# bindsym $mod+space exec rofi -show run -lines 3 -eh 2 -width 100 -fullscreen -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "Ubuntu 18"
 
 # powersave mode
 bindsym $mod+p exec --no-startup-id python /home/addison/.power/start.py

@@ -56,26 +56,35 @@ Xft.rgba: rgb
 ! *.color14:      base0F
 ! *.color15:      base07
 
-rofi.modi: run
 rofi.font: System San Francisco Display Regular 13
-rofi.width: 100
-rofi.opacity: 96
-rofi.padding:200
-rofi.lines: 5
-rofi.columns: 1
 rofi.color-enabled: true
+rofi.color-window: #002b37, #002b37, #003642
+rofi.color-normal: #002b37, #819396, #002b37, #003642, #819396
+rofi.color-active: #002b37, #008ed4, #002b37, #003642, #008ed4
+rofi.color-urgent: #002b37, #da4281, #002b37, #003642, #da4281
+! https://www.reddit.com/r/unixporn/comments/4t7n91/i3_good_ol_solarized/
 
-!!!COLORS
-! State:           'bg',     'fg',     'bgalt',  'hlbg',   'hlfg'
-rofi.color-window: argb:c336343f, argb:0e9dbdb, argb:0ef6155
-
-rofi.color-normal: argb:0191525,argb:dcffffff, argb:02f1e2e, argb:9a0e1c26, #d6376d
-
-! rofi.color-active: argb:02f1e2e, #268bd2, argb:02f1e2e, #268bd2, #fdf6e3
-
-! rofi.color-urgent: argb:0fdf6e3, #dc322f, argb:0eee8d5, #dc322f, #fdf6e3
-
-! Separator style (none, dash, solid)
-rofi.separator-style:            dash
+! old rofi settings
+! rofi.modi: run
+! rofi.font: System San Francisco Display Regular 13
+! rofi.width: 100
+! rofi.opacity: 96
+! rofi.padding:200
+! rofi.lines: 5
+! rofi.columns: 1
+! rofi.color-enabled: true
+! 
+! !!!COLORS
+! ! State:           'bg',     'fg',     'bgalt',  'hlbg',   'hlfg'
+! rofi.color-window: argb:c336343f, argb:0e9dbdb, argb:0ef6155
+! 
+! rofi.color-normal: argb:0191525,argb:dcffffff, argb:02f1e2e, argb:9a0e1c26, #d6376d
+! 
+! ! rofi.color-active: argb:02f1e2e, #268bd2, argb:02f1e2e, #268bd2, #fdf6e3
+! 
+! ! rofi.color-urgent: argb:0fdf6e3, #dc322f, argb:0eee8d5, #dc322f, #fdf6e3
+! 
+! ! Separator style (none, dash, solid)
+! rofi.separator-style:            dash
 
 XTerm*VT100.translations: #override <Btn1Up>: select-end(PRIMARY, CLIPBOARD, CUT_BUFFER0)
