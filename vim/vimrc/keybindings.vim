@@ -13,3 +13,4 @@ nnoremap <leader>f zA
 nnoremap <leader>F zi
 nnoremap <leader>p :execute "rightbelow vsplit " . bufname("#")<CR>
 nnoremap <leader>s :so $MYVIMRC<CR>
+nnoremap ; :
