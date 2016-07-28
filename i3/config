@@ -281,6 +281,7 @@ bindsym --release Shift+Print exec --no-startup-id scrot /home/addison/screensho
 bindsym $mod+c exec --no-startup-id google-chrome-beta
 bindsym $mod+backslash exec --no-startup-id "st vim"
 bindsym $mod+s exec --no-startup-id "spotify"
+bindsym $mod+m exec --no-startup-id "mixxx"
 
 exec_always xrdb -load ~/.Xresources #load xterm customizations
 exec_always compton #load nice window compositing thing 
