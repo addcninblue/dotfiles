@@ -21,9 +21,20 @@ filetype plugin on
 
 "vim enhancements since 07/14/16
 set wildmenu "allows for tab completion on edits 
-set listchars=tab:▸\ ,eol:¬
-set list
+" for setting nonprinting characters
+"set listchars=tab:▸\ ,eol:¬
+"set list
 set undofile                " Save undo's after file closes
 set undodir=/home/addison/.vim/undo " where to save undo histories
 set undolevels=1000         " How many undos
 set undoreload=10000        " number of lines to save for undo
+
+"statusline
+"set statusline=%f         " Path to the file
+set noruler
+set laststatus=2
+set statusline=%f
+set statusline+=%=        " Switch to the right side
+" set statusline+=/         " Separator
+set statusline+=%L        " Total lines
+

@@ -14,3 +14,7 @@ nnoremap <leader>F zi
 nnoremap <leader>p :execute "rightbelow vsplit " . bufname("#")<CR>
 nnoremap <leader>s :so $MYVIMRC<CR>
 nnoremap ; :
+
+"tab switching
+nnoremap <leader>j gT
+nnoremap <leader>k gt

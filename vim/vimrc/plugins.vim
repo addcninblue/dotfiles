@@ -12,5 +12,6 @@ Plug 'tpope/vim-surround'
 Plug 'ctrlpvim/ctrlp.vim'
 Plug 'jreybert/vimagit'
 Plug 'tpope/vim-commentary'
+Plug 'takac/vim-hardtime'
 call plug#end()
 map <C-n> :NERDTreeToggle<CR>

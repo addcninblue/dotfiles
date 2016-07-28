@@ -8,3 +8,7 @@ let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 let g:SuperTabDefaultCompletionType = "context"
 let g:minimap_highlight='Question'
 "let g:ctrlp_show_hidden = 1
+let g:ctrlp_working_path_mode = 0
+
+"status bar color
+hi StatusLine ctermbg=12 ctermfg=8
