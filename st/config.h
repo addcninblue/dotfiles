@@ -19,7 +19,8 @@ static int borderpx = 2;
  */
 static char shell[] = "usr/bin/zsh";
 static char *utmp = NULL;
-static char stty_args[] = "stty raw pass8 nl -echo -iexten -cstopb 38400";
+static char stty_args[] = "stty raw pass8 nl -echo -iexten -ixon -cstopb 38400";
+/* added -ixon to disable start/stop. */
 
 /* identification sequence returned in DA and DECID */
 static char vtiden[] = "\033[?6c";
