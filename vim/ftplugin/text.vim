@@ -6,6 +6,8 @@ augroup Textgroup
 	autocmd BufEnter * :cnoreabbrev q qa
 	autocmd BufEnter * :cnoreabbrev wq wqa
 	autocmd BufEnter * :Limelight
+	autocmd BufEnter * :nnoremap <C-s> :w<CR>
+	autocmd BufEnter * :inoremap <C-s> <ESC>:w<CR>i
 augroup END
 augroup abbreviations
 	autocmd!
