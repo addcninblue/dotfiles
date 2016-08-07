@@ -125,6 +125,6 @@ signal=11
 # Date Time
 #
 [time]
-command=date '+%m/%d %H:%M'
+command=date '+%m/%d %I:%M'
 interval=5
 
