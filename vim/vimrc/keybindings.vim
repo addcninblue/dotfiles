@@ -3,7 +3,7 @@ let &t_SI = "\<Esc>[6 q" "this and the next two change the cursor depending on t
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 nnoremap <leader>l :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>h 
-" ^ allows for better clear menu
+" allows for better clear search
 inoremap <C-space> <C-x><C-o> 
 "allows for vim's own omnicomplete
 inoremap <C-BS> <C-W>
@@ -14,6 +14,11 @@ nnoremap <leader>F zi
 nnoremap <leader>p :execute "rightbelow vsplit " . bufname("#")<CR>
 nnoremap <leader>s :so $MYVIMRC<CR>
 nnoremap ; :
+nnoremap : ;
+
+"escape char
+inoremap jk <ESC>
+cnoremap jk <ESC>
 
 "tab switching
 nnoremap <leader>j gT
