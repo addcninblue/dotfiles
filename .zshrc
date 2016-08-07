@@ -13,7 +13,7 @@ SAVEHIST=1000
 bindkey -v
 # End of lines configured by zsh-newuser-install
 
-bindkey jj vi-cmd-mode
+bindkey jk vi-cmd-mode
 
 #export KEYTIMEOUT=1 #for vimodes
 
@@ -72,8 +72,8 @@ zle -N zle-keymap-select
 zle -N zle-line-init
 
 RPROMPT=$'$(vcs_info_wrapper)'
-PROMPT="%n in %{$fg[blue]%}%d%{$reset_color%}
-> "
+PROMPT="╭─[%n in %{$fg[blue]%}%d%{$reset_color%}]
+╰─▶ "
 #add put this here
 alias ls='ls --color=auto'
 # PROMPT="%d \$ "
