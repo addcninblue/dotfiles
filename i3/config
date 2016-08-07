@@ -129,6 +129,8 @@ bindsym $mod+equal workspace $workspace12
 bindsym XF86Tools workspace $workspace1
 bindsym XF86Launch5 workspace $workspace2
 bindsym XF86Launch6 workspace $workspace3
+bindsym XF86Launch7 workspace $workspace4
+bindsym XF86Launch8 workspace $workspace10
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace1
@@ -248,8 +250,8 @@ mode "VGA_brightness" {
 bindsym XF86Launch1 exec --no-startup-id amixer -D pulse set Master 1+ toggle && pkill -RTMIN+1 i3blocks 
 
 mode "Power" {
-	bindsym h exec "sudo pm-hibernate; /home/addison/cooli3lock.sh"; mode "default"
-	bindsym XF86Sleep exec "sudo pm-suspend; /home/addison/cooli3lock.sh"; mode "default"
+	bindsym h exec "systemctl hibernate; /home/addison/cooli3lock.sh"; mode "default"
+	bindsym XF86Sleep exec "systemctl suspend; /home/addison/cooli3lock.sh; sudo blackwidowcontrol -i"; mode "default"
 	bindsym s exec "shutdown -h now"
 	bindsym r exec "shutdown -r now"
 	bindsym Escape mode "default"
@@ -274,7 +276,6 @@ bindsym $mod+p exec --no-startup-id python /home/addison/.power/start.py
 
 #screenshot
 bindsym --release Print exec --no-startup-id scrot -s /home/addison/screenshots/%Y-%m-%d_%X.png 
-bindsym XF86Launch8 exec --no-startup-id scrot -s /home/addison/screenshots/%Y-%m-%d_%X.png
 bindsym --release Shift+Print exec --no-startup-id scrot /home/addison/screenshots/%Y-%m-%d_%X.png
 
 #custom bindsyms
@@ -285,8 +286,9 @@ bindsym $mod+m exec --no-startup-id "mixxx"
 bindsym $mod+q exec --no-startup-id "qutebrowser"
 
 exec_always xrdb -load ~/.Xresources #load xterm customizations
-exec_always compton #load nice window compositing thing 
-exec_always feh --bg-fill /home/addison/stuff/dotfiles/background.png #load background
+exec_always --no-startup-id compton --config /home/addison/.config/compton.conf & #load nice window compositing thing 
+# exec_always feh --bg-fill /home/addison/stuff/dotfiles/background.png #load background
+exec_always feh --bg-fill /home/addison/stuff/dotfiles/cool.jpg #load background
 #exec_always /home/addison/stuff/screenchoose.sh #supposed to allow you to choose which screen you want
 #touchpad tap to click -- xinput list-props 17 lists available options
 exec_always xinput set-prop 17 291 1
@@ -302,3 +304,4 @@ for_window [instance="crx_hmjkmjkepdijhoojdojkdfohbdgmmhki"] move scratchpad
 #redshift
 exec --no-startup-id redshift-gtk
 exec xmodmap /home/addison/.Xmodmap
+exec_always --no-startup-id "sudo blackwidowcontrol -i"
