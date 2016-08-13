@@ -81,6 +81,31 @@ alias ls='ls --color=auto'
 # BASE16_SHELL="$HOME/.config/base16-shell/base16-monokai.dark.sh"
 # [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
+#FZF STUFF
+
+# fzf to file location
+cdf() {
+   local file
+   local dir
+   file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+}
+
+# fd - cd to selected directory
+fd() {
+  local dir
+  dir=$(find ${1:-*} -path '*/\.*' -prune \
+                  -o -type d -print 2> /dev/null | fzf +m) &&
+  cd "$dir"
+}
+
+# fda - including hidden directories
+fda() {
+  local dir
+  dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
+}
+
+#END FZF STUFF
+
 bindkey    "^[[H"    beginning-of-line
 bindkey    "^[[F"    end-of-line
 bindkey    "^[[3~"   delete-char
@@ -90,3 +115,5 @@ bindkey    "^[[P"    delete-char
 bindkey    "^[[4~"   end-of-line
 
 stty -ixon
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
