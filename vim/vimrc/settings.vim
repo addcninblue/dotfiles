@@ -17,7 +17,7 @@ set smartcase
 set relativenumber
 set number
 "set clipboard=unnamedplus
-filetype plugin on
+filetype plugin indent on
 
 "vim enhancements since 07/14/16
 set wildmenu "allows for tab completion on edits 
