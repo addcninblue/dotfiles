@@ -284,11 +284,12 @@ bindsym $mod+backslash exec --no-startup-id "st vim"
 bindsym $mod+s exec --no-startup-id "spotify"
 bindsym $mod+m exec --no-startup-id "mixxx"
 bindsym $mod+q exec --no-startup-id "qutebrowser"
+bindsym $mod+g exec --no-startup-id "gksu gparted"
 
 exec_always xrdb -load ~/.Xresources #load xterm customizations
 exec_always --no-startup-id compton --config /home/addison/.config/compton.conf & #load nice window compositing thing 
 # exec_always feh --bg-fill /home/addison/stuff/dotfiles/background.png #load background
-exec_always feh --bg-fill /home/addison/stuff/dotfiles/cool.jpg #load background
+exec_always feh --bg-fill /home/addison/stuff/dotfiles/coolbackground.jpg #load background
 #exec_always /home/addison/stuff/screenchoose.sh #supposed to allow you to choose which screen you want
 #touchpad tap to click -- xinput list-props 17 lists available options
 exec_always xinput set-prop 17 291 1
