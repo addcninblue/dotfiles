@@ -8,7 +8,6 @@ inoremap <C-space> <C-x><C-o>
 "allows for vim's own omnicomplete
 inoremap <C-BS> <C-W>
 " testing in python
-nnoremap <silent> <F5> :!clear;python %<CR>
 nnoremap <leader>f zA
 nnoremap <leader>F zi
 nnoremap <leader>p :execute "rightbelow vsplit " . bufname("#")<CR>
@@ -23,3 +22,6 @@ cnoremap jk <ESC>
 "tab switching
 nnoremap <leader>j gT
 nnoremap <leader>k gt
+
+"FZF
+nnoremap <C-p> :FZF<CR>
