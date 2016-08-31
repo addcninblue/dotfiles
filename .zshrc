@@ -72,22 +72,28 @@ zle -N zle-keymap-select
 zle -N zle-line-init
 
 RPROMPT=$'$(vcs_info_wrapper)'
-PROMPT="╭─[%n in %{$fg[blue]%}%d%{$reset_color%}]
+PROMPT="╭─[%n in %{$fg[blue]%}%d%{$reset_color%}] %(1j.[%j].)
 ╰─▶ "
-#add put this here
+# add put this here
 alias ls='ls --color=auto'
 # PROMPT="%d \$ "
 # Base16 Shell
 # BASE16_SHELL="$HOME/.config/base16-shell/base16-monokai.dark.sh"
 # [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
 
-#FZF STUFF
+# FZF STUFF
 
 # fzf to file location
 cdf() {
    local file
    local dir
    file=$(fzf +m -q "$1") && dir=$(dirname "$file") && cd "$dir"
+}
+
+# vim open file
+vimf() {
+   local file
+   file=$(fzf +m -q "") && vim "$file"
 }
 
 # fd - cd to selected directory
@@ -104,7 +110,27 @@ fda() {
   dir=$(find ${1:-.} -type d 2> /dev/null | fzf +m) && cd "$dir"
 }
 
-#END FZF STUFF
+# END FZF STUFF
+
+# vim for man
+export MANPAGER="env MAN_PN=1 vim -M +MANPAGER -"
+
+# codi.vim wrapper
+codi() {
+  vim $2 -c \
+    "let g:startify_disable_at_vimenter = 1 |\
+    set bt=nofile ls=0 noru nonu nornu |\
+    hi ColorColumn ctermbg=NONE |\
+    hi VertSplit ctermbg=8 ctermfg=8 |\
+    hi NonText ctermfg=8 |\
+    cnoremap q q! |\
+    Codi ${1:-python}"
+}
+
+#vim Ctrlz keybinging
+_zsh_cli_fg() { fg; }
+zle -N _zsh_cli_fg
+bindkey '^Z' _zsh_cli_fg
 
 bindkey    "^[[H"    beginning-of-line
 bindkey    "^[[F"    end-of-line
@@ -114,6 +140,7 @@ bindkey    "^[[8~"   end-of-line
 bindkey    "^[[P"    delete-char
 bindkey    "^[[4~"   end-of-line
 
-stty -ixon
+# stty -ixon
+[[ $- == *i* ]] && stty -ixon
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
