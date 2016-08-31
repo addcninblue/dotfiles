@@ -43,10 +43,10 @@ bindsym $mod+d exec dmenu_run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
-bindsym $mod+j focus left
-bindsym $mod+k focus down
-bindsym $mod+l focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -67,7 +67,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+h split h
+bindsym $mod+Shift+v split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -130,7 +130,26 @@ bindsym XF86Tools workspace $workspace1
 bindsym XF86Launch5 workspace $workspace2
 bindsym XF86Launch6 workspace $workspace3
 bindsym XF86Launch7 workspace $workspace4
-bindsym XF86Launch8 workspace $workspace10
+bindsym XF86Launch8 workspace $workspace5
+bindsym Control+XF86Tools workspace $workspace6
+bindsym Control+XF86Launch5 workspace $workspace7
+bindsym Control+XF86Launch6 workspace $workspace8
+bindsym Control+XF86Launch7 workspace $workspace9
+bindsym Control+XF86Launch8 workspace $workspace10
+
+# testing for workspace
+bindsym F1 workspace $workspace1
+bindsym F2 workspace $workspace2
+bindsym F3 workspace $workspace3
+bindsym F4 workspace $workspace4
+# bindsym F5 workspace $workspace5
+# bindsym F6 workspace $workspace6
+# bindsym F7 workspace $workspace7
+# bindsym F8 workspace $workspace8
+# bindsym F9 workspace $workspace9
+# bindsym F10 workspace $workspace10
+# bindsym F11 workspace $workspace11
+# bindsym F12 workspace $workspace12
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace1
@@ -157,7 +176,7 @@ for_window [class="Spotify"] move to workspace $workspace10
 bindsym $mod+grave scratchpad show
 
 # reload the configuration file
-bindsym $mod+Shift+c reload
+# bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
 bindsym $mod+Shift+r restart
 # exit i3 (logs you out of your X session)
@@ -221,8 +240,10 @@ bar {
 }
 
 #Screen brightness controls
-bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id sudo /home/addison/stuff/dotfiles/tools/bright_up # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id sudo /home/addison/stuff/dotfiles/tools/bright_down # decrease screen brightness
+# bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
+# bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
 #volume controls (at least for headphones and speakers, not sure about HDMI)
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +2% && pkill -RTMIN+1 i3blocks #increase
@@ -280,11 +301,13 @@ bindsym --release Shift+Print exec --no-startup-id scrot /home/addison/screensho
 
 #custom bindsyms
 bindsym $mod+c exec --no-startup-id google-chrome-beta
+bindsym $mod+Shift+c exec --no-startup-id "optirun -b google-chrome-beta"
 bindsym $mod+backslash exec --no-startup-id "st vim"
 bindsym $mod+s exec --no-startup-id "spotify"
 bindsym $mod+m exec --no-startup-id "mixxx"
-bindsym $mod+q exec --no-startup-id "qutebrowser"
-bindsym $mod+g exec --no-startup-id "gksu gparted"
+bindsym $mod+Shift+m exec --no-startup-id "optirun -b mixxx"
+bindsym $mod+g exec --no-startup-id "gimp"
+bindsym $mod+Shift+g exec --no-startup-id "optirun -b gimp"
 
 exec_always xrdb -load ~/.Xresources #load xterm customizations
 exec_always --no-startup-id compton --config /home/addison/.config/compton.conf & #load nice window compositing thing 
@@ -294,7 +317,7 @@ exec_always feh --bg-fill /home/addison/stuff/dotfiles/coolbackground.jpg #load 
 #touchpad tap to click -- xinput list-props 17 lists available options
 exec_always xinput set-prop 17 291 1
 #touchpad natural scroll
-exec_always xinput set-prop 17 274 1
+exec_always xinput set-prop 17 275 1
 exec --no-startup-id /home/addison/cooli3lock.sh
 #scratchpad vim
 #exec_always "st -c st_scratchpad vim /home/addison/scratchpad" 
