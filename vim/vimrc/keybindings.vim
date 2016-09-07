@@ -27,5 +27,12 @@ vnoremap jk <ESC>
 nnoremap <leader>j gT
 nnoremap <leader>k gt
 
-"FZF
+" FZF
 nnoremap <C-p> :FZF<CR>
+
+" DiffSaved
+nnoremap <silent> <leader>d :DiffSaved<CR>
+
+" Window Changing
+nnoremap <C-h> <C-w><C-h>
+nnoremap <C-l> <C-w><C-l>
