@@ -71,8 +71,16 @@ function zle-line-init zle-keymap-select() {
 zle -N zle-keymap-select
 zle -N zle-line-init
 
+function ssh_connection() {
+    if [[ -n $SSH_CONNECTION ]]; then
+        echo "@%m"
+    else
+        echo ""
+    fi
+}
+
 RPROMPT=$'$(vcs_info_wrapper)'
-PROMPT="╭─[%n in %{$fg[blue]%}%d%{$reset_color%}] %(1j.[%j].)
+PROMPT="╭─[%n$(ssh_connection) in %{$fg[blue]%}%d%{$reset_color%}] %(1j.[%j].)
 ╰─▶ "
 # add put this here
 alias ls='ls --color=auto'
@@ -111,6 +119,19 @@ fda() {
 }
 
 # END FZF STUFF
+
+# ls rebinds
+la() {
+	ls -a
+}
+
+ll() {
+	ls -l
+}
+
+lal() {
+	ls -al
+}
 
 # vim for man
 export MANPAGER="env MAN_PN=1 vim -M +MANPAGER -"
