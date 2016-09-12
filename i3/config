@@ -169,7 +169,9 @@ bindsym $mod+Shift+plus move container to workspace $workspace12
 bindsym $mod+z move workspace to output up
 
 #assign certain applications to certain workspaces
-assign [class="google-chrome-beta"] $workspace2
+assign [class="google-chrome-stable"] $workspace2
+assign [class="Vimb"] $workspace2
+assign [class="qutebrowser"] $workspace2
 for_window [class="Spotify"] move to workspace $workspace10
 
 #scratchpad
@@ -240,15 +242,15 @@ bar {
 }
 
 #Screen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id sudo /home/addison/stuff/dotfiles/tools/bright_up # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id sudo /home/addison/stuff/dotfiles/tools/bright_down # decrease screen brightness
-# bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
-# bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
+# bindsym XF86MonBrightnessUp exec --no-startup-id sudo /home/addison/stuff/dotfiles/tools/bright_up # increase screen brightness
+# bindsym XF86MonBrightnessDown exec --no-startup-id sudo /home/addison/stuff/dotfiles/tools/bright_down # decrease screen brightness
+bindsym XF86MonBrightnessUp exec xbacklight -inc 20 # increase screen brightness
+bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
 #volume controls (at least for headphones and speakers, not sure about HDMI)
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +2% && pkill -RTMIN+1 i3blocks #increase
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -2% && pkill -RTMIN+1 i3blocks #decrease
-bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master 1+ toggle && pkill -RTMIN+1 i3blocks 
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +2% && pkill -RTMIN+1 i3blocks #increase
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -2% && pkill -RTMIN+1 i3blocks #decrease
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute 0 toggle && pkill -RTMIN+1 i3blocks 
 
 #playerctl controls
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
@@ -259,13 +261,13 @@ bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym $mod+x exec /home/addison/cooli3lock.sh 
 
 #VGA screen brightness
-bindsym $mod+b mode "VGA_brightness"
-mode "VGA_brightness" {	
-	bindsym XF86MonBrightnessUp exec xrandr --output VGA1 --brightness 1 # increase screen brightness
-	bindsym XF86MonBrightnessDown exec xrandr --output VGA1 --brightness 0.5 # decrease screen brightness
+# bindsym $mod+b mode "VGA_brightness"
+# mode "VGA_brightness" {	
+# 	bindsym XF86MonBrightnessUp exec xrandr --output VGA1 --brightness 1 # increase screen brightness
+# 	bindsym XF86MonBrightnessDown exec xrandr --output VGA1 --brightness 0.5 # decrease screen brightness
 
-	bindsym Escape mode "default"
-}
+# 	bindsym Escape mode "default"
+# }
 
 #Novo Key
 bindsym XF86Launch1 exec --no-startup-id amixer -D pulse set Master 1+ toggle && pkill -RTMIN+1 i3blocks 
@@ -300,7 +302,9 @@ bindsym --release Print exec --no-startup-id scrot -s /home/addison/screenshots/
 bindsym --release Shift+Print exec --no-startup-id scrot /home/addison/screenshots/%Y-%m-%d_%X.png
 
 #custom bindsyms
-bindsym $mod+c exec --no-startup-id google-chrome-beta
+bindsym $mod+b exec --no-startup-id vimb
+bindsym $mod+q exec --no-startup-id qutebrowser
+bindsym $mod+c exec --no-startup-id google-chrome-stable
 bindsym $mod+Shift+c exec --no-startup-id "optirun -b google-chrome-beta"
 bindsym $mod+backslash exec --no-startup-id "st vim"
 bindsym $mod+s exec --no-startup-id "spotify"
@@ -309,10 +313,11 @@ bindsym $mod+Shift+m exec --no-startup-id "optirun -b mixxx"
 bindsym $mod+g exec --no-startup-id "gimp"
 bindsym $mod+Shift+g exec --no-startup-id "optirun -b gimp"
 
-exec_always xrdb -load ~/.Xresources #load xterm customizations
-exec_always --no-startup-id compton --config /home/addison/.config/compton.conf & #load nice window compositing thing 
+exec_always --no-startup-id xrdb -load ~/dotfiles/.Xresources
+# exec_always --no-startup-id compton --config /home/addison/.config/compton.conf & #load nice window compositing thing 
+exec_always --no-startup-id compton &
 # exec_always feh --bg-fill /home/addison/stuff/dotfiles/background.png #load background
-exec_always feh --bg-fill /home/addison/stuff/dotfiles/coolbackground.jpg #load background
+exec_always feh --bg-fill /home/addison/dotfiles/coolbackground.jpg #load background
 #exec_always /home/addison/stuff/screenchoose.sh #supposed to allow you to choose which screen you want
 #touchpad tap to click -- xinput list-props 17 lists available options
 exec_always xinput set-prop 17 291 1
@@ -323,8 +328,8 @@ exec --no-startup-id /home/addison/cooli3lock.sh
 #exec_always "st -c st_scratchpad vim /home/addison/scratchpad" 
 #for_window [instance="st_scratchpad"] move scratchpad
 #scratchpad Google Keep
-exec_always "google-chrome-beta --user-data-dir=$HOME/.config/google-chrome-beta --profile-directory=Default --app-id=hmjkmjkepdijhoojdojkdfohbdgmmhki"
-for_window [instance="crx_hmjkmjkepdijhoojdojkdfohbdgmmhki"] move scratchpad
+# exec_always "google-chrome-stable --user-data-dir=$HOME/.config/google-chrome-stable --profile-directory=Default --app-id=hmjkmjkepdijhoojdojkdfohbdgmmhki"
+# for_window [instance="crx_hmjkmjkepdijhoojdojkdfohbdgmmhki"] move scratchpad
 #redshift
 exec --no-startup-id redshift-gtk
 exec xmodmap /home/addison/.Xmodmap
