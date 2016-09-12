@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char font[] = "Inconsolata for Powerline:pixelsize=17:antialias=true:autohint=true";
+static char font[] = "Inconsolata for Powerline:pixelsize=20:antialias=true:autohint=true";
 static int borderpx = 2;
 #define histsize 2000
 
@@ -17,7 +17,7 @@ static int borderpx = 2;
  * 4: value of shell in /etc/passwd
  * 5: value of shell in config.h
  */
-static char shell[] = "usr/bin/zsh";
+static char shell[] = "/usr/bin/zsh";
 static char *utmp = NULL;
 static char stty_args[] = "stty raw pass8 nl -echo -iexten -ixon -cstopb 38400";
 /* added -ixon to disable start/stop. */

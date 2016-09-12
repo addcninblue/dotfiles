@@ -5,9 +5,8 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char font[] = "Inconsolata for Powerline:pixelsize=17:antialias=true:autohint=true";
+static char font[] = "Inconsolata Regular:pixelsize=13:antialias=true:autohint=true";
 static int borderpx = 2;
-#define histsize 2000
 static char shell[] = "usr/bin/zsh";
 static char *utmp = NULL;
 static char stty_args[] = "stty raw -echo -iexten echonl";
@@ -122,8 +121,6 @@ static Shortcut shortcuts[] = {
 	{ MODKEY|ShiftMask,     XK_C,           clipcopy,       {.i =  0} },
 	{ MODKEY|ShiftMask,     XK_V,           clippaste,      {.i =  0} },
 	{ MODKEY,               XK_Num_Lock,    numlock,        {.i =  0} },
-	{ ShiftMask,            XK_Page_Up,     kscrollup,      {.i = -1} },
-	{ ShiftMask,            XK_Page_Down,   kscrolldown,    {.i = -1} },
 };
 
 /*
