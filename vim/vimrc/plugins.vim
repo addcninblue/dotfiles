@@ -23,6 +23,6 @@ Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'Valloric/YouCompleteMe' 
+" Plug 'Valloric/YouCompleteMe' 
 call plug#end()
 map <C-n> :NERDTreeToggle<CR>
