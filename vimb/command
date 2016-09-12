@@ -1,0 +1,146 @@
+tabopen vimb tabs
+open vimb search engine google
+tabopen vimb zoom
+open go testing
+tabopen http://thedarnedestthing.com/vimb
+open di what
+tabopen vimb remap
+tabopen https://fanglingsu.github.io/vimb/man.html
+cnoremap jk <Esc>
+set input-bg-normal=#333333
+tabopen solarized colors
+set input-bg-normal=073642
+set input-bg-normal=#073642
+set input-bg-normal=#002b36
+set input-fg-normal=#93a1a1
+set input-fg-normal=#eee8d5
+exit
+;q
+open i3 check window class
+open go i3 window class
+open https://www.messenger.com/
+tabopen https://www.messenger.com/
+tabopen feh scroll
+open feh vi scroll
+open go feh vi scroll
+open go reduce current
+open go ohms law
+open go caret mode
+open go why can birds sit on high voltage lines
+open go calculate current in parallel circuit
+tabopen vimb back
+open arch flux
+open go flux arch
+open diffraction
+open refraction
+open speed of wave fro mwavelength and frequency
+tabopen go why can't humans see infrarede
+open speed of air
+open go speed of air
+open wavelength of FM radio
+open speed of sound
+open speed of EM waves
+open speed of light
+open 20+15+7
+open https://www.messenger.com/t/1224187064261341
+tabopen http://codingbat.com/prob/p182879
+open java return multiple method
+tabopen codingbat.com
+open y510p
+tabopen y510p
+open amixer arch
+open go playerctl
+tabopen eigenvalue
+tabopen java math.lcd
+open go math.lcd java
+tabopen http://codingbat.com/prob/p163932
+tabopen phhs.schoolloop.com
+tabopen https://phhs.schoolloop.com/portal/login?etarget=login_form
+open phhs.schoolloop.com
+open go unexpected linear relationships statistics
+open go ozone layer vs ice cap
+open https://www.messenger.com/t/100001537754278
+settings
+tabopen vimb remember logins
+open go vimb remember logins
+qpu
+queuelist
+queue
+qpop
+p
+qpush
+tabopen https://www.messenger.com/t/justinhuynh534
+tabopen codingbat vim
+open go codingbat vim
+open coding bat settings
+open go codingbat settings vim editor
+open codingbat settings
+open go codingbat settigns
+open https://www.messenger.com/t/1532615547038879
+open messenger.com
+open http://codingbat.com/prob/p195413
+tabopen notpron.com
+tabopen google.com
+open fb.com
+open xfinity.com
+open faljd.com
+open http://codingbat.com/java\
+open http://codingbat.com/java/
+open codingbat.com
+tabopen drive.google.com
+tabopen java coding guidelines if multiple lines
+open go java if multiple lines
+tabopen vimb settings
+open aur.archlinux.org
+set editor-command "st vim %s"
+set editor-command
+open https://aur.archlinux.org/
+open vimb editor command
+open go vimb editor command
+open https://aur.archlinux.org/packages/?O=0&K=zathura+pdf
+open zathura pdf plugin
+open zathura list of commands
+open go zathura list of commands
+tabopen messenger.com
+tabopen change zathura bar color
+open go vimg
+tabopen zathurarc
+go go
+open go
+open google.com
+open https://www.google.com/
+open hastebin.com
+open http://codingbat.com/java
+e
+q!
+open java free online pdf
+open drive.google.com
+open go mount ssh as filesystem
+tabopen sshfs
+open go sshfs
+open vackis alarm clock diassembly
+open go vackis alarm clock hack
+open revert to head git
+tabopen https://www.messenger.com/t/1226995897357026
+open go revert to head
+tabopen vimb
+open go vimb default search engine
+shortcut-default go
+open testing
+open vimb how to make bookmarks
+open vimb bookmarks
+open vimb
+bma
+open https://fanglingsu.github.io/vimb/man.html
+open !/
+eval! simplyread()
+open vimb vs chrome
+q
+open reddit uninstall xf86-video-intel
+open github.com/addcninblue/dotfilse
+open https://github.com/addcninblue/dotfiles
+tabopen bryanwweber git netrc gpg\
+source ~/.config/vimb/config
+tabopen vimb settings
+open codingbat.com
+open codingbat plain text
