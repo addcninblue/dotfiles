@@ -296,8 +296,9 @@ bindsym $mod+space exec rofi -show run -lines 4 -bw 20 -eh 2 -width 600 -padding
 bindsym $mod+p exec --no-startup-id python /home/addison/.power/start.py
 
 #screenshot
-bindsym --release Print exec --no-startup-id scrot -s /home/addison/screenshots/%Y-%m-%d_%X.png 
-bindsym --release Shift+Print exec --no-startup-id scrot /home/addison/screenshots/%Y-%m-%d_%X.png
+bindsym --release Print exec --no-startup-id maim -s /home/addison/screenshots/$(date +%Y-%m-%d_%T).png
+bindsym --release Shift+Print exec --no-startup-id maim /home/addison/screenshots/$(date +%Y-%m-%d_%T).png
+bindsym --release Control+Print exec --no-startup-id maim -i $(xdotool getactivewindow) /home/addison/screenshots/$(date +%Y-%m-%d_%T).png
 
 #custom bindsyms
 bindsym $mod+c exec --no-startup-id google-chrome-beta
