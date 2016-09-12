@@ -3,26 +3,31 @@ let g:limelight_conceal_ctermfg = 240
 "autocmd FileType text	      :Limelight
 "limelight settings }}}
 
-" YCM {{{
+" Supertab {{{
+let g:SuperTabDefaultCompletionType = 'context'
+" Supertab }}}
 
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
+" " YCM {{{
 
-" " better keybindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger="<tab>"
-let g:UltiSnipsJumpForwardTrigger="<tab>"
-let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
+" " make YCM compatible with UltiSnips (using supertab)
+" let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+" let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+" let g:SuperTabDefaultCompletionType = '<C-n>'
 
-" YCM and jedi
-let g:ycm_python_binary_path = '/usr/bin/python3'
+" " " better keybindings for UltiSnipsExpandTrigger
+" let g:UltiSnipsExpandTrigger="<tab>"
+" let g:UltiSnipsJumpForwardTrigger="<tab>"
+" let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 
-let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
-let g:ycm_complete_in_comments = 1 " Completion in comments
-let g:ycm_complete_in_strings = 1 " Completion in string
+" " YCM and jedi
+" let g:ycm_python_binary_path = '/usr/bin/python3'
+" let g:ycm_server_python_interpreter = '/usr/bin/python2'
 
-" YCM }}}
+" let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language's keyword
+" let g:ycm_complete_in_comments = 1 " Completion in comments
+" let g:ycm_complete_in_strings = 1 " Completion in string
+
+" " YCM }}}
 
 " vim-jedi {{{
 
