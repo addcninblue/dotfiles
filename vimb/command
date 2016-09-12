@@ -86,11 +86,9 @@ open xfinity.com
 open faljd.com
 open http://codingbat.com/java\
 open http://codingbat.com/java/
-open codingbat.com
 tabopen drive.google.com
 tabopen java coding guidelines if multiple lines
 open go java if multiple lines
-tabopen vimb settings
 open aur.archlinux.org
 set editor-command "st vim %s"
 set editor-command
@@ -144,3 +142,4 @@ source ~/.config/vimb/config
 tabopen vimb settings
 open codingbat.com
 open codingbat plain text
+open git stash
