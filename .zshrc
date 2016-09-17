@@ -154,3 +154,4 @@ bindkey    "^[[4~"   end-of-line
 [[ $- == *i* ]] && stty -ixon
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+source ~/.zpyi/zpyi.zsh
