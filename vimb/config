@@ -9,6 +9,8 @@ shortcut-default go
 shortcut-add go=https://www.google.com/search?q=$0
 shortcut-add wi=http://en.wikipedia.org/w/index.php?title=Special:Search&search=$0
 shortcut-add di=http://dictionary.reference.com/browse/$0
+shortcut-add conj=http://www.wordreference.com/conj/EsVerbs.aspx?v=$0
+shortcut-add sp=http://www.wordreference.com/es/en/translation.asp?spen=$0
 inoremap jk <Esc>
 cnoremap jk <Esc>
 
