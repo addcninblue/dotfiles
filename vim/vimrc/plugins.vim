@@ -8,6 +8,7 @@ call plug#begin('~/.vim/plugged')
 " Plug 'Shougo/neosnippet.vim'
 Plug 'artur-shaik/vim-javacomplete2'
 Plug 'bkad/CamelCaseMotion'
+Plug 'blindFS/vim-taskwarrior'
 Plug 'ervandew/supertab'
 Plug 'jreybert/vimagit'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
