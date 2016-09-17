@@ -1,7 +1,6 @@
 tabopen vimb tabs
 open vimb search engine google
 tabopen vimb zoom
-open go testing
 tabopen http://thedarnedestthing.com/vimb
 open di what
 tabopen vimb remap
@@ -18,7 +17,6 @@ exit
 ;q
 open i3 check window class
 open go i3 window class
-open https://www.messenger.com/
 tabopen https://www.messenger.com/
 tabopen feh scroll
 open feh vi scroll
@@ -56,7 +54,6 @@ open go math.lcd java
 tabopen http://codingbat.com/prob/p163932
 tabopen phhs.schoolloop.com
 tabopen https://phhs.schoolloop.com/portal/login?etarget=login_form
-open phhs.schoolloop.com
 open go unexpected linear relationships statistics
 open go ozone layer vs ice cap
 open https://www.messenger.com/t/100001537754278
@@ -81,7 +78,6 @@ open messenger.com
 open http://codingbat.com/prob/p195413
 tabopen notpron.com
 tabopen google.com
-open fb.com
 open xfinity.com
 open faljd.com
 open http://codingbat.com/java\
@@ -92,7 +88,6 @@ open go java if multiple lines
 open aur.archlinux.org
 set editor-command "st vim %s"
 set editor-command
-open https://aur.archlinux.org/
 open vimb editor command
 open go vimb editor command
 open https://aur.archlinux.org/packages/?O=0&K=zathura+pdf
@@ -108,11 +103,8 @@ open go
 open google.com
 open https://www.google.com/
 open hastebin.com
-open http://codingbat.com/java
-e
 q!
 open java free online pdf
-open drive.google.com
 open go mount ssh as filesystem
 tabopen sshfs
 open go sshfs
@@ -128,18 +120,139 @@ open testing
 open vimb how to make bookmarks
 open vimb bookmarks
 open vimb
-bma
 open https://fanglingsu.github.io/vimb/man.html
 open !/
 eval! simplyread()
 open vimb vs chrome
-q
 open reddit uninstall xf86-video-intel
 open github.com/addcninblue/dotfilse
-open https://github.com/addcninblue/dotfiles
 tabopen bryanwweber git netrc gpg\
 source ~/.config/vimb/config
 tabopen vimb settings
-open codingbat.com
 open codingbat plain text
 open git stash
+open git stash doesnt store new files
+open git merge only one file
+tabopen git branch vs checkout
+open github.com/addcninblue/dotfiles
+open https://github.com/addcninblue/dotfiles
+tabopen gitignore regex
+open https://phhs.schoolloop.com/
+open smtp forwarder
+open arch smtp forwarder
+open mutt inbox
+tabopen google two factor authentication
+open google two factor for apps that dont support it
+open how to use mutt
+open mutt status
+open set up mutt email
+open set up mutt
+open mutt emailo client
+open mutt guide
+tabopen foldmethod vim
+open modesetting doesn't work arch
+open https://aur.archlinux.org/
+open modesetting doesn't work with xorg
+open http://codingbat.com/java
+tabopen get length of java array
+open java -1 array
+q
+e
+tabopen vimb config
+y
+yank
+copy
+open vimb open editor of highlighted text
+open xor python
+open absolute value python\
+open assign java array after initialize
+open drive.google.com
+open markdown synta
+open markdown make header vim
+open markdown to pdf
+tabopen archlinux.com
+open markdown syntax
+open view markdown files
+open zathura zoom in
+tabopen markdown vs latex
+open taskwarrior.org/download
+open http://taskwarrior.org/download/
+tabopen make uninstall
+open uninstall taskwarrior
+open taskwarrior add tag to existing
+open calories to joules
+open go testing
+open spanishdict.com
+open phhs.schoolloop.com
+bma
+tabopen diction only one word
+open taskwarrior color code
+tabopen task select regex
+open regex all except
+open task change all except
+open fb.com
+tabopen system arraycopy java
+tabopen taskwarrior delete completed tasks
+open project date taskwarrior
+open cereal nutrition facts
+taskwarrior due
+open taskwarrior due
+open rc.dateformat
+open go rc.dateformat
+open xkcd.com
+open https://taskwarrior.org/docs/dates.html#due
+open check if port is open from inside
+open http://portquiz.net
+open portquiz.net:53589
+open 192.168.1.1
+open http://codingbat.com/prob/p162058
+tabopen array minimum java
+open codingbat.com
+open vim append after word
+tabopen vim taskwarrior
+open gitlab
+open gitlab raspberry pi arch
+tabopen hours of sleep versus hours of homework
+tabopen relationship between heat and energy
+open xon.sh
+tabopen xonsh vim
+open zpyi
+tabopen taskwarrior hide
+open make array python\
+tabopen make array python
+tabopen sp descubrio
+open sp descubrio
+open uninstall make file
+open open st terminal with directory
+open zsh cd to directory on load
+open vim very magic mode
+open https://taskwarrior.org/docs/using_dates.html
+open https://taskwarrior.org/docs/
+tabopen https://taskwarrior.org/docs/
+tabopen set up gitlab server
+open archlinux.org
+open reddit.com
+open whatismyip.com
+open vimb ad blocking
+tabopen whatismyip.com
+open school district uses custom isp
+open vimb proxy
+open https://phhs.schoolloop.com/portal/login?d=x&return_url=1473739859137
+open github.com/addcninblue
+open pomodoro
+open bash pomodoro
+open spanish dictionary
+open sp dar
+open platko
+open sp aficionados
+open conj esta
+open conj iba
+open taskwarrior state time
+open https://www.messenger.com/
+open taskwarrior
+open http://192.168.1.1/start.htm
+open https://phhs.schoolloop.com/portal/login?d=x&return_url=1473739859137
+open arch linux bluetooth
+open arch check number of updates
+open gitignore not working
+open git change commit
