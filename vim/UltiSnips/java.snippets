@@ -1,16 +1,29 @@
-snippet class
+snippet class "class" b
 public class $1 {
-	public static void main (String [] args){
-		$0
-	}
+	$0
 }
 endsnippet
 
-snippet desc
+snippet m "method" b
+/**
+* $5
+*/
+${1:public} ${2:void} $3($4){
+	$0
+}
+endsnippet 
+
+snippet main "main method" b
+public static void main (String [] args){
+	$0
+}
+endsnippet
+
+snippet desc "description" b
 /**
  * $0
- * @author $1
- * @version $2
+ * @author ${1:Addison Chan}
+ * @version ${2:`date +%D`}
  */ 
 endsnippet
 
@@ -20,4 +33,10 @@ endsnippet
 
 snippet println
 System.out.println($0)
+endsnippet
+
+snippet for
+for(int $1 = 0; $1 < $2; $1++){
+	$0
+}
 endsnippet

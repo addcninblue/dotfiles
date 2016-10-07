@@ -4,7 +4,8 @@ let g:limelight_conceal_ctermfg = 240
 "limelight settings }}}
 
 " Supertab {{{
-let g:SuperTabDefaultCompletionType = 'context'
+let g:SuperTabDefaultCompletionType = '<C-n>'
+" let g:SuperTabDefaultCompletionType = 'context'
 " Supertab }}}
 
 " " YCM {{{
@@ -15,9 +16,9 @@ let g:SuperTabDefaultCompletionType = 'context'
 " let g:SuperTabDefaultCompletionType = '<C-n>'
 
 " " " better keybindings for UltiSnipsExpandTrigger
-" let g:UltiSnipsExpandTrigger="<tab>"
-" let g:UltiSnipsJumpForwardTrigger="<tab>"
-" let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
+let g:UltiSnipsExpandTrigger="<tab>"
+let g:UltiSnipsJumpForwardTrigger="<tab>"
+let g:UltiSnipsJumpBackwardTrigger="<S-tab>"
 
 " " YCM and jedi
 " let g:ycm_python_binary_path = '/usr/bin/python3'
@@ -41,9 +42,9 @@ let g:SuperTabDefaultCompletionType = 'context'
 
 "javacomplete {{{
 
-autocmd FileType java setlocal omnifunc=javacomplete#Complete
+" autocmd FileType java setlocal omnifunc=javacomplete#Complete
 "imports all missing
-autocmd FileType java nnoremap <leader>i <Plug>(JavaComplete-Imports-AddSmart)
+" autocmd FileType java nnoremap <leader>i <Plug>(JavaComplete-Imports-AddSmart)
 
 "javacomplete }}}
 

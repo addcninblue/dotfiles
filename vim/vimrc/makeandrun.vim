@@ -1,4 +1,5 @@
 nnoremap <silent><leader>m :make<CR><CR>
+nnoremap <silent><leader>M :make clean && make <CR><CR>
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
@@ -14,7 +15,8 @@ func! Run()
 	" 	exec "!g++ % -o %<"
 	" 	exec "!time ./%<"
 	if &filetype == 'java'
-		exec "!clear;java -cp %:p:h %:t:r"
+		exec "!clear;make run"
+		" exec "!clear;java -cp %:p:h %:t:r"
 	elseif &filetype == 'sh'
 		exec "!bash %"
 	elseif &filetype == 'python'

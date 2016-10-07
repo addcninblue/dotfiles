@@ -100,7 +100,6 @@ open go vimg
 tabopen zathurarc
 go go
 open go
-open google.com
 open https://www.google.com/
 open hastebin.com
 q!
@@ -130,12 +129,10 @@ tabopen bryanwweber git netrc gpg\
 source ~/.config/vimb/config
 tabopen vimb settings
 open codingbat plain text
-open git stash
 open git stash doesnt store new files
 open git merge only one file
 tabopen git branch vs checkout
 open github.com/addcninblue/dotfiles
-open https://github.com/addcninblue/dotfiles
 tabopen gitignore regex
 open https://phhs.schoolloop.com/
 open smtp forwarder
@@ -156,7 +153,6 @@ open modesetting doesn't work with xorg
 open http://codingbat.com/java
 tabopen get length of java array
 open java -1 array
-q
 e
 tabopen vimb config
 y
@@ -166,7 +162,6 @@ open vimb open editor of highlighted text
 open xor python
 open absolute value python\
 open assign java array after initialize
-open drive.google.com
 open markdown synta
 open markdown make header vim
 open markdown to pdf
@@ -190,7 +185,6 @@ open taskwarrior color code
 tabopen task select regex
 open regex all except
 open task change all except
-open fb.com
 tabopen system arraycopy java
 tabopen taskwarrior delete completed tasks
 open project date taskwarrior
@@ -204,7 +198,6 @@ open https://taskwarrior.org/docs/dates.html#due
 open check if port is open from inside
 open http://portquiz.net
 open portquiz.net:53589
-open 192.168.1.1
 open http://codingbat.com/prob/p162058
 tabopen array minimum java
 open codingbat.com
@@ -234,11 +227,8 @@ open archlinux.org
 open reddit.com
 open whatismyip.com
 open vimb ad blocking
-tabopen whatismyip.com
 open school district uses custom isp
 open vimb proxy
-open https://phhs.schoolloop.com/portal/login?d=x&return_url=1473739859137
-open github.com/addcninblue
 open pomodoro
 open bash pomodoro
 open spanish dictionary
@@ -248,11 +238,257 @@ open sp aficionados
 open conj esta
 open conj iba
 open taskwarrior state time
-open https://www.messenger.com/
 open taskwarrior
 open http://192.168.1.1/start.htm
-open https://phhs.schoolloop.com/portal/login?d=x&return_url=1473739859137
 open arch linux bluetooth
 open arch check number of updates
 open gitignore not working
 open git change commit
+open git remove last commit
+open https://github.com/addcninblue/dotfiles
+tabopen java two dimensional matrix with 0 as one side length
+open undo git merge
+open git merge no ff
+open why doesn't git delete after branch merge
+open draw box characters unicode
+open java format double
+tabopen java numberformat
+open java format several numbers to same place
+open collegeboard practice sat ttests
+open collegeboard practice sat tests
+open zsh resume
+open zsh delete last output
+open zsh you have suspended jobs
+open ap lang 2002 section 2 analysis
+open lincoln second inaugural address meaning
+open lightweight web fb messenger
+open wreak havoc
+open wreak pronunciation
+open make arch use less ram
+open is zram faster
+open dev-sda1.device
+open go dev-sda1.device
+open low ram arch linux
+open what is my location
+open vimb less ram
+open http://apcentral.collegeboard.com/apc/members/exam/exam_information/157231.html
+open remove most recent file linux
+open xargs echo n
+open arch linux webcam
+open what is ld preload
+open linux programmers manual
+open linux command line spanish dictionary
+open https://wiki.archlinux.org/index.php/repo-ck
+open https://wiki.archlinux.org/index.php/
+open append to vim macro
+open row echelon questions
+open mixxx
+open https://wiki.archlinux.org/index.php/mixxx
+open https://aur.archlinux.org/packages/mixxx
+open !m
+open static class java
+open drive.google.com
+open https://www.facebook.com/
+open https://github.com/addcninblue/Reduced-Row-Echelon
+open add remote git
+open git stash and switch branch
+open git remove branch
+open how to use remotes git
+open git remote not updating
+open git how to use remotes
+tabopen github.com/mamapnanda/
+open github.com/mamapanda
+open git only merge one file
+open git diff two branches
+open use mergetool
+open git stash doesn't remove extra files
+open git clean
+open git stash
+open restore specific git stash
+tabopen git stash your local changes could be
+open git mergetool
+open git stash delete
+open while break
+open ignorecase java
+open undo merge git
+open git checkout one file
+open diff.tool
+open go diff.tool
+open vimdiff
+tabopen vim copy line from split
+open git squash commits
+tabopen git undo all edits
+open git reset hard different from last committ
+open merge two files git
+open git merge one file
+open git checkout patch
+tabopen kelvin to celcius
+open https://github.com/addcninblue/Reduced-Row-Echelon/
+tabopen ascii to hex
+open ascii to unicode
+open delete git branches
+open proclamation line of 1763
+open sugar act of 1764
+open stamp act
+open declatory act 1766
+open townshend act
+tabopen https://github.com/addcninblue/Reduced-Row-Echelon/pulls
+open boston massacre
+open coercive acts
+open concord and lexington
+open sword cartoon
+open gun cartoon
+open stamp
+open postage stamp
+open turnitin.com
+open solution to singular matrix
+open git add remote
+open git pull from remeto
+open git discard workspace and pull
+open git push discard server
+open git updates were rejected
+open arch xmodmap
+open xdotool
+open google.com
+open unbindsym i3
+open ip neigh
+open ip tunnel
+open ip tunnel socks
+open change git remote address
+open github.com/addcninblue
+open int to string java
+open double cannot be dereferenced
+open youtube.com
+open youtube to mp3
+open zsh start with command
+open st terminal start with command
+open resize float window via command i3
+open move
+open center floating window i3
+open java format
+open decimalformat
+tabopen git add remote branch
+open fill array java
+open array append each cell java
+open make supertab work with ultisnips
+open turn on spellcheck vim
+open underscore markdown
+open markdown new line
+open Arrays fill java
+open https://github.com/addcninblue/Matrix-Operations/network
+open st solarized
+open fb.com
+open determinant of matrix
+open vim 4 more files to edit
+open pacman no compression
+tabopen pacman sc
+open spanish nouns ending in insta
+open spanish adjectives ending in e
+open spanish verbs ending in ista
+open why is init pid 1
+open pid 5 digit
+open collegeboard practice test 6 pdf
+open delimitmate vim
+open surround vim vs
+open vim surround
+open define custom vim surround
+open vim make custom text objets
+open delimitmate
+open vim textobj
+open vim textobj vs surround
+tabopen datavac
+tabopen craigslist.com
+open craigslist.com
+tabopen archlinux chromebook
+open c720 back
+open ebay.com
+open inbox.google.com
+tabopen c720
+tabopen vimb zoom in
+open ultisnips brackets
+open java scanner
+open taskwarrior recurring
+open saturday weather
+open 2014 04 09
+open calendar.google.com
+open perl
+tabopen commandlinefu.com
+open learn perl
+tabopen matasano problem set
+tabopen only operate on raw bytes not on encoded strings
+tabopen python base64
+tabopen hexlify python
+open bytes vs string python
+open python encode vs unhexlify
+open base64 vs binascii
+open unhexlify vs base64
+open python typeof
+open xor buffers
+tabopen xor
+tabopen how to use bitwise operations in python
+open python xor bytes
+open python ;x
+open most commonly used english letters
+tabopen undo xor
+tabopen python length of string
+tabopen hex to ascii
+open log python
+open how to xor a single character
+open xor against single character
+open diego velasquez
+tabopen esperanto
+open java constructor
+tabopen xor single character cryptography
+tabopen python substring
+open python hexlify
+open get individual ascii characters from integer
+open hexadecimal to ascii
+open xor hexadecimal python
+open sayweee.com
+open 192.168.1.1
+tabopen get new ip address ip arch
+tabopen whatismyip.com
+open pdf stegonography
+open csaw hsf
+open https://hsf.csaw.io/challenges
+tabopen unzip 7z arch
+open vmem
+open case java
+open https://phhs.schoolloop.com/portal/student_home
+tabopen negate a boolean java
+q
+open random card generator
+open codewars.com
+tabopen https://phhs.schoolloop.com/portal/login?d=x&return_url=1473739859137
+open math pi java
+tabopen call method inside of java
+open volume of sphere calculator
+tabopen java math
+open volume of sphere
+open regex capturing groups java
+tabopen pong
+tabopen match caret java regex
+open match digits regex java
+open java no match found regex
+open floor function math java
+open string to int java
+open string to double java
+open vim better c o
+open java string to double
+tabopen java char cannot be converted to charsequence
+open string contains java
+open switch notation java
+open java case default
+open https://phhs.schoolloop.com/portal/login?d=x&return_url=1473739859137
+open https://www.messenger.com/
+open github.com
+tabopen mention commit that fixed github
+open java graph equation
+open java generalpath
+open i3 floating window
+open java color
+open java setcolor
+open java setcolor hex values
+open vim remove buffer
+open java rectangle
+open simplest country flag

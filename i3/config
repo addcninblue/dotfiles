@@ -142,15 +142,19 @@ bindsym F1 workspace $workspace1
 bindsym F2 workspace $workspace2
 bindsym F3 workspace $workspace3
 bindsym F4 workspace $workspace4
-# bindsym F5 workspace $workspace5
-# bindsym F6 workspace $workspace6
-# bindsym F7 workspace $workspace7
-# bindsym F8 workspace $workspace8
-# bindsym F9 workspace $workspace9
-# bindsym F10 workspace $workspace10
+bindsym F5 workspace $workspace5
+bindsym F6 workspace $workspace6
+bindsym F7 workspace $workspace7
+bindsym F8 workspace $workspace8
+bindsym F9 workspace $workspace9
+bindsym F10 workspace $workspace10
 # bindsym F11 workspace $workspace11
 # bindsym F12 workspace $workspace12
 
+bindsym Control+1 mode "Clearf"
+mode "ClearF" {
+	bindsym Escape mode "default"
+}
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace1
 bindsym $mod+Shift+2 move container to workspace $workspace2
@@ -324,6 +328,10 @@ exec_always xinput set-prop 17 291 1
 #touchpad natural scroll
 exec_always xinput set-prop 17 275 1
 exec --no-startup-id /home/addison/cooli3lock.sh
+# exec_always "st -c st_scratchpad"
+# for_window [class="st_scratchpad"] floating enable,resize set 700 500, move position center
+# for_window [class="st_scratchpad"] move scratchpad
+# for_window [class="st_scratchpad"] move absolute center
 #scratchpad vim
 #exec_always "st -c st_scratchpad vim /home/addison/scratchpad" 
 #for_window [instance="st_scratchpad"] move scratchpad

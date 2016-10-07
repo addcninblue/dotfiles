@@ -1,5 +1,7 @@
 snippet java
-sourcefiles = $1.java
+MAINFILE = $1
+
+sourcefiles = $(MAINFILE).java
 
 classfiles = $(sourcefiles:.java=.class)
 
@@ -10,4 +12,7 @@ all : $(classfiles)
 
 clean:
 	rm -f *.class
+
+run:
+	java $(MAINFILE)
 endsnippet

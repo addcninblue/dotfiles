@@ -45,3 +45,6 @@ set statusline+=%L        " Total lines
 set shortmess=I
 " set colorcolumn=80
 " highlight colorcolumn ctermbg=NONE ctermfg=9
+
+" showcmd
+set showcmd
