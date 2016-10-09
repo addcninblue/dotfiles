@@ -153,6 +153,8 @@ _zsh_cli_fg() { fg; }
 zle -N _zsh_cli_fg
 bindkey '^Z' _zsh_cli_fg
 
+export PATH=$HOME/.local/bin:${PATH}
+
 bindkey    "^[[H"    beginning-of-line
 bindkey    "^[[F"    end-of-line
 bindkey    "^[[3~"   delete-char
