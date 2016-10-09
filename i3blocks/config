@@ -32,22 +32,29 @@ markup=none
 #
 # This displays "ARTIST - SONG" if a music is playing.
 # Supported players are: spotify, vlc, audacious, xmms2, mplayer, and others.
-[mediaplayer]
-instance=spotify
+# [mediaplayer]
+# instance=spotify
+# interval=5
+# signal=10
+
+[mediaplayer_working]
 interval=5
 signal=10
 
+# # Volume indicator
+# #
+# # The first parameter sets the step (and units to display)
+# # The second parameter overrides the mixer selection
+# # See the script for details.
+# [volume]
+# label=VOL
+# #label=♪
+# instance=Master
+# #instance=PCM
+# interval=once
+# signal=1
 
-# Volume indicator
-#
-# The first parameter sets the step (and units to display)
-# The second parameter overrides the mixer selection
-# See the script for details.
-[volume]
-label=VOL
-#label=♪
-instance=Master
-#instance=PCM
+[volume_working]
 interval=once
 signal=1
 
@@ -117,10 +124,10 @@ interval=30
 # signal=11
 # color=#000000
 
-[keyindicator]
-instance=NUM
-interval=once
-signal=11
+# [keyindicator]
+# instance=NUM
+# interval=once
+# signal=11
 
 # Date Time
 #

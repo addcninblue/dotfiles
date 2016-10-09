@@ -1,7 +1,7 @@
 #!/usr/bin/bash
 brightness=$(cat /sys/class/backlight/intel_backlight/brightness)
 
-if (($brightness > 0)); then
-  let brightness=$brightness-200
+if (($brightness > 50)); then
+  let brightness=$brightness-50
   echo "echo $brightness > /sys/class/backlight/intel_backlight/brightness" | sudo zsh #or bash
 fi

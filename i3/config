@@ -9,11 +9,11 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod4
+set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Ubuntu 10
+font pango:Ubuntu 11
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -138,10 +138,10 @@ bindsym Control+XF86Launch7 workspace $workspace9
 bindsym Control+XF86Launch8 workspace $workspace10
 
 # testing for workspace
-bindsym F1 workspace $workspace1
-bindsym F2 workspace $workspace2
-bindsym F3 workspace $workspace3
-bindsym F4 workspace $workspace4
+# bindsym F1 workspace $workspace1
+# bindsym F2 workspace $workspace2
+# bindsym F3 workspace $workspace3
+# bindsym F4 workspace $workspace4
 # bindsym F5 workspace $workspace5
 # bindsym F6 workspace $workspace6
 # bindsym F7 workspace $workspace7
@@ -150,6 +150,19 @@ bindsym F4 workspace $workspace4
 # bindsym F10 workspace $workspace10
 # bindsym F11 workspace $workspace11
 # bindsym F12 workspace $workspace12
+
+bindsym F1 exec --no-startup-id /home/addison/stuff/i3tools/switchWorkspace.sh prev
+bindsym F2 exec --no-startup-id /home/addison/stuff/i3tools/switchWorkspace.sh next
+bindsym --release F4 exec --no-startup-id xdotool key "F11"
+bindsym Shift+F4 fullscreen toggle
+bindsym F6 exec --no-startup-id sudo /home/addison/dotfiles/tools/bright_down # decrease screen brightness
+bindsym F7 exec --no-startup-id sudo /home/addison/dotfiles/tools/bright_up # increase screen brightness
+bindsym F8 exec --no-startup-id pactl set-sink-mute 1 toggle && pkill -RTMIN+1 i3blocks 
+bindsym F9 exec --no-startup-id pactl set-sink-volume 1 -2% && pkill -RTMIN+1 i3blocks #decrease
+bindsym F10 exec --no-startup-id pactl set-sink-volume 1 +2% && pkill -RTMIN+1 i3blocks #increase
+bindsym Shift+F8 exec --no-startup-id playerctl play-pause && pkill -RTMIN+10 i3blocks # music play/pause
+bindsym Shift+F9 exec --no-startup-id playerctl previous && sleep 2s && pkill -RTMIN+10 i3blocks # music prev. 2s because of lag
+bindsym Shift+F10 exec --no-startup-id playerctl next && sleep 2s && pkill -RTMIN+10 i3blocks # music next. 2s because of lag
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace1
@@ -169,7 +182,9 @@ bindsym $mod+Shift+plus move container to workspace $workspace12
 bindsym $mod+z move workspace to output up
 
 #assign certain applications to certain workspaces
-assign [class="google-chrome-beta"] $workspace2
+assign [class="google-chrome"] $workspace2
+# bindsym --release F4 exec --no-startup-id xdotool key "F11"
+for_window [class="google-chrome"] bindsym --release F4 exec xdotool key "F11"
 for_window [class="Spotify"] move to workspace $workspace10
 
 #scratchpad
@@ -272,13 +287,13 @@ bindsym XF86Launch1 exec --no-startup-id amixer -D pulse set Master 1+ toggle &&
 
 mode "Power" {
 	bindsym h exec "systemctl hibernate; /home/addison/cooli3lock.sh"; mode "default"
-	bindsym XF86Sleep exec "systemctl suspend; /home/addison/cooli3lock.sh; sudo blackwidowcontrol -i"; mode "default"
+	bindsym XF86PowerOff exec "systemctl suspend; /home/addison/cooli3lock.sh;"; mode "default"
 	bindsym s exec "shutdown -h now"
 	bindsym r exec "shutdown -r now"
 	bindsym Escape mode "default"
 }
 
-bindsym XF86Sleep mode "Power"
+bindsym XF86PowerOff mode "Power"
 
 #change screen
 bindsym $mod+Print exec --no-startup-id python /home/addison/.screenlayout/start.py
@@ -301,8 +316,8 @@ bindsym --release Shift+Print exec --no-startup-id maim /home/addison/screenshot
 bindsym --release Control+Print exec --no-startup-id maim -i $(xdotool getactivewindow) /home/addison/screenshots/$(date +%Y-%m-%d_%T).png
 
 #custom bindsyms
-bindsym $mod+c exec --no-startup-id google-chrome-beta
-bindsym $mod+Shift+c exec --no-startup-id "optirun -b google-chrome-beta"
+bindsym $mod+c exec --no-startup-id google-chrome-stable
+bindsym $mod+Shift+c exec --no-startup-id "optirun -b google-chrome"
 bindsym $mod+backslash exec --no-startup-id "st vim"
 bindsym $mod+s exec --no-startup-id "spotify"
 bindsym $mod+m exec --no-startup-id "mixxx"
@@ -312,21 +327,15 @@ bindsym $mod+Shift+g exec --no-startup-id "optirun -b gimp"
 
 exec_always xrdb -load ~/.Xresources #load xterm customizations
 exec_always --no-startup-id compton --config /home/addison/.config/compton.conf & #load nice window compositing thing 
-# exec_always feh --bg-fill /home/addison/stuff/dotfiles/background.png #load background
-exec_always feh --bg-fill /home/addison/stuff/dotfiles/coolbackground.jpg #load background
-#exec_always /home/addison/stuff/screenchoose.sh #supposed to allow you to choose which screen you want
-#touchpad tap to click -- xinput list-props 17 lists available options
-exec_always xinput set-prop 17 291 1
+exec_always feh --bg-fill /home/addison/dotfiles/coolbackground.jpg #load background
+#touchpad tap to click -- xinput list-props 12 lists available options
+exec_always xinput set-prop 12 275 1
 #touchpad natural scroll
-exec_always xinput set-prop 17 275 1
+exec_always xinput set-prop 12 285 1
+# disable tapping drag because it gets annoying
+exec_always xinput set-prop 12 277 0
 exec --no-startup-id /home/addison/cooli3lock.sh
-#scratchpad vim
-#exec_always "st -c st_scratchpad vim /home/addison/scratchpad" 
-#for_window [instance="st_scratchpad"] move scratchpad
-#scratchpad Google Keep
-exec_always "google-chrome-beta --user-data-dir=$HOME/.config/google-chrome-beta --profile-directory=Default --app-id=hmjkmjkepdijhoojdojkdfohbdgmmhki"
-for_window [instance="crx_hmjkmjkepdijhoojdojkdfohbdgmmhki"] move scratchpad
 #redshift
 exec --no-startup-id redshift-gtk
 exec xmodmap /home/addison/.Xmodmap
-exec_always --no-startup-id "sudo blackwidowcontrol -i"
+exec_always --no-startup-id "parcellite"

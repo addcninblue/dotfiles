@@ -43,8 +43,9 @@ set statusline+=%=        " Switch to the right side
 " set statusline+=/         " Separator
 set statusline+=%L        " Total lines
 set shortmess=I
-set colorcolumn=80
-highlight colorcolumn ctermbg=NONE ctermfg=9
+" set colorcolumn=80
+" highlight colorcolumn ctermbg=NONE ctermfg=9
 
 " if wraps, same indent
 set breakindent
+set showcmd
