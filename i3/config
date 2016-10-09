@@ -153,6 +153,7 @@ bindsym Control+XF86Launch8 workspace $workspace10
 
 bindsym F1 exec --no-startup-id /home/addison/stuff/i3tools/switchWorkspace.sh prev
 bindsym F2 exec --no-startup-id /home/addison/stuff/i3tools/switchWorkspace.sh next
+bindsym --release F3 exec --no-startup-id xdotool key "control+r"
 bindsym --release F4 exec --no-startup-id xdotool key "F11"
 bindsym Shift+F4 fullscreen toggle
 bindsym F6 exec --no-startup-id sudo /home/addison/dotfiles/tools/bright_down # decrease screen brightness
@@ -311,9 +312,9 @@ bindsym $mod+space exec rofi -show run -lines 4 -bw 20 -eh 2 -width 600 -padding
 bindsym $mod+p exec --no-startup-id python /home/addison/.power/start.py
 
 #screenshot
-bindsym --release Print exec --no-startup-id maim -s /home/addison/screenshots/$(date +%Y-%m-%d_%T).png
-bindsym --release Shift+Print exec --no-startup-id maim /home/addison/screenshots/$(date +%Y-%m-%d_%T).png
-bindsym --release Control+Print exec --no-startup-id maim -i $(xdotool getactivewindow) /home/addison/screenshots/$(date +%Y-%m-%d_%T).png
+bindsym --release F5 exec --no-startup-id maim -s /home/addison/screenshots/$(date +%Y-%m-%d_%T).png
+bindsym --release Shift+F5 exec --no-startup-id maim /home/addison/screenshots/$(date +%Y-%m-%d_%T).png
+bindsym --release Control+F5 exec --no-startup-id maim -i $(xdotool getactivewindow) /home/addison/screenshots/$(date +%Y-%m-%d_%T).png
 
 #custom bindsyms
 bindsym $mod+c exec --no-startup-id google-chrome-stable
