@@ -151,8 +151,10 @@ bindsym Control+XF86Launch8 workspace $workspace10
 # bindsym F11 workspace $workspace11
 # bindsym F12 workspace $workspace12
 
-bindsym F1 exec --no-startup-id /home/addison/stuff/i3tools/switchWorkspace.sh prev
-bindsym F2 exec --no-startup-id /home/addison/stuff/i3tools/switchWorkspace.sh next
+# bindsym --release Shift+F1 exec --no-startup-id /home/addison/dotfiles/tools/switchWorkspace.sh prev
+# bindsym --release Shift+F2 exec --no-startup-id /home/addison/dotfiles/tools/switchWorkspace.sh next
+bindsym F1 exec --no-startup-id /home/addison/dotfiles/tools/switchOpenWorkspace.sh prev
+bindsym F2 exec --no-startup-id /home/addison/dotfiles/tools/switchOpenWorkspace.sh next
 bindsym --release F3 exec --no-startup-id xdotool key "control+r"
 bindsym --release F4 exec --no-startup-id xdotool key "F11"
 bindsym Shift+F4 fullscreen toggle
