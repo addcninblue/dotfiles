@@ -320,13 +320,10 @@ bindsym --release Control+F5 exec --no-startup-id maim -i $(xdotool getactivewin
 
 #custom bindsyms
 bindsym $mod+c exec --no-startup-id google-chrome-stable
-bindsym $mod+Shift+c exec --no-startup-id "optirun -b google-chrome"
 bindsym $mod+backslash exec --no-startup-id "st vim"
 bindsym $mod+s exec --no-startup-id "spotify"
 bindsym $mod+m exec --no-startup-id "mixxx"
-bindsym $mod+Shift+m exec --no-startup-id "optirun -b mixxx"
 bindsym $mod+g exec --no-startup-id "gimp"
-bindsym $mod+Shift+g exec --no-startup-id "optirun -b gimp"
 
 exec_always xrdb -load ~/.Xresources #load xterm customizations
 exec_always --no-startup-id compton --config /home/addison/.config/compton.conf & #load nice window compositing thing 
