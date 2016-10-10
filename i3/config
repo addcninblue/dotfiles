@@ -137,19 +137,16 @@ bindsym Control+XF86Launch6 workspace $workspace8
 bindsym Control+XF86Launch7 workspace $workspace9
 bindsym Control+XF86Launch8 workspace $workspace10
 
-# testing for workspace
-bindsym F1 workspace $workspace1
-bindsym F2 workspace $workspace2
-bindsym F3 workspace $workspace3
-bindsym F4 workspace $workspace4
-# bindsym F5 workspace $workspace5
-# bindsym F6 workspace $workspace6
-# bindsym F7 workspace $workspace7
-# bindsym F8 workspace $workspace8
-# bindsym F9 workspace $workspace9
-# bindsym F10 workspace $workspace10
-# bindsym F11 workspace $workspace11
-# bindsym F12 workspace $workspace12
+bindsym F1 exec --no-startup-id pactl set-sink-mute 1 toggle && pkill -RTMIN+1 i3blocks
+bindsym F2 exec --no-startup-id pactl set-sink-volume 1 -2% && pkill -RTMIN+1 i3blocks #decrease
+bindsym F3 exec --no-startup-id pactl set-sink-volume 1 +2% && pkill -RTMIN+1 i3blocks #increase
+# F4
+bindsym F5 exec --no-startup-id playerctl play-pause && pkill -RTMIN+10 i3blocks # music play/pause
+# F6
+bindsym F7 exec --no-startup-id playerctl previous && sleep 2s && pkill -RTMIN+10 i3blocks # music prev. 2s because of lag
+bindsym F8 exec --no-startup-id playerctl next && sleep 2s && pkill -RTMIN+10 i3blocks # music next. 2s because of lag
+bindsym F9 exec --no-startup-id /home/addison/stuff/dotfiles/tools/switchOpenWorkspace.sh prev
+bindsym F10 exec --no-startup-id /home/addison/stuff/dotfiles/tools/switchOpenWorkspace.sh next
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace1
