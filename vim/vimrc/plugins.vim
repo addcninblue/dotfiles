@@ -2,6 +2,7 @@
 call plug#begin('~/.vim/plugged') 
 "plugins here
 " Plug 'davidhalter/jedi-vim'
+" Plug 'scrooloose/nerdtree'
 " Plug 'scrooloose/syntastic'
 " Plug 'Shougo/neocomplete.vim'
 " Plug 'Shougo/neosnippet-snippets'
@@ -18,7 +19,6 @@ Plug 'metakirby5/codi.vim'
 Plug 'mileszs/ack.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'reedes/vim-pencil'
-Plug 'scrooloose/nerdtree'
 Plug 'SirVer/ultisnips'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
@@ -26,4 +26,4 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'Valloric/YouCompleteMe' 
 call plug#end()
-map <C-n> :NERDTreeToggle<CR>
+" map <C-n> :NERDTreeToggle<CR>
