@@ -14,7 +14,10 @@ case "${1:-next}" in
     "next") count=$((count+1)) ;;
 esac
 
-count=$((count % ${#workspaces})) #fix when the current workspace is the last one
+echo "${count}"
+echo "${#workspaces}"
+[[ "${count}" -gt "${#workspaces}" ]] && count=$((count % ${#workspaces})) #fix when the current workspace is the last one
+[[ "${count}" -eq "0" ]] && count=-1 #fix for first workspace
 
 nextWorkspace=${workspaces[${count}]}
 nextWorkspace=$((nextWorkspace % 10))
