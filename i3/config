@@ -137,20 +137,6 @@ bindsym Control+XF86Launch6 workspace $workspace8
 bindsym Control+XF86Launch7 workspace $workspace9
 bindsym Control+XF86Launch8 workspace $workspace10
 
-# testing for workspace
-# bindsym F1 workspace $workspace1
-# bindsym F2 workspace $workspace2
-# bindsym F3 workspace $workspace3
-# bindsym F4 workspace $workspace4
-# bindsym F5 workspace $workspace5
-# bindsym F6 workspace $workspace6
-# bindsym F7 workspace $workspace7
-# bindsym F8 workspace $workspace8
-# bindsym F9 workspace $workspace9
-# bindsym F10 workspace $workspace10
-# bindsym F11 workspace $workspace11
-# bindsym F12 workspace $workspace12
-
 # bindsym --release Shift+F1 exec --no-startup-id /home/addison/dotfiles/tools/switchWorkspace.sh prev
 # bindsym --release Shift+F2 exec --no-startup-id /home/addison/dotfiles/tools/switchWorkspace.sh next
 bindsym F1 exec --no-startup-id /home/addison/dotfiles/tools/switchOpenWorkspace.sh prev
@@ -299,7 +285,7 @@ mode "Power" {
 bindsym XF86PowerOff mode "Power"
 
 #change screen
-bindsym $mod+Print exec --no-startup-id python /home/addison/.screenlayout/start.py
+bindsym $mod+XF86PowerOff exec --no-startup-id python /home/addison/.screenlayout/start.py
 
 #paste and num things
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
