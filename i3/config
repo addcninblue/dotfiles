@@ -55,10 +55,10 @@ bindsym $mod+Up focus up
 bindsym $mod+Right focus right
 
 # move focused window
-bindsym $mod+Shift+j move left
-bindsym $mod+Shift+k move down
-bindsym $mod+Shift+l move up
-bindsym $mod+Shift+semicolon move right
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Shift+Left move left
@@ -169,7 +169,7 @@ bindsym $mod+Shift+plus move container to workspace $workspace12
 bindsym $mod+z move workspace to output up
 
 #assign certain applications to certain workspaces
-assign [class="google-chrome-beta"] $workspace2
+assign [class="Google-chrome-beta"] $workspace2
 for_window [class="Spotify"] move to workspace $workspace10
 
 #scratchpad
@@ -259,10 +259,10 @@ bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym $mod+x exec /home/addison/cooli3lock.sh 
 
 #VGA screen brightness
-bindsym $mod+b mode "VGA_brightness"
-mode "VGA_brightness" {	
-	bindsym XF86MonBrightnessUp exec xrandr --output VGA1 --brightness 1 # increase screen brightness
-	bindsym XF86MonBrightnessDown exec xrandr --output VGA1 --brightness 0.5 # decrease screen brightness
+bindsym $mod+b mode "HDMI_brightness"
+mode "HDMI_brightness" {	
+	bindsym XF86MonBrightnessUp exec xrandr --output HDMI-1 --brightness 1 # increase screen brightness
+	bindsym XF86MonBrightnessDown exec xrandr --output HDMI-1 --brightness 0.5 # decrease screen brightness
 
 	bindsym Escape mode "default"
 }
@@ -280,6 +280,14 @@ mode "Power" {
 
 bindsym XF86Sleep mode "Power"
 
+mode "Input" {
+	bindsym i exec "setxkbmap us -variant intl"; exec "xmodmap /home/addison/.Xmodmapintl"; mode "default"
+	bindsym e exec "setxkbmap us"; exec "xmodmap /home/addison/.Xmodmap"; mode "default"
+	bindsym Escape mode "default"
+}	
+
+bindsym Control+space mode "Input";
+	
 #change screen
 bindsym $mod+Print exec --no-startup-id python /home/addison/.screenlayout/start.py
 
@@ -300,7 +308,7 @@ bindsym --release Print exec --no-startup-id maim -s /home/addison/screenshots/$
 bindsym --release Shift+Print exec --no-startup-id maim /home/addison/screenshots/$(date +%Y-%m-%d_%T).png
 bindsym --release Control+Print exec --no-startup-id maim -i $(xdotool getactivewindow) /home/addison/screenshots/$(date +%Y-%m-%d_%T).png
 
-#custom bindsyms
+# custom bindsyms
 bindsym $mod+c exec --no-startup-id google-chrome-beta
 bindsym $mod+Shift+c exec --no-startup-id "optirun -b google-chrome-beta"
 bindsym $mod+backslash exec --no-startup-id "st vim"
@@ -309,6 +317,10 @@ bindsym $mod+m exec --no-startup-id "mixxx"
 bindsym $mod+Shift+m exec --no-startup-id "optirun -b mixxx"
 bindsym $mod+g exec --no-startup-id "gimp"
 bindsym $mod+Shift+g exec --no-startup-id "optirun -b gimp"
+
+# timer w/ keyboard lighting up
+bindsym $mod+t exec --no-startup-id exec /home/addison/stuff/sleep.sh
+bindsym $mod+o exec --no-startup-id exec sudo blackwidowcontrol -l off
 
 exec_always xrdb -load ~/.Xresources #load xterm customizations
 exec_always --no-startup-id compton --config /home/addison/.config/compton.conf & #load nice window compositing thing 

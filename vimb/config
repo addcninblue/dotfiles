@@ -1,3 +1,4 @@
+so ~/.config/vimb/searchengines
 nnoremap ; :
 nnoremap : ;
 nnoremap b :open !
@@ -5,10 +6,6 @@ nnoremap B :tabopen !
 nnoremap O :tabopen 
 nnoremap d :quit<CR>
 set statusbar=false
-shortcut-default go
-shortcut-add go=https://www.google.com/search?q=$0
-shortcut-add wi=http://en.wikipedia.org/w/index.php?title=Special:Search&search=$0
-shortcut-add di=http://dictionary.reference.com/browse/$0
 inoremap jk <Esc>
 cnoremap jk <Esc>
 

@@ -18,7 +18,6 @@ exit
 ;q
 open i3 check window class
 open go i3 window class
-open https://www.messenger.com/
 tabopen https://www.messenger.com/
 tabopen feh scroll
 open feh vi scroll
@@ -56,7 +55,6 @@ open go math.lcd java
 tabopen http://codingbat.com/prob/p163932
 tabopen phhs.schoolloop.com
 tabopen https://phhs.schoolloop.com/portal/login?etarget=login_form
-open phhs.schoolloop.com
 open go unexpected linear relationships statistics
 open go ozone layer vs ice cap
 open https://www.messenger.com/t/100001537754278
@@ -86,7 +84,6 @@ open xfinity.com
 open faljd.com
 open http://codingbat.com/java\
 open http://codingbat.com/java/
-tabopen drive.google.com
 tabopen java coding guidelines if multiple lines
 open go java if multiple lines
 open aur.archlinux.org
@@ -121,19 +118,15 @@ open go vackis alarm clock hack
 open revert to head git
 tabopen https://www.messenger.com/t/1226995897357026
 open go revert to head
-tabopen vimb
 open go vimb default search engine
 shortcut-default go
 open testing
 open vimb how to make bookmarks
 open vimb bookmarks
-open vimb
-bma
 open https://fanglingsu.github.io/vimb/man.html
 open !/
 eval! simplyread()
 open vimb vs chrome
-q
 open reddit uninstall xf86-video-intel
 open github.com/addcninblue/dotfilse
 open https://github.com/addcninblue/dotfiles
@@ -143,3 +136,50 @@ tabopen vimb settings
 open codingbat.com
 open codingbat plain text
 open git stash
+q
+open https://drive.google.com/drive/my-drive
+tabopen vimb incognito
+tabopen cypress flower
+open https://www.messenger.com/
+open phhs.schoolloop.com
+bma
+tabopen vimb
+open vimb
+open !ph
+open https://phhs.schoolloop.com/portal/login?d=x&return_url=1473661979077
+open spanishdict.com
+tabopen spanishdict.com
+tabopen http://www.spanishdict.com/translate/personaje
+so ~/.config/vimb/config
+open google
+tabopen sp testing
+open go tesing
+so
+so se
+open wi testing
+open sp tesing
+open sp testing
+tabopen rush hour
+open sp inspector
+tabopen vimb adblock
+open privoxy
+tabopen sp police
+open insert accent in vim
+open spanish vim
+tabopen spanish vim spellcheck
+open sp to rescue
+tabopen sp divertido
+tabopen jump to end of previous word vim
+tabopen weather tomorrow
+open remove google drive browser not supported
+tabopen https://phhs.schoolloop.com/portal/login?d=x&return_url=1473661979077
+tabopen drive.google.com
+tabopen sp humor
+tabopen sp panda
+tabopen sp realistic
+tabopen vim special characters
+tabopen sp fast paced
+tabopen paste from register vim input mode
+open kung fu panda 2
+tabopen sp peacocks
+tabopen sp too

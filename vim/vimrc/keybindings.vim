@@ -9,8 +9,8 @@ inoremap <C-space> <C-x><C-o>
 "allows for vim's own omnicomplete
 inoremap <C-BS> <C-W>
 " testing in python
-nnoremap <leader>f zA
-nnoremap <leader>F zi
+nnoremap <leader>f za
+nnoremap <leader>F zA
 nnoremap <leader>p :execute "rightbelow vsplit " . bufname("#")<CR>
 nnoremap <leader>s :so $MYVIMRC<CR>
 nnoremap ; :
@@ -36,3 +36,5 @@ nnoremap <silent> <leader>d :DiffSaved<CR>
 " Window Changing
 nnoremap <C-h> <C-w><C-h>
 nnoremap <C-l> <C-w><C-l>
+
+nnoremap <leader>b :buffers<CR>:buffer<Space>

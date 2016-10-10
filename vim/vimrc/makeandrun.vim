@@ -14,7 +14,8 @@ func! Run()
 	" 	exec "!g++ % -o %<"
 	" 	exec "!time ./%<"
 	if &filetype == 'java'
-		exec "!clear;java -cp %:p:h %:t:r"
+		exec "!clear;make run"
+		" exec "!clear;java -cp %:p:h %:t:r"
 	elseif &filetype == 'sh'
 		exec "!bash %"
 	elseif &filetype == 'python'

@@ -148,6 +148,8 @@ codi() {
     Codi ${1:-python}"
 }
 
+export PATH=$HOME/.local/bin:${PATH}
+
 #vim Ctrlz keybinging
 _zsh_cli_fg() { fg; }
 zle -N _zsh_cli_fg
