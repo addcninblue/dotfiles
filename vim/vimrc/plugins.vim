@@ -2,6 +2,7 @@
 call plug#begin('~/.vim/plugged') 
 "plugins here
 " Plug 'davidhalter/jedi-vim'
+" Plug 'jreybert/vimagit'
 " Plug 'scrooloose/nerdtree'
 " Plug 'scrooloose/syntastic'
 " Plug 'Shougo/neocomplete.vim'
@@ -10,7 +11,6 @@ call plug#begin('~/.vim/plugged')
 Plug 'artur-shaik/vim-javacomplete2'
 Plug 'bkad/CamelCaseMotion'
 Plug 'ervandew/supertab'
-Plug 'jreybert/vimagit'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
