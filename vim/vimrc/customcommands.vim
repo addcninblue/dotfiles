@@ -6,5 +6,3 @@ function! s:DiffWithSaved()
   exe "setlocal bt=nofile bh=wipe nobl noswf ro ft=" . filetype
 endfunction
 com! DiffSaved call s:DiffWithSaved()
-
-nnoremap <leader>b :buffers<CR>:buffer<Space>

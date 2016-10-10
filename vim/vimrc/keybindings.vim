@@ -11,7 +11,6 @@ inoremap <C-BS> <C-W>
 " testing in python
 nnoremap <leader>f za
 nnoremap <leader>F zA
-set foldlevel=99
 nnoremap <leader>p :execute "rightbelow vsplit " . bufname("#")<CR>
 nnoremap <leader>s :so $MYVIMRC<CR>
 nnoremap ; :
@@ -37,3 +36,5 @@ nnoremap <silent> <leader>d :DiffSaved<CR>
 " Window Changing
 nnoremap <C-h> <C-w><C-h>
 nnoremap <C-l> <C-w><C-l>
+
+nnoremap <leader>b :buffers<CR>:buffer<Space>

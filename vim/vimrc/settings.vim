@@ -48,4 +48,6 @@ set shortmess=I
 
 " if wraps, same indent
 set breakindent
-set showcmd
+
+" no folds on start
+set foldlevel=99
