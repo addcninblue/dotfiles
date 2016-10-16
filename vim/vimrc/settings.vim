@@ -27,8 +27,8 @@ filetype plugin indent on
 "vim enhancements since 07/14/16
 set wildmenu "allows for tab completion on edits 
 " for setting nonprinting characters
-"set listchars=tab:▸\ ,eol:¬
-"set list
+set listchars=tab:\ \ ,eol:\ ,trail:·
+set list
 set undofile                " Save undo's after file closes
 set undodir=/home/addison/.vim/undo " where to save undo histories
 set undolevels=1000         " How many undos
@@ -51,3 +51,4 @@ set breakindent
 
 " no folds on start
 set foldlevel=99
+set showcmd
