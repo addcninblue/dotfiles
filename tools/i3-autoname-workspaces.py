@@ -44,9 +44,11 @@ FA_MUSIC = '\uf001'
 FA_PICTURE_O = '\uf03e'
 FA_SPOTIFY = '\uf1bc'
 FA_TERMINAL = '\uf120'
+FA_CUBE = '\uf1b2'
 WINDOW_ICONS = {
     'st-256color': FA_TERMINAL,
     'google-chrome': FA_CHROME,
+    'VIM': FA_CODE,
     'subl': FA_CODE,
     'subl3': FA_CODE,
     'spotify': FA_SPOTIFY,
@@ -56,6 +58,7 @@ WINDOW_ICONS = {
     'mupdf': FA_FILE_PDF_O,
     'evince': FA_FILE_PDF_O,
     'thunar': FA_FILES_O,
+    'sun-awt-X11-XFramePeer': FA_CUBE,
 }
 
 
@@ -65,6 +68,13 @@ i3 = i3ipc.Connection()
 # requires xorg-xprop to be installed.
 def xprop(win_id, property):
     try:
+        prop = proc.check_output(['xprop', '-id', str(win_id), 'WM_NAME'], stderr=proc.DEVNULL)
+        prop = prop.decode('utf-8')
+        print("!!", re.findall('"([^"]+)"', prop), type(re.findall('"([^"]+)"', prop)))
+        if any("VIM" in s for s in re.findall('"([^"]+)"', prop)):
+            return ["VIM", "VIM"]
+            # return 'VIM'
+
         prop = proc.check_output(['xprop', '-id', str(win_id), property], stderr=proc.DEVNULL)
         prop = prop.decode('utf-8')
         return re.findall('"([^"]+)"', prop)
