@@ -1,4 +1,12 @@
-nnoremap <silent><leader>m :make<CR><CR>
+" nnoremap <silent><leader>m :make<CR><CR>
+nnoremap <silent><leader>m :call Make()<CR>
+func! Make()
+	if &filetype == 'java'
+		exec "AsyncRun make clean && make"
+	else
+		exec "make"
+	endif
+endfunc
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
@@ -13,7 +21,9 @@ func! Run()
 	" elseif &filetype == 'cpp'
 	" 	exec "!g++ % -o %<"
 	" 	exec "!time ./%<"
-	if &filetype == 'java'
+	if &filetype == 'perl'
+		exec "!perl %"
+	elseif &filetype == 'java'
 		exec "!clear;make run"
 		" exec "!clear;java -cp %:p:h %:t:r"
 	elseif &filetype == 'sh'
