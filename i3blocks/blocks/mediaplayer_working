@@ -1,0 +1,58 @@
+#!/usr/bin/env bash
+
+################################
+# Shows info from media players.
+#
+# TODO: make output format configurable
+#
+# Dependencies:
+# - playerctl
+#
+# @return {String}: Current media info
+################################
+
+dir=$(dirname $0)
+source $dir/util.sh
+
+full=""
+short=""
+status=0
+
+# Exit if no player found
+players=$(playerctl -l)
+if [[ ! $players ]]; then exit 0; fi
+
+case $BLOCK_BUTTON in
+	1) playerctl play-pause ;;
+	3) playerctl next ;;
+esac
+
+artist=$(playerctl metadata artist)
+title=$(playerctl metadata title)
+album=$(playerctl metadata album)
+state=$(playerctl status)
+
+if [[ "$title" ]]; then
+	# Make icon mapping
+	declare -A icons
+	icons["Playing"]=""
+	icons["Paused"]=""
+	icons["Stopped"]=""
+
+	# Determine which icon to use
+	icon=${icons[$state]}
+
+	full="$title"
+	if [[ "$artist" ]]; then full="$artist - $full"; fi
+	if [[ "$artist" ]] && [[ "$(pactl list sinks | grep Mute | tail -n1 | grep -oE '[^ ]+$')" == "yes" ]] && [[ "$state" == "Playing" ]]; then
+		pactl set-sink-mute 1 0 && pkill -RTMIN+1 i3blocks 
+	fi
+
+	short="$full $icon"
+	# if [[ "$album" ]]; then full="$full [$album]"; fi
+	full="$full $icon"
+fi
+
+echo $full
+echo $short
+exit $status
