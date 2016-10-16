@@ -20,10 +20,12 @@ Plug 'mileszs/ack.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'reedes/vim-pencil'
 Plug 'SirVer/ultisnips'
+Plug 'skywind3000/asyncrun.vim'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'Valloric/YouCompleteMe' 
+Plug 'wellle/targets.vim'
 call plug#end()
 " map <C-n> :NERDTreeToggle<CR>
