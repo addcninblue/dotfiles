@@ -1,5 +1,5 @@
 " nnoremap <silent><leader>m :make<CR><CR>
-nnoremap <silent><leader>m :call Make()<CR>
+nnoremap <leader>m :call Make()<CR>
 func! Make()
 	if &filetype == 'java'
 		exec "AsyncRun make clean && make"

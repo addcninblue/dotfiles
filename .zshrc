@@ -158,7 +158,7 @@ bindkey '^Z' _zsh_cli_fg
 bindkey    "^[[H"    beginning-of-line
 bindkey    "^[[F"    end-of-line
 bindkey    "^[[3~"   delete-char
-bindkey    "^?"   backward-delete-char
+bindkey    "^?"      backward-delete-char
 bindkey    "^[[7~"   beginning-of-line
 bindkey    "^[[8~"   end-of-line
 bindkey    "^[[P"    delete-char
