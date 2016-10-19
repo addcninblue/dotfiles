@@ -26,6 +26,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'Valloric/YouCompleteMe' 
+Plug 'w0rp/ale'
 Plug 'wellle/targets.vim'
 call plug#end()
 " map <C-n> :NERDTreeToggle<CR>

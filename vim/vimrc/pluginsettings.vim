@@ -59,3 +59,7 @@ let g:ackprg = 'ag --vimgrep'
 " undotree {{{
 nnoremap <silent> <leader>u :UndotreeToggle<CR>:wincmd h<CR>
 " undotree }}}
+
+" ale {{{
+let g:ale_sign_column_always = 1
+" ale }}}
