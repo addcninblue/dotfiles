@@ -9,7 +9,8 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-set $mod Mod1
+# set $mod Mod1
+set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -174,10 +175,9 @@ bindsym $mod+Shift+0 move container to workspace number 10
 # bindsym $mod+z move workspace to output up
 
 #assign certain applications to certain workspaces
-# assign [class="google-chrome"] workspace number 2
-for_window [class="google-chrome"] move to workspace number 2
-# bindsym --release F4 exec --no-startup-id xdotool key "F11"
+for_window [class="Google-chrome"] move to workspace number 1
 for_window [class="Spotify"] move to workspace number 10
+# for_window [title="irssi"] move to workspace number 4
 
 #scratchpad
 bindsym $mod+grave scratchpad show
@@ -309,10 +309,13 @@ bindsym --release Control+F5 exec --no-startup-id maim -i $(xdotool getactivewin
 
 #custom bindsyms
 bindsym $mod+c exec --no-startup-id google-chrome-stable
-bindsym $mod+backslash exec --no-startup-id "st vim"
+# bindsym $mod+backslash exec --no-startup-id "st vim"; move to workspace9
+bindsym $mod+backslash exec --no-startup-id i3-msg 'workspace number 9; exec st vim'
 bindsym $mod+s exec --no-startup-id "spotify"
 bindsym $mod+m exec --no-startup-id "mixxx"
 bindsym $mod+g exec --no-startup-id "gimp"
+bindsym $mod+i exec --no-startup-id "st /home/addison/stuff/etc/irssilauncher"
+bindsym $mod+Shift+i exec --no-startup-id "st /home/addison/stuff/etc/irssiproxy"
 
 exec_always xrdb -load ~/.Xresources #load xterm customizations
 exec_always --no-startup-id compton --config /home/addison/.config/compton.conf & #load nice window compositing thing 
@@ -329,3 +332,4 @@ exec --no-startup-id redshift-gtk
 exec xmodmap /home/addison/.Xmodmap
 exec_always --no-startup-id "parcellite"
 exec_always --no-startup-id ~/dotfiles/tools/i3-autoname-workspaces.py
+exec ibus-daemon
