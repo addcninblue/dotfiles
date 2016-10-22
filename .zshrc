@@ -148,7 +148,9 @@ codi() {
     Codi ${1:-python}"
 }
 
-export PATH=$HOME/.local/bin:${PATH}
+export PATH=$HOME/.local/bin:$HOME/perl5/bin:${PATH}
+# cpan
+eval $(perl -I ~/perl5/lib/perl5/ -Mlocal::lib)
 
 #vim Ctrlz keybinging
 _zsh_cli_fg() { fg; }
