@@ -53,3 +53,6 @@ set breakindent
 " no folds on start
 set foldlevel=99
 set showcmd
+
+" no write on last edit
+set hidden
