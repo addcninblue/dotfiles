@@ -45,6 +45,7 @@ FA_PICTURE_O = '\uf03e'
 FA_SPOTIFY = '\uf1bc'
 FA_TERMINAL = '\uf120'
 FA_CUBE = '\uf1b2'
+FA_COMMENT = '\uf075'
 WINDOW_ICONS = {
     'st-256color': FA_TERMINAL,
     'google-chrome': FA_CHROME,
@@ -59,6 +60,7 @@ WINDOW_ICONS = {
     'evince': FA_FILE_PDF_O,
     'thunar': FA_FILES_O,
     'sun-awt-X11-XFramePeer': FA_CUBE,
+    'irssi': FA_COMMENT,
 }
 
 
@@ -73,7 +75,8 @@ def xprop(win_id, property):
         print("!!", re.findall('"([^"]+)"', prop), type(re.findall('"([^"]+)"', prop)))
         if any("VIM" in s for s in re.findall('"([^"]+)"', prop)):
             return ["VIM", "VIM"]
-            # return 'VIM'
+        elif any("irssi" in s for s in re.findall('"([^"]+)"', prop)):
+            return ["irssi", "irssi"]
 
         prop = proc.check_output(['xprop', '-id', str(win_id), property], stderr=proc.DEVNULL)
         prop = prop.decode('utf-8')
