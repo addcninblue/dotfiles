@@ -11,6 +11,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'artur-shaik/vim-javacomplete2'
 Plug 'bkad/CamelCaseMotion'
 Plug 'ervandew/supertab'
+Plug 'godlygeek/tabular'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/goyo.vim'
 Plug 'junegunn/limelight.vim'
@@ -26,6 +27,7 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'Valloric/YouCompleteMe' 
+Plug 'w0rp/ale'
 Plug 'wellle/targets.vim'
 call plug#end()
 " map <C-n> :NERDTreeToggle<CR>

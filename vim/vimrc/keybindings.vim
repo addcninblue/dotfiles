@@ -38,3 +38,7 @@ nnoremap <C-h> <C-w><C-h>
 nnoremap <C-l> <C-w><C-l>
 
 nnoremap <leader>b :buffers<CR>:buffer<Space>
+
+nnoremap <leader>y "+y
+nnoremap <leader>p "+p
+nnoremap <leader>P "+P

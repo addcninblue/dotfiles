@@ -11,6 +11,7 @@ highlight Normal ctermbg=NONE
 highlight nonText ctermbg=NONE
 highlight SpecialKey ctermbg=NONE
 highlight LineNr ctermbg=NONE
+highlight SignColumn ctermbg=NONE
 "status bar color
 highlight StatusLine ctermbg=12 ctermfg=8
 set backspace=indent,eol,start
@@ -52,3 +53,6 @@ set breakindent
 " no folds on start
 set foldlevel=99
 set showcmd
+
+" no write on last edit
+set hidden
