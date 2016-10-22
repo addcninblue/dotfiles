@@ -1,0 +1,24 @@
+snippet = "h1" b
+$1
+`!p
+snip.rv = '=' * len(t[1])
+`
+endsnippet
+
+snippet - "h2" b
+$1
+`!p
+snip.rv = '-' * len(t[1])
+`
+endsnippet
+
+snippet m "month" b
+${1:Item} | ${2:Dollars} | ${3:Type} | ${4:Date}
+--- | --- | ---
+$0
+![${5:`date +%B`} Spendings]($5.png)
+endsnippet
+
+snippet r "row" b
+$1 | $2 | ${3:Personal} | ${4:`date +%D`} 
+endsnippet
