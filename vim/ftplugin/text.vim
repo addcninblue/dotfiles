@@ -11,7 +11,7 @@ augroup Textgroup
 augroup END
 augroup abbreviations
 	autocmd!
-	autocmd BufEnter * :inoreabbrev e …
+	autocmd BufEnter * :inoreabbrev ... …
 	autocmd BufEnter * :inoreabbrev -- —
 	"autocmd BufReadPost * i<esc>
 augroup END

@@ -1,14 +1,27 @@
+global !p
+def getArgs(group):
+	import re
+	word = re.compile('[a-zA-Z0-9><.]+ \w+')
+	return [i.split(" ") for i in word.findall(group) ]
+endglobal
+
 snippet c "class" b
 public class $1 {
 	$0
 }
 endsnippet
 
+# methods
+
 snippet m "method" b
 /**
-* $5
+* $6
+* (Postcondition: $8)`!p
+for i in getArgs(t[5]):
+	snip.rv += "\n\t* @param " + i[1] + " TODO"`
+* (Precondition: $7)
 */
-${1:public} ${2:void} $3($4){
+${1:public} ${3:void} $4($5){
 	$0
 }
 endsnippet 
@@ -24,19 +37,49 @@ snippet desc "description" b
  * $0
  * @author ${1:Addison Chan}
  * @version ${2:`date +%D`}
- */ 
+ */
 endsnippet
 
-snippet print
-System.out.print($0)
+snippet print "System.out.print" b
+System.out.print($0);
 endsnippet
 
-snippet println
-System.out.println($0)
+snippet println "System.out.println" b
+System.out.println($0);
+endsnippet
+
+snippet format "System.out.format" b
+System.out.format($0);
 endsnippet
 
 snippet for
 for(int $1 = 0; $1 < $2; $1++){
+	$0
+}
+endsnippet
+
+snippet get "setter" b
+/**
+* Returns $6
+* (Postcondition: $7)`!p
+for i in getArgs(t[5]):
+	snip.rv += "\n\t* @param " + i[1] + " TODO"`
+* (Precondition: none)
+*/
+${1:public} ${3:void} get$4(){
+	return $6;
+}
+endsnippet
+
+snippet set "setter" b
+/**
+* Sets $6
+* (Postcondition: $8)`!p
+for i in getArgs(t[5]):
+	snip.rv += "\n\t* @param " + i[1] + " TODO"`
+* (Precondition: $7)
+*/
+${1:public} ${3:void} set$4($5){
 	$0
 }
 endsnippet

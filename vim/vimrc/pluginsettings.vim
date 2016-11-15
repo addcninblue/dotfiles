@@ -63,3 +63,17 @@ nnoremap <silent> <leader>u :UndotreeToggle<CR>:wincmd h<CR>
 " ale {{{
 let g:ale_sign_column_always = 1
 " ale }}}
+
+" vim-instant-markdown {{{
+let g:instant_markdown_autostart = 0
+" vim-instant-markdown }}}
+
+" vim-markdown {{{
+" let g:markdown_fenced_languages = ['java', 'perl', 'html', 'python', 'bash=sh']
+" vim-markdown }}}
+
+" vim-markdown {{{
+let g:markdown_enable_folding = 1
+let g:markdown_enable_mappings = 0
+nnoremap <leader>e :MarkdownEditBlock<CR>
+" vim-markdown }}}

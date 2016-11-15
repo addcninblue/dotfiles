@@ -1,5 +1,7 @@
 " nnoremap <silent><leader>m :make<CR><CR>
-nnoremap <silent><leader>m :call Make()<CR>
+nnoremap <silent><leader>mm :call Make()<CR>
+nnoremap <silent><leader>mc :exec "!clear;make clean"<CR>
+nnoremap <silent><leader>mt :exec "!clear;make test"<CR>
 let g:javaCommand = "Asyncrun make clean && make"
 func! Make()
 	if &filetype == 'java'
@@ -36,7 +38,8 @@ func! Run()
 	elseif &filetype == 'html'
 		exec "!google-chrome-beta % &"
 	elseif &filetype == 'go'
-		exec "!go run %"
+		exec ":GoRun"
+		" exec "!clear;go run %"
 	" elseif &filetype == 'mkd'
 	" 	exec "!firefox %.html &"
 	endif

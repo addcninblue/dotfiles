@@ -1,5 +1,7 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
+let g:netrw_dirhist_cnt =5
 let g:netrw_dirhist_1='/etc/netctl'
 let g:netrw_dirhist_2='/home/addison/.screenlayout'
 let g:netrw_dirhist_3='/etc/X11/xorg.conf.d'
+let g:netrw_dirhist_4='/home/addison/screenshots'
+let g:netrw_dirhist_5='/home/addison/dotfiles/vim/plugged/ultisnips/autoload/UltiSnips'
