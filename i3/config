@@ -288,7 +288,7 @@ mode "Power" {
 bindsym XF86PowerOff mode "Power"
 
 #change screen
-bindsym $mod+XF86PowerOff exec --no-startup-id python /home/addison/.screenlayout/start.py
+bindsym $mod+F5 exec --no-startup-id python /home/addison/.screenlayout/start.py
 
 #paste and num things
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
@@ -330,6 +330,7 @@ exec --no-startup-id /home/addison/cooli3lock.sh
 #redshift
 exec --no-startup-id redshift-gtk
 exec xmodmap /home/addison/.Xmodmap
-exec_always --no-startup-id "parcellite"
+# exec_always --no-startup-id "parcellite"
 exec_always --no-startup-id ~/dotfiles/tools/i3-autoname-workspaces.py
-exec ibus-daemon
+exec_always --no-startup-id dunst
+# exec ibus-daemon

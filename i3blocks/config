@@ -41,6 +41,11 @@ separator=true
 # align=center
 # min_width=410
 
+[email]
+command=perl "/home/addison/stuff/gmail.pl"
+separator=true
+interval=1800
+
 # [spacing]
 # full_text=                           
 # separator=false
@@ -50,10 +55,10 @@ interval=once
 signal=1
 
 [ssid]
-command=echo "$(iw dev wlan0 link | grep SSID | cut -d " " -f 2-)"
 separator=false
 separator_block_width=5
 interval=10
+# command=echo "$(iw dev wlan0 link | grep SSID | cut -d " " -f 2-)"
 # label=
 
 [iface]
@@ -67,12 +72,12 @@ separator=true
 #interval=10
 #separator=false
 
-[bandwidth]
-#instance=eth0
-interval=5
+# [bandwidth]
+# #instance=eth0
+# interval=5
 
-[weather]
-interval=600
+# [weather]
+# interval=600
 
 #Battery indicator
 #the battery instance defaults to 0.

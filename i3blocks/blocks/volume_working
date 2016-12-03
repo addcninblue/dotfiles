@@ -65,7 +65,8 @@ function set_default_playback_device_next {
 }
 
 case "$BLOCK_BUTTON" in
-    1) set_default_playback_device_next ;;
+    1) pavucontrol;;
+    # 1) set_default_playback_device_next ;;
     2) amixer -q -D pulse sset Master toggle ;;
     3) set_default_playback_device_next -1 ;;
     4) amixer -q -D pulse sset Master 5%+ ;;
