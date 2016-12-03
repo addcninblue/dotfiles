@@ -15,12 +15,12 @@ endsnippet
 
 snippet m "method" b
 /**
-* $6
-* (Postcondition: $8)`!p
+ * $6
+ * (Postcondition: $8)`!p
 for i in getArgs(t[5]):
-	snip.rv += "\n\t* @param " + i[1] + " TODO"`
-* (Precondition: $7)
-*/
+	snip.rv += "\n\t * @param " + i[1] + " TODO"`
+ * (Precondition: $7)
+ */
 ${1:public} ${3:void} $4($5){
 	$0
 }
@@ -60,12 +60,12 @@ endsnippet
 
 snippet get "setter" b
 /**
-* Returns $6
-* (Postcondition: $7)`!p
+ * Returns $6
+ * (Postcondition: $7)`!p
 for i in getArgs(t[5]):
 	snip.rv += "\n\t* @param " + i[1] + " TODO"`
-* (Precondition: none)
-*/
+ * (Precondition: none)
+ */
 ${1:public} ${3:void} get$4(){
 	return $6;
 }
@@ -73,12 +73,12 @@ endsnippet
 
 snippet set "setter" b
 /**
-* Sets $6
-* (Postcondition: $8)`!p
+ * Sets $6
+ * (Postcondition: $8)`!p
 for i in getArgs(t[5]):
 	snip.rv += "\n\t* @param " + i[1] + " TODO"`
-* (Precondition: $7)
-*/
+ * (Precondition: $7)
+ */
 ${1:public} ${3:void} set$4($5){
 	$0
 }

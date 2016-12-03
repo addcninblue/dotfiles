@@ -9,6 +9,12 @@ let g:limelight_conceal_ctermfg = 240
 let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
 let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:ycm_autoclose_preview_window_after_completion = 1
+
+" eclim
+
+" let g:EclimCompletionMethod = 'omnifunc'
+" let g:EclimJavaValidate = 1
 
 " " better keybindings for UltiSnipsExpandTrigger
 let g:UltiSnipsExpandTrigger="<tab>"
@@ -65,7 +71,7 @@ let g:ale_sign_column_always = 1
 " ale }}}
 
 " vim-instant-markdown {{{
-let g:instant_markdown_autostart = 0
+" let g:instant_markdown_autostart = 0
 " vim-instant-markdown }}}
 
 " vim-markdown {{{
@@ -77,3 +83,7 @@ let g:markdown_enable_folding = 1
 let g:markdown_enable_mappings = 0
 nnoremap <leader>e :MarkdownEditBlock<CR>
 " vim-markdown }}}
+
+" delimitmate {{{
+let delimitMate_expand_cr = 1
+" delimitmate }}}

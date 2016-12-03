@@ -44,3 +44,4 @@ nnoremap <leader>b :buffers<CR>:buffer<Space>
 nnoremap <leader>y "+y
 nnoremap <leader>p "+p
 nnoremap <leader>P "+P
+
