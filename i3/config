@@ -293,14 +293,15 @@ bindsym $mod+F5 exec --no-startup-id python /home/addison/.screenlayout/start.py
 #paste and num things
 bindsym --release Caps_Lock exec pkill -SIGRTMIN+11 i3blocks
 bindsym --release Num_Lock  exec pkill -SIGRTMIN+11 i3blocks
-bindsym $mod+space exec rofi -show run -lines 4 -bw 20 -eh 2 -width 600 -padding 40
+bindsym $mod+space exec rofi -show drun -modi drun -lines 4 -bw 20 -eh 2 -width 600 -padding 40
+# bindsym $mod+space exec rofi -show run -lines 4 -bw 20 -eh 2 -width 600 -padding 40
 # https://www.reddit.com/r/unixporn/comments/4t7n91/i3_good_ol_solarized/
 # 
 # old rofi settings
 # bindsym $mod+space exec rofi -show run -lines 3 -eh 2 -width 100 -fullscreen -opacity "85" -bw 0 -bc "$bg-color" -bg "$bg-color" -fg "$text-color" -hlbg "$bg-color" -hlfg "#9575cd" -font "Ubuntu 18"
 
 # powersave mode
-bindsym $mod+p exec --no-startup-id python /home/addison/.power/start.py
+bindsym $mod+p exec --no-startup-id /home/addison/dotfiles/tools/pdfFinder.pl
 
 #screenshot
 bindsym --release F5 exec --no-startup-id maim -s /home/addison/screenshots/$(date +%Y-%m-%d_%T).png
@@ -321,11 +322,11 @@ exec_always xrdb -load ~/.Xresources #load xterm customizations
 exec_always --no-startup-id compton --config /home/addison/.config/compton.conf & #load nice window compositing thing 
 exec_always feh --bg-fill /home/addison/dotfiles/coolbackground.jpg #load background
 #touchpad tap to click -- xinput list-props 12 lists available options
-exec_always xinput set-prop 12 275 1
+exec_always xinput set-prop 15 292 1
 #touchpad natural scroll
-exec_always xinput set-prop 12 285 1
+exec_always xinput set-prop 15 275 1
 # disable tapping drag because it gets annoying
-exec_always xinput set-prop 12 277 0
+exec_always xinput set-prop 15 294 0
 exec --no-startup-id /home/addison/cooli3lock.sh
 #redshift
 exec --no-startup-id redshift-gtk
@@ -333,4 +334,4 @@ exec xmodmap /home/addison/.Xmodmap
 # exec_always --no-startup-id "parcellite"
 exec_always --no-startup-id ~/dotfiles/tools/i3-autoname-workspaces.py
 exec_always --no-startup-id dunst
-# exec ibus-daemon
+exec ibus-daemon
