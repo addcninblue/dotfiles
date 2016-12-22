@@ -46,6 +46,8 @@ FA_SPOTIFY = '\uf1bc'
 FA_TERMINAL = '\uf120'
 FA_CUBE = '\uf1b2'
 FA_COMMENT = '\uf075'
+FA_MUSIC = '\uf001'
+FA_PLAY = '\uf04b'
 WINDOW_ICONS = {
     'st-256color': FA_TERMINAL,
     'google-chrome': FA_CHROME,
@@ -61,6 +63,8 @@ WINDOW_ICONS = {
     'thunar': FA_FILES_O,
     'sun-awt-X11-XFramePeer': FA_CUBE,
     'irssi': FA_COMMENT,
+    'mixxx': FA_PLAY,
+    'jetbrains-idea-ce': FA_CODE,
 }
 
 
@@ -77,6 +81,8 @@ def xprop(win_id, property):
             return ["VIM", "VIM"]
         elif any("irssi" in s for s in re.findall('"([^"]+)"', prop)):
             return ["irssi", "irssi"]
+        elif any("Mixxx 2.0.0 x64" in s for s in re.findall('"([^"]+)"', prop)):
+            return ["mixxx", "mixxx"]
 
         prop = proc.check_output(['xprop', '-id', str(win_id), property], stderr=proc.DEVNULL)
         prop = prop.decode('utf-8')
