@@ -36,9 +36,12 @@ nnoremap <silent> <leader>d :DiffSaved<CR>
 " Window Changing
 nnoremap <C-h> <C-w><C-h>
 nnoremap <C-l> <C-w><C-l>
+nnoremap <C-j> <C-w><C-j>
+nnoremap <C-l> <C-w><C-l>
 
 nnoremap <leader>b :buffers<CR>:buffer<Space>
 
 nnoremap <leader>y "+y
 nnoremap <leader>p "+p
 nnoremap <leader>P "+P
+

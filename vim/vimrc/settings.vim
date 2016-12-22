@@ -14,6 +14,7 @@ highlight LineNr ctermbg=NONE
 highlight SignColumn ctermbg=NONE
 "status bar color
 highlight StatusLine ctermbg=12 ctermfg=8
+highlight VertSplit ctermbg=NONE
 set backspace=indent,eol,start
 set number
 set hlsearch
@@ -56,3 +57,8 @@ set showcmd
 
 " no write on last edit
 set hidden
+
+set sidescroll=1
+
+" scrolloff
+set so=99

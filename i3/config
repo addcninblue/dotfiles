@@ -145,8 +145,8 @@ bindsym F5 exec --no-startup-id playerctl play-pause && pkill -RTMIN+10 i3blocks
 # F6
 bindsym F7 exec --no-startup-id playerctl previous && sleep 2s && pkill -RTMIN+10 i3blocks # music prev. 2s because of lag
 bindsym F8 exec --no-startup-id playerctl next && sleep 2s && pkill -RTMIN+10 i3blocks # music next. 2s because of lag
-bindsym F9 exec --no-startup-id /home/addison/stuff/dotfiles/tools/switchOpenWorkspace.sh prev
-bindsym F10 exec --no-startup-id /home/addison/stuff/dotfiles/tools/switchOpenWorkspace.sh next
+bindsym F9 exec --no-startup-id /home/addison/dotfiles/tools/switchOpenWorkspace.sh prev
+bindsym F10 exec --no-startup-id /home/addison/dotfiles/tools/switchOpenWorkspace.sh next
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $workspace1
@@ -166,7 +166,7 @@ bindsym $mod+Shift+plus move container to workspace $workspace12
 bindsym $mod+z move workspace to output up
 
 #assign certain applications to certain workspaces
-assign [class="Google-chrome-beta"] $workspace2
+assign [class="Google-chrome-stable"] $workspace2
 for_window [class="Spotify"] move to workspace $workspace10
 
 #scratchpad
@@ -237,8 +237,8 @@ bar {
 }
 
 #Screen brightness controls
-bindsym XF86MonBrightnessUp exec --no-startup-id sudo /home/addison/stuff/dotfiles/tools/bright_up # increase screen brightness
-bindsym XF86MonBrightnessDown exec --no-startup-id sudo /home/addison/stuff/dotfiles/tools/bright_down # decrease screen brightness
+bindsym XF86MonBrightnessUp exec --no-startup-id sudo /home/addison/dotfiles/tools/bright_up # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id sudo /home/addison/dotfiles/tools/bright_down # decrease screen brightness
 # bindsym XF86MonBrightnessUp exec xbacklight -inc 10 # increase screen brightness
 # bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
@@ -277,11 +277,11 @@ mode "Power" {
 
 bindsym XF86Sleep mode "Power"
 
-mode "Input" {
-	bindsym i exec "setxkbmap us -variant intl"; exec "xmodmap /home/addison/.Xmodmapintl"; mode "default"
-	bindsym e exec "setxkbmap us"; exec "xmodmap /home/addison/.Xmodmap"; mode "default"
-	bindsym Escape mode "default"
-}	
+# mode "Input" {
+# 	bindsym i exec "setxkbmap us -variant intl"; exec "xmodmap /home/addison/.Xmodmapintl"; mode "default"
+# 	bindsym e exec "setxkbmap us"; exec "xmodmap /home/addison/.Xmodmap"; mode "default"
+# 	bindsym Escape mode "default"
+# }	
 
 bindsym Control+space mode "Input";
 	
@@ -306,8 +306,8 @@ bindsym --release Shift+Print exec --no-startup-id maim /home/addison/screenshot
 bindsym --release Control+Print exec --no-startup-id maim -i $(xdotool getactivewindow) /home/addison/screenshots/$(date +%Y-%m-%d_%T).png
 
 # custom bindsyms
-bindsym $mod+c exec --no-startup-id google-chrome-beta
-bindsym $mod+Shift+c exec --no-startup-id "optirun -b google-chrome-beta"
+bindsym $mod+c exec --no-startup-id google-chrome-stable
+bindsym $mod+Shift+c exec --no-startup-id "optirun -b google-chrome-stable"
 bindsym $mod+backslash exec --no-startup-id "st vim"
 bindsym $mod+s exec --no-startup-id "spotify"
 bindsym $mod+m exec --no-startup-id "mixxx"
@@ -321,8 +321,8 @@ bindsym $mod+o exec --no-startup-id exec sudo blackwidowcontrol -l off
 
 exec_always xrdb -load ~/.Xresources #load xterm customizations
 exec_always --no-startup-id compton --config /home/addison/.config/compton.conf & #load nice window compositing thing 
-# exec_always feh --bg-fill /home/addison/stuff/dotfiles/background.png #load background
-exec_always feh --bg-fill /home/addison/stuff/dotfiles/coolbackground.jpg #load background
+# exec_always feh --bg-fill /home/addison/dotfiles/background.png #load background
+exec_always feh --bg-fill /home/addison/dotfiles/coolbackground.jpg #load background
 #exec_always /home/addison/stuff/screenchoose.sh #supposed to allow you to choose which screen you want
 #touchpad tap to click -- xinput list-props 17 lists available options
 exec_always xinput set-prop 17 291 1
@@ -333,7 +333,7 @@ exec --no-startup-id /home/addison/cooli3lock.sh
 #exec_always "st -c st_scratchpad vim /home/addison/scratchpad" 
 #for_window [instance="st_scratchpad"] move scratchpad
 #scratchpad Google Keep
-exec_always "google-chrome-beta --user-data-dir=$HOME/.config/google-chrome-beta --profile-directory=Default --app-id=hmjkmjkepdijhoojdojkdfohbdgmmhki"
+exec_always "google-chrome-stable --user-data-dir=$HOME/.config/google-chrome-stable --profile-directory=Default --app-id=hmjkmjkepdijhoojdojkdfohbdgmmhki"
 for_window [instance="crx_hmjkmjkepdijhoojdojkdfohbdgmmhki"] move scratchpad
 #redshift
 exec --no-startup-id redshift-gtk
