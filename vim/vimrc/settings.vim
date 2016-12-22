@@ -15,6 +15,17 @@ highlight SignColumn ctermbg=NONE
 "status bar color
 highlight StatusLine ctermbg=12 ctermfg=8
 highlight VertSplit ctermbg=NONE
+
+highlight Normal guibg=#002b36
+highlight nonText guibg=#002b36
+highlight SpecialKey guibg=#002b36
+highlight LineNr guibg=#002b36
+highlight SignColumn guibg=#002b36
+"status bar color
+highlight StatusLine guibg=#002b36 guifg=#eee8d5
+highlight VertSplit guibg=#002b36
+highlight CursorLineNr guifg=#eee8d5
+
 set backspace=indent,eol,start
 set number
 set hlsearch

@@ -2,6 +2,7 @@
 nnoremap <silent><leader>mm :call Make()<CR>
 nnoremap <silent><leader>mc :exec "!clear;make clean"<CR>
 nnoremap <silent><leader>mt :exec "!clear;make test"<CR>
+nnoremap <silent><leader>mr :exec "!clear;ghc % -odir ../out -hidir ../out -o ../%:r && ../%:r && rm -r ../out"<CR>
 let g:javaCommand = "Asyncrun make clean && make"
 func! Make()
 	if &filetype == 'java'
@@ -34,12 +35,14 @@ func! Run()
 	elseif &filetype == 'sh'
 		exec "!bash %"
 	elseif &filetype == 'python'
-		exec "!python %"
+		exec "!clear && python %"
 	elseif &filetype == 'html'
 		exec "!google-chrome-beta % &"
 	elseif &filetype == 'go'
 		exec ":GoRun"
 		" exec "!clear;go run %"
+	elseif &filetype == 'haskell'
+		exec "!clear;runhaskell %"
 	" elseif &filetype == 'mkd'
 	" 	exec "!firefox %.html &"
 	endif

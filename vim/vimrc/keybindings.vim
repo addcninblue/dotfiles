@@ -45,3 +45,9 @@ nnoremap <leader>y "+y
 nnoremap <leader>p "+p
 nnoremap <leader>P "+P
 
+nnoremap Y y$
+nnoremap <leader>w :w<CR>
+nnoremap <leader>wq :wq<CR>
+nnoremap <leader>q :q<CR>
+
+nnoremap <leader>= mmgg=G`m
