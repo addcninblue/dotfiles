@@ -10,6 +10,12 @@ Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 " Plug 'Shougo/neosnippet-snippets'
 " Plug 'Shougo/neosnippet.vim'
 " Plug 'tpope/vim-markdown'
+Plug 'justinmk/vim-sneak'
+" Plug 'lukerandall/haskellmode-vim', { 'for': 'haskell' }
+Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
+Plug 'enomsg/vim-haskellConcealPlus', { 'for': 'haskell' }
+" Plug 'ehamberg/vim-cute-python', { 'for': 'python' }
+Plug 'sheerun/vim-polyglot'
 Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 Plug 'bkad/CamelCaseMotion'
 Plug 'ervandew/supertab'

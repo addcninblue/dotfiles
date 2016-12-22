@@ -28,6 +28,12 @@ let g:ycm_seed_identifiers_with_syntax = 1 " Completion for programming language
 let g:ycm_complete_in_comments = 1 " Completion in comments
 let g:ycm_complete_in_strings = 1 " Completion in string
 
+" YCM and Haskell
+" Disable haskell-vim omnifunc
+let g:haskellmode_completion_ghc = 0
+autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+let g:ycm_semantic_triggers = {'haskell' : ['.']}
+
 " YCM }}}
 
 " vim-jedi {{{
@@ -87,3 +93,9 @@ nnoremap <leader>e :MarkdownEditBlock<CR>
 " delimitmate {{{
 let delimitMate_expand_cr = 1
 " delimitmate }}}
+
+" vim-sneak {{{
+let g:sneak#s_next = 1
+" vim-sneak }}}
+
+let hscoptions = "q℘𝐒𝐓𝐄𝐌sxe⇒⇔rbl↱w-iRtBQZDC1a"
