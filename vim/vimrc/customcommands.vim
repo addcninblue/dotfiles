@@ -21,3 +21,13 @@ endf
 " Map to <BS> because it's under worked in Vim.
 nnoremap <silent> <BS> <Esc>:set opfunc=BlackHoleDeleteOperator<CR>g@
 vnoremap <silent> <BS> :<C-u>call BlackHoleDeleteOperator(visualmode())<CR>
+
+function! RangerExplorer()
+    exec "silent !ranger --choosefile=/tmp/vim_ranger_current_file " . expand("%:p:h")
+    if filereadable('/tmp/vim_ranger_current_file')
+        exec 'edit ' . system('cat /tmp/vim_ranger_current_file')
+        call system('rm /tmp/vim_ranger_current_file')
+    endif
+    redraw!
+endfun
+nnoremap <Leader>x :call RangerExplorer()<CR>

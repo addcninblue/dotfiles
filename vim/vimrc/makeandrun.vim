@@ -2,11 +2,20 @@
 nnoremap <silent><leader>mm :call Make()<CR>
 nnoremap <silent><leader>mc :exec "!clear;make clean"<CR>
 nnoremap <silent><leader>mt :exec "!clear;make test"<CR>
-nnoremap <silent><leader>mr :exec "!clear;ghc % -odir ../out -hidir ../out -o ../%:r && ../%:r && rm -r ../out"<CR>
+" nnoremap <silent><leader>mr :exec "!clear;ghc % -odir ../out -hidir ../out -o ../%:r && ../%:r && rm -r ../out"<CR>
+nnoremap <silent><leader>mf :exec "!make"
+nnoremap <silent><leader>mr :exec "!make run"
 let g:javaCommand = "Asyncrun make clean && make"
 func! Make()
 	if &filetype == 'java'
-		exec "AsyncRun make clean && make"
+		exec "!clear;javac %"
+		" let l:command="javac " . expand("%")
+		" silent exec "!tmux split-window -v -p 20 '" . l:command . " | less'"
+		" exec "Dispatch javac %"
+	" if &filetype == 'java'
+	" 	exec "AsyncRun make clean && make"
+	" if &filetype == 'java'
+	" 	exec "!javac %"
 	elseif &filetype == 'markdown'
 		exec ":w"
 		exec "AsyncRun pandoc % -o %<.pdf && zathura %<.pdf"
@@ -22,28 +31,26 @@ let g:jedi#rename_command = ""
 " can't let jedi take over the <leader>r keybinding
 nnoremap <leader>r :call Run()<CR>
 func! Run()
+	let l:command="echo 'not a function'"
 	" if &filetype == 'c'
 	" 	exec "!gcc % -o %<"
 	" 	exec "!time ./%<"
 	" elseif &filetype == 'cpp'
 	" 	exec "!g++ % -o %<" " 	exec "!time ./%<"
 	if &filetype == 'perl'
-		exec "!clear;perl %"
+		let l:command="perl " . expand("%")
 	elseif &filetype == 'java'
-		exec "!clear;make run"
-		" exec "!clear;java -cp %:p:h %:t:r"
+		let l:command="java ". expand("%<")
 	elseif &filetype == 'sh'
-		exec "!bash %"
+		let l:command="./" . expand("%")
 	elseif &filetype == 'python'
-		exec "!clear && python %"
+		let l:command="python " . expand("%")
 	elseif &filetype == 'html'
 		exec "!google-chrome-beta % &"
 	elseif &filetype == 'go'
 		exec ":GoRun"
-		" exec "!clear;go run %"
 	elseif &filetype == 'haskell'
-		exec "!clear;runhaskell %"
-	" elseif &filetype == 'mkd'
-	" 	exec "!firefox %.html &"
+		let l:command="runhaskell " . expand("%")
 	endif
+	silent exec "!tmux split-window -v -p 20 '" . l:command . " | less'"
 endfunc

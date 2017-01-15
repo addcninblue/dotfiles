@@ -1,7 +1,6 @@
 "Plug manager here
 call plug#begin('~/.vim/plugged') 
 "plugins here
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 " Plug 'jreybert/vimagit'
 " Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " Plug 'scrooloose/nerdtree'
@@ -10,30 +9,35 @@ Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 " Plug 'Shougo/neosnippet-snippets'
 " Plug 'Shougo/neosnippet.vim'
 " Plug 'tpope/vim-markdown'
-Plug 'justinmk/vim-sneak'
 " Plug 'lukerandall/haskellmode-vim', { 'for': 'haskell' }
+" Plug 'ehamberg/vim-cute-python', { 'for': 'python' }
+Plug 'jgdavey/tslime.vim'
+Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
+Plug 'christoomey/vim-tmux-navigator'
+" Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
+Plug 'bkad/CamelCaseMotion'
+Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 Plug 'enomsg/vim-haskellConcealPlus', { 'for': 'haskell' }
-" Plug 'ehamberg/vim-cute-python', { 'for': 'python' }
-Plug 'sheerun/vim-polyglot'
-Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
-Plug 'bkad/CamelCaseMotion'
 Plug 'ervandew/supertab'
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
 Plug 'godlygeek/tabular'
 Plug 'junegunn/goyo.vim', { 'for': 'text' }
 Plug 'junegunn/limelight.vim', { 'for': 'text' }
-Plug 'mattn/emmet-vim', { 'for': 'html' }
+Plug 'justinmk/vim-sneak'
+Plug 'mattn/emmet-vim', { 'for': ['html', 'eruby'] }
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'metakirby5/codi.vim', { 'for': 'python' }
 Plug 'mileszs/ack.vim'
 Plug 'Raimondi/delimitMate'
 Plug 'reedes/vim-pencil', { 'for': 'text' }
+Plug 'sheerun/vim-polyglot'
 Plug 'SirVer/ultisnips'
 Plug 'skywind3000/asyncrun.vim'
 Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
 Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'

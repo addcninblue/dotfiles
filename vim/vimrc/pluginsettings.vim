@@ -77,7 +77,7 @@ let g:ale_sign_column_always = 1
 " ale }}}
 
 " vim-instant-markdown {{{
-" let g:instant_markdown_autostart = 0
+let g:instant_markdown_autostart = 0
 " vim-instant-markdown }}}
 
 " vim-markdown {{{
@@ -99,3 +99,8 @@ let g:sneak#s_next = 1
 " vim-sneak }}}
 
 let hscoptions = "q℘𝐒𝐓𝐄𝐌sxe⇒⇔rbl↱w-iRtBQZDC1a"
+
+" tslime {{{
+let g:tslime_always_current_session = 1
+let g:tslime_always_current_window = 1
+" tslime }}}

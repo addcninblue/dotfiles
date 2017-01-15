@@ -26,6 +26,16 @@ ${1:public} ${3:void} $4($5){
 }
 endsnippet 
 
+snippet doc "documentation" b
+/**
+ * $6
+ * (Postcondition: $8)`!p
+for i in getArgs(t[5]):
+	snip.rv += "\n\t * @param " + i[1] + " TODO"`
+ * (Precondition: $7)
+ */
+endsnippet 
+
 snippet main "main method" b
 public static void main (String [] args){
 	$0
@@ -82,4 +92,8 @@ for i in getArgs(t[5]):
 ${1:public} ${3:void} set$4($5){
 	$0
 }
+endsnippet
+
+snippet scanner "scanner" b
+Scanner in = new Scanner(System.in);
 endsnippet

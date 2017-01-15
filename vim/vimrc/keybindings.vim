@@ -35,8 +35,8 @@ nnoremap <silent> <leader>d :DiffSaved<CR>
 
 " Window Changing
 nnoremap <C-h> <C-w><C-h>
-nnoremap <C-l> <C-w><C-l>
 nnoremap <C-j> <C-w><C-j>
+nnoremap <C-k> <C-w><C-k>
 nnoremap <C-l> <C-w><C-l>
 
 nnoremap <leader>b :buffers<CR>:buffer<Space>
@@ -51,3 +51,5 @@ nnoremap <leader>wq :wq<CR>
 nnoremap <leader>q :q<CR>
 
 nnoremap <leader>= mmgg=G`m
+
+nnoremap <silent> <leader>] :let word=expand("<cword>")<CR>:vsp<CR>:wincmd w<cr>:exec("tag ". word)<cr>
