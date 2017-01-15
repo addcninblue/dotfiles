@@ -84,6 +84,31 @@ PROMPT="╭─[%n$(ssh_connection) in %{$fg[blue]%}%d%{$reset_color%}] %(1j.[%j]
 ╰─▶ "
 # add put this here
 alias ls='ls --color=auto'
+alias r='ranger'
+alias v='vim'
+alias s='ssh'
+alias g='git'
+alias q='exit'
+
+# git
+alias ga='git add -i'
+alias cdg='cd $(git rev-parse --show-toplevel)'
+alias gd='git diff'
+alias gs='git status'
+gch() {
+	git checkout "$1"
+}
+gc() {
+	git commit -m "$1"
+}
+t() {
+	if [ -e tmux-start ]
+	then
+		./tmux-start
+	else
+		tmux
+	fi
+}
 # PROMPT="%d \$ "
 # Base16 Shell
 # BASE16_SHELL="$HOME/.config/base16-shell/base16-monokai.dark.sh"
@@ -102,6 +127,12 @@ cdf() {
 vimf() {
    local file
    file=$(fzf +m -q "") && vim "$file"
+}
+
+# zathura file
+zaf() {
+	local file
+	file=$(fzf +m -q "$1.pdf") && zathura "$file"
 }
 
 # fd - cd to selected directory
@@ -133,6 +164,12 @@ lal() {
 	ls -al
 }
 
+mkcd ()
+{
+    mkdir -p -- "$1" &&
+      cd -P -- "$1"
+}
+
 # vim for man
 export MANPAGER="env MAN_PN=1 vim -M +MANPAGER -"
 
@@ -148,12 +185,15 @@ codi() {
     Codi ${1:-python}"
 }
 
+alias ranger='ranger --choosedir=$HOME/rangerdir; LASTDIR=`cat $HOME/rangerdir`; cd "$LASTDIR"; rm ~/rangerdir'
+
 #vim Ctrlz keybinging
 _zsh_cli_fg() { fg; }
 zle -N _zsh_cli_fg
 bindkey '^Z' _zsh_cli_fg
 
 export PATH=$HOME/.local/bin:${PATH}
+export PATH=$HOME/.gem/ruby/2.3.0/bin:${PATH}
 
 bindkey    "^[[H"    beginning-of-line
 bindkey    "^[[F"    end-of-line
@@ -161,9 +201,46 @@ bindkey    "^[[3~"   delete-char
 bindkey    "^[[7~"   beginning-of-line
 bindkey    "^[[8~"   end-of-line
 bindkey    "^[[P"    delete-char
+bindkey    "^?"      backward-delete-char
 bindkey    "^[[4~"   end-of-line
 
 # stty -ixon
 [[ $- == *i* ]] && stty -ixon
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+. ~/dotfiles/tools/z.sh
+
+if [ "$TERM" = "linux" ]; then
+echo -en "\e]P0073642" #black
+echo -en "\e]P1dc322f" #darkgrey
+echo -en "\e]P2859900" #darkred
+echo -en "\e]P3b58900" #red
+echo -en "\e]P4268bd2" #darkgreen
+echo -en "\e]P5d33682" #green
+echo -en "\e]P62aa198" #brown
+echo -en "\e]P7eee8d5" #yellow
+echo -en "\e]P8002b36" #darkblue
+echo -en "\e]P9cb4b16" #blue
+echo -en "\e]PA586e75" #darkmagenta
+echo -en "\e]PB657b83" #magenta
+echo -en "\e]PC839496" #darkcyan
+echo -en "\e]PD6c71c4" #cyan
+echo -en "\e]PE93a1a1" #lightgrey
+echo -en "\e]PFfdf6e3" #white
+clear #for background artifacting
+fi
+: <<'END'
+# zplug
+source ~/.zplug/init.zsh
+zplug "jocelynmallon/zshmarks"
+# Install plugins if there are plugins that have not been installed
+if ! zplug check --verbose; then
+    printf "Install? [y/N]: "
+    if read -q; then
+        echo; zplug install
+    fi
+fi
+
+# Then, source plugins and add commands to $PATH
+zplug load 
