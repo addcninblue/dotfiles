@@ -12,4 +12,5 @@ chomp($file);
 
 my ($output) = grep(/\Q$file\E/, @pdfs);
 # say $output;
-`zathura "$output"`;
+# `zathura "$output"`;
+`google-chrome-stable "$output"`;

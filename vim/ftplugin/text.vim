@@ -1,7 +1,7 @@
 augroup Textgroup
 	autocmd!
 	autocmd BufEnter * :SoftPencil
-	:Goyo 100
+	autocmd BufEnter * :Goyo 100
 	autocmd BufEnter * :set spell
 	autocmd BufEnter * :cnoreabbrev q qa
 	autocmd BufEnter * :cnoreabbrev wq wqa

@@ -10,13 +10,13 @@ call plug#begin('~/.vim/plugged')
 " Plug 'Shougo/neosnippet.vim'
 " Plug 'tpope/vim-markdown'
 " Plug 'lukerandall/haskellmode-vim', { 'for': 'haskell' }
-" Plug 'ehamberg/vim-cute-python', { 'for': 'python' }
+Plug 'python-mode/python-mode', { 'for': 'python' }
 Plug 'jgdavey/tslime.vim'
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'christoomey/vim-tmux-navigator'
 " Plug 'artur-shaik/vim-javacomplete2', { 'for': 'java' }
 Plug 'bkad/CamelCaseMotion'
-Plug 'davidhalter/jedi-vim', { 'for': 'python' }
+" Plug 'davidhalter/jedi-vim', { 'for': 'python' }
 Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
 Plug 'enomsg/vim-haskellConcealPlus', { 'for': 'haskell' }
 Plug 'ervandew/supertab'
@@ -41,8 +41,9 @@ Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-Plug 'Valloric/YouCompleteMe' 
-Plug 'w0rp/ale'
+" Plug 'Valloric/YouCompleteMe' 
+" Plug 'w0rp/ale'
 Plug 'wellle/targets.vim'
+Plug 'mrtazz/simplenote.vim'
 call plug#end()
 " map <C-n> :NERDTreeToggle<CR>

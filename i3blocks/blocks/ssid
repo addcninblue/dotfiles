@@ -1,0 +1,16 @@
+#!/bin/perl
+
+use v5.24.0;
+use strict;
+use warnings;
+
+my $output = `iw dev wlan0 link | grep SSID | cut -d " " -f 2-`;
+if ($output eq ""){
+    print "Not connected"; 
+} else {
+    print $output;
+}
+
+if($ENV{'BLOCK_BUTTON'} == 1){
+    system(qw/st -e sudo wifi-menu/);
+}

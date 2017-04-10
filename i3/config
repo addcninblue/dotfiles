@@ -37,7 +37,7 @@ bindsym $mod+Return exec st
 bindsym $mod+shift+q kill
 
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+# bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -140,9 +140,12 @@ bindsym --release F4 exec --no-startup-id xdotool key "F11"
 bindsym Shift+F4 fullscreen toggle
 bindsym F6 exec --no-startup-id sudo /home/addison/dotfiles/tools/bright_down # decrease screen brightness
 bindsym F7 exec --no-startup-id sudo /home/addison/dotfiles/tools/bright_up # increase screen brightness
-bindsym F8 exec --no-startup-id pactl set-sink-mute 1 toggle && pkill -RTMIN+1 i3blocks 
-bindsym F9 exec --no-startup-id pactl set-sink-volume 1 -2% && pkill -RTMIN+1 i3blocks #decrease
-bindsym F10 exec --no-startup-id pactl set-sink-volume 1 +2% && pkill -RTMIN+1 i3blocks #increase
+bindsym F8 exec --no-startup-id amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks #decrease
+bindsym F9 exec --no-startup-id amixer -q -D pulse sset Master 2%- && pkill -RTMIN+1 i3blocks #decrease
+bindsym F10 exec --no-startup-id amixer -q -D pulse sset Master 2%+ && pkill -RTMIN+1 i3blocks #decrease
+# bindsym F8 exec --no-startup-id pactl set-sink-mute 1 toggle && pkill -RTMIN+1 i3blocks 
+# bindsym F9 exec --no-startup-id pactl set-sink-volume 1 -2% && pkill -RTMIN+1 i3blocks #decrease
+# bindsym F10 exec --no-startup-id pactl set-sink-volume 1 +2% && pkill -RTMIN+1 i3blocks #increase
 bindsym Shift+F8 exec --no-startup-id playerctl play-pause && pkill -RTMIN+10 i3blocks # music play/pause
 bindsym Shift+F9 exec --no-startup-id playerctl previous && sleep 2s && pkill -RTMIN+10 i3blocks # music prev. 2s because of lag
 bindsym Shift+F10 exec --no-startup-id playerctl next && sleep 2s && pkill -RTMIN+10 i3blocks # music next. 2s because of lag
@@ -160,6 +163,7 @@ bindsym Shift+F10 exec --no-startup-id playerctl next && sleep 2s && pkill -RTMI
 # bindsym $mod+Shift+0 move container to workspace $workspace10
 
 # move focused container to workspace
+bindsym $mod+Shift+grave move container to scratchpad
 bindsym $mod+Shift+1 move container to workspace number 1
 bindsym $mod+Shift+2 move container to workspace number 2
 bindsym $mod+Shift+3 move container to workspace number 3
@@ -235,6 +239,8 @@ hide_edge_borders both
 # Start i3bar to display a workspace bar (plus the system information i3status
 # finds out, if available)
 bar {
+	mode hide
+	modifier $mod
         status_command i3blocks
 	colors {
 		background $bg-color
@@ -287,6 +293,13 @@ mode "Power" {
 
 bindsym XF86PowerOff mode "Power"
 
+mode "programming" {
+	bindsym Escape mode "default"
+}
+
+bindsym $mod+minus mode "programming"
+
+
 #change screen
 bindsym $mod+F5 exec --no-startup-id python /home/addison/.screenlayout/start.py
 
@@ -311,27 +324,31 @@ bindsym --release Control+F5 exec --no-startup-id maim -i $(xdotool getactivewin
 #custom bindsyms
 bindsym $mod+c exec --no-startup-id google-chrome-stable
 # bindsym $mod+backslash exec --no-startup-id "st vim"; move to workspace9
-bindsym $mod+backslash exec --no-startup-id i3-msg 'workspace number 9; exec st vim'
+bindsym $mod+t exec --no-startup-id i3-msg 'workspace number 9; exec st vim'
 bindsym $mod+s exec --no-startup-id "spotify"
 bindsym $mod+m exec --no-startup-id "mixxx"
 bindsym $mod+g exec --no-startup-id "gimp"
 bindsym $mod+i exec --no-startup-id "st /home/addison/stuff/etc/irssilauncher"
 bindsym $mod+Shift+i exec --no-startup-id "st /home/addison/stuff/etc/irssiproxy"
+bindsym $mod+q exec --no-startup-id "xdotool mousedown 1"
+bindsym $mod+d exec --no-startup-id "xdotool click 1"
 
 exec_always xrdb -load ~/.Xresources #load xterm customizations
-exec_always --no-startup-id compton --config /home/addison/.config/compton.conf & #load nice window compositing thing 
+# exec_always --no-startup-id compton --config /home/addison/.config/compton.conf & #load nice window compositing thing 
 exec_always feh --bg-fill /home/addison/dotfiles/coolbackground.jpg #load background
 #touchpad tap to click -- xinput list-props 12 lists available options
 exec_always xinput set-prop 15 292 1
 #touchpad natural scroll
-exec_always xinput set-prop 15 275 1
+exec_always xinput set-prop 15 274 1
 # disable tapping drag because it gets annoying
 exec_always xinput set-prop 15 294 0
 exec --no-startup-id /home/addison/cooli3lock.sh
 #redshift
 exec --no-startup-id redshift-gtk
 exec xmodmap /home/addison/.Xmodmap
+# exec xcape -e 'Super_L=Escape'
 # exec_always --no-startup-id "parcellite"
 exec_always --no-startup-id ~/dotfiles/tools/i3-autoname-workspaces.py
 exec_always --no-startup-id dunst
 exec ibus-daemon
+exec udiskie -t

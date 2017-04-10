@@ -1,7 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
-let g:netrw_dirhist_1='/home/addison/stuff/rails/hello_app/vendor/assets/stylesheets'
-let g:netrw_dirhist_2='/home/addison/stuff/rails/hello_app/vendor/assets'
-let g:netrw_dirhist_3='/home/addison/stuff/rails/hello_app/vendor'
-let g:netrw_dirhist_4='/home/addison/stuff/rails/hello_app'
-let g:netrw_dirhist_5='/home/addison/stuff/cs/blackjack/.git'
+let g:netrw_dirhist_cnt =0

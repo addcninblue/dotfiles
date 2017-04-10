@@ -24,4 +24,11 @@ URGENT_VALUE=10
 # if [[ "${BATTERY_POWER}" -le "${URGENT_VALUE}" ]]; then
 #   exit 33
 # fi
-echo "${BATTERY_POWER}% ${BATTERY_POWER_REMAINING}"
+
+if [ "${BATTERY_POWER}" -le 10 ]; then
+	echo "${BATTERY_POWER}% CHARGE LAPTOP"
+	# notify-send "LOW POWER"
+	# echo "hi"
+else
+	echo "${BATTERY_POWER}% ${BATTERY_POWER_REMAINING}"
+fi

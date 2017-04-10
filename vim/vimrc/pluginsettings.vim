@@ -96,6 +96,7 @@ let delimitMate_expand_cr = 1
 
 " vim-sneak {{{
 let g:sneak#s_next = 1
+let g:sneak#use_ic_scs = 1
 " vim-sneak }}}
 
 let hscoptions = "q℘𝐒𝐓𝐄𝐌sxe⇒⇔rbl↱w-iRtBQZDC1a"
@@ -104,3 +105,5 @@ let hscoptions = "q℘𝐒𝐓𝐄𝐌sxe⇒⇔rbl↱w-iRtBQZDC1a"
 let g:tslime_always_current_session = 1
 let g:tslime_always_current_window = 1
 " tslime }}}
+
+let g:pymode_python = 'python3'

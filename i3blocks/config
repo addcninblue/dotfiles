@@ -26,7 +26,7 @@
 # Each block command defaults to the script name to avoid boilerplate.
 command=/usr/lib/i3blocks/$BLOCK_NAME
 align=center
-separator_block_width=15
+separator_block_width=10
 markup=pango
 
 # Generic media player support
@@ -41,31 +41,37 @@ separator=true
 # align=center
 # min_width=410
 
-[email]
-command=perl "/home/addison/stuff/gmail.pl"
-separator=true
-interval=1800
+# [ssh_socks_proxy]]
+# command=
+# interval=5
+# separtor=true
+
+# [email]
+# command=perl "/home/addison/stuff/gmail.pl"
+# separator=true
+# interval=1800
 
 # [spacing]
 # full_text=                           
 # separator=false
 
 [volume_working]
+separator=false
 interval=once
 signal=1
 
 [ssid]
 separator=false
-separator_block_width=5
+# separator_block_width=5
 interval=10
 # command=echo "$(iw dev wlan0 link | grep SSID | cut -d " " -f 2-)"
-# label=
+label=
 
 [iface]
 # instance=wlan0
-#color=#00FF00
-interval=10
-separator=true
+# color=#00FF00
+# interval=10
+# separator=true
 
 #[wifi]
 ##instance=wlp3s0
@@ -83,13 +89,23 @@ separator=true
 #the battery instance defaults to 0.
 [battery_working]
 #label=BAT
-#label=⚡
+# label=⚡
 #instance=1
 interval=30
+separator=false
+label=
+
+[name]
+command=echo 'Addison Chan'
+interval=once
+label=
+separator=false
 
 # Date Time
 #
 [time]
 command=date '+%m/%d %I:%M'
 interval=5
+separator=false
+label=
 

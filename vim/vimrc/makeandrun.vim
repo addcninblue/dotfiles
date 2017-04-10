@@ -52,5 +52,6 @@ func! Run()
 	elseif &filetype == 'haskell'
 		let l:command="runhaskell " . expand("%")
 	endif
-	silent exec "!tmux split-window -v -p 20 '" . l:command . " | less'"
+	silent exec "!tmux split-window -v -p 20 '" . l:command . " |& vim -u ~/.vim/ftplugin/more.vim -'"
+	" silent exec "!tmux split-window -v -p 20 '" . l:command . " |& less'"
 endfunc
