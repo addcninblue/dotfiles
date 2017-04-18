@@ -283,7 +283,7 @@ bindsym XF86Sleep mode "Power"
 # 	bindsym Escape mode "default"
 # }	
 
-bindsym Control+space mode "Input";
+# bindsym Control+space mode "Input";
 	
 #change screen
 bindsym $mod+Print exec --no-startup-id python /home/addison/.screenlayout/start.py
@@ -338,4 +338,5 @@ for_window [instance="crx_hmjkmjkepdijhoojdojkdfohbdgmmhki"] move scratchpad
 #redshift
 exec --no-startup-id redshift-gtk
 exec xmodmap /home/addison/.Xmodmap
+# exec xcape -e 'Control_L=Escape'
 exec_always --no-startup-id "sudo blackwidowcontrol -i"
