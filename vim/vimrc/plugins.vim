@@ -26,7 +26,7 @@ Plug 'godlygeek/tabular'
 Plug 'junegunn/goyo.vim', { 'for': 'text' }
 Plug 'junegunn/limelight.vim', { 'for': 'text' }
 Plug 'justinmk/vim-sneak'
-Plug 'mattn/emmet-vim', { 'for': ['html', 'eruby'] }
+Plug 'mattn/emmet-vim', { 'for': ['html', 'eruby', 'php'] }
 Plug 'mbbill/undotree', { 'on': 'UndotreeToggle' }
 Plug 'metakirby5/codi.vim', { 'for': 'python' }
 Plug 'mileszs/ack.vim'
@@ -42,8 +42,9 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 " Plug 'Valloric/YouCompleteMe' 
-" Plug 'w0rp/ale'
+Plug 'w0rp/ale', { 'for' : 'javascript' }
 Plug 'wellle/targets.vim'
 Plug 'mrtazz/simplenote.vim'
+" Plug 'wookiehangover/jshint.vim', { 'for': 'javascript' }
 call plug#end()
 " map <C-n> :NERDTreeToggle<CR>

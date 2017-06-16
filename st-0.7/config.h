@@ -6,6 +6,7 @@
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
 static char font[] = "xos4 Terminus:pixelsize=18:antialias=true:autohint=true";
+/* static char font[] = "Inconsolata:pixelsize=20"; */
 static int borderpx = 2;
 #define histsize 2000
 
@@ -163,9 +164,9 @@ static Shortcut shortcuts[] = {
 	{ ControlMask,          XK_Print,       toggleprinter,  {.i =  0} },
 	{ ShiftMask,            XK_Print,       printscreen,    {.i =  0} },
 	{ XK_ANY_MOD,           XK_Print,       printsel,       {.i =  0} },
-	{ MODKEY|ShiftMask,     XK_Prior,       xzoom,          {.f = +1} },
-	{ MODKEY|ShiftMask,     XK_Next,        xzoom,          {.f = -1} },
-	{ MODKEY|ShiftMask,     XK_Home,        xzoomreset,     {.f =  0} },
+	{ ControlMask,          XK_Up,          xzoom,          {.f = +1} },
+	{ ControlMask,          XK_Down,        xzoom,          {.f = -1} },
+	{ ControlMask,          XK_Left,        xzoomreset,     {.f =  0} },
 	{ ShiftMask,            XK_Insert,      selpaste,       {.i =  0} },
 	{ MODKEY|ShiftMask,     XK_Insert,      clippaste,      {.i =  0} },
 	{ MODKEY|ShiftMask,     XK_C,           clipcopy,       {.i =  0} },

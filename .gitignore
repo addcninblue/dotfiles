@@ -1,2 +1,4 @@
 vim/undo/
 vim/plugged/
+*.swp
+*.swo

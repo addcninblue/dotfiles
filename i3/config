@@ -95,6 +95,8 @@ bindsym $mod+a focus parent
 
 new_window 1pixel
 
+workspace_auto_back_and_forth yes
+
 #workspace variables
 set $workspace1 "1: "
 set $workspace2 "2: "
@@ -133,8 +135,8 @@ bindsym $mod+0 workspace number 10
 
 # bindsym --release Shift+F1 exec --no-startup-id /home/addison/dotfiles/tools/switchWorkspace.sh prev
 # bindsym --release Shift+F2 exec --no-startup-id /home/addison/dotfiles/tools/switchWorkspace.sh next
-bindsym F1 exec --no-startup-id /home/addison/dotfiles/tools/switchOpenWorkspace.sh prev
-bindsym F2 exec --no-startup-id /home/addison/dotfiles/tools/switchOpenWorkspace.sh next
+bindsym F1 exec i3-msg "workspace prev"
+bindsym F2 exec i3-msg "workspace next"
 bindsym --release F3 exec --no-startup-id xdotool key "control+r"
 bindsym --release F4 exec --no-startup-id xdotool key "F11"
 bindsym Shift+F4 fullscreen toggle
@@ -271,18 +273,6 @@ bindsym XF86AudioNext exec --no-startup-id playerctl next
 #lockscreen
 bindsym $mod+x exec /home/addison/cooli3lock.sh 
 
-#VGA screen brightness
-bindsym $mod+b mode "VGA_brightness"
-mode "VGA_brightness" {	
-	bindsym XF86MonBrightnessUp exec xrandr --output VGA1 --brightness 1 # increase screen brightness
-	bindsym XF86MonBrightnessDown exec xrandr --output VGA1 --brightness 0.5 # decrease screen brightness
-
-	bindsym Escape mode "default"
-}
-
-#Novo Key
-bindsym XF86Launch1 exec --no-startup-id amixer -D pulse set Master 1+ toggle && pkill -RTMIN+1 i3blocks 
-
 mode "Power" {
 	bindsym h exec "systemctl hibernate; /home/addison/cooli3lock.sh"; mode "default"
 	bindsym XF86PowerOff exec "systemctl suspend; /home/addison/cooli3lock.sh;"; mode "default"
@@ -330,8 +320,9 @@ bindsym $mod+m exec --no-startup-id "mixxx"
 bindsym $mod+g exec --no-startup-id "gimp"
 bindsym $mod+i exec --no-startup-id "st /home/addison/stuff/etc/irssilauncher"
 bindsym $mod+Shift+i exec --no-startup-id "st /home/addison/stuff/etc/irssiproxy"
-bindsym $mod+q exec --no-startup-id "xdotool mousedown 1"
-bindsym $mod+d exec --no-startup-id "xdotool click 1"
+# bindsym $mod+q exec --no-startup-id "xdotool mousedown 1"
+# bindsym $mod+d exec --no-startup-id "xdotool click 1"
+bindsym $mod+q exec --no-startup-id "qutebrowser"
 
 exec_always xrdb -load ~/.Xresources #load xterm customizations
 # exec_always --no-startup-id compton --config /home/addison/.config/compton.conf & #load nice window compositing thing 
@@ -350,5 +341,6 @@ exec xmodmap /home/addison/.Xmodmap
 # exec_always --no-startup-id "parcellite"
 exec_always --no-startup-id ~/dotfiles/tools/i3-autoname-workspaces.py
 exec_always --no-startup-id dunst
-exec ibus-daemon
-exec udiskie -t
+exec --no-startup-id ibus-daemon
+exec --no-startup-id udiskie -t
+exec --no-startup-id xbanish

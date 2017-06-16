@@ -43,8 +43,13 @@ nnoremap <C-l> <C-w><C-l>
 nnoremap <leader>b :buffers<CR>:buffer<Space>
 
 nnoremap <leader>y "+y
+nnoremap <leader>Y "+Y
 nnoremap <leader>p "+p
 nnoremap <leader>P "+P
+
+vnoremap <leader>y "+y
+vnoremap <leader>p "+p
+vnoremap <leader>P "+P
 
 nnoremap Y y$
 nnoremap <leader>w :w<CR>
@@ -67,3 +72,12 @@ nnoremap <leader>st :SimplenoteTrash<CR>
 
 " for Hastebin
 nnoremap <leader>h :%! haste<CR>"+yyu
+
+" Make it easy to move lines up and down
+" https://github.com/abatilo/vimrc/blob/master/.vimrc#L35
+nnoremap <Down> :m .+1<CR>
+nnoremap <Up> :m .-2<CR>
+inoremap <Down> <Esc>:m .+1<CR>
+inoremap <Up> <Esc>:m .-2<CR>
+vnoremap <Down> :m '>+1<CR>gv=gv
+vnoremap <Up> :m '<-2<CR>gv=gv
