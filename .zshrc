@@ -87,14 +87,55 @@ alias ls='ls --color=auto'
 alias r='ranger'
 alias v='vim'
 alias s='ssh'
+alias proxy='ssh rpi -D 8080'
 alias g='git'
 alias q='exit'
+alias vmore="vim -u ~/.vim/ftplugin/more.vim -"
+alias ..='cd ..'
+alias p='python'
+
+alias -s py='python'
+alias -s txt='vim'
+alias -s md='vim'
+alias -s mp3='vlc'
+alias -s mp4='vlc'
+alias -s wav='vlc'
+
+alias c='gcalcli'
+alias cc='gcalcli calw'
+alias cw='gcalcli calw'
+alias cm='gcalcli calm'
+quick() {
+	gcalcli quick "$1" && gcalcli calw
+}
 
 # git
 alias ga='git add -i'
 alias cdg='cd $(git rev-parse --show-toplevel)'
 alias gd='git diff'
 alias gs='git status'
+
+alias vtt='vim ~/tmp/tmp$RANDOM.txt'
+alias vtp='vim ~/tmp/tmp$RANDOM.py'
+alias vt='vim ~/tmp/tmp$RANDOM'
+alias vtm='vim ~/tmp/tmp$RANDOM.md'
+
+magic-enter () {
+        if [[ -z $BUFFER ]]
+        then
+		BUFFER=$history[$((HISTCMD-1))]
+		zle accept-line
+        else
+                zle accept-line
+        fi
+}
+zle -N magic-enter
+bindkey "^M" magic-enter
+
+export VISUAL=vim
+autoload edit-command-line; zle -N edit-command-line
+bindkey -M vicmd v edit-command-line
+
 gch() {
 	git checkout "$1"
 }
@@ -193,7 +234,8 @@ zle -N _zsh_cli_fg
 bindkey '^Z' _zsh_cli_fg
 
 export PATH=$HOME/.local/bin:${PATH}
-export PATH=$HOME/.gem/ruby/2.3.0/bin:${PATH}
+export PATH=$HOME/.gem/ruby/2.4.0/bin:${PATH}
+# export PYTHONPATH=/usr/lib/python2.7/site-packages:${PYTHONPATH}
 
 bindkey    "^[[H"    beginning-of-line
 bindkey    "^[[F"    end-of-line
@@ -203,6 +245,7 @@ bindkey    "^[[8~"   end-of-line
 bindkey    "^[[P"    delete-char
 bindkey    "^?"      backward-delete-char
 bindkey    "^[[4~"   end-of-line
+
 
 # stty -ixon
 [[ $- == *i* ]] && stty -ixon
@@ -230,6 +273,9 @@ echo -en "\e]PE93a1a1" #lightgrey
 echo -en "\e]PFfdf6e3" #white
 clear #for background artifacting
 fi
+
+# zsh syntax highlighting
+source /home/addison/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 : <<'END'
 # zplug
 source ~/.zplug/init.zsh
@@ -244,3 +290,4 @@ fi
 
 # Then, source plugins and add commands to $PATH
 zplug load 
+
