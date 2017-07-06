@@ -1,6 +1,8 @@
 # The following lines were added by compinstall
 
 zstyle ':completion:*' completer _expand _complete _ignored _approximate
+zstyle ':completion:*' format 'Completing %d'
+zstyle ':completion:*' matcher-list '' 'r:|[._-]=** r:|=**' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'l:|=* r:|=*'
 zstyle :compinstall filename '/home/addison/.zshrc'
 
 autoload -Uz compinit
@@ -93,6 +95,8 @@ alias q='exit'
 alias vmore="vim -u ~/.vim/ftplugin/more.vim -"
 alias ..='cd ..'
 alias p='python'
+alias sw='sudo wifi-menu'
+alias share='shellshare --room addison --password addison'
 
 alias -s py='python'
 alias -s txt='vim'

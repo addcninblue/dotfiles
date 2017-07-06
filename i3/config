@@ -135,8 +135,8 @@ bindsym $mod+0 workspace number 10
 
 # bindsym --release Shift+F1 exec --no-startup-id /home/addison/dotfiles/tools/switchWorkspace.sh prev
 # bindsym --release Shift+F2 exec --no-startup-id /home/addison/dotfiles/tools/switchWorkspace.sh next
-bindsym F1 exec i3-msg "workspace prev"
-bindsym F2 exec i3-msg "workspace next"
+bindsym F1 workspace prev
+bindsym F2 workspace next
 bindsym --release F3 exec --no-startup-id xdotool key "control+r"
 bindsym --release F4 exec --no-startup-id xdotool key "F11"
 bindsym Shift+F4 fullscreen toggle
@@ -314,7 +314,8 @@ bindsym --release Control+F5 exec --no-startup-id maim -i $(xdotool getactivewin
 #custom bindsyms
 bindsym $mod+c exec --no-startup-id google-chrome-stable
 # bindsym $mod+backslash exec --no-startup-id "st vim"; move to workspace9
-bindsym $mod+t exec --no-startup-id i3-msg 'workspace number 9; exec st vim'
+# bindsym $mod+t exec --no-startup-id i3-msg 'workspace number 9; exec st vim'
+bindsym $mod+t workspace number 9; exec "st vim"
 bindsym $mod+s exec --no-startup-id "spotify"
 bindsym $mod+m exec --no-startup-id "mixxx"
 bindsym $mod+g exec --no-startup-id "gimp"

@@ -43,7 +43,7 @@ nnoremap <C-l> <C-w><C-l>
 nnoremap <leader>b :buffers<CR>:buffer<Space>
 
 nnoremap <leader>y "+y
-nnoremap <leader>Y "+Y
+nnoremap <leader>Y "+y$
 nnoremap <leader>p "+p
 nnoremap <leader>P "+P
 

@@ -30,17 +30,19 @@ autocmd QuickFixCmdPost    l* nested lwindow
 let g:jedi#rename_command = ""
 " can't let jedi take over the <leader>r keybinding
 nnoremap <leader>r :call Run()<CR>
+nnoremap <leader>i :call Interactive()<CR><CR>
 func! Run()
 	let l:command="echo 'not a function'"
-	" if &filetype == 'c'
-	" 	exec "!gcc % -o %<"
+	if &filetype == 'c'
+		let l:command="gcc -o " . expand("%:r") . " " . expand("%") . " && ./" . expand("%:r")
+		" exec "!gcc % -o %<"
 	" 	exec "!time ./%<"
 	" elseif &filetype == 'cpp'
 	" 	exec "!g++ % -o %<" " 	exec "!time ./%<"
-	if &filetype == 'perl'
+	elseif &filetype == 'perl'
 		let l:command="perl " . expand("%")
 	elseif &filetype == 'java'
-		let l:command="java ". expand("%<")
+		let l:command="java ". expand("%:r")
 	elseif &filetype == 'sh'
 		let l:command="./" . expand("%")
 	elseif &filetype == 'python'
@@ -54,4 +56,11 @@ func! Run()
 	endif
 	silent exec "!tmux split-window -v -p 20 '" . l:command . " |& vim -u ~/.vim/ftplugin/more.vim -'"
 	" silent exec "!tmux split-window -v -p 20 '" . l:command . " |& less'"
+endfunc
+func! Interactive()
+	let l:command="echo 'not a function'"
+	if &filetype == 'python'
+		let l:command="python -i " .expand("%")
+	endif
+	exec "!tmux split-window -v -p 20 " . l:command
 endfunc
