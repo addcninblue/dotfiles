@@ -60,8 +60,8 @@ nnoremap <leader>= mmgg=G`m
 
 nnoremap <silent> <leader>] :let word=expand("<cword>")<CR>:vsp<CR>:wincmd w<cr>:exec("tag ". word)<cr>
 
-nnoremap <CR> o<ESC>k
-nnoremap \ O<ESC>j
+nnoremap \ o<ESC>k
+" nnoremap <S-\> O<ESC>j
 
 " for Simplenote
 nnoremap <leader>sl :SimplenoteList<CR>

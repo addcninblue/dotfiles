@@ -85,6 +85,7 @@ RPROMPT=$'$(vcs_info_wrapper)'
 PROMPT="╭─[%n$(ssh_connection) in %{$fg[blue]%}%d%{$reset_color%}] %(1j.[%j].)
 ╰─▶ "
 # add put this here
+export TERM='xterm-256color'
 alias ls='ls --color=auto'
 alias r='ranger'
 alias v='vim'
