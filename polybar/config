@@ -8,18 +8,36 @@
 ;=====================================================
 
 [colors]
-;background = ${xrdb:color0:#222}
 background = #002b36
 background-alt = #002b36
-;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
 foreground-alt = #555
 primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
+[bar/top]
+width = 100%
+height = 27
+fixed-center = true
+background = ${colors.background}
+
+border-size = 4
+border-color = ${colors.background}
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = FontAwesome:size=12;0
+font-1 = fixed:size=10;0
+
+modules-center = mpd
+
 [bar/bottom]
-bottom=true
+bottom = true
 ;monitor = ${env:MONITOR:HDMI-1}
 width = 100%
 height = 27
@@ -43,25 +61,22 @@ padding-right = 2
 module-margin-left = 1
 module-margin-right = 2
 
-font-0 = FontAwesome:pixelsize=12;1
-font-1 = fixed:pixelsize=10;1
+font-0 = FontAwesome:size=12;0
+font-1 = fixed:size=10;0
+font-2 = Noto Sans CJK TC:size=10;0
 
-modules-left = powermenu date
+modules-left = powermenu music mpd
 modules-center = i3
-modules-right = xbacklight volume memory cpu wlan battery
+modules-right = volume brightness memory wlan battery date
 
 tray-position = right
 tray-padding = 2
 ; tray-transparent = true
 ;tray-background = #0063ff
 
-;wm-restack = bspwm
 ;wm-restack = i3
 
 ;override-redirect = true
-
-;scroll-up = bspwm-desknext
-;scroll-down = bspwm-deskprev
 
 ;scroll-up = i3wm-wsnext
 ;scroll-down = i3wm-wsprev
@@ -69,25 +84,6 @@ tray-padding = 2
 [module/xwindow]
 type = internal/xwindow
 label = %title:0:30:...%
-
-[module/bspwm]
-type = internal/bspwm
-
-label-focused = %index%
-label-focused-background = ${colors.background-alt}
-label-focused-underline= ${colors.primary}
-label-focused-padding = 2
-
-label-occupied = %index%
-label-occupied-padding = 2
-
-label-urgent = %index%!
-label-urgent-background = ${colors.alert}
-label-urgent-padding = 2
-
-label-empty = %index%
-label-empty-foreground = ${colors.foreground-alt}
-label-empty-padding = 2
 
 [module/i3]
 type = internal/i3
@@ -104,13 +100,14 @@ label-mode-background = ${colors.primary}
 
 ; focused = Active workspace on focused monitor
 label-focused = %name%
-label-focused-background = ${module/bspwm.label-focused-background}
-label-focused-underline = ${module/bspwm.label-focused-underline}
-label-focused-padding = ${module/bspwm.label-focused-padding}
+label-focused-background = ${colors.background-alt}
+label-focused-underline = ${colors.primary}
+label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
-label-unfocused-padding = ${module/bspwm.label-occupied-padding}
+label-unfocused = %name%
+label-unfocused-foreground = ${colors.foreground-alt}
+label-unfocused-padding = 2
 
 ; visible = Active workspace on unfocused monitor
 label-visible = %name%
@@ -120,18 +117,27 @@ label-visible-padding = ${self.label-focused-padding}
 
 ; urgent = Workspace with urgency hint set
 label-urgent = %name%
-label-urgent-background = ${module/bspwm.label-urgent-background}
-label-urgent-padding = ${module/bspwm.label-urgent-padding}
+label-urgent-background = ${colors.alert}
+label-urgent-padding = 2
 
 [module/mpd]
 type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+format-online = <label-song>  <icon-prev> <toggle> <icon-next> <bar-progress>
+format-stopped =
 
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
+host = 127.0.0.1
+post = 6600
+icon-prev = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+; Only applies if <bar-progress> is used
+bar-progress-width = 30
+bar-progress-indicator = |
+bar-progress-fill = ─
+bar-progress-empty = ─
+label-song = %artist% - %title%
 
 label-song-maxlen = 25
 label-song-ellipsis = true
@@ -221,7 +227,7 @@ interval = 5
 date =
 date-alt = " %Y-%m-%d"
 
-time = %H:%M
+time = %I:%M %p
 time-alt = %H:%M:%S
 
 format-prefix = 
@@ -266,9 +272,11 @@ full-at = 98
 
 format-charging = <animation-charging> <label-charging>
 format-charging-underline = #ffb52a
+label-charging = %percentage%% %time%
 
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
+label-discharging = %percentage%% %time%
 
 format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}
@@ -319,6 +327,26 @@ menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 format-underline = #f90000
 
+[module/music]
+type = custom/script
+interval = 5s
+
+format = <label>
+format-underline = #4bffdc
+label = %output:0:45:...%
+exec = ~/.config/polybar/mediaplayer.sh
+
+click-left = playerctl play-pause
+
+[module/brightness]
+type = custom/script
+interval = 5s
+
+format = <label>
+format-underline = #0a6cf5
+label = %output%
+exec = ~/.config/polybar/brightness.sh
+
 [settings]
 screenchange-reload = true
 ;compositing-background = xor
@@ -329,3 +357,5 @@ screenchange-reload = true
 [global/wm]
 margin-top = 5
 margin-bottom = 5
+
+; vim:ft=dosini
