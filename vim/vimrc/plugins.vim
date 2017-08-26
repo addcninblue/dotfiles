@@ -17,7 +17,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'bkad/CamelCaseMotion'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'eagletmt/neco-ghc', { 'for': 'haskell' }
-Plug 'enomsg/vim-haskellConcealPlus', { 'for': 'haskell' }
+" Plug 'enomsg/vim-haskellConcealPlus', { 'for': 'haskell' }
 Plug 'ervandew/supertab'
 Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'gabrielelana/vim-markdown', { 'for': 'markdown' }
@@ -46,5 +46,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'vim-ruby/vim-ruby', { 'for': 'ruby' }
 Plug 'w0rp/ale', { 'for' : 'javascript' }
 Plug 'wellle/targets.vim'
+Plug 'tweekmonster/braceless.vim', { 'for': 'python' }
 call plug#end()
 " map <C-n> :NERDTreeToggle<CR>

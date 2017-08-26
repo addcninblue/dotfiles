@@ -13,3 +13,5 @@ func! FinanceFormat()
 	exec "normal! " . s:script
 	exec "normal! vip:Tabularize /|\<CR>"
 endfunc
+
+nmap yu vi(;! google-chrome-stable <C-r>0 <CR>u

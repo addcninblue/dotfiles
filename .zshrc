@@ -85,7 +85,10 @@ RPROMPT=$'$(vcs_info_wrapper)'
 PROMPT="╭─[%n$(ssh_connection) in %{$fg[blue]%}%d%{$reset_color%}] %(1j.[%j].)
 ╰─▶ "
 # add put this here
+
 export TERM='xterm-256color'
+
+# defined aliases {{{
 alias ls='ls --color=auto'
 alias r='ranger'
 alias v='vim'
@@ -97,14 +100,18 @@ alias vmore="vim -u ~/.vim/ftplugin/more.vim -"
 alias ..='cd ..'
 alias p='python'
 alias sw='sudo wifi-menu'
+alias wf='sudo systemctl restart netctl-auto@wlan0.service' # wifi fix
 alias share='shellshare --room addison --password addison'
 
+# file extensions
 alias -s py='python'
 alias -s txt='vim'
 alias -s md='vim'
 alias -s mp3='vlc'
 alias -s mp4='vlc'
 alias -s wav='vlc'
+alias -s png='meh'
+alias -s jpg='meh'
 
 alias c='gcalcli'
 alias cc='gcalcli calw'
@@ -120,10 +127,79 @@ alias cdg='cd $(git rev-parse --show-toplevel)'
 alias gd='git diff'
 alias gs='git status'
 
+# temp files
 alias vtt='vim ~/tmp/tmp$RANDOM.txt'
 alias vtp='vim ~/tmp/tmp$RANDOM.py'
+alias vtj='vim ~/tmp/tmp$RANDOM.java'
 alias vt='vim ~/tmp/tmp$RANDOM'
 alias vtm='vim ~/tmp/tmp$RANDOM.md'
+alias vts='vim ~/tmp/tmp$RANDOM.scm'
+alias vtsq='vim ~/tmp/tmp$RANDOM.sql'
+alias vth='vim ~/tmp/tmp$RANDOM.hs'
+
+# defined aliases }}}
+
+# defined functions: {{{
+
+gcp() {
+	if [ "$1" = 'sync' ]; then
+		unison -auto -batch 'Google Compute Platform'
+	elif [ "$1" = 'watch' ]; then
+		while inotifywait -e modify -e delete .; do unison -auto -batch 'Google Compute Platform'; done
+	else
+		ssh gcp
+	fi
+}
+
+testing() {
+	echo $(pwd)
+	# echo "$@"
+}
+
+# test driven development
+tdd() {
+	# while inotifywait -e close_write $1; do $2; done
+	while inotifywait -e modify .; do python test.py -f $1 -q $2; done
+}
+
+# timer
+countdown() {
+	secs=$1
+	while [ $secs -gt 0 ]; do
+		echo -ne " Seconds left: $secs\033[0K\r"
+		sleep 1
+		: $((secs--))
+	done
+	echo -ne "\033[0K\r" # clear line
+}
+
+# temp file most recent opener "vim temp open"
+vto () {
+	if [[ -n $1 ]]; then
+		cd $HOME/tmp && vim $(ls -altr *.$1 | awk '$9 ~ /^[^.]/ {print $9}' | tail -n1)
+	else
+		cd $HOME/tmp && vim $(ls -altr | awk '$9 ~ /^[^.]/ {print $9}' | tail -n1)
+	fi
+}
+
+gch() {
+	git checkout "$1"
+}
+
+gc() {
+	git commit -m "$1"
+}
+
+t() {
+	if [ -e tmux-start ]
+	then
+		./tmux-start
+	else
+		tmux
+	fi
+}
+
+# defined functions }}}
 
 magic-enter () {
         if [[ -z $BUFFER ]]
@@ -141,20 +217,6 @@ export VISUAL=vim
 autoload edit-command-line; zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
-gch() {
-	git checkout "$1"
-}
-gc() {
-	git commit -m "$1"
-}
-t() {
-	if [ -e tmux-start ]
-	then
-		./tmux-start
-	else
-		tmux
-	fi
-}
 # PROMPT="%d \$ "
 # Base16 Shell
 # BASE16_SHELL="$HOME/.config/base16-shell/base16-monokai.dark.sh"
@@ -280,7 +342,8 @@ clear #for background artifacting
 fi
 
 # zsh syntax highlighting
-source /home/addison/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /home/addison/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# source /home/addison/.zsh/zsh-autosuggestions-master/zsh-autosuggestions.zsh
 : <<'END'
 # zplug
 source ~/.zplug/init.zsh

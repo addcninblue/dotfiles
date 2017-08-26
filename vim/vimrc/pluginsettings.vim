@@ -107,3 +107,9 @@ let g:tslime_always_current_window = 1
 " tslime }}}
 
 let g:pymode_python = 'python3'
+let g:pymode_rope_lookup_project = 0
+let g:pymode_rope = 0 " thing doesn't work right ._.
+
+" braceless {{{
+autocmd FileType python BracelessEnable +indent
+" braceless }}}
