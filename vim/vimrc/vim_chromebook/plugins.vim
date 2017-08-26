@@ -2,7 +2,7 @@
 call plug#begin('~/.vim/plugged') 
 "plugins here
 " Plug 'jreybert/vimagit'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+" Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 " Plug 'scrooloose/nerdtree'
 " Plug 'scrooloose/syntastic'
 " Plug 'Shougo/neocomplete.vim'
@@ -35,7 +35,7 @@ Plug 'reedes/vim-pencil', { 'for': 'text' }
 Plug 'sheerun/vim-polyglot'
 Plug 'SirVer/ultisnips'
 Plug 'skywind3000/asyncrun.vim'
-" Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
+Plug 'suan/vim-instant-markdown', { 'for': 'markdown' }
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-repeat'

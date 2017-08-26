@@ -85,7 +85,7 @@ let g:instant_markdown_autostart = 0
 " vim-markdown }}}
 
 " vim-markdown {{{
-" let g:markdown_enable_folding = 1
+let g:markdown_enable_folding = 1
 let g:markdown_enable_mappings = 0
 nnoremap <leader>e :MarkdownEditBlock<CR>
 " vim-markdown }}}

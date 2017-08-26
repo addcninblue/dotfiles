@@ -11,8 +11,9 @@ inoremap <C-BS> <C-W>
 " testing in python
 nnoremap <leader>f za
 nnoremap <leader>F zA
-nnoremap <leader>p :execute "rightbelow vsplit " . bufname("#")<CR>
+" nnoremap <leader>p :execute "rightbelow vsplit " . bufname("#")<CR>
 nnoremap <leader>s :so $MYVIMRC<CR>
+nnoremap <leader>ss :so $MYVIMRC<CR>
 nnoremap ; :
 nnoremap : ;
 vnoremap ; :

@@ -72,4 +72,3 @@ set hidden
 set sidescroll=1
 
 " scrolloff
-set so=99

@@ -16,6 +16,26 @@ primary = #ffb52a
 secondary = #e60053
 alert = #bd2c40
 
+[bar/top]
+width = 100%
+height = 27
+fixed-center = true
+background = ${colors.background}
+
+border-size = 4
+border-color = ${colors.background}
+
+padding-left = 0
+padding-right = 2
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = FontAwesome:size=12;0
+font-1 = fixed:size=10;0
+
+modules-center = mpd
+
 [bar/bottom]
 bottom = true
 ;monitor = ${env:MONITOR:HDMI-1}
@@ -43,10 +63,11 @@ module-margin-right = 2
 
 font-0 = FontAwesome:size=12;0
 font-1 = fixed:size=10;0
+font-2 = Noto Sans CJK TC:size=10;0
 
-modules-left = powermenu date
+modules-left = powermenu date music mpd
 modules-center = i3
-modules-right = xbacklight volume memory cpu wlan battery
+modules-right = volume brightness memory wlan battery
 
 tray-position = right
 tray-padding = 2
@@ -84,7 +105,8 @@ label-focused-underline = ${colors.primary}
 label-focused-padding = 2
 
 ; unfocused = Inactive workspace on any monitor
-label-unfocused = %index%
+label-unfocused = %name%
+label-unfocused-foreground = ${colors.foreground-alt}
 label-unfocused-padding = 2
 
 ; visible = Active workspace on unfocused monitor
@@ -100,13 +122,22 @@ label-urgent-padding = 2
 
 [module/mpd]
 type = internal/mpd
-format-online = <label-song>  <icon-prev> <icon-stop> <toggle> <icon-next>
+format-online = <label-song>  <icon-prev> <toggle> <icon-next> <bar-progress>
+format-stopped =
 
-icon-prev = 
-icon-stop = 
-icon-play = 
-icon-pause = 
-icon-next = 
+host = 127.0.0.1
+post = 6600
+icon-prev = 
+icon-play = 
+icon-pause = 
+icon-next = 
+
+; Only applies if <bar-progress> is used
+bar-progress-width = 30
+bar-progress-indicator = |
+bar-progress-fill = ─
+bar-progress-empty = ─
+label-song = %artist% - %title%
 
 label-song-maxlen = 25
 label-song-ellipsis = true
@@ -194,10 +225,10 @@ type = internal/date
 interval = 5
 
 date =
-date-alt = " %Y-%m-%d"
+date-alt = " %m/%d"
 
-time = %H:%M
-time-alt = %H:%M:%S
+time = %I:%M %p
+time-alt = %I:%M %p
 
 format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
@@ -241,9 +272,11 @@ full-at = 98
 
 format-charging = <animation-charging> <label-charging>
 format-charging-underline = #ffb52a
+label-charging = %percentage%% %time%
 
 format-discharging = <ramp-capacity> <label-discharging>
 format-discharging-underline = ${self.format-charging-underline}
+label-discharging = %percentage%% %time%
 
 format-full-prefix = " "
 format-full-prefix-foreground = ${colors.foreground-alt}
@@ -293,6 +326,26 @@ menu-2-0-exec = sudo poweroff
 menu-2-1 = cancel
 menu-2-1-exec = menu-open-0
 format-underline = #f90000
+
+[module/music]
+type = custom/script
+interval = 5s
+
+format = <label>
+format-underline = #4bffdc
+label = %output:0:45:...%
+exec = ~/.config/polybar/mediaplayer.sh
+
+click-left = playerctl play-pause
+
+[module/brightness]
+type = custom/script
+interval = 5s
+
+format = <label>
+format-underline = #0a6cf5
+label = %output%
+exec = ~/.config/polybar/brightness.sh
 
 [settings]
 screenchange-reload = true
