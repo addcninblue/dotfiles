@@ -1,0 +1,3 @@
+[submodule "vim/pack/bundle/opt/codi.vim"]
+	path = vim/pack/bundle/opt/codi.vim
+	url = ./vim/pack/bundle/opt/ale
