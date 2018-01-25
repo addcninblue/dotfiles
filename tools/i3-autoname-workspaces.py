@@ -67,6 +67,13 @@ WINDOW_ICONS = {
     'jetbrains-idea-ce': FA_CODE,
 }
 
+WORKSPACE_NAMES = {
+    1: "general",
+    2: "school",
+    9: "work",
+    10: "spotify",
+}
+
 
 i3 = i3ipc.Connection()
 

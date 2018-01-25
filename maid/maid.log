@@ -1,0 +1,78 @@
+# Logfile created on 2017-12-25 14:53:11 -0800 by logger.rb/56815
+I, [2017-12-25T14:53:11.043799 #28224]  INFO -- Maid: v0.7.0
+I, [2017-12-25T14:53:11.043947 #28224]  INFO -- Maid: Started
+I, [2017-12-25T14:53:11.043972 #28224]  INFO -- Maid: Finished
+I, [2017-12-25T14:57:14.591559 #29170]  INFO -- Maid: Rule: Testing
+I, [2017-12-25T14:57:14.591883 #29170]  INFO -- Maid: move /home/addison/tmp/testing /home/addison/.local/share/Trash/files
+I, [2017-12-25T14:58:14.598844 #29635]  INFO -- Maid: Rule: Testing
+I, [2017-12-25T14:58:14.599117 #29635]  INFO -- Maid: mkdir -p /home/addison/.local/share/Trash/files
+I, [2017-12-25T14:58:14.599263 #29635]  INFO -- Maid: rename /home/addison/tmp/testing/testing '/home/addison/.local/share/Trash/files/testing 2017-12-25-14-58-14'
+I, [2017-12-25T14:58:14.701602 #29635]  INFO -- Maid: Rule: Testing
+I, [2017-12-25T14:58:23.516459 #29635]  INFO -- Maid: Rule: Testing
+I, [2017-12-25T14:58:23.516746 #29635]  INFO -- Maid: move /home/addison/tmp/testing/lmao /home/addison/.local/share/Trash/files
+I, [2017-12-25T14:58:23.618850 #29635]  INFO -- Maid: Rule: Testing
+I, [2017-12-25T14:58:25.730311 #29635]  INFO -- Maid: Rule: Testing
+I, [2017-12-25T14:58:25.730608 #29635]  INFO -- Maid: move /home/addison/tmp/testing/fjdklafjdasl /home/addison/.local/share/Trash/files
+I, [2017-12-25T14:58:25.832613 #29635]  INFO -- Maid: Rule: Testing
+I, [2017-12-25T14:58:44.655463 #29635]  INFO -- Maid: Rule: Testing
+I, [2017-12-25T14:58:44.655735 #29635]  INFO -- Maid: mkdir -p /home/addison/.local/share/Trash/files
+I, [2017-12-25T14:58:44.655884 #29635]  INFO -- Maid: rename /home/addison/tmp/testing/lmao '/home/addison/.local/share/Trash/files/lmao 2017-12-25-14-58-44'
+I, [2017-12-25T14:58:44.757912 #29635]  INFO -- Maid: Rule: Testing
+I, [2017-12-26T19:50:20.326688 #1029]  INFO -- Maid: Rule: Cleanup old files
+I, [2017-12-26T19:50:20.327014 #1029]  INFO -- Maid: move /home/addison/tmp/Anthony.py /home/addison/.local/share/Trash/files
+I, [2017-12-26T19:50:23.042352 #1029]  INFO -- Maid: move '/home/addison/tmp/CC '\''17' /home/addison/.local/share/Trash/files
+I, [2017-12-26T19:50:23.047534 #1029]  INFO -- Maid: move /home/addison/tmp/Main.class /home/addison/.local/share/Trash/files
+I, [2017-12-26T19:50:23.047643 #1029]  INFO -- Maid: move /home/addison/tmp/Main.java /home/addison/.local/share/Trash/files
+I, [2017-12-26T19:50:23.057573 #1029]  INFO -- Maid: move /home/addison/tmp/Mode.class /home/addison/.local/share/Trash/files
+I, [2017-12-26T19:50:23.057723 #1029]  INFO -- Maid: move /home/addison/tmp/Mode.java /home/addison/.local/share/Trash/files
+I, [2017-12-26T19:50:23.057795 #1029]  INFO -- Maid: move /home/addison/tmp/android.ovpn /home/addison/.local/share/Trash/files
+I, [2017-12-26T19:50:23.057864 #1029]  INFO -- Maid: move /home/addison/tmp/decryption.txt /home/addison/.local/share/Trash/files
+I, [2017-12-26T19:50:23.057932 #1029]  INFO -- Maid: move /home/addison/tmp/speedtest-cli /home/addison/.local/share/Trash/files
+I, [2017-12-26T19:50:23.058009 #1029]  INFO -- Maid: move /home/addison/tmp/ta.key /home/addison/.local/share/Trash/files
+I, [2017-12-26T19:50:23.058071 #1029]  INFO -- Maid: move /home/addison/tmp/testing.java /home/addison/.local/share/Trash/files
+I, [2017-12-26T19:50:23.058133 #1029]  INFO -- Maid: move /home/addison/tmp/tmp10773.txt /home/addison/.local/share/Trash/files
+I, [2017-12-26T19:50:23.058206 #1029]  INFO -- Maid: move /home/addison/tmp/tmp11206.java /home/addison/.local/share/Trash/files
+I, [2017-12-26T19:50:23.058284 #1029]  INFO -- Maid: move /home/addison/tmp/tmp21397.txt /home/addison/.local/share/Trash/files
+I, [2017-12-26T19:50:23.058355 #1029]  INFO -- Maid: move /home/addison/tmp/tmp23241.java /home/addison/.local/share/Trash/files
+I, [2017-12-26T19:50:23.058439 #1029]  INFO -- Maid: move /home/addison/tmp/tmp24008.txt /home/addison/.local/share/Trash/files
+I, [2017-12-26T19:50:23.058509 #1029]  INFO -- Maid: move /home/addison/tmp/tmp24081.txt /home/addison/.local/share/Trash/files
+I, [2017-12-26T19:50:23.058608 #1029]  INFO -- Maid: move /home/addison/tmp/tmp24365.py /home/addison/.local/share/Trash/files
+I, [2017-12-26T19:50:23.058696 #1029]  INFO -- Maid: move /home/addison/tmp/tmp24989.txt /home/addison/.local/share/Trash/files
+I, [2017-12-26T19:50:23.058772 #1029]  INFO -- Maid: move /home/addison/tmp/tmp26313.txt /home/addison/.local/share/Trash/files
+I, [2017-12-26T19:50:23.058845 #1029]  INFO -- Maid: move /home/addison/tmp/tmp27510.java /home/addison/.local/share/Trash/files
+I, [2017-12-26T19:50:23.058926 #1029]  INFO -- Maid: move /home/addison/tmp/tmp29904.java /home/addison/.local/share/Trash/files
+I, [2017-12-26T19:50:23.059000 #1029]  INFO -- Maid: move /home/addison/tmp/tmp31157.txt /home/addison/.local/share/Trash/files
+I, [2017-12-26T19:50:23.059073 #1029]  INFO -- Maid: move /home/addison/tmp/tmp31549.py /home/addison/.local/share/Trash/files
+I, [2017-12-27T12:59:39.706296 #28925]  INFO -- Maid: v0.7.0
+I, [2017-12-27T12:59:39.769925 #28925]  INFO -- Maid: Started
+I, [2017-12-27T12:59:39.769995 #28925]  INFO -- Maid: Finished
+I, [2017-12-28T12:59:34.159358 #28872]  INFO -- Maid: Rule: Cleanup old files
+I, [2017-12-29T12:59:34.540501 #28872]  INFO -- Maid: Rule: Cleanup old files
+I, [2017-12-30T12:59:34.607874 #28872]  INFO -- Maid: Rule: Cleanup old files
+I, [2017-12-31T12:59:34.891427 #28872]  INFO -- Maid: Rule: Cleanup old files
+I, [2018-01-01T18:05:34.431809 #498]  INFO -- Maid: Rule: Cleanup old files
+I, [2018-01-02T22:19:14.213925 #491]  INFO -- Maid: Rule: Cleanup old files
+I, [2018-01-03T22:19:14.420348 #491]  INFO -- Maid: Rule: Cleanup old files
+I, [2018-01-06T00:02:13.341126 #525]  INFO -- Maid: Rule: Cleanup old files
+I, [2018-01-07T00:02:13.681316 #525]  INFO -- Maid: Rule: Cleanup old files
+I, [2018-01-08T00:02:13.919111 #525]  INFO -- Maid: Rule: Cleanup old files
+I, [2018-01-09T15:33:34.319413 #25233]  INFO -- Maid: Rule: Cleanup old files
+I, [2018-01-09T15:34:12.932841 #25233]  INFO -- Maid: move '/home/addison/Downloads/20170808152419 (1).xlsx' /home/addison/.local/share/Trash/files
+I, [2018-01-09T15:34:12.932961 #25233]  INFO -- Maid: move '/home/addison/Downloads/ubuntu-17.10-desktop-amd64.iso (1).torrent' /home/addison/.local/share/Trash/files
+I, [2018-01-10T16:09:47.353711 #25233]  INFO -- Maid: Rule: Cleanup old files
+I, [2018-01-10T16:09:50.913886 #25233]  INFO -- Maid: move '/home/addison/Downloads/04359J (1).pdf' /home/addison/.local/share/Trash/files
+I, [2018-01-11T19:42:45.125157 #25233]  INFO -- Maid: Rule: Cleanup old files
+I, [2018-01-11T19:42:52.467090 #25233]  INFO -- Maid: move '/home/addison/Downloads/Resume 2018 (1).pdf' /home/addison/.local/share/Trash/files
+I, [2018-01-12T22:01:50.747921 #27196]  INFO -- Maid: Rule: Cleanup old files
+I, [2018-01-13T22:42:35.073696 #27196]  INFO -- Maid: Rule: Cleanup old files
+I, [2018-01-14T23:28:08.616344 #537]  INFO -- Maid: Rule: Cleanup old files
+I, [2018-01-15T23:28:08.794385 #537]  INFO -- Maid: Rule: Cleanup old files
+I, [2018-01-17T05:08:17.859612 #537]  INFO -- Maid: Rule: Cleanup old files
+I, [2018-01-18T14:28:48.803078 #537]  INFO -- Maid: Rule: Cleanup old files
+I, [2018-01-19T16:53:49.021292 #537]  INFO -- Maid: Rule: Cleanup old files
+I, [2018-01-20T18:52:44.891223 #537]  INFO -- Maid: Rule: Cleanup old files
+I, [2018-01-21T20:10:33.012627 #537]  INFO -- Maid: Rule: Cleanup old files
+I, [2018-01-22T21:05:09.967299 #537]  INFO -- Maid: Rule: Cleanup old files
+I, [2018-01-22T21:05:13.042662 #537]  INFO -- Maid: move '/home/addison/Downloads/economic_systems 2017 fall modified newest versions (1).ppt' /home/addison/.local/share/Trash/files
+I, [2018-01-23T21:05:06.049921 #537]  INFO -- Maid: Rule: Cleanup old files
+I, [2018-01-24T21:05:06.334846 #537]  INFO -- Maid: Rule: Cleanup old files

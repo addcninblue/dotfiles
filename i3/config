@@ -18,6 +18,9 @@ font pango:Ubuntu 10
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# Kill process
+# bindsym $mod+BackSpace exec --no-startup-id xkill
+
 smart_gaps on
 for_window [class="^.*"] border pixel 0
 gaps outer 10
@@ -91,40 +94,19 @@ new_window 1pixel
 workspace_auto_back_and_forth yes
 
 #workspace variables
-set $workspace1 "1: "
-set $workspace2 "2: "
-set $workspace3 "3: "
+set $workspace1 "1"
+set $workspace2 "2"
+set $workspace3 "3"
 set $workspace4 "4"
 set $workspace5 "5"
 set $workspace6 "6"
 set $workspace7 "7"
 set $workspace8 "8"
 set $workspace9 "9"
-set $workspace10 "10: "
+set $workspace10 "10"
 
 # switch to workspace
-# bindsym $mod+1 workspace $workspace1
-# bindsym $mod+2 workspace $workspace2
-# bindsym $mod+3 workspace $workspace3
-# bindsym $mod+4 workspace $workspace4
-# bindsym $mod+5 workspace $workspace5
-# bindsym $mod+6 workspace $workspace6
-# bindsym $mod+7 workspace $workspace7
-# bindsym $mod+8 workspace $workspace8
-# bindsym $mod+9 workspace $workspace9
-# bindsym $mod+0 workspace $workspace10
-# bindsym XF86Tools workspace $workspace1
-# bindsym XF86Launch5 workspace $workspace2
-# bindsym XF86Launch6 workspace $workspace3
-# bindsym XF86Launch7 workspace $workspace4
-# bindsym XF86Launch8 workspace $workspace5
-# bindsym Control+XF86Tools workspace $workspace6
-# bindsym Control+XF86Launch5 workspace $workspace7
-# bindsym Control+XF86Launch6 workspace $workspace8
-# bindsym Control+XF86Launch7 workspace $workspace9
-# bindsym Control+XF86Launch8 workspace $workspace10
-
-# switch to workspace
+bindsym $mod+Tab workspace back_and_forth
 bindsym $mod+1 workspace number 1
 bindsym $mod+2 workspace number 2
 bindsym $mod+3 workspace number 3
@@ -135,16 +117,9 @@ bindsym $mod+7 workspace number 7
 bindsym $mod+8 workspace number 8
 bindsym $mod+9 workspace number 9
 bindsym $mod+0 workspace number 10
-bindsym XF86Tools workspace number 1
-bindsym XF86Launch5 workspace number 2
-bindsym XF86Launch6 workspace number 3
-bindsym XF86Launch7 workspace number 4
-bindsym XF86Launch8 workspace number 5
-bindsym Control+XF86Tools workspace number 6
-bindsym Control+XF86Launch5 workspace number 7
-bindsym Control+XF86Launch6 workspace number 8
-bindsym Control+XF86Launch7 workspace number 9
-bindsym Control+XF86Launch8 workspace number 10
+bindsym $mod+minus workspace number 11
+bindsym $mod+equal workspace number 12
+bindsym $mod+backslash workspace number 13
 
 # blackwidow
 # bindsym F1 exec --no-startup-id amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks #decrease
@@ -158,23 +133,49 @@ bindsym Control+XF86Launch8 workspace number 10
 # bindsym F9 exec i3-msg "workspace prev"
 # bindsym F10 exec i3-msg "workspace next"
 
-bindsym F1 exec i3-msg "workspace prev"
-bindsym F2 exec i3-msg "workspace next"
+bindsym F1 workspace prev
+bindsym F2 workspace next
 bindsym F4 fullscreen toggle
 
 # move focused container to workspace
 bindsym $mod+Shift+grave move container to scratchpad
 bindsym $mod+Shift+Escape move container to scratchpad
-bindsym $mod+Shift+1 move container to workspace $workspace1
-bindsym $mod+Shift+2 move container to workspace $workspace2
-bindsym $mod+Shift+3 move container to workspace $workspace3
-bindsym $mod+Shift+4 move container to workspace $workspace4
-bindsym $mod+Shift+5 move container to workspace $workspace5
-bindsym $mod+Shift+6 move container to workspace $workspace6
-bindsym $mod+Shift+7 move container to workspace $workspace7
-bindsym $mod+Shift+8 move container to workspace $workspace8
-bindsym $mod+Shift+9 move container to workspace $workspace9
-bindsym $mod+Shift+0 move container to workspace $workspace10
+bindsym $mod+Shift+1 move container to workspace number 1
+bindsym $mod+Shift+2 move container to workspace number 2
+bindsym $mod+Shift+3 move container to workspace number 3
+bindsym $mod+Shift+4 move container to workspace number 4
+bindsym $mod+Shift+5 move container to workspace number 5
+bindsym $mod+Shift+6 move container to workspace number 6
+bindsym $mod+Shift+7 move container to workspace number 7
+bindsym $mod+Shift+8 move container to workspace number 8
+bindsym $mod+Shift+9 move container to workspace number 9
+bindsym $mod+Shift+0 move container to workspace number 10
+bindsym $mod+Shift+minus move container to workspace number 11
+bindsym $mod+Shift+equal move container to workspace number 12
+bindsym $mod+Shift+backslash move container to workspace number 13
+
+bindsym Mod4+q workspace number 1
+bindsym Mod4+w workspace number 2
+bindsym Mod4+e workspace number 3
+bindsym Mod4+r workspace number 4
+bindsym Mod4+t workspace number 5
+bindsym Mod4+y workspace number 6
+bindsym Mod4+u workspace number 7
+bindsym Mod4+i workspace number 8
+bindsym Mod4+o workspace number 9
+bindsym Mod4+p workspace number 10
+bindsym Mod4+Shift+grave move container to scratchpad
+bindsym Mod4+Shift+Escape move container to scratchpad
+bindsym Mod4+Shift+q move container to workspace $workspace1
+bindsym Mod4+Shift+w move container to workspace $workspace2
+bindsym Mod4+Shift+e move container to workspace $workspace3
+bindsym Mod4+Shift+r move container to workspace $workspace4
+bindsym Mod4+Shift+t move container to workspace $workspace5
+bindsym Mod4+Shift+y move container to workspace $workspace6
+bindsym Mod4+Shift+u move container to workspace $workspace7
+bindsym Mod4+Shift+i move container to workspace $workspace8
+bindsym Mod4+Shift+o move container to workspace $workspace9
+bindsym Mod4+Shift+p move container to workspace $workspace10
 
 #move workspace to other window
 bindsym $mod+z move workspace to output up
@@ -262,14 +263,14 @@ bindsym XF86MonBrightnessDown exec --no-startup-id sudo /home/addison/dotfiles/t
 # bindsym XF86MonBrightnessDown exec xbacklight -dec 10 # decrease screen brightness
 
 #volume controls (at least for headphones and speakers, not sure about HDMI)
-bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks #decrease
-bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q -D pulse sset Master 2%- && pkill -RTMIN+1 i3blocks #decrease
-bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master 2%+ && pkill -RTMIN+1 i3blocks #decrease
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +5%"
+bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 -5%"
+bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute 0 toggle"
 
 #playerctl controls
-bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
-bindsym XF86AudioPrev exec --no-startup-id playerctl previous
-bindsym XF86AudioNext exec --no-startup-id playerctl next
+bindsym XF86AudioPlay exec --no-startup-id "playerctl play-pause && notify-send 'play/pause'"
+bindsym XF86AudioPrev exec --no-startup-id "playerctl previous && notify-send 'previous'"
+bindsym XF86AudioNext exec --no-startup-id "playerctl next && notify-send 'next'"
 
 #lockscreen
 bindsym $mod+x exec /home/addison/cooli3lock.sh 
@@ -288,7 +289,7 @@ bindsym XF86Launch1 exec --no-startup-id amixer -D pulse set Master 1+ toggle &&
 
 mode "Power" {
 	bindsym h exec "systemctl hibernate; /home/addison/cooli3lock.sh"; mode "default"
-	bindsym XF86Sleep exec "systemctl suspend; /home/addison/cooli3lock.sh; sudo blackwidowcontrol -i"; mode "default"
+	bindsym XF86Sleep exec "systemctl suspend; /home/addison/cooli3lock.sh"; mode "default"
 	bindsym $mod+bracketleft exec "systemctl suspend; /home/addison/cooli3lock.sh; sudo blackwidowcontrol -i"; mode "default"
 	bindsym s exec "shutdown -h now"
 	bindsym r exec "shutdown -r now"
@@ -322,33 +323,44 @@ bindsym $mod+space exec rofi -show drun -modi drun -lines 4 -bw 20 -eh 2 -width 
 bindsym $mod+p exec --no-startup-id python /home/addison/.power/start.py
 
 #screenshot
-bindsym Print exec --no-startup-id maim -s /home/addison/screenshots/$(date +%Y-%m-%d_%T).png
+bindsym Print exec --no-startup-id /home/addison/dotfiles/tools/screenshot_copy.sh
 bindsym Shift+Print exec --no-startup-id maim /home/addison/screenshots/$(date +%Y-%m-%d_%T).png
 bindsym Control+Print exec --no-startup-id maim -i $(xdotool getactivewindow) /home/addison/screenshots/$(date +%Y-%m-%d_%T).png
 
 # custom bindsyms
 bindsym $mod+c exec --no-startup-id "google-chrome-stable --profile-directory='Default'"
 bindsym $mod+Shift+c exec --no-startup-id "google-chrome-stable --profile-directory='Profile 1'"
-bindsym $mod+backslash exec --no-startup-id "st vim"
 bindsym $mod+s exec --no-startup-id "spotify"
 bindsym $mod+m exec --no-startup-id "mixxx"
 bindsym $mod+Shift+m exec --no-startup-id "optirun -b mixxx"
 bindsym $mod+g exec --no-startup-id "gimp"
 bindsym $mod+Shift+g exec --no-startup-id "optirun -b gimp"
 
-# timer w/ keyboard lighting up
-bindsym $mod+t exec --no-startup-id exec /home/addison/stuff/sleep.sh
-bindsym $mod+o exec --no-startup-id exec sudo blackwidowcontrol -l off
+# android kdeconnect integration
+bindsym $mod+Shift+s exec --no-startup-id "kdeconnect-handler $(xclip -o)"
+
+bindsym $mod+t exec --no-startup-id "python /home/addison/dotfiles/tools/sleep.py"
+
+# stupid google chrome
+bindsym Ctrl+q exec --no-startup-id ";"
+bindsym Ctrl+Shift+q exec --no-startup-id ";"
 
 exec_always xrdb -load ~/.Xresources #load xterm customizations
 exec_always --no-startup-id compton --config /home/addison/.config/compton.conf & #load nice window compositing thing 
-# exec_always feh --bg-fill /home/addison/dotfiles/background.png #load background
-exec_always feh --bg-fill /home/addison/dotfiles/coolbackground.jpg #load background
+exec_always feh --bg-fill /home/addison/dotfiles/background.jpg #load background
+# exec_always feh --bg-fill /home/addison/dotfiles/coolbackground.jpg #load background
 #exec_always /home/addison/stuff/screenchoose.sh #supposed to allow you to choose which screen you want
+
 #touchpad tap to click -- xinput list-props 17 lists available options
 exec_always xinput set-prop 17 291 1
 #touchpad natural scroll
 exec_always xinput set-prop 17 275 1
+
+# trackball higher acceleration
+exec_always xinput set-prop 12 282 1
+# trackball natural scrolling
+# exec_always xinput set-prop 12 276 1
+
 exec --no-startup-id /home/addison/cooli3lock.sh
 #scratchpad vim
 #exec_always "st -c st_scratchpad vim /home/addison/scratchpad" 
@@ -359,9 +371,32 @@ exec --no-startup-id /home/addison/cooli3lock.sh
 for_window [title="corner*"] move scratchpad
 #redshift
 exec --no-startup-id redshift-gtk
-exec xmodmap /home/addison/.Xmodmap
+exec xmodmap /home/addison/.xmodmap
 # exec xcape -e 'Control_L=Escape'
 exec_always --no-startup-id "sudo blackwidowcontrol -i"
 exec_always --no-startup-id ~/dotfiles/tools/i3-autoname-workspaces.py
 exec --no-startup-id "udiskie --tray"
-# exec_always --no-startup-id "dunst"
+exec_always --no-startup-id "dunst"
+exec_always --no-startup-id "xbanish"
+exec_always --no-startup-id "/usr/lib/kdeconnectd"
+exec_always --no-startup-id "kdeconnect-indicator"
+exec --no-startup-id "tmux new-session -d -s 'googlehome' 'cd ~/stuff/flaskserver; python hello.py'"
+
+# bindsym --whole-window $mod+button1 workspace prev
+# bindsym --whole-window $mod+button3 workspace next
+bindsym --whole-window button6 workspace prev
+bindsym --whole-window button7 workspace next
+bindsym --whole-window $mod+button6 exec --no-startup-id "playerctl previous && notify-send 'previous'"
+bindsym --whole-window $mod+button7 exec --no-startup-id "playerctl next && notify-send 'next'"
+bindsym --whole-window $mod+button2 exec --no-startup-id "playerctl play-pause && notify-send 'play/pause'"
+bindsym --whole-window button8 exec --no-startup-id /home/addison/dotfiles/tools/screenshot_copy.sh
+
+mode "button9" {
+	bindsym button8 --whole-window exec "systemctl suspend; /home/addison/cooli3lock.sh"; mode "default"
+	bindsym button9 --whole-window mode "default"
+	bindsym Return mode "default"
+	bindsym Escape mode "default"
+}
+
+# bindsym --whole-window button9 mode "button9"
+bindsym --whole-window button9 exec --no-startup-id xdotool key BackSpace

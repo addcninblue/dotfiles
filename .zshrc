@@ -81,9 +81,10 @@ function ssh_connection() {
     fi
 }
 
-RPROMPT=$'$(vcs_info_wrapper)'
-PROMPT="╭─[%n$(ssh_connection) in %{$fg[blue]%}%d%{$reset_color%}] %(1j.[%j].)
+PS1="╭─[%n$(ssh_connection) in %{$fg[blue]%}%d%{$reset_color%}] %(1j.[%j].)
 ╰─▶ "
+RPS1=$'$(vcs_info_wrapper)'
+PS2="  ▶ "
 # add put this here
 
 export TERM='xterm-256color'
@@ -91,22 +92,23 @@ export TERM='xterm-256color'
 # defined aliases {{{
 alias ls='ls --color=auto'
 alias r='ranger'
-alias v='vim'
+alias v='nvim'
 alias s='ssh'
 alias proxy='ssh rpi -D 8080'
 alias g='git'
 alias q='exit'
-alias vmore="vim -u ~/.vim/ftplugin/more.vim -"
+alias vmore="nvim -u ~/.vim/ftplugin/more.vim -"
 alias ..='cd ..'
 alias p='python'
 alias sw='sudo wifi-menu'
 alias wf='sudo systemctl restart netctl-auto@wlan0.service' # wifi fix
 alias share='shellshare --room addison --password addison'
+alias vim='nvim'
 
 # file extensions
 alias -s py='python'
-alias -s txt='vim'
-alias -s md='vim'
+alias -s txt='nvim'
+alias -s md='nvim'
 alias -s mp3='vlc'
 alias -s mp4='vlc'
 alias -s wav='vlc'
@@ -128,14 +130,21 @@ alias gd='git diff'
 alias gs='git status'
 
 # temp files
-alias vtt='vim ~/tmp/tmp$RANDOM.txt'
-alias vtp='vim ~/tmp/tmp$RANDOM.py'
-alias vtj='vim ~/tmp/tmp$RANDOM.java'
-alias vt='vim ~/tmp/tmp$RANDOM'
-alias vtm='vim ~/tmp/tmp$RANDOM.md'
-alias vts='vim ~/tmp/tmp$RANDOM.scm'
-alias vtsq='vim ~/tmp/tmp$RANDOM.sql'
-alias vth='vim ~/tmp/tmp$RANDOM.hs'
+alias vtt='nvim ~/tmp/tmp$RANDOM.txt'
+alias vtp='nvim ~/tmp/tmp$RANDOM.py'
+alias vtj='nvim ~/tmp/tmp$RANDOM.java'
+alias vt='nvim ~/tmp/tmp$RANDOM'
+alias vtm='nvim ~/tmp/tmp$RANDOM.md'
+alias vts='nvim ~/tmp/tmp$RANDOM.scm'
+alias vtsq='nvim ~/tmp/tmp$RANDOM.sql'
+alias vth='nvim ~/tmp/tmp$RANDOM.hs'
+
+alias pacaur='echo "use trizen"'
+
+# dotfiles
+alias editi3='nvim ~/dotfiles/i3/config'
+alias editpolybar='nvim ~/dotfiles/polybar/config'
+alias editmaid='nvim ~/dotfiles/maid/rules.rb'
 
 # defined aliases }}}
 
@@ -149,11 +158,6 @@ gcp() {
 	else
 		ssh gcp
 	fi
-}
-
-testing() {
-	echo $(pwd)
-	# echo "$@"
 }
 
 # test driven development
@@ -176,9 +180,9 @@ countdown() {
 # temp file most recent opener "vim temp open"
 vto () {
 	if [[ -n $1 ]]; then
-		cd $HOME/tmp && vim $(ls -altr *.$1 | awk '$9 ~ /^[^.]/ {print $9}' | tail -n1)
+		cd $HOME/tmp && nvim $(ls -altr *.$1 | awk '$9 ~ /^[^.]/ {print $9}' | tail -n1)
 	else
-		cd $HOME/tmp && vim $(ls -altr | awk '$9 ~ /^[^.]/ {print $9}' | tail -n1)
+		cd $HOME/tmp && nvim $(ls -altr | awk '$9 ~ /^[^.]/ {print $9}' | tail -n1)
 	fi
 }
 
@@ -199,6 +203,18 @@ t() {
 	fi
 }
 
+youtube() {
+	youtube-dl "$1" --extract-audio --audio-format mp3
+}
+
+agenda() {
+	cd ~/stuff/agenda && \
+	pdfunite printable.pdf lines2.pdf agenda.pdf && \
+	pdfnup --nup 1x2 --no-landscape agenda.pdf --papersize '{8.5in,11in}' && \
+	lp agenda-nup.pdf
+	
+}
+
 # defined functions }}}
 
 magic-enter () {
@@ -213,7 +229,7 @@ magic-enter () {
 zle -N magic-enter
 bindkey "^M" magic-enter
 
-export VISUAL=vim
+export VISUAL=nvim
 autoload edit-command-line; zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
@@ -234,7 +250,7 @@ cdf() {
 # vim open file
 vimf() {
    local file
-   file=$(fzf +m -q "") && vim "$file"
+   file=$(fzf +m -q "") && nvim "$file"
 }
 
 # zathura file
@@ -278,20 +294,8 @@ mkcd ()
       cd -P -- "$1"
 }
 
-# vim for man
-export MANPAGER="env MAN_PN=1 vim -M +MANPAGER -"
-
-# codi.vim wrapper
-codi() {
-  vim $2 -c \
-    "let g:startify_disable_at_vimenter = 1 |\
-    set bt=nofile ls=0 noru nonu nornu |\
-    hi ColorColumn ctermbg=NONE |\
-    hi VertSplit ctermbg=8 ctermfg=8 |\
-    hi NonText ctermfg=8 |\
-    cnoremap q q! |\
-    Codi ${1:-python}"
-}
+# nvim for man
+export MANPAGER="nvim -c 'set ft=man' -"
 
 alias ranger='ranger --choosedir=$HOME/rangerdir; LASTDIR=`cat $HOME/rangerdir`; cd "$LASTDIR"; rm ~/rangerdir'
 
@@ -342,20 +346,5 @@ clear #for background artifacting
 fi
 
 # zsh syntax highlighting
-source /home/addison/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-# source /home/addison/.zsh/zsh-autosuggestions-master/zsh-autosuggestions.zsh
-: <<'END'
-# zplug
-source ~/.zplug/init.zsh
-zplug "jocelynmallon/zshmarks"
-# Install plugins if there are plugins that have not been installed
-if ! zplug check --verbose; then
-    printf "Install? [y/N]: "
-    if read -q; then
-        echo; zplug install
-    fi
-fi
-
-# Then, source plugins and add commands to $PATH
-zplug load 
-
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source ~/.zsh_private_variables

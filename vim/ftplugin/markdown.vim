@@ -13,3 +13,6 @@ func! FinanceFormat()
 	exec "normal! " . s:script
 	exec "normal! vip:Tabularize /|\<CR>"
 endfunc
+
+" plugins
+packadd vim-markdown

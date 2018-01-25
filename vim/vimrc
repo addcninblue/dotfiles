@@ -1,0 +1,16 @@
+let g:SimplenoteUsername = $EMAIL
+let g:SimplenotePassword = $PASSWORD
+
+filetype indent plugin on
+syntax on
+
+if &loadplugins
+  if has('packages')
+    packloadall
+    silent! helptags ALL
+  endif
+  " else
+  "   source $HOME/.vim/pack/bundle/opt/vim-pathogen/autoload/pathogen.vim
+  "   call pathogen#infect('pack/bundle/start/{}')
+  " endif
+endif

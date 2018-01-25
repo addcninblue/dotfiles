@@ -11,9 +11,8 @@ inoremap <C-BS> <C-W>
 " testing in python
 nnoremap <leader>f za
 nnoremap <leader>F zA
-" nnoremap <leader>p :execute "rightbelow vsplit " . bufname("#")<CR>
+nnoremap <leader>p :execute "rightbelow vsplit " . bufname("#")<CR>
 nnoremap <leader>s :so $MYVIMRC<CR>
-nnoremap <leader>ss :so $MYVIMRC<CR>
 nnoremap ; :
 nnoremap : ;
 vnoremap ; :
@@ -33,12 +32,6 @@ nnoremap <C-p> :FZF<CR>
 
 " DiffSaved
 nnoremap <silent> <leader>d :DiffSaved<CR>
-
-" Window Changing
-nnoremap <C-h> <C-w><C-h>
-nnoremap <C-j> <C-w><C-j>
-nnoremap <C-k> <C-w><C-k>
-nnoremap <C-l> <C-w><C-l>
 
 nnoremap <leader>b :buffers<CR>:buffer<Space>
 
