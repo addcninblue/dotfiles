@@ -1,0 +1,13 @@
+#!/bin/bash
+
+# move into either opt or start and run too add all github projects to gitmodules
+DIR=`pwd`
+for D in *; do
+	if [ -d "$D" ]; then
+		cd "$D"
+		URL=`git remote show origin | awk 'NR==2 {print $3}'`
+		echo "$URL"
+		cd $DIR
+		`git submodule add $URL.git $D`
+	fi
+done

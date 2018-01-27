@@ -1,0 +1,30 @@
+#!/bin/bash
+HOSTNAME=`hostname`
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+if [ $HOSTNAME == "addison-workstation" ]; then
+	# full installation
+
+	# maid
+	MAID="${HOME}/.maid"
+	if [ ! -d "$MAID" ]; then
+		echo "hi"
+		# echo 'installing maid'
+		# ln -s "$DIR/maid" "${HOME}/.maid"
+	fi
+
+	# nvim
+	NVIM="${HOME}/.config/nvim"
+	if [ ! -d "$NVIM" ]; then
+		echo "hi"
+		# echo 'installing maid'
+		# ln -s "$DIR/maid" "${HOME}/.maid"
+	fi
+
+elif [ $HOSTNAME == "addison-chromebook" ]; then
+	# small installation
+	echo 'chromebook'
+else
+	# minimal installation
+	echo 'basic installation'
+fi

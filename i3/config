@@ -133,9 +133,9 @@ bindsym $mod+backslash workspace number 13
 # bindsym F9 exec i3-msg "workspace prev"
 # bindsym F10 exec i3-msg "workspace next"
 
-bindsym F1 workspace prev
-bindsym F2 workspace next
-bindsym F4 fullscreen toggle
+# bindsym F1 workspace prev
+# bindsym F2 workspace next
+# bindsym F4 fullscreen toggle
 
 # move focused container to workspace
 bindsym $mod+Shift+grave move container to scratchpad
