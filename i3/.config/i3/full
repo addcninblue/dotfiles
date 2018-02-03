@@ -20,3 +20,12 @@ exec_always xinput set-prop 17 275 1
 
 # google home
 exec --no-startup-id "tmux new-session -d -s 'googlehome' 'cd ~/stuff/flaskserver; python hello.py'"
+
+# mouse buttons
+bindsym --whole-window button6 workspace prev
+bindsym --whole-window button7 workspace next
+bindsym --whole-window $mod+button6 exec --no-startup-id "playerctl previous && notify-send 'previous'"
+bindsym --whole-window $mod+button7 exec --no-startup-id "playerctl next && notify-send 'next'"
+bindsym --whole-window $mod+button2 exec --no-startup-id "playerctl play-pause && notify-send 'play/pause'"
+bindsym --whole-window button8 exec --no-startup-id /home/addison/dotfiles/tools/screenshot_copy.sh
+bindsym --whole-window button9 exec --no-startup-id xdotool key BackSpace

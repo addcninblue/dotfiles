@@ -176,15 +176,6 @@ mode "programming" {
 }
 bindsym $mod+backslash mode "programming"
 
-# mouse buttons
-bindsym --whole-window button6 workspace prev
-bindsym --whole-window button7 workspace next
-bindsym --whole-window $mod+button6 exec --no-startup-id "playerctl previous && notify-send 'previous'"
-bindsym --whole-window $mod+button7 exec --no-startup-id "playerctl next && notify-send 'next'"
-bindsym --whole-window $mod+button2 exec --no-startup-id "playerctl play-pause && notify-send 'play/pause'"
-bindsym --whole-window button8 exec --no-startup-id /home/addison/dotfiles/tools/screenshot_copy.sh
-bindsym --whole-window button9 exec --no-startup-id xdotool key BackSpace
-
 # always exec
 exec_always xrdb -load ~/.Xresources #load xterm customizations
 exec_always feh --bg-fill /home/addison/dotfiles/backgrounds/current.png
