@@ -1,6 +1,8 @@
 # vi: ft=i3
 
 set $mod Mod4
+set $gaps_outer = 0
+set $gaps_inner = 0
 
 bindsym F1 workspace prev
 bindsym F2 workspace next

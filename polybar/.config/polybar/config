@@ -247,7 +247,6 @@ label = %date% %time%
 
 [module/volume]
 type = internal/volume
-master-mixer = IEC958
 
 format-volume = <label-volume> <bar-volume>
 label-volume = VOL

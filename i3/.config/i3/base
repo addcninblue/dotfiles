@@ -2,8 +2,8 @@
 
 smart_gaps on
 for_window [class="^.*"] border pixel 0
-gaps outer 10
-gaps inner 15
+gaps outer $gaps_outer
+gaps inner $gaps_inner
 hide_edge_borders both
 
 font pango:Ubuntu 11

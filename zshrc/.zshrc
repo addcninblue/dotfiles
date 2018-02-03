@@ -142,8 +142,8 @@ alias vth='nvim ~/tmp/tmp$RANDOM.hs'
 alias pacaur='echo "use trizen"'
 
 # dotfiles
-alias editi3='nvim ~/dotfiles/i3/config'
-alias editpolybar='nvim ~/dotfiles/polybar/config'
+alias editi3='nvim ~/.config/i3/config'
+alias editpolybar='nvim ~/.config/polybar/config'
 alias editmaid='nvim ~/dotfiles/maid/rules.rb'
 
 # defined aliases }}}
