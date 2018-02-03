@@ -1,8 +1,8 @@
 .DEFAULT_GOAL:=help
 
-FULL=i3/ maid/ nvim/ polybar/ zshrc/ Xresources/
-UBUNTU=i3/ maid/ nvim/ polybar/ zshrc/ Xresources/
-MINIMAL=i3/ maid/ nvim/ polybar/ zshrc/ Xresources/
+FULL=i3/ maid/ nvim/ polybar/ zshrc/ Xresources/ tmux/
+UBUNTU=nvim/ zshrc/ Xresources/ tmux/
+MINIMAL=i3/ maid/ nvim/ polybar/ zshrc/ Xresources/ tmux/
 ALL_PACKAGES=$(sort $(dir $(wildcard */))) # unused
 STOW := $(shell command -v stow 2> /dev/null) # check if stow is installed
 

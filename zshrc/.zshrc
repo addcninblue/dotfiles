@@ -345,6 +345,7 @@ echo -en "\e]PFfdf6e3" #white
 clear #for background artifacting
 fi
 
-# zsh syntax highlighting
 source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source ~/.zsh_private_variables
+if [ -f ~/.zsh_private_variables ]; then
+	source ~/.zsh_private_variables
+fi
