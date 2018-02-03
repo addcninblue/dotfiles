@@ -1,96 +1,96 @@
-[submodule "vim/pack/bundle/opt/codi.vim"]
-	path = vim/pack/bundle/opt/codi.vim
+[submodule "nvim/.config/nvim/pack/bundle/opt/codi.vim"]
+	path = nvim/.config/nvim/pack/bundle/opt/codi.vim
 	url = https://github.com/metakirby5/codi.vim.git
-[submodule "vim/pack/bundle/start/ack.vim"]
-	path = vim/pack/bundle/start/ack.vim
+[submodule "nvim/.config/nvim/pack/bundle/start/ack.vim"]
+	path = nvim/.config/nvim/pack/bundle/start/ack.vim
 	url = https://github.com/mileszs/ack.vim.git
-[submodule "vim/pack/bundle/start/asyncrun.vim"]
-	path = vim/pack/bundle/start/asyncrun.vim
+[submodule "nvim/.config/nvim/pack/bundle/start/asyncrun.vim"]
+	path = nvim/.config/nvim/pack/bundle/start/asyncrun.vim
 	url = https://github.com/skywind3000/asyncrun.vim.git
-[submodule "vim/pack/bundle/start/CamelCaseMotion"]
-	path = vim/pack/bundle/start/CamelCaseMotion
+[submodule "nvim/.config/nvim/pack/bundle/start/CamelCaseMotion"]
+	path = nvim/.config/nvim/pack/bundle/start/CamelCaseMotion
 	url = https://github.com/bkad/CamelCaseMotion.git
-[submodule "vim/pack/bundle/start/delimitMate"]
-	path = vim/pack/bundle/start/delimitMate
+[submodule "nvim/.config/nvim/pack/bundle/start/delimitMate"]
+	path = nvim/.config/nvim/pack/bundle/start/delimitMate
 	url = https://github.com/Raimondi/delimitMate.git
-[submodule "vim/pack/bundle/start/simplenote.vim"]
-	path = vim/pack/bundle/start/simplenote.vim
+[submodule "nvim/.config/nvim/pack/bundle/start/simplenote.vim"]
+	path = nvim/.config/nvim/pack/bundle/start/simplenote.vim
 	url = https://github.com/mrtazz/simplenote.vim.git
-[submodule "vim/pack/bundle/start/supertab"]
-	path = vim/pack/bundle/start/supertab
+[submodule "nvim/.config/nvim/pack/bundle/start/supertab"]
+	path = nvim/.config/nvim/pack/bundle/start/supertab
 	url = https://github.com/ervandew/supertab.git
-[submodule "vim/pack/bundle/start/tabular"]
-	path = vim/pack/bundle/start/tabular
+[submodule "nvim/.config/nvim/pack/bundle/start/tabular"]
+	path = nvim/.config/nvim/pack/bundle/start/tabular
 	url = https://github.com/godlygeek/tabular.git
-[submodule "vim/pack/bundle/start/targets.vim"]
-	path = vim/pack/bundle/start/targets.vim
+[submodule "nvim/.config/nvim/pack/bundle/start/targets.vim"]
+	path = nvim/.config/nvim/pack/bundle/start/targets.vim
 	url = https://github.com/wellle/targets.vim.git
-[submodule "vim/pack/bundle/start/tslime.vim"]
-	path = vim/pack/bundle/start/tslime.vim
+[submodule "nvim/.config/nvim/pack/bundle/start/tslime.vim"]
+	path = nvim/.config/nvim/pack/bundle/start/tslime.vim
 	url = https://github.com/jgdavey/tslime.vim.git
-[submodule "vim/pack/bundle/start/ultisnips"]
-	path = vim/pack/bundle/start/ultisnips
+[submodule "nvim/.config/nvim/pack/bundle/start/ultisnips"]
+	path = nvim/.config/nvim/pack/bundle/start/ultisnips
 	url = https://github.com/SirVer/ultisnips.git
-[submodule "vim/pack/bundle/start/undotree"]
-	path = vim/pack/bundle/start/undotree
+[submodule "nvim/.config/nvim/pack/bundle/start/undotree"]
+	path = nvim/.config/nvim/pack/bundle/start/undotree
 	url = https://github.com/mbbill/undotree.git
-[submodule "vim/pack/bundle/start/vim-commentary"]
-	path = vim/pack/bundle/start/vim-commentary
+[submodule "nvim/.config/nvim/pack/bundle/start/vim-commentary"]
+	path = nvim/.config/nvim/pack/bundle/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
-[submodule "vim/pack/bundle/start/vim-dispatch"]
-	path = vim/pack/bundle/start/vim-dispatch
+[submodule "nvim/.config/nvim/pack/bundle/start/vim-dispatch"]
+	path = nvim/.config/nvim/pack/bundle/start/vim-dispatch
 	url = https://github.com/tpope/vim-dispatch.git
-[submodule "vim/pack/bundle/start/vim-pencil"]
-	path = vim/pack/bundle/start/vim-pencil
+[submodule "nvim/.config/nvim/pack/bundle/start/vim-pencil"]
+	path = nvim/.config/nvim/pack/bundle/start/vim-pencil
 	url = https://github.com/reedes/vim-pencil.git
-[submodule "vim/pack/bundle/start/vim-polyglot"]
-	path = vim/pack/bundle/start/vim-polyglot
+[submodule "nvim/.config/nvim/pack/bundle/start/vim-polyglot"]
+	path = nvim/.config/nvim/pack/bundle/start/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot.git
-[submodule "vim/pack/bundle/start/vim-repeat"]
-	path = vim/pack/bundle/start/vim-repeat
+[submodule "nvim/.config/nvim/pack/bundle/start/vim-repeat"]
+	path = nvim/.config/nvim/pack/bundle/start/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
-[submodule "vim/pack/bundle/start/vim-sneak"]
-	path = vim/pack/bundle/start/vim-sneak
+[submodule "nvim/.config/nvim/pack/bundle/start/vim-sneak"]
+	path = nvim/.config/nvim/pack/bundle/start/vim-sneak
 	url = https://github.com/justinmk/vim-sneak.git
-[submodule "vim/pack/bundle/start/vim-surround"]
-	path = vim/pack/bundle/start/vim-surround
+[submodule "nvim/.config/nvim/pack/bundle/start/vim-surround"]
+	path = nvim/.config/nvim/pack/bundle/start/vim-surround
 	url = https://github.com/tpope/vim-surround.git
-[submodule "vim/pack/bundle/start/vim-tmux-navigator"]
-	path = vim/pack/bundle/start/vim-tmux-navigator
+[submodule "nvim/.config/nvim/pack/bundle/start/vim-tmux-navigator"]
+	path = nvim/.config/nvim/pack/bundle/start/vim-tmux-navigator
 	url = https://github.com/christoomey/vim-tmux-navigator.git
-[submodule "vim/pack/bundle/start/vim-unimpaired"]
-	path = vim/pack/bundle/start/vim-unimpaired
+[submodule "nvim/.config/nvim/pack/bundle/start/vim-unimpaired"]
+	path = nvim/.config/nvim/pack/bundle/start/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
-[submodule "vim/pack/bundle/opt/ale"]
-	path = vim/pack/bundle/opt/ale
+[submodule "nvim/.config/nvim/pack/bundle/opt/ale"]
+	path = nvim/.config/nvim/pack/bundle/opt/ale
 	url = https://github.com/w0rp/ale.git
-[submodule "vim/pack/bundle/opt/emmet-vim"]
-	path = vim/pack/bundle/opt/emmet-vim
+[submodule "nvim/.config/nvim/pack/bundle/opt/emmet-vim"]
+	path = nvim/.config/nvim/pack/bundle/opt/emmet-vim
 	url = https://github.com/mattn/emmet-vim.git
-[submodule "vim/pack/bundle/opt/goyo.vim"]
-	path = vim/pack/bundle/opt/goyo.vim
+[submodule "nvim/.config/nvim/pack/bundle/opt/goyo.vim"]
+	path = nvim/.config/nvim/pack/bundle/opt/goyo.vim
 	url = https://github.com/junegunn/goyo.vim.git
-[submodule "vim/pack/bundle/opt/limelight.vim"]
-	path = vim/pack/bundle/opt/limelight.vim
+[submodule "nvim/.config/nvim/pack/bundle/opt/limelight.vim"]
+	path = nvim/.config/nvim/pack/bundle/opt/limelight.vim
 	url = https://github.com/junegunn/limelight.vim.git
-[submodule "vim/pack/bundle/opt/neco-ghc"]
-	path = vim/pack/bundle/opt/neco-ghc
+[submodule "nvim/.config/nvim/pack/bundle/opt/neco-ghc"]
+	path = nvim/.config/nvim/pack/bundle/opt/neco-ghc
 	url = https://github.com/eagletmt/neco-ghc.git
-[submodule "vim/pack/bundle/opt/python-mode"]
-	path = vim/pack/bundle/opt/python-mode
+[submodule "nvim/.config/nvim/pack/bundle/opt/python-mode"]
+	path = nvim/.config/nvim/pack/bundle/opt/python-mode
 	url = https://github.com/python-mode/python-mode.git
-[submodule "vim/pack/bundle/opt/vim-go"]
-	path = vim/pack/bundle/opt/vim-go
+[submodule "nvim/.config/nvim/pack/bundle/opt/vim-go"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-go
 	url = https://github.com/fatih/vim-go.git
-[submodule "vim/pack/bundle/opt/vim-haskellConcealPlus"]
-	path = vim/pack/bundle/opt/vim-haskellConcealPlus
+[submodule "nvim/.config/nvim/pack/bundle/opt/vim-haskellConcealPlus"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-haskellConcealPlus
 	url = https://github.com/enomsg/vim-haskellConcealPlus.git
-[submodule "vim/pack/bundle/opt/vim-markdown"]
-	path = vim/pack/bundle/opt/vim-markdown
+[submodule "nvim/.config/nvim/pack/bundle/opt/vim-markdown"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-markdown
 	url = https://github.com/gabrielelana/vim-markdown.git
-[submodule "vim/pack/bundle/opt/vim-matchit"]
-	path = vim/pack/bundle/opt/vim-matchit
+[submodule "nvim/.config/nvim/pack/bundle/opt/vim-matchit"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-matchit
 	url = https://github.com/adelarsq/vim-matchit.git
-[submodule "vim/pack/bundle/opt/vim-ruby"]
-	path = vim/pack/bundle/opt/vim-ruby
+[submodule "nvim/.config/nvim/pack/bundle/opt/vim-ruby"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-ruby
 	url = https://github.com/vim-ruby/vim-ruby.git
