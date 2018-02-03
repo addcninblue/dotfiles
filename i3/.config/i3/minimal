@@ -1,0 +1,35 @@
+# vi: ft=i3
+
+set $mod Mod4
+
+bindsym F1 workspace prev
+bindsym F2 workspace next
+bindsym F3 exec --no-startup-id xdotool key "control+r"
+bindsym F4 exec --no-startup-id xdotool key "F11"
+bindsym Shift+F4 fullscreen toggle
+bindsym $mod+Print exec --no-startup-id python /home/addison/.screenlayout/start.py
+bindsym F5 exec --no-startup-id /home/addison/dotfiles/tools/screenshot_copy.sh
+bindsym Shift+F5 exec --no-startup-id maim /home/addison/screenshots/$(date +%Y-%m-%d_%T).png
+bindsym Control+F5 exec --no-startup-id maim -i $(xdotool getactivewindow) /home/addison/screenshots/$(date +%Y-%m-%d_%T).png
+bindsym F6 exec --no-startup-id sudo /home/addison/dotfiles/tools/bright_down # decrease screen brightness
+bindsym F7 exec --no-startup-id sudo /home/addison/dotfiles/tools/bright_up # increase screen brightness
+bindsym F8 exec --no-startup-id amixer -q -D pulse sset Master toggle
+bindsym F9 exec --no-startup-id amixer -q -D pulse sset Master 2%-
+bindsym F10 exec --no-startup-id amixer -q -D pulse sset Master 2%+
+bindsym Shift+F8 exec --no-startup-id playerctl play-pause
+bindsym Shift+F9 exec --no-startup-id playerctl previous
+bindsym Shift+F10 exec --no-startup-id playerctl next
+
+set $XF86MonBrightnessUp sudo /home/addison/stuff/dotfiles/tools/bright_up # increase screen brightness
+set $XF86MonBrightnessDown sudo /home/addison/stuff/dotfiles/tools/bright_down # decrease screen brightness
+set $XF86AudioRaiseVolume pactl set-sink-volume 1 +2% && pkill -RTMIN+1 i3blocks #increase
+set $XF86AudioLowerVolume pactl set-sink-volume 1 -2% && pkill -RTMIN+1 i3blocks #decrease
+set $XF86AudioMute amixer -D pulse set Master 1+ toggle && pkill -RTMIN+1 i3blocks 
+
+# xinput list-props 12 lists available options
+# touchpad tap to click
+exec_always xinput --set-prop 'Cypress APA Trackpad (cyapa)' 'libinput Tapping Enabled' 1
+# touchpad natural scroll
+exec_always xinput --set-prop 'Cypress APA Trackpad (cyapa)' 'libinput Natural Scrolling Enabled' 1
+# disable tapping drag because it gets annoying -- disabled
+exec_always xinput --set-prop 'Cypress APA Trackpad (cyapa)' 'libinput Tapping Drag Enabled' 0

@@ -1,0 +1,20 @@
+# vi: ft=i3
+
+set $mod Mod3
+
+set $XF86MonBrightnessUp sudo /home/addison/dotfiles/tools/bright_up # increase screen brightness
+set $XF86MonBrightnessDown sudo /home/addison/dotfiles/tools/bright_down # decrease screen brightness
+set $XF86AudioRaiseVolume "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +5%"
+set $XF86AudioLowerVolume "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 -5%"
+set $XF86AudioMute "pactl set-sink-mute 0 toggle"
+
+# android kdeconnect integration
+bindsym $mod+Shift+s exec --no-startup-id "kdeconnect-handler $(xclip -o)"
+
+# touchpad tap to click -- xinput list-props 17 lists available options
+exec_always xinput set-prop 17 291 1
+#touchpad natural scroll
+exec_always xinput set-prop 17 275 1
+
+# google home
+exec --no-startup-id "tmux new-session -d -s 'googlehome' 'cd ~/stuff/flaskserver; python hello.py'"
