@@ -1,6 +1,39 @@
+[submodule "nvim/.config/nvim/pack/bundle/opt/ale"]
+	path = nvim/.config/nvim/pack/bundle/opt/ale
+	url = https://github.com/w0rp/ale.git
 [submodule "nvim/.config/nvim/pack/bundle/opt/codi.vim"]
 	path = nvim/.config/nvim/pack/bundle/opt/codi.vim
 	url = https://github.com/metakirby5/codi.vim.git
+[submodule "nvim/.config/nvim/pack/bundle/opt/emmet-vim"]
+	path = nvim/.config/nvim/pack/bundle/opt/emmet-vim
+	url = https://github.com/mattn/emmet-vim.git
+[submodule "nvim/.config/nvim/pack/bundle/opt/goyo.vim"]
+	path = nvim/.config/nvim/pack/bundle/opt/goyo.vim
+	url = https://github.com/junegunn/goyo.vim.git
+[submodule "nvim/.config/nvim/pack/bundle/opt/limelight.vim"]
+	path = nvim/.config/nvim/pack/bundle/opt/limelight.vim
+	url = https://github.com/junegunn/limelight.vim.git
+[submodule "nvim/.config/nvim/pack/bundle/opt/neco-ghc"]
+	path = nvim/.config/nvim/pack/bundle/opt/neco-ghc
+	url = https://github.com/eagletmt/neco-ghc.git
+[submodule "nvim/.config/nvim/pack/bundle/opt/python-mode"]
+	path = nvim/.config/nvim/pack/bundle/opt/python-mode
+	url = https://github.com/python-mode/python-mode.git
+[submodule "nvim/.config/nvim/pack/bundle/opt/vim-go"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-go
+	url = https://github.com/fatih/vim-go.git
+[submodule "nvim/.config/nvim/pack/bundle/opt/vim-haskellConcealPlus"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-haskellConcealPlus
+	url = https://github.com/enomsg/vim-haskellConcealPlus.git
+[submodule "nvim/.config/nvim/pack/bundle/opt/vim-markdown"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-markdown
+	url = https://github.com/gabrielelana/vim-markdown.git
+[submodule "nvim/.config/nvim/pack/bundle/opt/vim-matchit"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-matchit
+	url = https://github.com/adelarsq/vim-matchit.git
+[submodule "nvim/.config/nvim/pack/bundle/opt/vim-ruby"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-ruby
+	url = https://github.com/vim-ruby/vim-ruby.git
 [submodule "nvim/.config/nvim/pack/bundle/start/ack.vim"]
 	path = nvim/.config/nvim/pack/bundle/start/ack.vim
 	url = https://github.com/mileszs/ack.vim.git
@@ -61,36 +94,3 @@
 [submodule "nvim/.config/nvim/pack/bundle/start/vim-unimpaired"]
 	path = nvim/.config/nvim/pack/bundle/start/vim-unimpaired
 	url = https://github.com/tpope/vim-unimpaired.git
-[submodule "nvim/.config/nvim/pack/bundle/opt/ale"]
-	path = nvim/.config/nvim/pack/bundle/opt/ale
-	url = https://github.com/w0rp/ale.git
-[submodule "nvim/.config/nvim/pack/bundle/opt/emmet-vim"]
-	path = nvim/.config/nvim/pack/bundle/opt/emmet-vim
-	url = https://github.com/mattn/emmet-vim.git
-[submodule "nvim/.config/nvim/pack/bundle/opt/goyo.vim"]
-	path = nvim/.config/nvim/pack/bundle/opt/goyo.vim
-	url = https://github.com/junegunn/goyo.vim.git
-[submodule "nvim/.config/nvim/pack/bundle/opt/limelight.vim"]
-	path = nvim/.config/nvim/pack/bundle/opt/limelight.vim
-	url = https://github.com/junegunn/limelight.vim.git
-[submodule "nvim/.config/nvim/pack/bundle/opt/neco-ghc"]
-	path = nvim/.config/nvim/pack/bundle/opt/neco-ghc
-	url = https://github.com/eagletmt/neco-ghc.git
-[submodule "nvim/.config/nvim/pack/bundle/opt/python-mode"]
-	path = nvim/.config/nvim/pack/bundle/opt/python-mode
-	url = https://github.com/python-mode/python-mode.git
-[submodule "nvim/.config/nvim/pack/bundle/opt/vim-go"]
-	path = nvim/.config/nvim/pack/bundle/opt/vim-go
-	url = https://github.com/fatih/vim-go.git
-[submodule "nvim/.config/nvim/pack/bundle/opt/vim-haskellConcealPlus"]
-	path = nvim/.config/nvim/pack/bundle/opt/vim-haskellConcealPlus
-	url = https://github.com/enomsg/vim-haskellConcealPlus.git
-[submodule "nvim/.config/nvim/pack/bundle/opt/vim-markdown"]
-	path = nvim/.config/nvim/pack/bundle/opt/vim-markdown
-	url = https://github.com/gabrielelana/vim-markdown.git
-[submodule "nvim/.config/nvim/pack/bundle/opt/vim-matchit"]
-	path = nvim/.config/nvim/pack/bundle/opt/vim-matchit
-	url = https://github.com/adelarsq/vim-matchit.git
-[submodule "nvim/.config/nvim/pack/bundle/opt/vim-ruby"]
-	path = nvim/.config/nvim/pack/bundle/opt/vim-ruby
-	url = https://github.com/vim-ruby/vim-ruby.git
