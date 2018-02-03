@@ -5,7 +5,7 @@
  *
  * font: see http://freedesktop.org/software/fontconfig/fontconfig-user.html
  */
-static char font[] = "Inconsolata for Powerline:pixelsize=17:antialias=true:autohint=true";
+static char font[] = "xos4 Terminus:pixelsize=17:antialias=true:autohint=true";
 static int borderpx = 2;
 #define histsize 2000
 
@@ -17,10 +17,9 @@ static int borderpx = 2;
  * 4: value of shell in /etc/passwd
  * 5: value of shell in config.h
  */
-static char shell[] = "usr/bin/zsh";
+static char shell[] = "/bin/sh";
 static char *utmp = NULL;
-static char stty_args[] = "stty raw pass8 nl -echo -iexten -ixon -cstopb 38400";
-/* added -ixon to disable start/stop. */
+static char stty_args[] = "stty raw pass8 nl -echo -iexten -cstopb 38400";
 
 /* identification sequence returned in DA and DECID */
 static char vtiden[] = "\033[?6c";
@@ -151,8 +150,8 @@ static MouseShortcut mshortcuts[] = {
 
 static MouseKey mkeys[] = {
 	/* button               mask            function        argument */
-	{ Button4,              ShiftMask,      kscrollup,      {.i =  1} },
-	{ Button5,              ShiftMask,      kscrolldown,    {.i =  1} },
+	{ Button4,              XK_NO_MOD,      kscrollup,      {.i =  1} },
+	{ Button5,              XK_NO_MOD,      kscrolldown,    {.i =  1} },
 };
 
 /* Internal keyboard shortcuts. */

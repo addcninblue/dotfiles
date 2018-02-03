@@ -1,0 +1,38 @@
+set $mod Mod3
+
+# Kill process
+# bindsym $mod+BackSpace exec --no-startup-id xkill
+
+smart_gaps on
+for_window [class="^.*"] border pixel 0
+gaps outer 10
+gaps inner 15
+
+#Screen brightness controls
+bindsym XF86MonBrightnessUp exec --no-startup-id sudo /home/addison/dotfiles/tools/bright_up # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id sudo /home/addison/dotfiles/tools/bright_down # decrease screen brightness
+
+#volume controls (at least for headphones and speakers, not sure about HDMI)
+bindsym XF86AudioRaiseVolume exec --no-startup-id "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 +5%"
+bindsym XF86AudioLowerVolume exec --no-startup-id "pactl set-sink-mute 0 false ; pactl set-sink-volume 0 -5%"
+bindsym XF86AudioMute exec --no-startup-id "pactl set-sink-mute 0 toggle"
+
+#playerctl controls
+bindsym XF86AudioPlay exec --no-startup-id "playerctl play-pause && notify-send 'play/pause'"
+bindsym XF86AudioPrev exec --no-startup-id "playerctl previous && notify-send 'previous'"
+bindsym XF86AudioNext exec --no-startup-id "playerctl next && notify-send 'next'"
+
+# android kdeconnect integration
+bindsym $mod+Shift+s exec --no-startup-id "kdeconnect-handler $(xclip -o)"
+
+# touchpad tap to click -- xinput list-props 17 lists available options
+exec_always xinput set-prop 17 291 1
+#touchpad natural scroll
+exec_always xinput set-prop 17 275 1
+
+# trackball higher acceleration
+exec_always xinput set-prop 12 282 1
+# trackball natural scrolling
+# exec_always xinput set-prop 12 276 1
+
+exec --no-startup-id "tmux new-session -d -s 'googlehome' 'cd ~/stuff/flaskserver; python hello.py'"

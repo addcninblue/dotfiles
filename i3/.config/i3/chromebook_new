@@ -1,0 +1,49 @@
+set $mod Mod4
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+# bindsym --release Shift+F2 exec --no-startup-id /home/addison/dotfiles/tools/switchWorkspace.sh next
+bindsym F1 workspace prev
+bindsym F2 workspace next
+bindsym --release F3 exec --no-startup-id xdotool key "control+r"
+bindsym --release F4 exec --no-startup-id xdotool key "F11"
+bindsym Shift+F4 fullscreen toggle
+bindsym F6 exec --no-startup-id sudo /home/addison/dotfiles/tools/bright_down # decrease screen brightness
+bindsym F7 exec --no-startup-id sudo /home/addison/dotfiles/tools/bright_up # increase screen brightness
+bindsym F8 exec --no-startup-id amixer -q -D pulse sset Master toggle
+bindsym F9 exec --no-startup-id amixer -q -D pulse sset Master 2%-
+bindsym F10 exec --no-startup-id amixer -q -D pulse sset Master 2%+
+bindsym Shift+XF86PowerOff exec --no-startup-id mpc stop
+bindsym Shift+F8 exec --no-startup-id playerctl play-pause
+bindsym Shift+F9 exec --no-startup-id playerctl previous
+bindsym Shift+F10 exec --no-startup-id playerctl next
+
+bindsym $mod+z exec --no-startup-id /home/addison/dotfiles/tools/polybar
+
+# replaced with polybar
+
+#Screen brightness controls
+bindsym XF86MonBrightnessUp exec --no-startup-id sudo /home/addison/stuff/dotfiles/tools/bright_up # increase screen brightness
+bindsym XF86MonBrightnessDown exec --no-startup-id sudo /home/addison/stuff/dotfiles/tools/bright_down # decrease screen brightness
+
+#volume controls (at least for headphones and speakers, not sure about HDMI)
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 1 +2% && pkill -RTMIN+1 i3blocks #increase
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 1 -2% && pkill -RTMIN+1 i3blocks #decrease
+bindsym XF86AudioMute exec --no-startup-id amixer -D pulse set Master 1+ toggle && pkill -RTMIN+1 i3blocks 
+
+#playerctl controls
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioNext exec --no-startup-id playerctl next
+
+exec_always xrdb -load ~/.Xresources #load xterm customizations
+exec_always feh --bg-fill /home/addison/dotfiles/coolbackground.jpg #load background
+
+# xinput list-props 12 lists available options
+# touchpad tap to click
+exec_always xinput --set-prop 'Cypress APA Trackpad (cyapa)' 'libinput Tapping Enabled' 1
+# touchpad natural scroll
+exec_always xinput --set-prop 'Cypress APA Trackpad (cyapa)' 'libinput Natural Scrolling Enabled' 1
+# disable tapping drag because it gets annoying -- disabled
+exec_always xinput --set-prop 'Cypress APA Trackpad (cyapa)' 'libinput Tapping Drag Enabled' 0
