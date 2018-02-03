@@ -37,8 +37,5 @@ uninstall: stow
 	stow -Dt ~ $(ALL_PACKAGES)
 
 .PHONY: update
-update: pull
-
-.PHONY: pull
-pull:
+update:
 	git pull
