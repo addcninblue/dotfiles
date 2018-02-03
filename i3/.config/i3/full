@@ -1,6 +1,8 @@
 # vi: ft=i3
 
 set $mod Mod3
+set $gaps_outer 10
+set $gaps_inner 15
 
 set $XF86MonBrightnessUp sudo /home/addison/dotfiles/tools/bright_up # increase screen brightness
 set $XF86MonBrightnessDown sudo /home/addison/dotfiles/tools/bright_down # decrease screen brightness

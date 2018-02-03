@@ -125,7 +125,7 @@ bindsym $mod+m exec --no-startup-id "mixxx"
 bindsym $mod+g exec --no-startup-id "gimp"
 bindsym $mod+space exec rofi -show drun -modi drun -lines 4 -bw 20 -eh 2 -width 600 -padding 40
 bindsym $mod+p exec --no-startup-id /home/addison/dotfiles/tools/pdfFinder.pl
-bindsym $mod+x exec /home/addison/cooli3lock.sh
+bindsym $mod+x exec --no-startup-id /home/addison/dotfiles/tools/i3lock
 bindsym $mod+z exec --no-startup-id /home/addison/dotfiles/tools/polybar
 bindsym $mod+Print exec --no-startup-id python /home/addison/.screenlayout/start.py
 bindsym $mod+Return exec --no-startup-id st

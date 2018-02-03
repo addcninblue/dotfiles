@@ -1,8 +1,8 @@
 # vi: ft=i3
 
 set $mod Mod3
-set $gaps_outer = 10
-set $gaps_inner = 15
+set $gaps_outer 10
+set $gaps_inner 15
 
 set $XF86MonBrightnessUp sudo /home/addison/dotfiles/tools/bright_up # increase screen brightness
 set $XF86MonBrightnessDown sudo /home/addison/dotfiles/tools/bright_down # decrease screen brightness
@@ -24,8 +24,8 @@ exec --no-startup-id "tmux new-session -d -s 'googlehome' 'cd ~/stuff/flaskserve
 
 smart_gaps on
 for_window [class="^.*"] border pixel 0
-gaps outer 10
-gaps inner 15
+gaps outer $gaps_outer
+gaps inner $gaps_inner
 hide_edge_borders both
 
 font pango:Ubuntu 11
@@ -147,7 +147,7 @@ bindsym $mod+m exec --no-startup-id "mixxx"
 bindsym $mod+g exec --no-startup-id "gimp"
 bindsym $mod+space exec rofi -show drun -modi drun -lines 4 -bw 20 -eh 2 -width 600 -padding 40
 bindsym $mod+p exec --no-startup-id /home/addison/dotfiles/tools/pdfFinder.pl
-bindsym $mod+x exec /home/addison/cooli3lock.sh
+bindsym $mod+x exec --no-startup-id /home/addison/dotfiles/tools/i3lock
 bindsym $mod+z exec --no-startup-id /home/addison/dotfiles/tools/polybar
 bindsym $mod+Print exec --no-startup-id python /home/addison/.screenlayout/start.py
 bindsym $mod+Return exec --no-startup-id st
@@ -209,7 +209,7 @@ bindsym --whole-window button9 exec --no-startup-id xdotool key BackSpace
 
 # always exec
 exec_always xrdb -load ~/.Xresources #load xterm customizations
-exec_always feh --bg-fill /home/addison/dotfiles/background2.png #load background
+exec_always feh --bg-fill /home/addison/dotfiles/backgrounds/current.png
 exec_always --no-startup-id ~/dotfiles/tools/i3-autoname-workspaces.py
 exec_always --no-startup-id "dunst"
 exec_always --no-startup-id "xbanish"
