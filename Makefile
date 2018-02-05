@@ -32,6 +32,12 @@ minimal: stow
 	cat i3/.config/i3/minimal > i3/.config/i3/config && cat i3/.config/i3/base >> i3/.config/i3/config
 	stow -t ~ $(MINIMAL)
 
+.PHONY: setuparch
+setuparch:
+	./arch/trizen
+	trizen -S - < ./arch/packagelist
+	@echo "done"
+
 .PHONY: uninstall
 uninstall: stow
 	stow -Dt ~ $(ALL_PACKAGES)
