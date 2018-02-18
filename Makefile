@@ -21,10 +21,14 @@ help:
 .PHONY: full
 full: stow
 	cat i3/.config/i3/full > i3/.config/i3/config && cat i3/.config/i3/base >> i3/.config/i3/config
+	chsh -s /usr/bin/zsh
 	stow -t ~ $(FULL)
 
 .PHONY: ubuntu
 ubuntu: stow
+	sudo add-apt-repository ppa:neovim-ppa/stable
+	sudo apt-get update
+	sudo apt-get -y install make stow zsh openjdk-8-jre-headless neovim python-dev python-pip python3-dev python3-setuptools
 	stow -t ~ $(UBUNTU)
 
 .PHONY: minimal
