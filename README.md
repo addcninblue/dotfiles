@@ -4,6 +4,6 @@
 
 ## Installation
 ```bash
-git clone https://github.com/addcninblue/dotfiles/tree/master
+git clone --recursive https://github.com/addcninblue/dotfiles/
 make full
 ```
