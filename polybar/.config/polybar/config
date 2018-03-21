@@ -198,7 +198,7 @@ interval = 3.0
 
 format-connected = <ramp-signal> <label-connected>
 format-connected-underline = #9f78e1
-label-connected = %essid%
+label-connected = %essid:0:10:...%
 
 format-disconnected =
 ;format-disconnected = <label-disconnected>
@@ -254,7 +254,7 @@ label-volume-foreground = ${root.foreground}
 
 format-muted-prefix = " "
 format-muted-foreground = ${colors.foreground-alt}
-label-muted = sound muted
+label-muted = muted
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55
