@@ -186,7 +186,7 @@ label = %percentage%%
 type = internal/memory
 interval = 2
 ; format-prefix = " "
-format-prefix = "RAM: "
+format-prefix = " "
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #4bffdc
 label = %percentage_used%%
@@ -233,13 +233,13 @@ format-disconnected =
 type = internal/date
 interval = 5
 
-date =
+date = " %m/%d"
 date-alt = " %m/%d"
 
-time = %I:%M %p
+time = %I:%M
 time-alt = %I:%M %p
 
-format-prefix = 
+format-prefix = 
 format-prefix-foreground = ${colors.foreground-alt}
 format-underline = #0a6cf5
 
@@ -248,13 +248,17 @@ label = %date% %time%
 [module/volume]
 type = internal/volume
 
-format-volume = <label-volume> <bar-volume>
-label-volume = VOL
-label-volume-foreground = ${root.foreground}
+format-volume = <ramp-volume> <bar-volume>
+ramp-volume-0 =  
+ramp-volume-1 =  
+ramp-volume-2 =  
+ramp-volume-foreground = ${root.foreground}
 
-format-muted-prefix = " "
+; label-volume = 
+; label-volume-foreground = ${root.foreground}
+
 format-muted-foreground = ${colors.foreground-alt}
-label-muted = muted
+label-muted = 
 
 bar-volume-width = 10
 bar-volume-foreground-0 = #55aa55

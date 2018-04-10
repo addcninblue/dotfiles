@@ -6,9 +6,9 @@ set $gaps_inner 0
 
 bindsym F1 workspace prev
 bindsym F2 workspace next
-bindsym F3 exec --no-startup-id xdotool key "control+r"
-bindsym F4 exec --no-startup-id xdotool key "F11"
-bindsym Shift+F4 fullscreen toggle
+bindsym --release F3 exec --no-startup-id xdotool key "control+r"
+bindsym --release F4 exec --no-startup-id xdotool key "F11"
+bindsym --release Shift+F4 fullscreen toggle
 bindsym F5 exec --no-startup-id /home/addison/dotfiles/tools/screenshot_copy.sh
 bindsym Shift+F5 exec --no-startup-id maim /home/addison/screenshots/$(date +%Y-%m-%d_%T).png
 bindsym Control+F5 exec --no-startup-id maim -i $(xdotool getactivewindow) /home/addison/screenshots/$(date +%Y-%m-%d_%T).png

@@ -5,6 +5,9 @@ zstyle ':completion:*' format 'Completing %d'
 zstyle ':completion:*' matcher-list '' 'r:|[._-]=** r:|=**' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'l:|=* r:|=*'
 zstyle :compinstall filename '/home/addison/.zshrc'
 
+zstyle ':completion:*' list-colors ''
+
+
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
