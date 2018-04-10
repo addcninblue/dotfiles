@@ -1,6 +1,6 @@
 .DEFAULT_GOAL:=help
 
-FULL=i3/ maid/ nvim/ polybar/ zshrc/ Xresources/ tmux/ ranger/
+FULL=i3/ maid/ nvim/ polybar/ zshrc/ Xresources/ tmux/ ranger/ radare2/
 UBUNTU=nvim/ zshrc/ Xresources/ tmux/ ranger/
 MINIMAL=i3/ maid/ nvim/ polybar/ zshrc/ Xresources/ tmux/ ranger/
 ALL_PACKAGES=$(sort $(dir $(wildcard */))) # unused

@@ -300,7 +300,7 @@ mkcd ()
 # nvim for man
 export MANPAGER="nvim -c 'set ft=man' -"
 
-alias ranger='ranger --choosedir=$HOME/rangerdir; LASTDIR=`cat $HOME/rangerdir`; cd "$LASTDIR"; rm ~/rangerdir'
+# alias ranger='ranger --choosedir=$HOME/rangerdir; LASTDIR=`cat $HOME/rangerdir`; cd "$LASTDIR"; rm ~/rangerdir'
 
 #vim Ctrlz keybinging
 _zsh_cli_fg() { fg; }

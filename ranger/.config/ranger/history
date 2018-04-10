@@ -1,7 +1,3 @@
-deletejVjjk
-d
-mkdir baby
-mkdir good
 search png
 search derek
 search 158
@@ -43,8 +39,12 @@ shell
 search Down
 vimf 
 shell vimf
-open_with 
 search home
 
 delete
 search stu
+echo ranger.RANGERDIR
+eval eval fm.cd(ranger.RANGERDIR)
+eval eval ranger.RANGERDIR
+eval ranger.RANGERDIR
+open_with 

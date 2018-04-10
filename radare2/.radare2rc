@@ -1,0 +1,22 @@
+e cfg.fortunes=false
+e bin.demangle=true
+e asm.demangle=true
+e stack.size = 114
+
+# Show comments at right of disassembly
+# e asm.cmtright=true
+
+# Shows pseudocode in disassembly. Eg mov eax, str.ok = > eax = str.ok
+# e asm.pseudo = true
+
+# Solarized theme
+eco solarized
+
+# Use UTF-8 to show cool arrows
+e scr.utf8 = true
+# e asm.describe = true
+
+# e asm.cmtright=true
+# e cmd.stack=true
+
+e scr.truecolor = 2
