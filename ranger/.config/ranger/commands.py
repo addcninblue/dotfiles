@@ -56,3 +56,22 @@ class my_edit(Command):
         # This is a generic tab-completion function that iterates through the
         # content of the current directory.
         return self._tab_directory_content()
+
+from subprocess import PIPE
+
+class cdf(Command):
+    def execute(self):
+        command="find -L \( -path '*.wine-pipelight' -o -path '*.ivy2*' -o -path '*.texlive*' -o -path '*.git' -o -path '*.metadata' -o -path '*_notes' \) -prune -o -type d -print 2>/dev/null | fzf"
+        fzf = self.fm.execute_command(command, stdout=PIPE)
+        stdout, stderr = fzf.communicate()
+        directory = stdout.decode('utf-8').rstrip('\n')
+        self.fm.cd(directory)
+
+
+class cdg(Command):
+    def execute(self):
+        command="git rev-parse --show-toplevel"
+        fzf = self.fm.execute_command(command, stdout=PIPE)
+        stdout, stderr = fzf.communicate()
+        directory = stdout.decode('utf-8').rstrip('\n')
+        self.fm.cd(directory)

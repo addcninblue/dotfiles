@@ -103,10 +103,10 @@ bindsym $mod+Shift+equal move container to workspace number 12
 # bindsym $mod+F8 mark --toggle 8
 # bindsym $mod+F9 mark --toggle 9
 # bindsym $mod+F10 unmark
-bindsym $mod+bracketleft mark --toggle "["
-bindsym $mod+bracketright mark --toggle "]"
-bindsym $mod+Shift+bracketleft [con_mark="\["] focus
-bindsym $mod+Shift+bracketright [con_mark="]"] focus
+bindsym $mod+bracketleft [con_mark="\["] focus
+bindsym $mod+bracketright [con_mark="]"] focus
+bindsym $mod+Shift+bracketleft mark --toggle "["
+bindsym $mod+Shift+bracketright mark --toggle "]"
 
 #assign certain applications to certain workspaces
 for_window [class="Spotify"] move to workspace number 10
