@@ -84,10 +84,25 @@ function ssh_connection() {
     fi
 }
 
-PS1="╭─[%n$(ssh_connection) in %{$fg[blue]%}%d%{$reset_color%}] %(1j.[%j].)
-╰─▶ "
+function ranger_prompt() {
+  if [[ $RANGER_LEVEL -eq 1 ]]; then
+    echo "[ranger]"
+  elif [[ $RANGER_LEVEL -gt 1 ]]; then
+    echo "[ranger $RANGER_LEVEL]"
+  fi
+}
+
+function zsh_prompt() {
+    username="%n$(ssh_connection)"
+    hostname="%{$fg[blue]%}%d%{$reset_color%}"
+    backgrounded="%(1j.[%j].)"
+    nextrow="\n╰─▶ "
+    echo "╭─[$username in $hostname] $(ranger_prompt) $backgrounded $nextrow"
+}
+
+PS1="$(zsh_prompt)"
 RPS1=$'$(vcs_info_wrapper)'
-PS2="  ▶ "
+PS2="╰─▶ "
 # add put this here
 
 export TERM='xterm-256color'
