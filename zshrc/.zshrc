@@ -122,6 +122,7 @@ alias sw='sudo wifi-menu'
 alias wf='sudo systemctl restart netctl-auto@wlan0.service' # wifi fix
 alias share='shellshare --room addison --password addison'
 alias vim='nvim'
+alias whatismyip='printf "global: " && dig +short myip.opendns.com @resolver1.opendns.com'
 
 # file extensions
 alias -s py='python'
@@ -167,6 +168,14 @@ alias editmaid='nvim ~/dotfiles/maid/rules.rb'
 # defined aliases }}}
 
 # defined functions: {{{
+
+copy() {
+       readlink -f $1 | xclip -selection clipboard
+}
+
+weather() {
+       curl -H "Accept-Language: ${LANG%_*}" wttr.in/"${1:-San Jose}"
+}
 
 gcp() {
 	if [ "$1" = 'sync' ]; then

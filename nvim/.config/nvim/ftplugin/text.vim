@@ -32,3 +32,8 @@ set nohidden
 packadd goyo.vim
 packadd limelight.vim
 packadd vim-pencil
+
+" set laststatus=2                      " always have statusline
+" set statusline=%.40t%=%m\%y\[%3l/%L]\[%3p%%]\
+" highlight StatusLine ctermbg=12 ctermfg=8
+" highlight StatusLine guibg=#002b36 guifg=#eee8d5

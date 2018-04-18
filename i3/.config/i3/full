@@ -11,7 +11,7 @@ set $XF86AudioLowerVolume "pactl set-sink-mute 0 false ; pactl set-sink-volume 0
 set $XF86AudioMute "pactl set-sink-mute 0 toggle"
 
 # android kdeconnect integration
-bindsym $mod+Shift+s exec --no-startup-id "kdeconnect-handler $(xclip -o)"
+bindsym $mod+Control+Return exec --no-startup-id "kdeconnect-handler $(xclip -o)"
 
 # touchpad tap to click -- xinput list-props 17 lists available options
 exec_always xinput set-prop 17 291 1
@@ -19,7 +19,7 @@ exec_always xinput set-prop 17 291 1
 exec_always xinput set-prop 17 275 1
 
 # google home
-exec --no-startup-id "tmux new-session -d -s 'googlehome' 'cd ~/stuff/flaskserver; python hello.py'"
+exec --no-startup-id "tmux new-session -d -s 'googlehome' 'cd $HOME/stuff/flaskserver; python hello.py'"
 
 # mouse buttons
 bindsym --whole-window button6 workspace prev
@@ -27,5 +27,7 @@ bindsym --whole-window button7 workspace next
 bindsym --whole-window $mod+button6 exec --no-startup-id "playerctl previous && notify-send 'previous'"
 bindsym --whole-window $mod+button7 exec --no-startup-id "playerctl next && notify-send 'next'"
 bindsym --whole-window $mod+button2 exec --no-startup-id "playerctl play-pause && notify-send 'play/pause'"
-bindsym --whole-window button8 exec --no-startup-id /home/addison/dotfiles/tools/screenshot_copy.sh
+bindsym --whole-window button8 exec --no-startup-id $dotfiles_path/tools/screenshot_copy.sh
 bindsym --whole-window button9 exec --no-startup-id xdotool key BackSpace
+
+bindsym $mod+o fullscreen disable; floating enable; resize set 600 400; sticky enable; move window to position 1320 645

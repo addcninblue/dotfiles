@@ -1,5 +1,7 @@
 # vi: ft=i3
 
+set $dotfiles_path $HOME/dotfiles
+
 smart_gaps on
 for_window [class="^.*"] border pixel 0
 gaps outer $gaps_outer
@@ -39,7 +41,7 @@ bindsym $mod+f fullscreen toggle
 #bindsym $mod+s layout stacking
 bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+space floating toggle; sticky disable
 #bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 bindsym $mod+d focus child
@@ -129,11 +131,10 @@ client.unfocused        $inactive-bg-color $inactive-bg-color $inactive-text-col
 client.focused_inactive $inactive-bg-color $inactive-bg-color $inactive-text-color #00ff00
 client.urgent           $urgent-bg-color    $urgent-bg-color   $text-color          #00ff00
 
-#screenshot
-bindsym Print exec --no-startup-id /home/addison/dotfiles/tools/screenshot_copy.sh
-bindsym Shift+Print exec --no-startup-id maim /home/addison/screenshots/$(date +%Y-%m-%d_%T).png
-bindsym Control+Print exec --no-startup-id maim -i $(xdotool getactivewindow) /home/addison/screenshots/$(date +%Y-%m-%d_%T).png
-bindsym $mod+Control+v exec --no-startup-id "xclip -selection clipboard -t image/png -o > ~/tmp/clipboard && feh ~/tmp/clipboard"
+# screenshot
+bindsym Print exec --no-startup-id $dotfiles_path/tools/screenshot_copy.sh
+bindsym Shift+Print exec --no-startup-id "xclip -selection clipboard -t image/png -o > $HOME/tmp/clipboard && feh $HOME/tmp/clipboard || notify-send 'no picture in clipboard'"
+bindsym Control+Print exec --no-startup-id echo "" | xclip -selection clipboard && notify-send "cleared clipboard"
 
 # launch applications
 bindsym $mod+c exec --no-startup-id "google-chrome-stable --profile-directory='Default'"
@@ -142,10 +143,10 @@ bindsym $mod+s exec --no-startup-id "spotify"
 bindsym $mod+m exec --no-startup-id "mixxx"
 bindsym $mod+g exec --no-startup-id "gimp"
 bindsym $mod+space exec rofi -show drun -modi drun -lines 4 -bw 20 -eh 2 -width 600 -padding 40
-bindsym $mod+p exec --no-startup-id /home/addison/dotfiles/tools/pdfFinder.pl
-bindsym $mod+x exec --no-startup-id /home/addison/dotfiles/tools/i3lock
-bindsym $mod+z exec --no-startup-id /home/addison/dotfiles/tools/polybar
-bindsym $mod+Print exec --no-startup-id python /home/addison/.screenlayout/start.py
+bindsym $mod+p exec --no-startup-id $dotfiles_path/tools/pdfFinder.pl
+bindsym $mod+x exec --no-startup-id $dotfiles_path/tools/i3lock
+bindsym $mod+z exec --no-startup-id $dotfiles_path/tools/polybar
+bindsym $mod+Print exec --no-startup-id $dotfiles_path/tools/xrandr.sh
 bindsym $mod+Return exec --no-startup-id st
 
 
@@ -179,9 +180,9 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 mode "Power" {
-	bindsym h exec "systemctl hibernate; /home/addison/cooli3lock.sh"; mode "default"
-	bindsym XF86Sleep exec "systemctl suspend; /home/addison/cooli3lock.sh"; mode "default"
-	bindsym $mod+Control+space exec "systemctl suspend; /home/addison/cooli3lock.sh"; mode "default"
+        bindsym h exec "systemctl hibernate; $HOME/cooli3lock.sh"; mode "default"
+        bindsym XF86Sleep exec "systemctl suspend; $HOME/cooli3lock.sh"; mode "default"
+        bindsym $mod+Control+space exec "systemctl suspend; $HOME/cooli3lock.sh"; mode "default"
 	bindsym s exec "shutdown -h now"
 	bindsym r exec "shutdown -r now"
 	bindsym Escape mode "default"
@@ -195,17 +196,17 @@ mode "programming" {
 bindsym $mod+backslash mode "programming"
 
 # always exec
-exec_always xrdb -load ~/.Xresources #load xterm customizations
-exec_always feh --bg-fill /home/addison/dotfiles/backgrounds/current.png
-exec_always --no-startup-id ~/dotfiles/tools/i3-autoname-workspaces.py
++exec_always xrdb -load $HOME/.Xresources #load xterm customizations
++exec_always feh --bg-fill $dotfiles_path/backgrounds/current.png
++exec_always --no-startup-id $dotfiles_path/tools/i3-autoname-workspaces.py
 exec_always --no-startup-id "dunst"
 exec_always --no-startup-id "xbanish"
 exec_always --no-startup-id "/usr/lib/kdeconnectd"
 exec_always --no-startup-id "kdeconnect-indicator"
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
-exec --no-startup-id /home/addison/cooli3lock.sh
++exec --no-startup-id $HOME/cooli3lock.sh
 exec --no-startup-id redshift-gtk
-exec xmodmap /home/addison/.xmodmap
+exec xmodmap $HOME/.xmodmap
 exec --no-startup-id "ibus-daemon"
 exec --no-startup-id "udiskie --tray"
