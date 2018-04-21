@@ -37,8 +37,11 @@ minimal: stow
 
 .PHONY: setuparch
 setuparch:
+	@echo "installing packages"
 	./arch/trizen
 	trizen -S - < ./arch/packagelist
+	@echo "enabling auto login on tty1"
+	sudo ./arch/autologin
 	@echo "done"
 
 .PHONY: uninstall
