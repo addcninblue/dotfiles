@@ -4,7 +4,7 @@ nnoremap <silent><leader>mc :exec "!clear;make clean"<CR>
 nnoremap <silent><leader>mt :exec "!clear;make test"<CR>
 " nnoremap <silent><leader>mr :exec "!clear;ghc % -odir ../out -hidir ../out -o ../%:r && ../%:r && rm -r ../out"<CR>
 nnoremap <silent><leader>mf :exec "!make"
-nnoremap <silent><leader>mr :exec "!make run"
+nnoremap <silent><leader>mr :call Make()<CR> :call Run()<CR>
 let g:javaCommand = "Asyncrun make clean && make"
 func! Make()
 	if &filetype == 'java'
@@ -19,6 +19,9 @@ func! Make()
 	elseif &filetype == 'markdown'
 		exec ":w"
 		exec "AsyncRun pandoc % -o %<.pdf && zathura %<.pdf"
+	elseif &filetype == 'tex'
+		exec ":w"
+		exec "!pdflatex %"
 	else
 		exec "make"
 	endif
@@ -53,6 +56,8 @@ func! Run()
 		exec ":GoRun"
 	elseif &filetype == 'haskell'
 		let l:command="runhaskell " . expand("%")
+	elseif &filetype == 'tex'
+		let l:command="zathura " . expand("%<") . ".pdf"
 	endif
 	silent exec "!tmux split-window -v -p 20 '" . l:command . " |& nvim -u ~/.config/nvim/ftplugin/more.vim -'"
 	" silent exec "!tmux split-window -v -p 20 '" . l:command . " |& less'"

@@ -5,7 +5,7 @@ setlocal softtabstop=4
 setlocal foldmethod=indent
 
 " plugins
-packadd python-mode
+" packadd python-mode
 " packadd codi
 packadd ale
 

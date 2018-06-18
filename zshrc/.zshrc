@@ -133,6 +133,7 @@ alias -s mp4='vlc'
 alias -s wav='vlc'
 alias -s png='meh'
 alias -s jpg='meh'
+alias -s pdf='zathura'
 
 alias c='gcalcli'
 alias cc='gcalcli calw'

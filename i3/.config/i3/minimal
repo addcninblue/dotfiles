@@ -8,7 +8,7 @@ set $dotfiles_path $HOME/dotfiles
 
 bindsym F1 workspace prev
 bindsym F2 workspace next
-bindsym --release F3 exec --no-startup-id xdotool key "control+r"
+bindsym --release F3 exec --no-startup-id xdotool key "Control_R+r"
 bindsym --release F4 exec --no-startup-id xdotool key "F11"
 bindsym --release Shift+F4 fullscreen toggle
 bindsym F5 exec --no-startup-id $dotfiles_path/tools/screenshot_copy.sh
