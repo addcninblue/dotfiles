@@ -21,7 +21,9 @@ func! Make()
 		exec "AsyncRun pandoc % -o %<.pdf && zathura %<.pdf"
 	elseif &filetype == 'tex'
 		exec ":w"
-		exec "!pdflatex %"
+		silent exec "!latexmk -pdf %"
+		silent exec "!latexmk -c"
+		" exec "normal!\<CR>"
 	else
 		exec "make"
 	endif

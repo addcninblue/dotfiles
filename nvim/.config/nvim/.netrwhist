@@ -1,7 +1,8 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =5
+let g:netrw_dirhist_cnt =6
 let g:netrw_dirhist_1='/home/addison/dotfiles/tmux/.tmux'
 let g:netrw_dirhist_2='/home/addison/dotfiles/i3/.config/i3'
 let g:netrw_dirhist_3='/home/addison/.zsh'
 let g:netrw_dirhist_4='/etc/pam.d'
 let g:netrw_dirhist_5='/home/addison/.local/share/luakit/adblock'
+let g:netrw_dirhist_6='/home/addison/stuff/cs70/hw01/UltiSnips'
