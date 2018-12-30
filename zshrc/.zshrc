@@ -166,6 +166,14 @@ alias editi3='nvim ~/.config/i3/config'
 alias editpolybar='nvim ~/.config/polybar/config'
 alias editmaid='nvim ~/dotfiles/maid/rules.rb'
 
+# alias j="jupyter notebook --ip $(ip addr show eth0 | grep -Po 'inet \K[\d.]+')"
+alias j="jupyter notebook"
+
+l() {
+	xdg-open "http://penguin.linux.test:$1"
+	# xdg-open "http://$(ip addr show eth0 | grep -Po 'inet \K[\d.]+'):$1/"
+}
+
 # defined aliases }}}
 
 # defined functions: {{{
@@ -334,7 +342,26 @@ bindkey '^Z' _zsh_cli_fg
 
 export PATH=$HOME/.local/bin:${PATH}
 export PATH=$HOME/.gem/ruby/2.4.0/bin:${PATH}
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 # export PYTHONPATH=/usr/lib/python2.7/site-packages:${PYTHONPATH}
+
+# added by Anaconda3 5.3.0 installer
+# IMPORTANT NOTE: enable when you need anaconda !
+# >>> conda init >>>
+# !! Contents within this block are managed by 'conda init' !!
+# __conda_setup="$(CONDA_REPORT_ERRORS=false '/home/addison95132/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
+# if [ $? -eq 0 ]; then
+#     \eval "$__conda_setup"
+# else
+#     if [ -f "/home/addison95132/anaconda3/etc/profile.d/conda.sh" ]; then
+#         . "/home/addison95132/anaconda3/etc/profile.d/conda.sh"
+#         CONDA_CHANGEPS1=false conda activate base
+#     else
+#         \export PATH="/home/addison95132/anaconda3/bin:$PATH"
+#     fi
+# fi
+# unset __conda_setup
+# <<< conda init <<<
 
 bindkey    "^[[H"    beginning-of-line
 bindkey    "^[[F"    end-of-line

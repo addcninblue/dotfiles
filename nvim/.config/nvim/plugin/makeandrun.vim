@@ -51,7 +51,7 @@ func! Run()
 	elseif &filetype == 'sh'
 		let l:command="./" . expand("%")
 	elseif &filetype == 'python'
-		let l:command="python " . expand("%")
+		let l:command="python3 " . expand("%")
 	elseif &filetype == 'html'
 		exec "!google-chrome-beta % &"
 	elseif &filetype == 'go'
@@ -67,7 +67,7 @@ endfunc
 func! Interactive()
 	let l:command="echo 'not a function'"
 	if &filetype == 'python'
-		let l:command="python -i " .expand("%")
+		let l:command="python3 -i " .expand("%")
 	endif
 	exec "!tmux split-window -v -p 20 " . l:command
 endfunc

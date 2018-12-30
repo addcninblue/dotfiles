@@ -7,7 +7,7 @@ setlocal foldmethod=indent
 " plugins
 " packadd python-mode
 " packadd codi
-packadd ale
+" packadd ale
 
 " Opens Python documentation on <S-k>
 nnoremap <buffer> K :<C-u>execute "!pydoc " . expand("<cword>")<CR>

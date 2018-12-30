@@ -3,6 +3,7 @@
 FULL=i3/ maid/ nvim/ polybar/ zshrc/ Xresources/ tmux/ ranger/ radare2/ compton/
 UBUNTU=nvim/ zshrc/ Xresources/ tmux/ ranger/
 MINIMAL=i3/ maid/ nvim/ polybar/ zshrc/ Xresources/ tmux/ ranger/ compton/
+CHROMEBOOK=nvim/ zshrc/ tmux/ ranger/ radare2/
 ALL_PACKAGES=$(sort $(dir $(wildcard */))) # unused
 STOW := $(shell command -v stow 2> /dev/null) # check if stow is installed
 
@@ -43,6 +44,11 @@ setuparch:
 	@echo "enabling auto login on tty1"
 	sudo ./arch/autologin
 	@echo "done"
+
+.PHONY: setupchromebook
+setupchromebook:
+	@echo "setting up chromebook"
+	stow -t ~ $(CHROMEBOOK)
 
 .PHONY: uninstall
 uninstall: stow
