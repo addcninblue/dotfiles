@@ -1,4 +1,3 @@
-syntax on
 set t_Co=256
 colorscheme solarized
 
@@ -44,7 +43,7 @@ set wildmenu                          " allows for tab completion on edits
 set listchars=tab:\ \ ,nbsp:␣,extends:>,precedes:<,eol:\ ,trail:· " for setting nonprinting characters
 set list
 set undofile                          " Save undo's after file closes
-set undodir=/home/addison95132/.vim/undo   " where to save undo histories
+set undodir=$HOME/.config/nvim/undo   " where to save undo histories
 set undolevels=1000                   " How many undos
 set undoreload=10000                  " number of lines to save for undo
 

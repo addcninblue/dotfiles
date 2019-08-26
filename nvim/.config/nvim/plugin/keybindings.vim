@@ -53,9 +53,6 @@ nnoremap <leader>= mmgg=G`m
 
 nnoremap <silent> <leader>] :let word=expand("<cword>")<CR>:vsp<CR>:wincmd w<cr>:exec("tag ". word)<cr>
 
-nnoremap <CR> o<ESC>k
-nnoremap \ O<ESC>j
-
 " for Simplenote
 nnoremap <leader>sl :SimplenoteList<CR>
 nnoremap <leader>su :SimplenoteUpdate<CR>
@@ -74,3 +71,7 @@ inoremap <Down> <Esc>:m .+1<CR>
 inoremap <Up> <Esc>:m .-2<CR>
 vnoremap <Down> :m '>+1<CR>gv=gv
 vnoremap <Up> :m '<-2<CR>gv=gv
+
+" Rnager
+let g:ranger_map_keys = 0
+nnoremap <leader>e :Ranger<CR>

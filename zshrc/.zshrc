@@ -134,6 +134,7 @@ alias -s wav='vlc'
 alias -s png='meh'
 alias -s jpg='meh'
 alias -s pdf='zathura'
+alias -s html='garcon-url-handler'
 
 alias c='gcalcli'
 alias cc='gcalcli calw'
@@ -333,7 +334,10 @@ mkcd ()
 # nvim for man
 export MANPAGER="nvim -c 'set ft=man' -"
 
-# alias ranger='ranger --choosedir=$HOME/rangerdir; LASTDIR=`cat $HOME/rangerdir`; cd "$LASTDIR"; rm ~/rangerdir'
+alias ranger='ranger --choosedir=$HOME/rangerdir; LASTDIR=`cat $HOME/rangerdir`; cd "$LASTDIR"; rm ~/rangerdir'
+
+# set shell for tmux
+export SHELL=$(which zsh)
 
 #vim Ctrlz keybinging
 _zsh_cli_fg() { fg; }
@@ -342,6 +346,9 @@ bindkey '^Z' _zsh_cli_fg
 
 export PATH=$HOME/.local/bin:${PATH}
 export PATH=$HOME/.gem/ruby/2.4.0/bin:${PATH}
+export PATH=$PATH:/usr/local/go/bin
+export PATH=$PATH:$(go env GOPATH)/bin
+export GOPATH=$HOME/go
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 # export PYTHONPATH=/usr/lib/python2.7/site-packages:${PYTHONPATH}
 
@@ -404,3 +411,18 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 if [ -f ~/.zsh_private_variables ]; then
 	source ~/.zsh_private_variables
 fi
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/home/addison95132/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/home/addison95132/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/addison95132/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/home/addison95132/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<

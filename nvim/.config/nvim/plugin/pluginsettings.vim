@@ -39,18 +39,6 @@ let g:ackprg = 'ag --vimgrep'
 nnoremap <silent> <leader>u :UndotreeToggle<CR>:wincmd h<CR>
 " undotree }}}
 
-" ale {{{
-let g:ale_sign_column_always = 1
-
-" Check Python files with flake8 and pylint.
-let b:ale_linters = ['pylint']
-" Fix Python files with autopep8 and yapf.
-let b:ale_fixers = ['autopep8', 'yapf']
-" Disable warnings about trailing whitespace for Python files.
-let b:ale_warn_about_trailing_whitespace = 0
-
-" ale }}}
-
 " vim-instant-markdown {{{
 let g:instant_markdown_autostart = 0
 " vim-instant-markdown }}}
@@ -62,7 +50,7 @@ let g:instant_markdown_autostart = 0
 " vim-markdown {{{
 " let g:markdown_enable_folding = 1
 let g:markdown_enable_mappings = 0
-nnoremap <leader>e :MarkdownEditBlock<CR>
+" nnoremap <leader>e :MarkdownEditBlock<CR>
 " vim-markdown }}}
 
 " delimitmate {{{
@@ -81,14 +69,25 @@ let g:tslime_always_current_session = 1
 let g:tslime_always_current_window = 1
 " tslime }}}
 
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'python': ['/usr/local/bin/pyls'],
-    \ }
-nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
+if executable('gopls')
+	" go client
+	au User lsp_setup call lsp#register_server({
+		\ 'name': 'gopls',
+		\ 'cmd': {server_info->['gopls', '-mode', 'stdio']},
+		\ 'whitelist': ['go'],
+		\ })
+	autocmd BufWritePre *.go silent! LspDocumentFormatSync
+endif
+
+if executable('/home/addison95132/.local/bin/elixir-ls/rel/language_server.sh')
+	au User lsp_setup call lsp#register_server({
+		\ 'name': 'elixir-ls',
+		\ 'cmd': {server_info->['/home/addison95132/.local/bin/elixir-ls/rel/language_server.sh']},
+		\ 'whitelist': ['elixir', 'eelixir'],
+		\})
+	autocmd BufWritePre *.exs silent! LspDocumentFormatSync
+	autocmd BufWritePre *.ex silent! LspDocumentFormatSync
+endif
 
 " enable ncm2 for all buffers
 autocmd BufEnter * call ncm2#enable_for_buffer()
@@ -102,11 +101,11 @@ set shortmess+=c
 " When the <Enter> key is pressed while the popup menu is visible, it only
 " hides the menu. Use this mapping to close the menu and also start a new
 " line.
+
 inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 " Use <TAB> to select the popup menu:
 inoremap <expr> <Tab> pumvisible() ? '<C-n>' : '<Tab>'
 inoremap <expr> <S-Tab> pumvisible() ? '<C-p>' : '<S-Tab>'
-nnoremap <leader>= :call LanguageClient#textDocument_formatting()<CR>
 
 " wrap existing omnifunc
 " Note that omnifunc does not run in background and may probably block the
@@ -131,3 +130,10 @@ set tags=./tags,tags;$HOME
 
 " fzf
 source ~/.fzf/plugin/fzf.vim
+
+autocmd BufNewFile *.graphql  setfiletype graphql
+autocmd BufNewFile *.graphqls setfiletype graphql
+autocmd BufNewFile *.gql      setfiletype graphql
+autocmd BufReadPost *.graphql  setfiletype graphql
+autocmd BufReadPost *.graphqls setfiletype graphql
+autocmd BufReadPost *.gql      setfiletype graphql

@@ -16,9 +16,6 @@
 [submodule "nvim/.config/nvim/pack/bundle/opt/neco-ghc"]
 	path = nvim/.config/nvim/pack/bundle/opt/neco-ghc
 	url = https://github.com/eagletmt/neco-ghc.git
-[submodule "nvim/.config/nvim/pack/bundle/opt/vim-go"]
-	path = nvim/.config/nvim/pack/bundle/opt/vim-go
-	url = https://github.com/fatih/vim-go.git
 [submodule "nvim/.config/nvim/pack/bundle/opt/vim-haskellConcealPlus"]
 	path = nvim/.config/nvim/pack/bundle/opt/vim-haskellConcealPlus
 	url = https://github.com/enomsg/vim-haskellConcealPlus.git
@@ -100,10 +97,6 @@
 [submodule "nvim/.config/nvim/pack/bundle/opt/vim-latex-live-preview"]
 	path = nvim/.config/nvim/pack/bundle/opt/vim-latex-live-preview
 	url = https://github.com/xuhdev/vim-latex-live-preview
-[submodule "nvim/.config/nvim/pack/bundle/start/LanguageClient-neovim"]
-	path = nvim/.config/nvim/pack/bundle/start/LanguageClient-neovim
-	url = https://github.com/autozimu/LanguageClient-neovim
-	branch = next
 [submodule "nvim/.config/nvim/pack/bundle/start/ncm2"]
 	path = nvim/.config/nvim/pack/bundle/start/ncm2
 	url = https://github.com/ncm2/ncm2
@@ -119,3 +112,15 @@
 [submodule "nvim/.config/nvim/pack/bundle/start/fzf.vim"]
 	path = nvim/.config/nvim/pack/bundle/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
+[submodule "nvim/.config/nvim/pack/bundle/start/vim-go"]
+	path = nvim/.config/nvim/pack/bundle/start/vim-go
+	url = https://github.com/fatih/vim-go
+[submodule "nvim/.config/nvim/pack/bundle/start/ncm2-vim-lsp"]
+	path = nvim/.config/nvim/pack/bundle/start/ncm2-vim-lsp
+	url = https://github.com/ncm2/ncm2-vim-lsp
+[submodule "nvim/.config/nvim/pack/bundle/start/async.vim"]
+	path = nvim/.config/nvim/pack/bundle/start/async.vim
+	url = https://github.com/prabirshrestha/async.vim
+[submodule "nvim/.config/nvim/pack/bundle/opt/vim-elixir"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-elixir
+	url = https://github.com/elixir-lang/vim-elixir.git
