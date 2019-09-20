@@ -44,7 +44,7 @@ let g:instant_markdown_autostart = 0
 " vim-instant-markdown }}}
 
 " vim-markdown {{{
-" let g:markdown_fenced_languages = ['java', 'perl', 'html', 'python', 'bash=sh']
+" let g:markdown_fenced_languages = ['java', 'perl', 'html', 'python', 'bash=sh', 'c']
 " vim-markdown }}}
 
 " vim-markdown {{{
@@ -69,6 +69,8 @@ let g:tslime_always_current_session = 1
 let g:tslime_always_current_window = 1
 " tslime }}}
 
+nnoremap <silent> gd :LspDefinition<CR>
+nnoremap <silent> gr :LspReferences<CR>
 if executable('gopls')
 	" go client
 	au User lsp_setup call lsp#register_server({
@@ -77,6 +79,21 @@ if executable('gopls')
 		\ 'whitelist': ['go'],
 		\ })
 	autocmd BufWritePre *.go silent! LspDocumentFormatSync
+endif
+
+" let g:lsp_log_verbose = 1
+" let g:lsp_log_file = expand('~/vim-lsp.log')
+
+" " below command made it not work for some reason
+" \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
+if executable('ccls')
+   au User lsp_setup call lsp#register_server({
+      \ 'name': 'ccls',
+      \ 'cmd': {server_info->['ccls']},
+      \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
+      \ 'initialization_options': {},
+      \ 'whitelist': ['c', 'cpp', 'objc', 'objcpp', 'cc'],
+      \ })
 endif
 
 if executable('/home/addison95132/.local/bin/elixir-ls/rel/language_server.sh')
@@ -88,6 +105,8 @@ if executable('/home/addison95132/.local/bin/elixir-ls/rel/language_server.sh')
 	autocmd BufWritePre *.exs silent! LspDocumentFormatSync
 	autocmd BufWritePre *.ex silent! LspDocumentFormatSync
 endif
+
+let g:lsp_diagnostics_echo_cursor = 1
 
 " enable ncm2 for all buffers
 autocmd BufEnter * call ncm2#enable_for_buffer()

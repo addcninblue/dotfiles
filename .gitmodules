@@ -124,3 +124,6 @@
 [submodule "nvim/.config/nvim/pack/bundle/opt/vim-elixir"]
 	path = nvim/.config/nvim/pack/bundle/opt/vim-elixir
 	url = https://github.com/elixir-lang/vim-elixir.git
+[submodule "nvim/.config/nvim/pack/bundle/start/vim-lsp"]
+	path = nvim/.config/nvim/pack/bundle/start/vim-lsp
+	url = https://github.com/prabirshrestha/vim-lsp

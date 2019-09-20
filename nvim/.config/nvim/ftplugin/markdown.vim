@@ -15,5 +15,5 @@ func! FinanceFormat()
 endfunc
 
 " plugins
-" packadd vim-markdown
+packadd vim-markdown
 let g:polyglot_disabled = ['markdown']

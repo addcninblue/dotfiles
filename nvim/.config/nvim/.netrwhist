@@ -1,5 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =3
-let g:netrw_dirhist_1='/home/addison95132/stuff/calhacks/keplergl_data'
-let g:netrw_dirhist_2='/home/addison95132/stuff/vcg/asana/Data Analysis/gcloud_testing'
-let g:netrw_dirhist_3='/home/addison95132/dotfiles/nvim/.config/nvim/pack/bundle/start/supertab'

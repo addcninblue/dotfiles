@@ -38,6 +38,8 @@ set noshowmode                        " show command
 set hidden                            " no write on last edit
 set sidescroll=1                      " scroll individually, not as a chunk
 set lazyredraw                        " redraws after all macros completed; lots faster
+set signcolumn=yes
+set nowrap
 
 set wildmenu                          " allows for tab completion on edits
 set listchars=tab:\ \ ,nbsp:␣,extends:>,precedes:<,eol:\ ,trail:· " for setting nonprinting characters
@@ -93,5 +95,4 @@ set splitright                        " ctags jumping in vertical split
 let &previewheight=winwidth(0)/2
 nnoremap <C-]> :execute "vertical ptag " . expand("<cword>")<CR>
 
-set signcolumn=yes
 
