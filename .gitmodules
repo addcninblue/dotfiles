@@ -53,8 +53,8 @@
 	path = nvim/.config/nvim/pack/bundle/start/targets.vim
 	url = https://github.com/wellle/targets.vim.git
 [submodule "nvim/.config/nvim/pack/bundle/start/ultisnips"]
-	path = nvim/.config/nvim/pack/bundle/opt/ultisnips
-	url = https://github.com/SirVer/ultisnips.git
+	path = nvim/.config/nvim/pack/bundle/start/ultisnips
+	url = https://github.com/SirVer/ultisnips
 [submodule "nvim/.config/nvim/pack/bundle/start/undotree"]
 	path = nvim/.config/nvim/pack/bundle/start/undotree
 	url = https://github.com/mbbill/undotree.git
@@ -127,3 +127,15 @@
 [submodule "nvim/.config/nvim/pack/bundle/start/vim-lsp"]
 	path = nvim/.config/nvim/pack/bundle/start/vim-lsp
 	url = https://github.com/prabirshrestha/vim-lsp
+[submodule "nvim/.config/nvim/pack/bundle/start/vim-lsp-ultisnips"]
+	path = nvim/.config/nvim/pack/bundle/start/vim-lsp-ultisnips
+	url = https://github.com/thomasfaingnaert/vim-lsp-ultisnips
+[submodule "nvim/.config/nvim/pack/bundle/start/vim-lsp-snippets"]
+	path = nvim/.config/nvim/pack/bundle/start/vim-lsp-snippets
+	url = https://github.com/thomasfaingnaert/vim-lsp-snippets
+[submodule "nvim/.config/nvim/pack/bundle/start/ncm2-ultisnips"]
+	path = nvim/.config/nvim/pack/bundle/start/ncm2-ultisnips
+	url = https://github.com/ncm2/ncm2-ultisnips
+[submodule "nvim/.config/nvim/pack/bundle/start/vim-snippets"]
+	path = nvim/.config/nvim/pack/bundle/start/vim-snippets
+	url = https://github.com/honza/vim-snippets

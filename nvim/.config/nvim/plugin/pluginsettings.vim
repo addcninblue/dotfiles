@@ -44,7 +44,7 @@ let g:instant_markdown_autostart = 0
 " vim-instant-markdown }}}
 
 " vim-markdown {{{
-" let g:markdown_fenced_languages = ['java', 'perl', 'html', 'python', 'bash=sh', 'c']
+let g:markdown_fenced_languages = ['java', 'perl', 'html', 'python', 'bash=sh', 'c']
 " vim-markdown }}}
 
 " vim-markdown {{{
@@ -121,7 +121,14 @@ set shortmess+=c
 " hides the menu. Use this mapping to close the menu and also start a new
 " line.
 
-inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+let g:UltiSnipsExpandTrigger = "<Plug>(ultisnips_expand)"
+
+inoremap <silent> <expr> <CR> ncm2_ultisnips#expand_or("\<CR>", 'n')
+let g:UltiSnipsJumpForwardTrigger	= "<Tab>"
+let g:UltiSnipsJumpBackwardTrigger	= "<S-Tab>"
+let g:UltiSnipsRemoveSelectModeMappings = 0
+" inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+
 " Use <TAB> to select the popup menu:
 inoremap <expr> <Tab> pumvisible() ? '<C-n>' : '<Tab>'
 inoremap <expr> <S-Tab> pumvisible() ? '<C-p>' : '<S-Tab>'
