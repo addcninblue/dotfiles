@@ -6,6 +6,7 @@ zstyle ':completion:*' matcher-list '' 'r:|[._-]=** r:|=**' 'm:{[:lower:][:upper
 zstyle :compinstall filename '/home/addison/.zshrc'
 
 zstyle ':completion:*' list-colors ''
+zstyle ':completion:*' menu select
 
 
 autoload -Uz compinit
@@ -61,16 +62,25 @@ precmd(){
 # set VIMODE according to the current mode (default “[i]”)
 function zle-line-init zle-keymap-select() {
 	#PROMPT="[${${KEYMAP/vicmd/NORMAL}/(main|viins)/INSERT}] "
-	if [ "$TERM" = "st-256color" ]; then
+	if [ "$TERM" = "st-256color" ] | [ "$TERM" = "xterm-256color" ]; then
 		if [ $KEYMAP = vicmd ]; then
 		    # the command mode for vi
 		    echo -ne "\e[2 q"
 		else
 		    # the insert mode for vi
-		    echo -ne "\e[4 q"
+		    echo -ne "\e[5 q"
 		fi
 	    fi
-		zle reset-prompt
+	# if [ "$TERM" = "xterm-256color" ]; then
+	# 	if [ $KEYMAP = vicmd ]; then
+	# 	    # the command mode for vi
+	# 	    echo -ne "\e[2 q"
+	# 	else
+	# 	    # the insert mode for vi
+	# 	    echo -ne "\e[5 q"
+	# 	fi
+	#     fi
+	zle reset-prompt
 }
 
 zle -N zle-keymap-select
