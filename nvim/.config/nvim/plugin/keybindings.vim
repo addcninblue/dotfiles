@@ -29,6 +29,7 @@ nnoremap <leader>k gt
 
 " FZF
 nnoremap <C-p> :FZF<CR>
+nnoremap <C-b> :Buffers<CR>
 
 " DiffSaved
 nnoremap <silent> <leader>d :DiffSaved<CR>

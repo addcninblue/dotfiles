@@ -139,3 +139,6 @@
 [submodule "nvim/.config/nvim/pack/bundle/start/vim-snippets"]
 	path = nvim/.config/nvim/pack/bundle/start/vim-snippets
 	url = https://github.com/honza/vim-snippets
+[submodule "nvim/.config/nvim/pack/bundle/start/ranger.vim"]
+	path = nvim/.config/nvim/pack/bundle/start/ranger.vim
+	url = https://github.com/francoiscabrol/ranger.vim
