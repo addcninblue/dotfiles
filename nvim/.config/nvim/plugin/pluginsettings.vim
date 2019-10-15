@@ -107,6 +107,15 @@ if executable('/home/addison95132/.local/bin/elixir-ls/rel/language_server.sh')
 	autocmd BufWritePre *.ex silent! LspDocumentFormatSync
 endif
 
+if executable('pyls')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'pyls',
+        \ 'cmd': {server_info->['pyls']},
+        \ 'whitelist': ['python'],
+	\ 'workspace_config': {'pyls': {'plugins': {'pylint': {'enabled': v:false}, 'pycodestyle': {'enabled': v:false}}}},
+        \ })
+endif
+
 let g:lsp_diagnostics_echo_cursor = 1
 
 " enable ncm2 for all buffers
