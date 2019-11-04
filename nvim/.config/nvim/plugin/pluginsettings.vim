@@ -103,8 +103,8 @@ if executable('/home/addison95132/.local/bin/elixir-ls/rel/language_server.sh')
 		\ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'mix.lock'))},
 		\ 'whitelist': ['elixir', 'eelixir'],
 		\})
-	autocmd BufWritePre *.exs silent! LspDocumentFormatSync
-	autocmd BufWritePre *.ex silent! LspDocumentFormatSync
+	" autocmd BufWritePre *.exs silent! LspDocumentFormatSync
+	" autocmd BufWritePre *.ex silent! LspDocumentFormatSync
 endif
 
 if executable('pyls')
@@ -161,6 +161,10 @@ au User Ncm2Plugin call ncm2#register_source({
     \ })
 
 let g:pymode_python = 'python3'
+
+" nerdtree {{{
+nnoremap <leader>n :NERDTreeToggle<CR>
+" nerdtree }}}
 
 set tags=./tags,tags;$HOME
 
