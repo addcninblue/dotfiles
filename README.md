@@ -4,12 +4,5 @@
 
 ## Installation
 ```bash
-git clone --recursive https://github.com/addcninblue/dotfiles/
-make full
-```
-
-## Vim:
-For Python autocompletion:
-```
-pip install python-language-server
+curl https://raw.githubusercontent.com/addcninblue/dotfiles/master/bootstrap | bash -
 ```

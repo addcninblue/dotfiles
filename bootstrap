@@ -1,4 +1,4 @@
 #!/bin/bash
 
 git clone --recurse-submodules -j8 https://github.com/addcninblue/dotfiles ~/dotfiles
-~/dotfiles/install
+cd ~/dotfiles && ./install
