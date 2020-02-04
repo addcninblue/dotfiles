@@ -1,0 +1,8 @@
+#!/bin/bash
+set -e
+
+# install just script
+curl -LSfs https://japaric.github.io/trust/install.sh | \
+  sh -s -- --git casey/just --target x86_64-unknown-linux-musl --to .
+
+./just setup

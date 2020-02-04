@@ -1,9 +1,9 @@
 .DEFAULT_GOAL:=help
 
-FULL=i3/ maid/ nvim/ polybar/ zshrc/ Xresources/ tmux/ ranger/ radare2/ compton/ kitty/
-UBUNTU=nvim/ zshrc/ Xresources/ tmux/ ranger/ kitty/
-MINIMAL=i3/ maid/ nvim/ polybar/ zshrc/ Xresources/ tmux/ ranger/ compton/ kitty/
-CHROMEBOOK=nvim/ zshrc/ tmux/ ranger/ radare2/ kitty/
+FULL=i3/ maid/ nvim/ polybar/ zshrc/ Xresources/ tmux/ ranger/ radare2/ compton/ kitty/ fonts/
+UBUNTU=nvim/ zshrc/ Xresources/ tmux/ ranger/ kitty/ fonts/
+MINIMAL=i3/ maid/ nvim/ polybar/ zshrc/ Xresources/ tmux/ ranger/ compton/ kitty/ fonts/
+CHROMEBOOK=nvim/ zshrc/ tmux/ ranger/ radare2/ kitty/ fonts/
 ALL_PACKAGES=$(sort $(dir $(wildcard */))) # unused
 STOW := $(shell command -v stow 2> /dev/null) # check if stow is installed
 

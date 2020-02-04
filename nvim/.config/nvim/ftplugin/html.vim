@@ -19,5 +19,7 @@ endfunction
 nnoremap<buffer> <C-]> :call JumpToCSS()<cr>
 
 " plugins
-" packadd emmet-vim
+if (&filetype == 'html')
+  packadd emmet-vim
+endif
 packadd vim-matchit
