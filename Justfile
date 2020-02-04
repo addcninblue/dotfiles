@@ -35,8 +35,13 @@ fzf:
 	git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
 	~/.fzf/install
 
-neovim:
+neovim: languageservers
 	pip3 install --user neovim
+
+languageservers: pyls
+
+pyls:
+	pip3 install 'python-language-server[all]'
 
 kitty:
 	curl -L https://sw.kovidgoyal.net/kitty/installer.sh | sh /dev/stdin
