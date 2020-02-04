@@ -9,6 +9,7 @@ highlight nonText ctermbg=NONE
 highlight SpecialKey ctermbg=NONE
 highlight LineNr ctermbg=NONE
 highlight SignColumn ctermbg=NONE
+highlight Comment cterm=italic gui=italic
 
 highlight Normal guibg=#002b36
 highlight nonText guibg=#002b36

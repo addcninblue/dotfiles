@@ -115,7 +115,7 @@ RPS1=$'$(vcs_info_wrapper)'
 PS2="╰─▶ "
 # add put this here
 
-export TERM='xterm-256color'
+# export TERM='xterm-256color'
 
 # defined aliases {{{
 alias ls='ls --color=auto'
@@ -357,8 +357,8 @@ bindkey '^Z' _zsh_cli_fg
 export PATH=$HOME/.local/bin:${PATH}
 export PATH=$HOME/.gem/ruby/2.4.0/bin:${PATH}
 export PATH=$PATH:/usr/local/go/bin
-export PATH=$PATH:$(go env GOPATH)/bin
-export GOPATH=$HOME/go
+# export PATH=$PATH:$(go env GOPATH)/bin
+# export GOPATH=$HOME/go
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 # export PYTHONPATH=/usr/lib/python2.7/site-packages:${PYTHONPATH}
 
