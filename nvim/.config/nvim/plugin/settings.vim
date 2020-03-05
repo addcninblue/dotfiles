@@ -88,7 +88,7 @@ set statusline+=%m\                   " Modified
 set statusline+=%{Filetype()}         " Filetype
 set statusline+=[%3l/%L]\             " line of lines
 set statusline+=[%3p%%]\              " percentage
-set shortmess=I
+set shortmess=IaT
 
 set mouse=a                           " mouse settings
 

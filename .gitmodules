@@ -19,9 +19,6 @@
 [submodule "nvim/.config/nvim/pack/bundle/opt/vim-haskellConcealPlus"]
 	path = nvim/.config/nvim/pack/bundle/opt/vim-haskellConcealPlus
 	url = https://github.com/enomsg/vim-haskellConcealPlus.git
-[submodule "nvim/.config/nvim/pack/bundle/opt/vim-markdown"]
-	path = nvim/.config/nvim/pack/bundle/opt/vim-markdown
-	url = https://github.com/gabrielelana/vim-markdown.git
 [submodule "nvim/.config/nvim/pack/bundle/opt/vim-matchit"]
 	path = nvim/.config/nvim/pack/bundle/opt/vim-matchit
 	url = https://github.com/adelarsq/vim-matchit.git
@@ -113,7 +110,7 @@
 	path = nvim/.config/nvim/pack/bundle/start/fzf.vim
 	url = https://github.com/junegunn/fzf.vim
 [submodule "nvim/.config/nvim/pack/bundle/start/vim-go"]
-	path = nvim/.config/nvim/pack/bundle/start/vim-go
+	path = nvim/.config/nvim/pack/bundle/opt/vim-go
 	url = https://github.com/fatih/vim-go
 [submodule "nvim/.config/nvim/pack/bundle/start/ncm2-vim-lsp"]
 	path = nvim/.config/nvim/pack/bundle/start/ncm2-vim-lsp
@@ -145,3 +142,15 @@
 [submodule "nvim/.config/nvim/pack/bundle/start/nerdtree"]
 	path = nvim/.config/nvim/pack/bundle/start/nerdtree
 	url = https://github.com/scrooloose/nerdtree
+[submodule "nvim/.config/nvim/pack/bundle/opt/jupytext.vim"]
+	path = nvim/.config/nvim/pack/bundle/start/jupytext.vim
+	url = https://github.com/goerz/jupytext.vim
+[submodule "nvim/.config/nvim/pack/bundle/opt/vim-markdown-edit-code-block"]
+	path = nvim/.config/nvim/pack/bundle/opt/vim-markdown-edit-code-block
+	url = https://github.com/Chandlercjy/vim-markdown-edit-code-block
+[submodule "nvim/.config/nvim/pack/bundle/start/vim-liquid"]
+	path = nvim/.config/nvim/pack/bundle/start/vim-liquid
+	url = https://github.com/tpope/vim-liquid
+[submodule "nvim/.config/nvim/pack/bundle/start/vim-markdown"]
+	path = nvim/.config/nvim/pack/bundle/start/vim-markdown
+	url = https://github.com/tpope/vim-markdown

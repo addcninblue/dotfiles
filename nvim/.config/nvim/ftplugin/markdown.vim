@@ -1,5 +1,4 @@
 nnoremap <leader>t vip:Tabularize/\|<CR>
-nnoremap <leader>; :InstantMarkdownPreview<CR>
 set autoindent
 " nnoremap <silent><leader>a }kdd{jjjV}k:!perl<Space>processing.pl<CR>vip:Tabularize/\|<CR>
 " nnoremap <silent><leader>a vip:!perl<Space>~/dotfiles/tools/processing.pl<CR>vip:Tabularize/\|<CR>
@@ -15,7 +14,7 @@ func! FinanceFormat()
 endfunc
 
 " plugins
-packadd vim-markdown
+packadd vim-markdown-edit-code-block
 let g:polyglot_disabled = ['markdown']
 
 function! MathAndLiquid()

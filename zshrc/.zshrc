@@ -48,13 +48,6 @@ function collapse_pwd {
     echo $(pwd | sed -e "s,^$HOME,~,")
 }
 
-# precmd() {
-# 	LEFT="[$(collapse_pwd)]"
-# 	RIGHT=$(vcs_info_wrapper)
-#   	RIGHTWIDTH=$(($COLUMNS-${#LEFT}))
-#   	print '\n'$LEFT${(l:$RIGHTWIDTH:)RIGHT}
-# }
-
 precmd(){
 	print''
 }
@@ -111,8 +104,88 @@ function zsh_prompt() {
 }
 
 PS1="$(zsh_prompt)"
-RPS1=$'$(vcs_info_wrapper)'
+# RPS1=$'$(vcs_info_wrapper)'
 PS2="╰─▶ "
+
+## Right prompt with Git and clock.
+## (Adapted from code found at <https://gist.github.com/joshdick/4415470>.)
+## (Adapted from code found at <https://github.com/ejpcmac/config_files/blob/bc9ee4e7363e4e0ca97f4addbdd9370b83048d3c/zsh/themes/bazik.zsh-theme#L56>)
+# Modify the colors and symbols in these variables as desired.
+# GIT_PROMPT_PREFIX="%{$fg[green]%}[%{$reset_color%}"
+# GIT_PROMPT_SUFFIX="%{$fg[green]%}]%{$reset_color%}"
+GIT_PROMPT_PREFIX="["
+GIT_PROMPT_SUFFIX="]"
+GIT_PROMPT_AHEAD="%{$fg[red]%}↑NUM%{$reset_color%}"
+GIT_PROMPT_BEHIND="%{$fg[cyan]%}↓NUM%{$reset_color%}"
+GIT_PROMPT_MERGING="%{$fg[magenta]%}⚡︎%{$reset_color%}"
+GIT_PROMPT_UNTRACKED="%{$fg[red]%}·%{$reset_color%}"
+GIT_PROMPT_MODIFIED="%{$fg[yellow]%}·%{$reset_color%}"
+GIT_PROMPT_STAGED="%{$fg[green]%}·%{$reset_color%}"
+
+# Show Git branch/tag, or name-rev if on detached head
+parse_git_branch() {
+    (git symbolic-ref -q HEAD || git name-rev --name-only --no-undefined --always HEAD) 2> /dev/null
+}
+
+# Show different symbols as appropirate for Git remote states
+parse_git_remote_state() {
+    # Compose this value via multiple conditional appends.
+    local GIT_STATE=""
+
+    local NUM_AHEAD="$(git log --oneline @{u}.. 2> /dev/null | wc -l | tr -d ' ')"
+    if [ "$NUM_AHEAD" -gt 0 ]; then
+        GIT_STATE=$GIT_STATE${GIT_PROMPT_AHEAD//NUM/$NUM_AHEAD}
+    fi
+
+    local NUM_BEHIND="$(git log --oneline ..@{u} 2> /dev/null | wc -l | tr -d ' ')"
+    if [ "$NUM_BEHIND" -gt 0 ]; then
+        GIT_STATE=$GIT_STATE${GIT_PROMPT_BEHIND//NUM/$NUM_BEHIND}
+    fi
+
+    if [[ -n $GIT_STATE ]]; then
+        echo "$GIT_PROMPT_PREFIX$GIT_STATE$GIT_PROMPT_SUFFIX"
+    fi
+}
+
+# Show different symbols as appropriate for various Git repository states
+parse_git_state() {
+    # Compose this value via multiple conditional appends.
+    local GIT_STATE=""
+
+    local GIT_DIR="$(git rev-parse --git-dir 2> /dev/null)"
+    if [ -n $GIT_DIR ] && test -r $GIT_DIR/MERGE_HEAD; then
+        GIT_STATE=$GIT_STATE$GIT_PROMPT_MERGING
+    fi
+
+    if [[ -n $(git ls-files --other --exclude-standard 2> /dev/null) ]]; then
+        GIT_STATE=$GIT_STATE$GIT_PROMPT_UNTRACKED
+    fi
+
+    if ! git diff --quiet 2> /dev/null; then
+        GIT_STATE=$GIT_STATE$GIT_PROMPT_MODIFIED
+    fi
+
+    if ! git diff --cached --quiet 2> /dev/null; then
+        GIT_STATE=$GIT_STATE$GIT_PROMPT_STAGED
+    fi
+
+    if [[ -n $GIT_STATE ]]; then
+        echo "$GIT_PROMPT_PREFIX$GIT_STATE$GIT_PROMPT_SUFFIX"
+    fi
+}
+
+# If inside a Git repository, print its branch and state
+git_prompt_string() {
+    local git_where="$(parse_git_branch)"
+    [ -n "$git_where" ] && echo "$GIT_PROMPT_SYMBOL$(parse_git_state)$(parse_git_remote_state)$GIT_PROMPT_PREFIX${git_where#(refs/heads/|tags/)}$GIT_PROMPT_SUFFIX"
+}
+
+clock() {
+    echo "[%{$fg[blue]%}%D{%H:%M:%S}%{$reset_color%}]"
+}
+
+# Set the right-hand prompt
+RPS1='$(git_prompt_string)$(clock)'
 # add put this here
 
 # export TERM='xterm-256color'
@@ -357,10 +430,14 @@ bindkey '^Z' _zsh_cli_fg
 export PATH=$HOME/.local/bin:${PATH}
 export PATH=$HOME/.gem/ruby/2.4.0/bin:${PATH}
 export PATH=$PATH:/usr/local/go/bin
-# export PATH=$PATH:$(go env GOPATH)/bin
-# export GOPATH=$HOME/go
+export PATH=$PATH:/snap/bin
+export PATH=$PATH:$(go env GOPATH)/bin
+export GOPATH=$HOME/go
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 # export PYTHONPATH=/usr/lib/python2.7/site-packages:${PYTHONPATH}
+
+export GEM_HOME="$HOME/gems"
+export PATH="$HOME/gems/bin:$PATH"
 
 # added by Anaconda3 5.3.0 installer
 # IMPORTANT NOTE: enable when you need anaconda !

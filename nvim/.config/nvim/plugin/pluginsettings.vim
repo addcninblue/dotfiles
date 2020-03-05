@@ -71,6 +71,14 @@ let g:tslime_always_current_window = 1
 
 nnoremap <silent> gd :LspDefinition<CR>
 nnoremap <silent> gr :LspReferences<CR>
+let g:lsp_virtual_text_enabled = 0
+let g:lsp_highlights_enabled = 0
+let g:lsp_diagnostics_echo_cursor = 1
+let g:lsp_signs_enabled = 1
+let g:lsp_signs_error = {'text': '✗'}
+let g:lsp_signs_warning = {'text': '‼'}
+let g:lsp_signs_hint = {'text': 'H'}
+
 if executable('gopls')
 	" go client
 	au User lsp_setup call lsp#register_server({
@@ -96,10 +104,10 @@ if executable('ccls')
       \ })
 endif
 
-if executable('/home/addison95132/.local/bin/elixir-ls/rel/language_server.sh')
+if executable('/home/addison95132/.local/bin/elixir-ls/release/language_server.sh')
 	au User lsp_setup call lsp#register_server({
 		\ 'name': 'elixir-ls',
-		\ 'cmd': {server_info->['/home/addison95132/.local/bin/elixir-ls/rel/language_server.sh']},
+		\ 'cmd': {server_info->['/home/addison95132/.local/bin/elixir-ls/release/language_server.sh']},
 		\ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'mix.lock'))},
 		\ 'whitelist': ['elixir', 'eelixir'],
 		\})
@@ -114,9 +122,8 @@ if executable('pyls')
         \ 'whitelist': ['python'],
 	\ 'workspace_config': {'pyls': {'plugins': {'pylint': {'enabled': v:false}, 'pycodestyle': {'enabled': v:false}}}},
         \ })
+    " autocmd BufWritePre *.py silent! LspDocumentFormatSync
 endif
-
-let g:lsp_diagnostics_echo_cursor = 1
 
 " enable ncm2 for all buffers
 autocmd BufEnter * call ncm2#enable_for_buffer()
@@ -163,7 +170,8 @@ au User Ncm2Plugin call ncm2#register_source({
 let g:pymode_python = 'python3'
 
 " nerdtree {{{
-nnoremap <leader>n :NERDTreeToggle<CR>
+nnoremap <leader>nn :NERDTreeToggle<CR>
+nnoremap <leader>nf :NERDTreeFind<CR>
 " nerdtree }}}
 
 set tags=./tags,tags;$HOME

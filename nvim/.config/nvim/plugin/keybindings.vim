@@ -73,6 +73,8 @@ inoremap <Up> <Esc>:m .-2<CR>
 vnoremap <Down> :m '>+1<CR>gv=gv
 vnoremap <Up> :m '<-2<CR>gv=gv
 
-" Rnager
+" Ranger
 let g:ranger_map_keys = 0
-nnoremap <leader>e :Ranger<CR>
+" nnoremap <leader>e :Ranger<CR>
+
+nnoremap <silent> <leader>e :MarkdownEditBlock<CR>
