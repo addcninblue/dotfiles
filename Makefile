@@ -4,6 +4,7 @@ FULL=i3/ maid/ nvim/ polybar/ zshrc/ Xresources/ tmux/ ranger/ radare2/ compton/
 UBUNTU=nvim/ zshrc/ Xresources/ tmux/ ranger/ kitty/ fonts/
 MINIMAL=i3/ maid/ nvim/ polybar/ zshrc/ Xresources/ tmux/ ranger/ compton/ kitty/ fonts/
 CHROMEBOOK=nvim/ zshrc/ tmux/ ranger/ radare2/ kitty/ fonts/
+SERVER=nvim/ zshrc/ tmux/ ranger/
 ALL_PACKAGES=$(sort $(dir $(wildcard */))) # unused
 STOW := $(shell command -v stow 2> /dev/null) # check if stow is installed
 
@@ -49,6 +50,11 @@ setuparch:
 setupchromebook:
 	@echo "setting up chromebook"
 	stow -t ~ $(CHROMEBOOK)
+
+.PHONY: setupchromebook
+server:
+	@echo "setting up server"
+	stow -t ~ $(SERVER)
 
 .PHONY: uninstall
 uninstall: stow

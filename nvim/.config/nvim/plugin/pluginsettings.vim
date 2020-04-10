@@ -177,7 +177,10 @@ nnoremap <leader>nf :NERDTreeFind<CR>
 set tags=./tags,tags;$HOME
 
 " fzf
-source ~/.fzf/plugin/fzf.vim
+if filereadable("~/.fzf/plugin/fzf.vim")
+    source ~/.fzf/plugin/fzf.vim
+elseif filereadable("")
+endif
 
 autocmd BufNewFile *.graphql  setfiletype graphql
 autocmd BufNewFile *.graphqls setfiletype graphql
