@@ -5,4 +5,4 @@ setlocal softtabstop=4
 setlocal foldmethod=indent
 
 " plugins
-packadd vim-go
+" packadd vim-go

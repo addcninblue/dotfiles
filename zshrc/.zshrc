@@ -253,11 +253,6 @@ alias editmaid='nvim ~/dotfiles/maid/rules.rb'
 # alias j="jupyter notebook --ip $(ip addr show eth0 | grep -Po 'inet \K[\d.]+')"
 alias j="jupyter notebook"
 
-l() {
-	xdg-open "http://penguin.linux.test:$1"
-	# xdg-open "http://$(ip addr show eth0 | grep -Po 'inet \K[\d.]+'):$1/"
-}
-
 # defined aliases }}}
 
 # defined functions: {{{
@@ -395,25 +390,6 @@ fda() {
 
 # END FZF STUFF
 
-# ls rebinds
-la() {
-	ls -a
-}
-
-ll() {
-	ls -l
-}
-
-lal() {
-	ls -al
-}
-
-mkcd ()
-{
-    mkdir -p -- "$1" &&
-      cd -P -- "$1"
-}
-
 # nvim for man
 export MANPAGER="nvim -c 'set ft=man' -"
 
@@ -438,6 +414,8 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
+
+export DOCKER_HOST=ssh://server
 
 # added by Anaconda3 5.3.0 installer
 # IMPORTANT NOTE: enable when you need anaconda !

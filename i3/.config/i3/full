@@ -1,4 +1,4 @@
-# vi: ft=i3
+# vi: ft=i3config
 
 set $mod Mod3
 set $gaps_outer 10

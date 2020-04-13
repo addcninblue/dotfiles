@@ -51,7 +51,7 @@ setupchromebook:
 	@echo "setting up chromebook"
 	stow -t ~ $(CHROMEBOOK)
 
-.PHONY: setupchromebook
+.PHONY: server
 server:
 	@echo "setting up server"
 	stow -t ~ $(SERVER)

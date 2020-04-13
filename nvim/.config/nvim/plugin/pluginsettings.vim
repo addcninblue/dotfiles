@@ -89,8 +89,8 @@ if executable('gopls')
 	autocmd BufWritePre *.go silent! LspDocumentFormatSync
 endif
 
-" let g:lsp_log_verbose = 1
-" let g:lsp_log_file = expand('~/vim-lsp.log')
+let g:lsp_log_verbose = 1
+let g:lsp_log_file = expand('~/vim-lsp.log')
 
 " " below command made it not work for some reason
 " \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
@@ -104,10 +104,11 @@ if executable('ccls')
       \ })
 endif
 
-if executable('/home/addison95132/.local/bin/elixir-ls/release/language_server.sh')
+if executable('/home/addison/.local/bin/elixir-ls/release/language_server.sh')
 	au User lsp_setup call lsp#register_server({
 		\ 'name': 'elixir-ls',
-		\ 'cmd': {server_info->['/home/addison95132/.local/bin/elixir-ls/release/language_server.sh']},
+		\ 'cmd': {server_info->['/home/addison/.local/bin/elixir-ls/release/language_server.sh']},
+		\ 'workspace_config': {'elixirLS': {'dialyzerEnabled': v:false}},
 		\ 'root_uri':{server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'mix.lock'))},
 		\ 'whitelist': ['elixir', 'eelixir'],
 		\})
@@ -172,14 +173,15 @@ let g:pymode_python = 'python3'
 " nerdtree {{{
 nnoremap <leader>nn :NERDTreeToggle<CR>
 nnoremap <leader>nf :NERDTreeFind<CR>
+let NERDTreeShowLineNumbers=1
+autocmd FileType nerdtree setlocal relativenumber
 " nerdtree }}}
 
 set tags=./tags,tags;$HOME
 
 " fzf
-if filereadable("~/.fzf/plugin/fzf.vim")
+if filereadable("/home/addison/.fzf/plugin/fzf.vim")
     source ~/.fzf/plugin/fzf.vim
-elseif filereadable("")
 endif
 
 autocmd BufNewFile *.graphql  setfiletype graphql

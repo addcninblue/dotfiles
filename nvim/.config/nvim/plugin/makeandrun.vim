@@ -60,6 +60,10 @@ func! Run()
 		let l:command="runhaskell " . expand("%")
 	elseif &filetype == 'tex'
 		let l:command="zathura " . expand("%<") . ".pdf"
+	elseif &filetype == 'elixir'
+		let l:command="elixir " . expand("%")
+	else
+		return
 	endif
 	silent exec "!tmux split-window -v -p 20 '" . l:command . " |& nvim -u ~/.config/nvim/ftplugin/more.vim -'"
 	" silent exec "!tmux split-window -v -p 20 '" . l:command . " |& less'"
@@ -68,6 +72,10 @@ func! Interactive()
 	let l:command="echo 'not a function'"
 	if &filetype == 'python'
 		let l:command="python3 -i " .expand("%")
+	elseif &filetype == 'elixir'
+		let l:command="iex " . expand("%")
+	else
+		return
 	endif
 	exec "!tmux split-window -v -p 20 " . l:command
 endfunc

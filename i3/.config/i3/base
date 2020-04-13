@@ -1,4 +1,4 @@
-# vi: ft=i3
+# vi: ft=i3config
 
 set $dotfiles_path $HOME/dotfiles
 

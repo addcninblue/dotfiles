@@ -24,8 +24,8 @@ cnoremap jk <C-c>
 vnoremap jk <ESC>
 
 "tab switching
-nnoremap <leader>j gT
-nnoremap <leader>k gt
+nnoremap <leader>j gt
+nnoremap <leader>k gT
 
 " FZF
 nnoremap <C-p> :FZF<CR>
@@ -78,3 +78,8 @@ let g:ranger_map_keys = 0
 " nnoremap <leader>e :Ranger<CR>
 
 nnoremap <silent> <leader>e :MarkdownEditBlock<CR>
+
+" language servers
+nnoremap [e :LspPreviousError<CR>
+nnoremap ]e :LspNextError<CR>
+nnoremap <S-k> :LspHover<CR>
