@@ -21,6 +21,9 @@ in
   # Use the systemd-boot EFI boot loader.
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+  boot.kernelPackages = unstable-small.linuxPackages;
+  # boot.extraModulePackages = with config.boot.kernelPackages; [ asus-wmi-sensors ];
+  # # The above is still broken :'(
 
   networking.hostName = "nixos"; # Define your hostname.
   # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
@@ -51,12 +54,14 @@ in
       lxd = unstable-small.lxd;
     };
     allowUnfree = true;
+    pulseaudio = true;
   };
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     unstable-small.neovim unstable-small.lxd pciutils git stow gnumake unstable-small.zsh unstable-small.tmux # default installation
+    microcodeAmd # for amd microcode
     unstable-small.cudatoolkit unstable-small.libGLU # for nvidia gpu
     nixos-generators # for creating lxc container
     jdk # java 8
@@ -69,6 +74,7 @@ in
     usbutils
     home-manager
     samba
+    unstable-small.lm_sensors
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
@@ -92,8 +98,8 @@ in
   # services.printing.enable = true;
 
   # Enable sound.
-  # sound.enable = true;
-  # hardware.pulseaudio.enable = true;
+  sound.enable = true;
+  hardware.pulseaudio.enable = true;
 
   # Enable the X11 windowing system.
   services.xserver.enable = true;
@@ -106,7 +112,47 @@ in
   # Enable the KDE Desktop Environment.
   # services.xserver.displayManager.sddm.enable = true;
   # services.xserver.desktopManager.plasma5.enable = true;
-  services.xserver.videoDrivers = [ "nvidia" ];
+  services.xserver = {
+    videoDrivers = [ "nvidia" ];
+    deviceSection = ''
+      Option "Coolbits" "12"
+    '';
+    # extraConfig = ''
+
+    #   Section "Monitor"
+    #       Identifier     "Monitor1"
+    #       VendorName     "Unknown"
+    #       ModelName      "CRT-0"
+    #       HorizSync       28.0 - 81.0
+    #       VertRefresh     48.0 - 75.0
+    #   EndSection
+
+    #   Section "Device"
+    #       Identifier     "Device1"
+    #       Driver         "nvidia"
+    #       VendorName     "NVIDIA Corporation"
+    #       BoardName      "GeForce GTX 1080"
+    #       BusID          "PCI:6:0:0"
+    #       Option "Coolbits" "12"
+    #   EndSection
+
+    #   Section "Screen"
+    #       Identifier     "Screen1"
+    #       Device         "Device1"
+    #       Monitor        "Monitor1"
+    #       DefaultDepth    24
+    #       Option         "ConnectedMonitor" "CRT"
+    #       Option         "Coolbits" "5"
+    #       Option         "TwinView" "0"
+    #       Option         "TwinViewXineramaInfoOrder" "CRT-0"
+    #       Option         "metamodes" "nvidia-auto-select +0+0"
+    #       SubSection     "Display"
+    #           Depth       24
+    #       EndSubSection
+    #       Option "Coolbits" "12"
+    #   EndSection
+    # '';
+  };
 
   services.samba = {
     enable = true;
@@ -140,16 +186,36 @@ in
   users.users.addison = {
     isNormalUser = true;
     home = "/home/addison";
-    extraGroups = ["wheel" "lxd" "networkmanager" "docker"];
+    extraGroups = [ "wheel" "lxd" "networkmanager" "docker" "audio" ];
     openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQC/psF8VxWFoLvLghO8eK3J/cIXWWZejLKT2To6UC6kqOpkM3/JHN1gkpl7YOYVn3uR5HLmH3ya0oAfzBn/m7NUDTGHFNzjfRVUqzuKlGmmxW4ePbjkn+kJuRtUbtB0atkIFg80Zd3ozyBCLo+dhN/Rd8IUDegeFtnMugFPmowpHLYemN8IH8r5o56FURQNW9DUGxU42xh0c764U45yQCvql6hnF5W/EiVm4QVo/H0IEJyMrGJ/lkS6ChdYXCnh6n16Z2S2OUS4y7ydTo1YyP36H5tDkJwMkJ+clyDDkAhDUGBzvKsCCPzY0dJmbhLeOobXi3dusmLt4K6gPxl45o/ft3LMXHFoB/nKoKAbtC6HKKcyfL3wGOQJrzeiuZJHcLUNmlV66L013/+dX/AFEBDI+dS4xXfhZBqTWTC1V4M6MmFvS0mh4kD5NBf34ZSBwhvPwyZzdnx3wU61wA9PXQgEHx8xh5hSp9VuRhHEn7zERMwmGKSizFJ6foEyoncJV1vQGZ6UZHromNCprm+j8qwVb7u3nihaIO5bA5p5xv14goz+O/DpG6Kp/yjpvW3+PHdkirUwPwzshq6t3ITn+Tzi8jAZ1D1f4na+tsgEp2tJ/BLrvci+RFAxiXBfKlUZtCU7utd57K0S1fZbuT83GB+MHf37LcwT0FjnjCy4pxfaXQ==" ];
     shell = pkgs.zsh;
   };
 
+  users.groups = {
+    andi = {
+      members = ["andi"];
+      gid = 1001;
+    };
+    harry = {
+      members = ["harry"];
+      gid = 1002;
+    };
+  };
+
   users.users.andi = {
+    group = "andi";
     isNormalUser = true;
     home = "/home/andi";
     extraGroups = [];
     openssh.authorizedKeys.keys = [ "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDrKZTu6rI9VlceMQImWIXhXSeMekzpKgftaP3FD5S33rdh8bZVLzKd/FQS182wEoA8lRO+IMoQHDNvxfl6DBpto4537EDDVPzSAOwJWh7tzM055dzkr2Oq8Hvoppx1pFqED03dGFgwV8swAVpmSGjTqzzl0LIHDq/XR8LqkkqBrpcCbm3nKNR6sKg4Fje70v3PD/DGrKTX12b9WyeeVXm7VRFWFs+rXFKgdqjBE8KoB2lveukxh4NxbEMfJHXA56XycRHJaeNk4AJm9AsdXHNrsc2BboWvPZi6g0ITdNLkZQhcIJ2N0EcaJShSjaHgSuM5E6BmYoDJ6d5h7eKCAo+d andigu@Andis-MacBook-Pro.local" ];
+    shell = pkgs.bash;
+  };
+
+  users.users.harry = {
+    group = "harry";
+    isNormalUser = true;
+    home = "/home/harry";
+    extraGroups = [];
     shell = pkgs.bash;
   };
 
@@ -192,6 +258,19 @@ in
       locations."/" = {
         proxyPass = "http://10.48.159.105:8000";
         proxyWebsockets = true; # needed if you need to use WebSocket
+        extraConfig =
+          # required when the target is also TLS server with multiple hosts
+          "proxy_ssl_server_name on;" +
+          # required when the server wants to use HTTP Authentication
+          "proxy_pass_header Authorization;"
+          ;
+      };
+    };
+    virtualHosts."cs161.addcnin.blue" =  {
+      enableACME = true;
+      forceSSL = true;
+      locations."/" = {
+        proxyPass = "http://localhost:8080";
         extraConfig =
           # required when the target is also TLS server with multiple hosts
           "proxy_ssl_server_name on;" +

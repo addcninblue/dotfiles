@@ -12,23 +12,31 @@ let
     primary = "#ffb52a";
     secondary = "#e60053";
     alert = "#bd2c40";
+    yellow = "#b58900";
+    orange = "#cb4b16";
+    red = "#dc322f";
+    magenta = "#d33682";
+    violet = "#6c71c4";
+    blue = "#268bd2";
+    cyan = "#2aa198";
+    green = "#859900";
   };
 in
 {
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     # terminal apps
-    htop
+    htop unstable-small.silver-searcher unstable-small.mprime psensor tmate
     (python3.withPackages(ps: with ps; [ numpy matplotlib pandas python-language-server virtualenv tqdm ]))
 
     # PL stuff
-    unstable-small.elixir ruby_2_5 gcc gccStdenv stdenv_32bit
+    unstable-small.elixir ruby_2_5 gcc gccStdenv stdenv_32bit go
 
     # build tools
-    file binutils
+    file binutils zip
 
     # i3
-    i3-gaps dmenu compton feh maim libnotify
+    i3-gaps dmenu compton feh maim libnotify rofi
 
     # fonts
     unstable-small.jetbrains-mono unstable-small.google-fonts
@@ -36,7 +44,7 @@ in
     # desktop apps
     calibre kitty google-chrome unstable-small.spotify unstable-small.playerctl unstable-small.slack
 
-    unstable-small.silver-searcher
+    briss fio
   ];
 
   xsession.enable = true;
@@ -60,6 +68,9 @@ in
     latitude = "37.3382";
     longitude = "-121.8863";
     tray = true;
+    temperature = {
+      day = 6500;
+    };
   };
 
   services.dunst = {
@@ -135,12 +146,12 @@ in
         border-color = "${colors.background}";
 
         padding-left = 0;
-        padding-right = 2;
+        padding-right = 1;
 
         module-margin-left = 1;
-        module-margin-right = 2;
+        module-margin-right = 1;
 
-        font-0 = "Montserrat:size=12;0";
+        font-0 = "Jetbrains Mono:size=12;0";
 
 # modules-left = date
 # modules-center = i3
@@ -155,6 +166,7 @@ in
         date = "%Y-%m-%d";
         time = "%H:%M";
         label = "%date% %time%";
+        label-underline = "${colors.blue}";
       };
       "module/i3" = {
         type = "internal/i3";
@@ -166,12 +178,12 @@ in
         label-focused = "%name%";
         label-focused-background = "${colors.background-alt}";
         label-focused-underline = "${colors.primary}";
-        label-focused-padding = 2;
+        label-focused-padding = 1;
 
 
         label-unfocused = "%name%";
         label-unfocused-foreground = "${colors.foreground-alt}";
-        label-unfocused-padding = 2;
+        label-unfocused-padding = 1;
 
         # label-visible = "%name%";
         # label-visible-background = "${self.label-focused-background}";
@@ -180,7 +192,7 @@ in
 
         label-urgent = "%name%";
         label-urgent-background = "${colors.alert}";
-        label-urgent-padding = 2;
+        label-urgent-padding = 1;
       };
       "module/pulseaudio" = {
         type = "internal/pulseaudio";
@@ -188,7 +200,10 @@ in
         # ; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
         # ; If not, uses default sink
         sink = "analog-output-lineout";
-        format-volume = "<ramp-volume> <label-volume>";
+        # format-volume = "<ramp-volume> <label-volume>";
+        format-volume = "<label-volume>";
+        format-volume-underline = "${colors.green}";
+        format-muted-underline = "${colors.red}";
 
         # ; Available tags:
         # ;   <label-muted> (default)
@@ -204,7 +219,7 @@ in
         # ; Available tokens:
         # ;   %percentage% (default)
         # ;   %decibels% (unreleased)
-        label-muted = "🔇 muted";
+        label-muted = "muted";
         label-muted-foreground = "#666";
 
         # ; Only applies if <ramp-volume> is used
@@ -224,8 +239,9 @@ in
         type = "custom/script";
         interval = "5s";
         format = "<label>";
-        label = "%output:0:45:...%";
+        label = "%output:0:45:…%";
         exec = "~/.config/polybar/mediaplayer.sh";
+        label-underline = "${colors.cyan}";
       };
     };
     script = ''
