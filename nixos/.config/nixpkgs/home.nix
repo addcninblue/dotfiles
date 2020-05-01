@@ -26,7 +26,7 @@ in
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     # terminal apps
-    htop unstable-small.silver-searcher unstable-small.mprime psensor tmate
+    htop unstable-small.silver-searcher unstable-small.mprime psensor tmate jq
     (python3.withPackages(ps: with ps; [ numpy matplotlib pandas python-language-server virtualenv tqdm ]))
 
     # PL stuff
@@ -43,8 +43,6 @@ in
 
     # desktop apps
     calibre kitty google-chrome unstable-small.spotify unstable-small.playerctl unstable-small.slack
-
-    briss fio
   ];
 
   xsession.enable = true;
@@ -163,8 +161,8 @@ in
       "module/date" = {
         type = "internal/date";
         internal = 5;
-        date = "%Y-%m-%d";
-        time = "%H:%M";
+        date = "%m/%d";
+        time = "%I:%M";
         label = "%date% %time%";
         label-underline = "${colors.blue}";
       };
