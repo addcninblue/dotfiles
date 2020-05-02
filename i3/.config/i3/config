@@ -41,6 +41,9 @@ bindsym XF86AudioPlay exec --no-startup-id "playerctl --player=playerctld play-p
 bindsym XF86AudioPrev exec --no-startup-id "playerctl previous && notify-send 'previous'"
 bindsym XF86AudioNext exec --no-startup-id "playerctl next && notify-send 'next'"
 
+bindsym XF86MonBrightnessDown exec --no-startup-id "light -U 10"
+bindsym XF86MonBrightnessUp exec --no-startup-id "light -A 10"
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
@@ -224,9 +227,4 @@ bindsym $mod+grave exec notify-send "timer for 20 minutes" && sleep 5s && notify
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id feh --bg-fill $dotfiles_path/backgrounds/current.png
 exec_always --no-startup-id pkill -9 compton; compton --backend glx --vsync --inactive-dim=0.08 --inactive-dim-fixed --xrender-sync-fence --glx-no-stencil --glx-no-rebind-pixmap --use-damage
-
-# # Start i3bar to display a workspace bar (plus the system information i3status
-# # finds out, if available)
-# bar {
-#         status_command i3status
-# }
+exec_always --no-startup-id xmodmap ~/.xmodmap

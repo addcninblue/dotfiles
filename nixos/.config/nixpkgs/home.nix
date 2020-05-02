@@ -26,7 +26,7 @@ in
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     # terminal apps
-    htop unstable-small.silver-searcher unstable-small.mprime psensor tmate jq
+    unstable-small.neovim unstable-small.tmux git stow gnumake htop unstable-small.silver-searcher unstable-small.mprime psensor tmate jq
     (python3.withPackages(ps: with ps; [ numpy matplotlib pandas python-language-server virtualenv tqdm ]))
 
     # PL stuff
@@ -43,6 +43,8 @@ in
 
     # desktop apps
     calibre kitty google-chrome unstable-small.spotify unstable-small.playerctl unstable-small.slack
+
+    pavucontrol xorg.xev xorg.xmodmap
   ];
 
   xsession.enable = true;
@@ -129,7 +131,7 @@ in
       "bar/bottom" = {
         modules-left = "date music";
         modules-center = "i3";
-        modules-right = "pulseaudio";
+        modules-right = "pulseaudio brightness";
         bottom = "true";
         background = "${colors.background}";
         foreground = "${colors.foreground}";
@@ -239,6 +241,14 @@ in
         format = "<label>";
         label = "%output:0:45:…%";
         exec = "~/.config/polybar/mediaplayer.sh";
+        label-underline = "${colors.cyan}";
+      };
+      "module/brightness" = {
+        type = "custom/script";
+        interval = "5s";
+        format = "<label>";
+        label = "%output:0:45:…%";
+        exec = "~/.config/polybar/brightness.sh";
         label-underline = "${colors.cyan}";
       };
     };
