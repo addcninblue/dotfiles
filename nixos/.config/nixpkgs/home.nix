@@ -26,11 +26,11 @@ in
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     # terminal apps
-    unstable-small.neovim unstable-small.tmux git stow gnumake htop unstable-small.silver-searcher unstable-small.mprime psensor tmate jq
+    unstable-small.neovim unstable-small.tmux git stow gnumake htop unstable-small.silver-searcher unstable-small.mprime psensor tmate jq lm_sensors
     (python3.withPackages(ps: with ps; [ numpy matplotlib pandas python-language-server virtualenv tqdm ]))
 
     # PL stuff
-    unstable-small.elixir ruby_2_5 gcc gccStdenv stdenv_32bit go
+    unstable-small.elixir ruby_2_5 gcc gccStdenv stdenv_32bit go jre
 
     # build tools
     file binutils zip
@@ -44,7 +44,7 @@ in
     # desktop apps
     calibre kitty google-chrome unstable-small.spotify unstable-small.playerctl unstable-small.slack
 
-    pavucontrol xorg.xev xorg.xmodmap
+    pavucontrol xorg.xev xorg.xmodmap arandr pciutils
   ];
 
   xsession.enable = true;
@@ -77,6 +77,7 @@ in
     enable = true;
     settings = {
       global = {
+        font = "Raleway Bold";
         allow_markup = "yes";
         format = "<b>%s</b>\n%b";
         sort = "yes";

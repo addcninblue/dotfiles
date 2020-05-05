@@ -64,15 +64,6 @@ function zle-line-init zle-keymap-select() {
 		    echo -ne "\e[5 q"
 		fi
 	    fi
-	# if [ "$TERM" = "xterm-256color" ]; then
-	# 	if [ $KEYMAP = vicmd ]; then
-	# 	    # the command mode for vi
-	# 	    echo -ne "\e[2 q"
-	# 	else
-	# 	    # the insert mode for vi
-	# 	    echo -ne "\e[5 q"
-	# 	fi
-	#     fi
 	zle reset-prompt
 }
 
@@ -348,11 +339,6 @@ export VISUAL=nvim
 autoload edit-command-line; zle -N edit-command-line
 bindkey -M vicmd v edit-command-line
 
-# PROMPT="%d \$ "
-# Base16 Shell
-# BASE16_SHELL="$HOME/.config/base16-shell/base16-monokai.dark.sh"
-# [[ -s $BASE16_SHELL ]] && source $BASE16_SHELL
-
 # FZF STUFF
 
 # fzf to file location
@@ -417,24 +403,6 @@ export PATH="$HOME/gems/bin:$PATH"
 
 export DOCKER_HOST=ssh://server
 
-# added by Anaconda3 5.3.0 installer
-# IMPORTANT NOTE: enable when you need anaconda !
-# >>> conda init >>>
-# !! Contents within this block are managed by 'conda init' !!
-# __conda_setup="$(CONDA_REPORT_ERRORS=false '/home/addison95132/anaconda3/bin/conda' shell.bash hook 2> /dev/null)"
-# if [ $? -eq 0 ]; then
-#     \eval "$__conda_setup"
-# else
-#     if [ -f "/home/addison95132/anaconda3/etc/profile.d/conda.sh" ]; then
-#         . "/home/addison95132/anaconda3/etc/profile.d/conda.sh"
-#         CONDA_CHANGEPS1=false conda activate base
-#     else
-#         \export PATH="/home/addison95132/anaconda3/bin:$PATH"
-#     fi
-# fi
-# unset __conda_setup
-# <<< conda init <<<
-
 bindkey    "^[[H"    beginning-of-line
 bindkey    "^[[F"    end-of-line
 bindkey    "^[[3~"   delete-char
@@ -477,17 +445,6 @@ if [ -f ~/.zsh_private_variables ]; then
 	source ~/.zsh_private_variables
 fi
 
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/home/addison95132/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/home/addison95132/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/home/addison95132/anaconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/home/addison95132/anaconda3/bin:$PATH"
-    fi
+if [ ! -f ~/local ]; then
+	ssh server && exit
 fi
-unset __conda_setup
-# <<< conda initialize <<<

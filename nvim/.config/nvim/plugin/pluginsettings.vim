@@ -89,8 +89,8 @@ if executable('gopls')
 	autocmd BufWritePre *.go silent! LspDocumentFormatSync
 endif
 
-let g:lsp_log_verbose = 1
-let g:lsp_log_file = expand('~/vim-lsp.log')
+" let g:lsp_log_verbose = 1
+" let g:lsp_log_file = expand('~/vim-lsp.log')
 
 " " below command made it not work for some reason
 " \ 'root_uri': {server_info->lsp#utils#path_to_uri(lsp#utils#find_nearest_parent_file_directory(lsp#utils#get_buffer_path(), 'compile_commands.json'))},
@@ -182,6 +182,7 @@ set tags=./tags,tags;$HOME
 " fzf
 if filereadable("/home/addison/.fzf/plugin/fzf.vim")
     source ~/.fzf/plugin/fzf.vim
+    let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'fg', 'border': 'sharp' } }
 endif
 
 autocmd BufNewFile *.graphql  setfiletype graphql
