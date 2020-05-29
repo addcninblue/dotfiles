@@ -4,6 +4,8 @@ let g:SimplenotePassword = $PASSWORD
 filetype indent plugin on
 syntax on
 
+let mapleader = "\<Space>" "sets leader to space key. This must happen here due to some plugins load order
+
 if &loadplugins
   if has('packages')
     packloadall

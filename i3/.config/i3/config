@@ -34,9 +34,9 @@ client.background       #ffffff
 exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +10%
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -10%
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(pactl list | awk -v RS= "/RUNNING/" | sed -nr "s/Sink #([0-9]*)/\1/p") +10%
+bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume $(pactl list | awk -v RS= "/RUNNING/" | sed -nr "s/Sink #([0-9]*)/\1/p") -10%
+bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute $(pactl list | awk -v RS= "/RUNNING/" | sed -nr "s/Sink #([0-9]*)/\1/p") toggle
 bindsym XF86AudioPlay exec --no-startup-id "playerctl --player=playerctld play-pause && notify-send 'play/pause'"
 bindsym XF86AudioPrev exec --no-startup-id "playerctl previous && notify-send 'previous'"
 bindsym XF86AudioNext exec --no-startup-id "playerctl next && notify-send 'next'"
@@ -85,7 +85,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-# bindsym $mod+h split h
+bindsym $mod+b split h
 
 # split in vertical orientation
 bindsym $mod+v split v
@@ -136,6 +136,8 @@ set $ws17 "17"
 set $ws18 "18"
 set $ws19 "19"
 set $ws20 "20"
+set $wsminus "todo"
+set $wsplus "control"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -158,6 +160,8 @@ bindsym $mod+Control+7 workspace $ws17
 bindsym $mod+Control+8 workspace $ws18
 bindsym $mod+Control+9 workspace $ws19
 bindsym $mod+Control+0 workspace $ws20
+bindsym $mod+minus workspace $wsminus
+bindsym $mod+plus workspace $wsplus
 
 # move focused container to workspace
 bindsym $mod+Shift+1 move container to workspace $ws1
@@ -180,6 +184,8 @@ bindsym $mod+Shift+Control+7 move container to workspace $ws17
 bindsym $mod+Shift+Control+8 move container to workspace $ws18
 bindsym $mod+Shift+Control+9 move container to workspace $ws19
 bindsym $mod+Shift+Control+0 move container to workspace $ws20
+bindsym $mod+Shift+minus move container to workspace $wsminus
+bindsym $mod+Shift+plus move container to workspace $wsplus
 
 # reload the configuration file
 # bindsym $mod+Shift+c reload
@@ -225,9 +231,9 @@ bindsym $mod+Shift+d exec notify-send "toggling dunst" && notify-send "DUNST_COM
 bindsym $mod+grave exec notify-send "timer for 20 minutes" && sleep 5s && notify-send "DUNST_COMMAND_PAUSE" && sleep 20m && notify-send "DUNST_COMMAND_RESUME" && notify-send "time up"
 bindsym $mod+Delete exec touch ~/local
 bindsym $mod+Shift+Delete exec rm ~/local
-bindsym $mod+backslash exec xmodmap ~/.xmodmap_original
+# bindsym $mod+backslash exec xmodmap ~/.xmodmap_original
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id feh --bg-fill $dotfiles_path/backgrounds/current.png
-exec_always --no-startup-id pkill -9 compton; compton --backend glx --vsync --inactive-dim=0.08 --inactive-dim-fixed --xrender-sync-fence --glx-no-stencil --glx-no-rebind-pixmap --use-damage
+exec_always --no-startup-id pkill -9 picom; picom --backend glx --vsync --inactive-dim=0.08 --inactive-dim-fixed --xrender-sync-fence --glx-no-stencil --glx-no-rebind-pixmap --use-damage
 exec_always --no-startup-id xmodmap ~/.xmodmap_original && xmodmap ~/.xmodmap

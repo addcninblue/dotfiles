@@ -154,3 +154,9 @@
 [submodule "nvim/.config/nvim/pack/bundle/start/vim-markdown"]
 	path = nvim/.config/nvim/pack/bundle/start/vim-markdown
 	url = https://github.com/tpope/vim-markdown
+[submodule "nvim/.config/nvim/pack/bundle/start/vimwiki"]
+	path = nvim/.config/nvim/pack/bundle/start/vimwiki
+	url = https://github.com/vimwiki/vimwiki
+[submodule "nvim/.config/nvim/pack/bundle/start/calendar-vim"]
+	path = nvim/.config/nvim/pack/bundle/start/calendar-vim
+	url = https://github.com/mattn/calendar-vim

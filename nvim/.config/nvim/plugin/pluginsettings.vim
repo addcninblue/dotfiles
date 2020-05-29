@@ -126,6 +126,15 @@ if executable('pyls')
     " autocmd BufWritePre *.py silent! LspDocumentFormatSync
 endif
 
+if executable('typescript-language-server')
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'typescript-language-server',
+        \ 'cmd': {server_info->['typescript-language-server', '--stdio']},
+        \ 'whitelist': ['javascript', 'javascript.jsx', 'typescript', 'typescript.tsx'],
+        \ })
+    " autocmd BufWritePre *.py silent! LspDocumentFormatSync
+endif
+
 " enable ncm2 for all buffers
 autocmd BufEnter * call ncm2#enable_for_buffer()
 

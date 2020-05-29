@@ -4,9 +4,9 @@
 # This allows us to change its appearance conditionally
 icon=""
 
-player_status=$(playerctl status 2> /dev/null)
+player_status=$(playerctl --player=playerctld status 2> /dev/null)
 if [[ $? -eq 0 ]]; then
-    metadata="$(playerctl metadata artist) - $(playerctl metadata title)"
+    metadata="$(playerctl --player=playerctld metadata artist) - $(playerctl --player=playerctld metadata title)"
 fi
 echo $metadata
 echo "hi"

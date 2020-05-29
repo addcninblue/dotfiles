@@ -4,6 +4,9 @@ let
   unstable-small = import <unstable-small>{
     config.allowUnfree = true;
   };
+  nixpkgs = import <nixpkgs>{
+    config.allowUnfree = true;
+  };
   colors = {
     background = "#002b36";
     background-alt = "#002b36";
@@ -26,29 +29,32 @@ in
   nixpkgs.config.allowUnfree = true;
   home.packages = with pkgs; [
     # terminal apps
-    unstable-small.neovim unstable-small.tmux git stow gnumake htop unstable-small.silver-searcher unstable-small.mprime psensor tmate jq lm_sensors
+    unstable-small.neovim unstable-small.tmux git stow gnumake htop unstable-small.silver-searcher unstable-small.mprime psensor tmate jq lm_sensors ranger w3m
+    taskwarrior rclone youtube-dl
     (python3.withPackages(ps: with ps; [ numpy matplotlib pandas python-language-server virtualenv tqdm ]))
 
     # PL stuff
-    unstable-small.elixir ruby_2_5 gcc gccStdenv stdenv_32bit go jre
+    unstable-small.elixir ruby_2_5 gcc gccStdenv stdenv_32bit go jre yarn nodejs
 
     # build tools
-    file binutils zip
+    file binutils zip unzip inotify-tools caddy parted
 
     # i3
-    i3-gaps dmenu compton feh maim libnotify rofi
+    i3-gaps dmenu picom feh maim libnotify rofi
 
     # fonts
-    unstable-small.jetbrains-mono unstable-small.google-fonts
+    unstable-small.jetbrains-mono unstable-small.google-fonts unstable-small.noto-fonts-cjk	
 
     # desktop apps
-    calibre kitty google-chrome unstable-small.spotify unstable-small.playerctl unstable-small.slack
+    calibre kitty google-chrome unstable-small.spotify unstable-small.playerctl unstable-small.slack unstable-small.zoom-us mixxx
 
-    pavucontrol xorg.xev xorg.xmodmap arandr pciutils
+    # laptop tools
+    pavucontrol xorg.xev xorg.xmodmap arandr pciutils acpi powertop undervolt
   ];
 
   xsession.enable = true;
   xsession.windowManager.command = "i3";
+  services.udiskie.enable = true;
 
   # services.gpg-agent = {
   #   enable = true;
@@ -77,9 +83,9 @@ in
     enable = true;
     settings = {
       global = {
-        font = "Raleway Bold";
+        font = "Raleway";
         allow_markup = "yes";
-        format = "<b>%s</b>\n%b";
+        format = "<b>%s</b>\\n%b";
         sort = "yes";
         indicate_hidden = "yes";
         alignment = "center";
@@ -132,7 +138,7 @@ in
       "bar/bottom" = {
         modules-left = "date music";
         modules-center = "i3";
-        modules-right = "pulseaudio brightness";
+        modules-right = "pulseaudio brightness battery";
         bottom = "true";
         background = "${colors.background}";
         foreground = "${colors.foreground}";
@@ -200,7 +206,7 @@ in
 
         # ; Sink to be used, if it exists (find using `pacmd list-sinks`, name field)
         # ; If not, uses default sink
-        sink = "analog-output-lineout";
+        # sink = "analog-output-lineout";
         # format-volume = "<ramp-volume> <label-volume>";
         format-volume = "<label-volume>";
         format-volume-underline = "${colors.green}";
@@ -251,6 +257,17 @@ in
         label = "%output:0:45:…%";
         exec = "~/.config/polybar/brightness.sh";
         label-underline = "${colors.cyan}";
+      };
+      "module/battery" = {
+        type = "internal/battery";
+        battery = "BAT0";
+        poll-interval = 5;
+        time-format = "%H:%M";
+        label-charging = "%percentage%%, %time% until full";
+        label-discharging = "%percentage%%, %time% until empty";
+        format-charging-underline = "${colors.blue}";
+        format-discharging-underline = "${colors.blue}";
+        format-full-underline = "${colors.blue}";
       };
     };
     script = ''
