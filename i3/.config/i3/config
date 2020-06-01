@@ -3,7 +3,7 @@
 set $mod Mod1
 set $dotfiles_path $HOME/dotfiles
 
-font pango:Ubuntu 11
+font pango:Jetbrains Mono 10
 
 set $gaps_outer 10
 set $gaps_inner 15
@@ -54,7 +54,7 @@ bindsym $mod+Return exec kitty
 bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
-bindsym $mod+d exec rofi -show drun
+bindsym $mod+d exec rofi -show drun -theme solarized
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -110,32 +110,34 @@ bindsym $mod+a focus parent
 # focus the child container
 #bindsym $mod+d focus child
 
+bindsym $mod+slash sticky toggle
+
 # Clicking same workspace will toggle
 workspace_auto_back_and_forth yes
 bindsym $mod+Tab workspace back_and_forth
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 "1"
-set $ws2 "2"
-set $ws3 "3"
-set $ws4 "4"
-set $ws5 "5"
-set $ws6 "6"
-set $ws7 "7"
-set $ws8 "8"
-set $ws9 "9"
-set $ws10 "10"
-set $ws11 "11"
-set $ws12 "12"
-set $ws13 "13"
-set $ws14 "14"
-set $ws15 "15"
-set $ws16 "16"
-set $ws17 "17"
-set $ws18 "18"
-set $ws19 "19"
-set $ws20 "20"
+set $ws1 number 1
+set $ws2 number 2
+set $ws3 number 3
+set $ws4 number 4
+set $ws5 number 5
+set $ws6 number 6
+set $ws7 number 7
+set $ws8 number 8
+set $ws9 number 9
+set $ws10 number 10
+set $ws11 number 11
+set $ws12 number 12
+set $ws13 number 13
+set $ws14 number 14
+set $ws15 number 15
+set $ws16 number 16
+set $ws17 number 17
+set $ws18 number 18
+set $ws19 number 19
+set $ws20 number 20
 set $wsminus "todo"
 set $wsplus "control"
 
@@ -187,6 +189,11 @@ bindsym $mod+Shift+Control+0 move container to workspace $ws20
 bindsym $mod+Shift+minus move container to workspace $wsminus
 bindsym $mod+Shift+plus move container to workspace $wsplus
 
+bindsym $mod+Control+h move workspace to output left
+bindsym $mod+Control+j move workspace to output down
+bindsym $mod+Control+k move workspace to output up
+bindsym $mod+Control+l move workspace to output right
+
 # reload the configuration file
 # bindsym $mod+Shift+c reload
 # restart i3 inplace (preserves your layout/session, can be used to upgrade i3)
@@ -229,11 +236,11 @@ bindsym $mod+Shift+c exec google-chrome-stable --profile-directory="Profile 1"
 bindsym $mod+s exec spotify
 bindsym $mod+Shift+d exec notify-send "toggling dunst" && notify-send "DUNST_COMMAND_TOGGLE"
 bindsym $mod+grave exec notify-send "timer for 20 minutes" && sleep 5s && notify-send "DUNST_COMMAND_PAUSE" && sleep 20m && notify-send "DUNST_COMMAND_RESUME" && notify-send "time up"
-bindsym $mod+Delete exec touch ~/local
-bindsym $mod+Shift+Delete exec rm ~/local
 # bindsym $mod+backslash exec xmodmap ~/.xmodmap_original
+
+bindsym $mod+n exec i3-msg "rename workspace to $(rofi -theme solarized -dmenu -input /dev/null -p 'Enter Text > ')"
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id feh --bg-fill $dotfiles_path/backgrounds/current.png
 exec_always --no-startup-id pkill -9 picom; picom --backend glx --vsync --inactive-dim=0.08 --inactive-dim-fixed --xrender-sync-fence --glx-no-stencil --glx-no-rebind-pixmap --use-damage
-exec_always --no-startup-id xmodmap ~/.xmodmap_original && xmodmap ~/.xmodmap
+exec_always --no-startup-id xmodmap ~/.xmodmap_original && xmodmap ~/.xmodmap && pkill -9 dp1monitor; ~/stuff/dp1monitor

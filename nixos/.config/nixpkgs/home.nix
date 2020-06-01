@@ -46,7 +46,7 @@ in
     unstable-small.jetbrains-mono unstable-small.google-fonts unstable-small.noto-fonts-cjk	
 
     # desktop apps
-    calibre kitty google-chrome unstable-small.spotify unstable-small.playerctl unstable-small.slack unstable-small.zoom-us mixxx
+    calibre kitty google-chrome unstable-small.spotify unstable-small.playerctl unstable-small.slack unstable-small.zoom-us mixxx androidStudioPackages.dev	
 
     # laptop tools
     pavucontrol xorg.xev xorg.xmodmap arandr pciutils acpi powertop undervolt

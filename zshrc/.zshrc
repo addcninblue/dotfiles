@@ -445,7 +445,3 @@ source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 if [ -f ~/.zsh_private_variables ]; then
 	source ~/.zsh_private_variables
 fi
-
-if [ ! -f ~/local ]; then
-	ssh server && exit
-fi

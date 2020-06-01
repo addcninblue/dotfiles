@@ -64,14 +64,14 @@ nnoremap <leader>st :SimplenoteTrash<CR>
 " for Hastebin
 nnoremap <leader>h :%! haste<CR>"+yyu
 
-" Make it easy to move lines up and down
-" https://github.com/abatilo/vimrc/blob/master/.vimrc#L35
-nnoremap <Down> :m .+1<CR>
-nnoremap <Up> :m .-2<CR>
-inoremap <Down> <Esc>:m .+1<CR>
-inoremap <Up> <Esc>:m .-2<CR>
-vnoremap <Down> :m '>+1<CR>gv=gv
-vnoremap <Up> :m '<-2<CR>gv=gv
+" " Make it easy to move lines up and down
+" " https://github.com/abatilo/vimrc/blob/master/.vimrc#L35
+" nnoremap <Down> :m .+1<CR>
+" nnoremap <Up> :m .-2<CR>
+" inoremap <Down> <Esc>:m .+1<CR>
+" inoremap <Up> <Esc>:m .-2<CR>
+" vnoremap <Down> :m '>+1<CR>gv=gv
+" vnoremap <Up> :m '<-2<CR>gv=gv
 
 " Ranger
 let g:ranger_map_keys = 0
@@ -83,3 +83,13 @@ nnoremap <silent> <leader>e :MarkdownEditBlock<CR>
 nnoremap [e :LspPreviousError<CR>
 nnoremap ]e :LspNextError<CR>
 nnoremap <S-k> :LspHover<CR>
+
+" vimwiki
+function Writemode()
+	Goyo
+	Limelight
+	set spell
+	set linebreak
+	set wrap
+endfunction
+nnoremap <leader>wq :call Writemode()<CR>
