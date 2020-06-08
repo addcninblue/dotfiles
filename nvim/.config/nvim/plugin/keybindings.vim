@@ -31,6 +31,11 @@ nnoremap <leader>k gT
 nnoremap <C-p> :FZF<CR>
 nnoremap <C-b> :Buffers<CR>
 
+" Grepper
+nnoremap <leader>gg :Grepper -tool ag -highlight<CR>
+nnoremap <leader>gs :Grepper -tool ag -side -highlight<CR>
+nnoremap <leader>*  :Grepper -tool ag -cword -noprompt -highlight<CR>
+
 " DiffSaved
 nnoremap <silent> <leader>d :DiffSaved<CR>
 

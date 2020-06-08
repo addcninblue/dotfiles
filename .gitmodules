@@ -160,3 +160,6 @@
 [submodule "nvim/.config/nvim/pack/bundle/start/calendar-vim"]
 	path = nvim/.config/nvim/pack/bundle/start/calendar-vim
 	url = https://github.com/mattn/calendar-vim
+[submodule "nvim/.config/nvim/pack/bundle/start/vim-grepper"]
+	path = nvim/.config/nvim/pack/bundle/start/vim-grepper
+	url = https://github.com/mhinz/vim-grepper

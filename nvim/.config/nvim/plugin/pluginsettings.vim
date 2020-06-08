@@ -186,6 +186,10 @@ let NERDTreeShowLineNumbers=1
 autocmd FileType nerdtree setlocal relativenumber
 " nerdtree }}}
 
+" Calendar.vim {{{
+nnoremap <leader>nc :Calendar<CR>
+" Calendar.vim }}}
+
 set tags=./tags,tags;$HOME
 
 " fzf
