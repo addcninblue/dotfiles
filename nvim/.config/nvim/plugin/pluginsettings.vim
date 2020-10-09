@@ -1,17 +1,17 @@
+if has('nvim-0.5.0')
+	finish
+endif
+packadd ncm2
+packadd ncm2-bufword
+packadd ncm2-path
+packadd ncm2-ultisnips
+packadd ncm2-vim-lsp
+packadd vim-lsp
+packadd vim-lsp-snippets
+
 "limelight settings {{{
 let g:limelight_conceal_ctermfg = 240
-"autocmd FileType text	      :Limelight
 "limelight settings }}}
-
-" vim-jedi {{{
-
-" If you prefer the Omni-Completion tip window to close when a selection is
-" made, these lines close it on movement in insert mode or when leaving
-" insert mode
-" autocmd CursorMovedI * if pumvisible() == 0|pclose|endif
-" autocmd InsertLeave * if pumvisible() == 0|pclose|endif
-
-" vim-jedi }}}
 
 "javacomplete {{{
 
@@ -68,6 +68,10 @@ let hscoptions = "q℘𝐒𝐓𝐄𝐌sxe⇒⇔rbl↱w-iRtBQZDC1a"
 let g:tslime_always_current_session = 1
 let g:tslime_always_current_window = 1
 " tslime }}}
+
+set foldmethod=expr
+  \ foldexpr=lsp#ui#vim#folding#foldexpr()
+  \ foldtext=lsp#ui#vim#folding#foldtext()
 
 nnoremap <silent> gd :LspDefinition<CR>
 nnoremap <silent> gr :LspReferences<CR>
@@ -135,6 +139,16 @@ if executable('typescript-language-server')
     " autocmd BufWritePre *.py silent! LspDocumentFormatSync
 endif
 
+let rls_enabled = 1
+if rls_enabled
+    au User lsp_setup call lsp#register_server({
+        \ 'name': 'r-language-server',
+        \ 'cmd': {server_info->['R', '--slave', '-e', 'languageserver::run()']},
+        \ 'whitelist': ['R'],
+        \ })
+    " autocmd BufWritePre *.py silent! LspDocumentFormatSync
+endif
+
 " enable ncm2 for all buffers
 autocmd BufEnter * call ncm2#enable_for_buffer()
 
@@ -198,9 +212,9 @@ if filereadable("/home/addison/.fzf/plugin/fzf.vim")
     let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'fg', 'border': 'sharp' } }
 endif
 
-autocmd BufNewFile *.graphql  setfiletype graphql
-autocmd BufNewFile *.graphqls setfiletype graphql
-autocmd BufNewFile *.gql      setfiletype graphql
-autocmd BufReadPost *.graphql  setfiletype graphql
-autocmd BufReadPost *.graphqls setfiletype graphql
-autocmd BufReadPost *.gql      setfiletype graphql
+" vim tmux runner (VTR)
+let g:VtrStripLeadingWhitespace = 0
+
+" vimtex
+let g:vimtex_quickfix_enabled = 0
+let g:vimtex_view_method = 'zathura'

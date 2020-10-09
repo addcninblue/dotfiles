@@ -24,32 +24,150 @@ let
     cyan = "#2aa198";
     green = "#859900";
   };
+  pypi-i3-workspace-groups = pkgs.python37.pkgs.buildPythonPackage rec{
+    pname = "i3-workspace-groups";
+    version = "0.4.6";
+    src = pkgs.python37.pkgs.fetchPypi {
+      inherit pname version;
+      sha256 = "1sxgk47kia7psb24j5m7dfayiy4fs9wq7y0dvdp3lqjam0chlmrq";
+    };
+    propagatedBuildInputs = [
+      pkgs.python37Packages.i3ipc
+      pkgs.python37Packages.toml
+    ];
+    doCheck = false;
+  };
+  devour-git = pkgs.stdenv.mkDerivation rec{
+    name = "devour";
+    version = "1480b19cede29fd020763996053b4514910c74c6";
+
+    src = pkgs.fetchFromGitHub {
+      owner  = "salman-abedin";
+      repo   = "devour";
+      rev    = "1480b19cede29fd020763996053b4514910c74c6";
+      sha256 = "01ng1j7p3xfg2wgl8zrf147mlk8fx1z0faavi57yya9vsmdnszpr";
+    };
+
+    buildInputs = with pkgs; [ autoconf pkgconfig gnumake xorg.libX11 xorg.libX11.dev xorg.libX11.dev.out openssl openssl.dev fontconfig xorg.libXft libxml2.dev libxml2 xorg.libXScrnSaver libxslt ];
+
+    prePatch = ''
+      substituteInPlace ./Makefile --replace "/usr/local/bin" "$out/bin"
+    '';
+
+    # buildPhase = ''
+    #   cd ${src} && make install
+    # '';
+  };
 in
 {
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs = {
+    config.allowUnfree = true;
+    overlays = [
+      # custom compilation of i3-workspace-groups fork of polybar
+      (self: super: {
+        polybar-git = super.polybar.overrideAttrs (oldAttrs: rec{
+          name = "polybar";
+          src = self.fetchFromGitHub {
+            owner = "infokiller";
+            repo = "polybar";
+            rev = "76edb46e4cf47fd59cd193eb9d3b711683ab88d9";
+            sha256 = "16iz07pdbilrbhckqf4by9ngl2993i9hs2lznwgs56fag5mzv9h0";
+            fetchSubmodules = true;
+          };
+        });
+      })
+      (self: super: {
+        neovim-unwrapped = super.neovim-unwrapped.overrideAttrs (oldAttrs: {
+          name = "neovim";
+          version = "master";
+          src = self.fetchFromGitHub {
+            owner = "neovim";
+            repo = "neovim";
+            rev = "ca6815115c79da62b845f479f0cdd765bdbfb700";
+            sha256 = "0n95638jmpddaaaixlk4c8181d4q0f9y9cvwfmvgriwkflci88vq";
+            fetchSubmodules = true;
+          };
+        });
+      })
+    ];
+  };
+
+  manual.manpages.enable = false;
   home.packages = with pkgs; [
     # terminal apps
-    unstable-small.neovim unstable-small.tmux git stow gnumake htop unstable-small.silver-searcher unstable-small.mprime psensor tmate jq lm_sensors ranger w3m
-    taskwarrior rclone youtube-dl
-    (python3.withPackages(ps: with ps; [ numpy matplotlib pandas python-language-server virtualenv tqdm ]))
+    # unstable-small.neovim
+    neovim-unwrapped
+    unstable-small.tmux git stow gnumake htop unstable-small.silver-searcher unstable-small.mprime psensor tmate jq lm_sensors ranger w3m
+    taskwarrior timewarrior taskopen rclone youtube-dl dnsutils calcurse efibootmgr ddccontrol ddccontrol-db pdfgrep xdotool devour-git parallel
+    (python3.withPackages(ps: with ps; [ numpy matplotlib pandas python-language-server virtualenv tqdm i3ipc pynvim ]))
+
+    (rstudioWrapper.override {
+     packages = with pkgs.rPackages; let
+       # llr = buildRPackage {
+       # name = "llr";
+       # src = pkgs.fetchFromGitHub {
+       #  owner = "dirkschumacher";
+       #  repo = "llr";
+       #  rev = "0a654d469af231e9017e1100f00df47bae212b2c";
+       #  sha256 = "0ks96m35z73nf2sb1cb8d7dv8hq8dcmxxhc61dnllrwxqq9m36lr";};
+     # propagatedBuildInputs = [ rlang  knitr];
+     # nativeBuildInputs = [ rlang knitr ];};
+    in [knitr
+        rlang
+        ggplot2
+        testthat
+        assertthat
+        # llr
+        tidyverse
+        ## the rest of your R packages here
+        devtools];})
+
+    (rWrapper.override {
+     packages = with pkgs.rPackages; let
+       # llr = buildRPackage {
+       # name = "llr";
+       # src = pkgs.fetchFromGitHub {
+       #  owner = "dirkschumacher";
+       #  repo = "llr";
+       #  rev = "0a654d469af231e9017e1100f00df47bae212b2c";
+       #  sha256 = "0ks96m35z73nf2sb1cb8d7dv8hq8dcmxxhc61dnllrwxqq9m36lr";};
+     # propagatedBuildInputs = [ rlang  knitr];
+     # nativeBuildInputs = [ rlang knitr ];};
+    in [knitr
+        rlang
+        ggplot2
+        testthat
+        assertthat
+        tidyverse
+        devtools
+        languageserver
+        furrr
+        pryr
+      ];})
 
     # PL stuff
-    unstable-small.elixir ruby_2_5 gcc gccStdenv stdenv_32bit go jre yarn nodejs
+    unstable-small.elixir unstable-small.erlang ruby_2_5 gcc gccStdenv stdenv_32bit go jre yarn nodejs
 
     # build tools
-    file binutils zip unzip inotify-tools caddy parted
+    file binutils zip unzip inotify-tools caddy parted cargo
 
     # i3
-    i3-gaps dmenu picom feh maim libnotify rofi
+    i3-gaps dmenu picom feh maim libnotify rofi pypi-i3-workspace-groups
 
     # fonts
     unstable-small.jetbrains-mono unstable-small.google-fonts unstable-small.noto-fonts-cjk	
 
     # desktop apps
-    calibre kitty google-chrome unstable-small.spotify unstable-small.playerctl unstable-small.slack unstable-small.zoom-us mixxx androidStudioPackages.dev	
+    calibre kitty google-chrome unstable-small.spotify unstable-small.playerctl slack unstable-small.zoom-us mixxx androidStudioPackages.dev unstable-small.discord simplescreenrecorder zathura
 
     # laptop tools
-    pavucontrol xorg.xev xorg.xmodmap arandr pciutils acpi powertop undervolt
+    pavucontrol xorg.xev xorg.xmodmap arandr pciutils acpi powertop undervolt dfeet
+
+    unstable-small.hey woeusb chntpw dmidecode vlc ffmpeg
+
+    texlive.combined.scheme-full pandoc protonvpn-cli poppler pdftk texlab
+
+    rnix-lsp
   ];
 
   xsession.enable = true;
@@ -65,6 +183,16 @@ in
   programs.home-manager = {
     enable = true;
     path = "…";
+  };
+
+  programs.autorandr = {
+    enable = true;
+    hooks = {
+      postswitch = {
+        "restart-i3" = "${pkgs.i3}/bin/i3-msg restart";
+        # "restart-polybar" = "sleep 10s && ~/.config/polybar/launch.sh";
+      };
+    };
   };
 
   fonts.fontconfig.enable = true;
@@ -125,7 +253,7 @@ in
 
   services.polybar = {
     enable = true;
-    package = pkgs.polybar.override {
+    package = pkgs.polybar-git.override {
       i3GapsSupport = true;
       pulseSupport = true;
       # alsaSupport = true;
@@ -135,8 +263,33 @@ in
       # nlSupport = true;
     };
     config = {
+      "bar/secondary" = {
+        monitor = "\${env:MONITOR}";
+        modules-center = "i3";
+        bottom = "true";
+        background = "${colors.background}";
+        foreground = "${colors.foreground}";
+
+        fixed-center = true;
+
+        line-size = 3;
+        line-color = "#f00";
+
+        border-top-size = 4;
+        border-size = 4;
+        border-color = "${colors.background}";
+
+        padding-left = 0;
+        padding-right = 1;
+
+        module-margin-left = 1;
+        module-margin-right = 1;
+
+        font-0 = "Jetbrains Mono:size=12;0";
+      };
       "bar/bottom" = {
-        modules-left = "date music";
+        monitor = "\${env:MONITOR}";
+        modules-left = "date music timew";
         modules-center = "i3";
         modules-right = "pulseaudio brightness battery";
         bottom = "true";
@@ -160,10 +313,6 @@ in
 
         font-0 = "Jetbrains Mono:size=12;0";
 
-# modules-left = date
-# modules-center = i3
-# modules-right = memory
-
         tray-position = "right";
         tray-padding = 2;
       };
@@ -177,6 +326,10 @@ in
       };
       "module/i3" = {
         type = "internal/i3";
+
+        pin-workspaces = true;
+        strip-wsnumbers = true;
+        workspaces-max-count = 10;
 
         label-mode-padding = 2;
         label-mode-foreground = "#000";
@@ -268,6 +421,24 @@ in
         format-charging-underline = "${colors.blue}";
         format-discharging-underline = "${colors.blue}";
         format-full-underline = "${colors.blue}";
+      };
+      "module/timew" = {
+        type = "custom/script";
+        label = "%output%";
+        tail = true;
+        interval = 1;
+        exec = "notify-send 'DUNST_COMMAND_PAUSE' && (timew | tail -n1 | awk '{print $2}')";
+        # exec = "(timew && (timew | tail -n1 | awk '{print $2}')) && notify-send 'DUNST_COMMAND_PAUSE' || notify-send 'DUNST_COMMAND_RESUME'";
+        exec-if = "timew || (notify-send 'DUNST_COMMAND_RESUME' && exit 1)";
+        format = "<label>";
+        # format-prefix = ""timew "";
+        # format-padding = "4";
+        # format-prefix-foreground = "# a color you want for the 'timew' label";
+        # internal = 5;
+        # date = "%m/%d";
+        # time = "%I:%M";
+        # label = "%date% %time%";
+        label-underline = "${colors.green}";
       };
     };
     script = ''

@@ -3,7 +3,7 @@ let &t_SI = "\<Esc>[6 q" "this and the next two change the cursor depending on t
 let &t_SR = "\<Esc>[4 q"
 let &t_EI = "\<Esc>[2 q"
 nnoremap <leader>l :nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>h 
-cnoremap w!! w !sudo tee % > /dev/null
+cnoremap w!! w suda://%
 " allows for better clear search
 inoremap <C-space> <C-x><C-o> 
 "allows for vim's own omnicomplete
@@ -87,6 +87,8 @@ nnoremap <silent> <leader>e :MarkdownEditBlock<CR>
 " language servers
 nnoremap [e :LspPreviousError<CR>
 nnoremap ]e :LspNextError<CR>
+nnoremap [r :LspPreviousReference<CR>
+nnoremap ]r :LspNextPrevious<CR>
 nnoremap <S-k> :LspHover<CR>
 
 " vimwiki
@@ -98,3 +100,8 @@ function Writemode()
 	set wrap
 endfunction
 nnoremap <leader>wq :call Writemode()<CR>
+
+" vim tmux runner (VTR)
+nnoremap <leader>va :VtrAttachToPane<CR>
+nnoremap <leader>vs :VtrSendLinesToRunner<CR>
+vnoremap <leader>vs :VtrSendLinesToRunner<CR>

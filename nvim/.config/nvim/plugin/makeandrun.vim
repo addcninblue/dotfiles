@@ -62,6 +62,8 @@ func! Run()
 		let l:command="zathura " . expand("%<") . ".pdf"
 	elseif &filetype == 'elixir'
 		let l:command="elixir " . expand("%")
+	elseif &filetype == 'r'
+		let l:command="Rscript " . expand("%")
 	else
 		return
 	endif
@@ -74,6 +76,8 @@ func! Interactive()
 		let l:command="python3 -i " .expand("%")
 	elseif &filetype == 'elixir'
 		let l:command="iex " . expand("%")
+	elseif &filetype == 'r'
+		let l:command="R --no-save"
 	else
 		return
 	endif

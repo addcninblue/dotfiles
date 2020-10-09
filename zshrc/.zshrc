@@ -55,7 +55,7 @@ precmd(){
 # set VIMODE according to the current mode (default “[i]”)
 function zle-line-init zle-keymap-select() {
 	#PROMPT="[${${KEYMAP/vicmd/NORMAL}/(main|viins)/INSERT}] "
-	if [ "$TERM" = "st-256color" ] | [ "$TERM" = "xterm-256color" ]; then
+	if [ "$TERM" = "st-256color" ] | [ "$TERM" = "xterm-kitty" ] | [ "$TERM" = "tmux-256color" ]; then
 		if [ $KEYMAP = vicmd ]; then
 		    # the command mode for vi
 		    echo -ne "\e[2 q"
@@ -183,7 +183,7 @@ RPS1='$(git_prompt_string)$(clock)'
 
 # defined aliases {{{
 alias ls='ls --color=auto'
-alias r='ranger'
+# alias r='ranger'
 alias v='nvim'
 alias s='ssh'
 alias proxy='ssh rpi -D 8080'
@@ -205,10 +205,10 @@ alias -s md='nvim'
 alias -s mp3='vlc'
 alias -s mp4='vlc'
 alias -s wav='vlc'
-alias -s png='meh'
-alias -s jpg='meh'
-alias -s pdf='zathura'
-alias -s html='garcon-url-handler'
+# alias -s png='meh'
+# alias -s jpg='meh'
+# alias -s pdf='zathura'
+# alias -s html='garcon-url-handler'
 
 alias c='gcalcli'
 alias cc='gcalcli calw'
@@ -402,7 +402,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
 
-export DOCKER_HOST=ssh://server
+# export DOCKER_HOST=ssh://server
 
 bindkey    "^[[H"    beginning-of-line
 bindkey    "^[[F"    end-of-line

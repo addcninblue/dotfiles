@@ -30,6 +30,7 @@ set number                            " shows line number on current line
 set relativenumber                    " shows relative line numbers on all other lines
 set hlsearch                          " highlight items matching in search
 set incsearch                         " go to next matching item while typing
+set inccommand=nosplit                " live substitution
 set ignorecase                        " ignore case while searching all lowercase
 set smartcase                         " allow cases where there are uppercase
 set breakindent                       " if wraps, same indent

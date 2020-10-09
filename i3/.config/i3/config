@@ -1,7 +1,9 @@
 # vi: ft=i3config
 
 set $mod Mod1
+set $mod2 Mod4
 set $dotfiles_path $HOME/dotfiles
+set $exec_i3_groups exec --no-startup-id i3-workspace-groups
 
 font pango:Jetbrains Mono 10
 
@@ -21,17 +23,6 @@ client.unfocused        #073642 #073642 #888888 #292d2e   #222222
 client.urgent           #2f343a #900000 #ffffff #900000   #900000
 client.placeholder      #000000 #0c0c0c #ffffff #000000   #0c0c0c
 client.background       #ffffff
-
-# This font is widely installed, provides lots of unicode glyphs, right-to-left
-# text rendering and scalability on retina/hidpi displays (thanks to pango).
-#font pango:DejaVu Sans Mono 8
-
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-
-# NetworkManager is the most popular way to manage wireless networks on Linux,
-# and nm-applet is a desktop environment-independent system tray GUI for it.
-exec --no-startup-id nm-applet
 
 # Use pactl to adjust volume in PulseAudio.
 bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume $(pactl list | awk -v RS= "/RUNNING/" | sed -nr "s/Sink #([0-9]*)/\1/p") +10%
@@ -55,10 +46,6 @@ bindsym $mod+Shift+q kill
 
 # start rofi (a program launcher)
 bindsym $mod+d exec rofi -show drun -theme solarized
-# There also is the (new) i3-dmenu-desktop which only displays applications
-# shipping a .desktop file. It is a wrapper around dmenu, so you need that
-# installed.
-# bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+h focus left
@@ -116,78 +103,139 @@ bindsym $mod+slash sticky toggle
 workspace_auto_back_and_forth yes
 bindsym $mod+Tab workspace back_and_forth
 
+# Switch active workspace group
+bindsym $mod+g exec --no-startup-id i3-switch-active-workspace-group
+
+# Assign workspace to a group
+bindsym $mod+Shift+g exec --no-startup-id i3-assign-workspace-to-group
+
+# Select workspace to focus on
+bindsym $mod2+space exec --no-startup-id i3-focus-on-workspace
+
+# Move the focused container to another workspace
+bindsym $mod2+Shift+space exec --no-startup-id i3-move-to-workspace
+
+# Rename/renumber workspace. Uses Super+Alt+n
+bindsym $mod2+n exec --no-startup-id i3-rename-workspace
+
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
-set $ws1 number 1
-set $ws2 number 2
-set $ws3 number 3
-set $ws4 number 4
-set $ws5 number 5
-set $ws6 number 6
-set $ws7 number 7
-set $ws8 number 8
-set $ws9 number 9
-set $ws10 number 10
-set $ws11 number 11
-set $ws12 number 12
-set $ws13 number 13
-set $ws14 number 14
-set $ws15 number 15
-set $ws16 number 16
-set $ws17 number 17
-set $ws18 number 18
-set $ws19 number 19
-set $ws20 number 20
-set $wsminus "todo"
-set $wsplus "control"
+set $ws1 1
+set $ws2 2
+set $ws3 3
+set $ws4 4
+set $ws5 5
+set $ws6 6
+set $ws7 7
+set $ws8 8
+set $ws9 9
+set $ws10 10
+set $ws11 11
+set $ws12 12
+set $ws13 13
+set $ws14 14
+set $ws15 15
+set $ws16 16
+set $ws17 17
+set $ws18 18
+set $ws19 19
+set $ws20 20
+set $wsminus 21
+set $wsplus 22
 
-# switch to workspace
-bindsym $mod+1 workspace $ws1
-bindsym $mod+2 workspace $ws2
-bindsym $mod+3 workspace $ws3
-bindsym $mod+4 workspace $ws4
-bindsym $mod+5 workspace $ws5
-bindsym $mod+6 workspace $ws6
-bindsym $mod+7 workspace $ws7
-bindsym $mod+8 workspace $ws8
-bindsym $mod+9 workspace $ws9
-bindsym $mod+0 workspace $ws10
-bindsym $mod+Control+1 workspace $ws11
-bindsym $mod+Control+2 workspace $ws12
-bindsym $mod+Control+3 workspace $ws13
-bindsym $mod+Control+4 workspace $ws14
-bindsym $mod+Control+5 workspace $ws15
-bindsym $mod+Control+6 workspace $ws16
-bindsym $mod+Control+7 workspace $ws17
-bindsym $mod+Control+8 workspace $ws18
-bindsym $mod+Control+9 workspace $ws19
-bindsym $mod+Control+0 workspace $ws20
-bindsym $mod+minus workspace $wsminus
-bindsym $mod+plus workspace $wsplus
+bindsym $mod+1 $exec_i3_groups workspace-number $ws1
+bindsym $mod+2 $exec_i3_groups workspace-number $ws2
+bindsym $mod+3 $exec_i3_groups workspace-number $ws3
+bindsym $mod+4 $exec_i3_groups workspace-number $ws4
+bindsym $mod+5 $exec_i3_groups workspace-number $ws5
+bindsym $mod+6 $exec_i3_groups workspace-number $ws6
+bindsym $mod+7 $exec_i3_groups workspace-number $ws7
+bindsym $mod+8 $exec_i3_groups workspace-number $ws8
+bindsym $mod+9 $exec_i3_groups workspace-number $ws9
+bindsym $mod+0 $exec_i3_groups workspace-number $ws10
+bindsym $mod+Control+1 $exec_i3_groups workspace-number $ws11
+bindsym $mod+Control+2 $exec_i3_groups workspace-number $ws12
+bindsym $mod+Control+3 $exec_i3_groups workspace-number $ws13
+bindsym $mod+Control+4 $exec_i3_groups workspace-number $ws14
+bindsym $mod+Control+5 $exec_i3_groups workspace-number $ws15
+bindsym $mod+Control+6 $exec_i3_groups workspace-number $ws16
+bindsym $mod+Control+7 $exec_i3_groups workspace-number $ws17
+bindsym $mod+Control+8 $exec_i3_groups workspace-number $ws18
+bindsym $mod+Control+9 $exec_i3_groups workspace-number $ws19
+bindsym $mod+Control+0 $exec_i3_groups workspace-number $ws20
+bindsym $mod+minus $exec_i3_groups workspace-number $wsminus
+bindsym $mod+plus $exec_i3_groups workspace-number $wsplus
 
-# move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace $ws1
-bindsym $mod+Shift+2 move container to workspace $ws2
-bindsym $mod+Shift+3 move container to workspace $ws3
-bindsym $mod+Shift+4 move container to workspace $ws4
-bindsym $mod+Shift+5 move container to workspace $ws5
-bindsym $mod+Shift+6 move container to workspace $ws6
-bindsym $mod+Shift+7 move container to workspace $ws7
-bindsym $mod+Shift+8 move container to workspace $ws8
-bindsym $mod+Shift+9 move container to workspace $ws9
-bindsym $mod+Shift+0 move container to workspace $ws10
-bindsym $mod+Shift+Control+1 move container to workspace $ws11
-bindsym $mod+Shift+Control+2 move container to workspace $ws12
-bindsym $mod+Shift+Control+3 move container to workspace $ws13
-bindsym $mod+Shift+Control+4 move container to workspace $ws14
-bindsym $mod+Shift+Control+5 move container to workspace $ws15
-bindsym $mod+Shift+Control+6 move container to workspace $ws16
-bindsym $mod+Shift+Control+7 move container to workspace $ws17
-bindsym $mod+Shift+Control+8 move container to workspace $ws18
-bindsym $mod+Shift+Control+9 move container to workspace $ws19
-bindsym $mod+Shift+Control+0 move container to workspace $ws20
-bindsym $mod+Shift+minus move container to workspace $wsminus
-bindsym $mod+Shift+plus move container to workspace $wsplus
+bindsym $mod+Shift+1 $exec_i3_groups move-to-number $ws1
+bindsym $mod+Shift+2 $exec_i3_groups move-to-number $ws2
+bindsym $mod+Shift+3 $exec_i3_groups move-to-number $ws3
+bindsym $mod+Shift+4 $exec_i3_groups move-to-number $ws4
+bindsym $mod+Shift+5 $exec_i3_groups move-to-number $ws5
+bindsym $mod+Shift+6 $exec_i3_groups move-to-number $ws6
+bindsym $mod+Shift+7 $exec_i3_groups move-to-number $ws7
+bindsym $mod+Shift+8 $exec_i3_groups move-to-number $ws8
+bindsym $mod+Shift+9 $exec_i3_groups move-to-number $ws9
+bindsym $mod+Shift+0 $exec_i3_groups move-to-number $ws10
+bindsym $mod+Shift+Control+1 $exec_i3_groups move-to-number $ws11
+bindsym $mod+Shift+Control+2 $exec_i3_groups move-to-number $ws12
+bindsym $mod+Shift+Control+3 $exec_i3_groups move-to-number $ws13
+bindsym $mod+Shift+Control+4 $exec_i3_groups move-to-number $ws14
+bindsym $mod+Shift+Control+5 $exec_i3_groups move-to-number $ws15
+bindsym $mod+Shift+Control+6 $exec_i3_groups move-to-number $ws16
+bindsym $mod+Shift+Control+7 $exec_i3_groups move-to-number $ws17
+bindsym $mod+Shift+Control+8 $exec_i3_groups move-to-number $ws18
+bindsym $mod+Shift+Control+9 $exec_i3_groups move-to-number $ws19
+bindsym $mod+Shift+Control+0 $exec_i3_groups move-to-number $ws20
+bindsym $mod+Shift+minus $exec_i3_groups move-to-number $wsminus
+bindsym $mod+Shift+plus $exec_i3_groups move-to-number $wsplus
+
+# # switch to workspace
+# bindsym $mod+1 workspace $ws1
+# bindsym $mod+2 workspace $ws2
+# bindsym $mod+3 workspace $ws3
+# bindsym $mod+4 workspace $ws4
+# bindsym $mod+5 workspace $ws5
+# bindsym $mod+6 workspace $ws6
+# bindsym $mod+7 workspace $ws7
+# bindsym $mod+8 workspace $ws8
+# bindsym $mod+9 workspace $ws9
+# bindsym $mod+0 workspace $ws10
+# bindsym $mod+Control+1 workspace $ws11
+# bindsym $mod+Control+2 workspace $ws12
+# bindsym $mod+Control+3 workspace $ws13
+# bindsym $mod+Control+4 workspace $ws14
+# bindsym $mod+Control+5 workspace $ws15
+# bindsym $mod+Control+6 workspace $ws16
+# bindsym $mod+Control+7 workspace $ws17
+# bindsym $mod+Control+8 workspace $ws18
+# bindsym $mod+Control+9 workspace $ws19
+# bindsym $mod+Control+0 workspace $ws20
+# bindsym $mod+minus workspace $wsminus
+# bindsym $mod+plus workspace $wsplus
+
+# # move focused container to workspace
+# bindsym $mod+Shift+1 move container to workspace $ws1
+# bindsym $mod+Shift+2 move container to workspace $ws2
+# bindsym $mod+Shift+3 move container to workspace $ws3
+# bindsym $mod+Shift+4 move container to workspace $ws4
+# bindsym $mod+Shift+5 move container to workspace $ws5
+# bindsym $mod+Shift+6 move container to workspace $ws6
+# bindsym $mod+Shift+7 move container to workspace $ws7
+# bindsym $mod+Shift+8 move container to workspace $ws8
+# bindsym $mod+Shift+9 move container to workspace $ws9
+# bindsym $mod+Shift+0 move container to workspace $ws10
+# bindsym $mod+Shift+Control+1 move container to workspace $ws11
+# bindsym $mod+Shift+Control+2 move container to workspace $ws12
+# bindsym $mod+Shift+Control+3 move container to workspace $ws13
+# bindsym $mod+Shift+Control+4 move container to workspace $ws14
+# bindsym $mod+Shift+Control+5 move container to workspace $ws15
+# bindsym $mod+Shift+Control+6 move container to workspace $ws16
+# bindsym $mod+Shift+Control+7 move container to workspace $ws17
+# bindsym $mod+Shift+Control+8 move container to workspace $ws18
+# bindsym $mod+Shift+Control+9 move container to workspace $ws19
+# bindsym $mod+Shift+Control+0 move container to workspace $ws20
+# bindsym $mod+Shift+minus move container to workspace $wsminus
+# bindsym $mod+Shift+plus move container to workspace $wsplus
 
 bindsym $mod+Control+h move workspace to output left
 bindsym $mod+Control+j move workspace to output down
@@ -228,8 +276,13 @@ mode "resize" {
 
 bindsym $mod+r mode "resize"
 
-bindsym Control+Shift+F5 exec --no-startup-id maim -s $HOME/screenshots/$(date +%Y-%m-%d_%T).png
-bindsym Control+F5 exec --no-startup-id maim $HOME/screenshots/$(date +%Y-%m-%d_%T).png
+mode "passthrough" {
+    bindsym $mod+Escape mode "default"
+}
+bindsym $mod+Escape mode "passthrough"
+
+bindsym Control+Shift+F5 exec --no-startup-id MESA_LOADER_DRIVER_OVERRIDE=i965 maim -s $HOME/screenshots/$(date +%Y-%m-%d_%T).png
+bindsym Control+F5 exec --no-startup-id MESA_LOADER_DRIVER_OVERRIDE=i965 maim $HOME/screenshots/$(date +%Y-%m-%d_%T).png
 
 bindsym $mod+c exec google-chrome-stable
 bindsym $mod+Shift+c exec google-chrome-stable --profile-directory="Profile 1"
@@ -243,4 +296,5 @@ bindsym $mod+n exec i3-msg "rename workspace to $(rofi -theme solarized -dmenu -
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec_always --no-startup-id feh --bg-fill $dotfiles_path/backgrounds/current.png
 exec_always --no-startup-id pkill -9 picom; picom --backend glx --vsync --inactive-dim=0.08 --inactive-dim-fixed --xrender-sync-fence --glx-no-stencil --glx-no-rebind-pixmap --use-damage
-exec_always --no-startup-id xmodmap ~/.xmodmap_original && xmodmap ~/.xmodmap && pkill -9 dp1monitor; ~/stuff/dp1monitor
+# exec_always --no-startup-id xmodmap ~/.xmodmap_original && xmodmap ~/.xmodmap && pkill -9 dp1monitor; ~/stuff/dp1monitor
+exec_always --no-startup-id xmodmap ~/.xmodmap
