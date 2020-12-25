@@ -70,9 +70,6 @@
 [submodule "nvim/.config/nvim/pack/bundle/start/vim-repeat"]
 	path = nvim/.config/nvim/pack/bundle/start/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
-[submodule "nvim/.config/nvim/pack/bundle/start/vim-sneak"]
-	path = nvim/.config/nvim/pack/bundle/start/vim-sneak
-	url = https://github.com/justinmk/vim-sneak.git
 [submodule "nvim/.config/nvim/pack/bundle/start/vim-surround"]
 	path = nvim/.config/nvim/pack/bundle/start/vim-surround
 	url = https://github.com/tpope/vim-surround.git
@@ -164,7 +161,7 @@
 	path = nvim/.config/nvim/pack/bundle/start/vim-grepper
 	url = https://github.com/mhinz/vim-grepper
 [submodule "nvim/.config/nvim/pack/bundle/start/taskwiki"]
-	path = nvim/.config/nvim/pack/bundle/start/taskwiki
+	path = nvim/.config/nvim/pack/bundle/opt/taskwiki
 	url = https://github.com/tbabej/taskwiki
 [submodule "nvim/.config/nvim/pack/bundle/start/vim-taskwarrior"]
 	path = nvim/.config/nvim/pack/bundle/start/vim-taskwarrior
@@ -185,11 +182,26 @@
 	path = nvim/.config/nvim/pack/bundle/start/chadtree
 	url = https://github.com/ms-jpq/chadtree
 [submodule "nvim/.config/nvim/pack/bundle/opt/nvim-treesitter"]
-	path = nvim/.config/nvim/pack/bundle/opt/nvim-treesitter
+	path = nvim/.config/nvim/pack/bundle/start/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter
 [submodule "nvim/.config/nvim/pack/bundle/opt/nvim-lspconfig"]
-	path = nvim/.config/nvim/pack/bundle/opt/nvim-lspconfig
+	path = nvim/.config/nvim/pack/bundle/start/nvim-lspconfig
 	url = https://github.com/neovim/nvim-lspconfig
 [submodule "nvim/.config/nvim/pack/bundle/opt/completion-nvim"]
-	path = nvim/.config/nvim/pack/bundle/opt/completion-nvim
+	path = nvim/.config/nvim/pack/bundle/start/completion-nvim
 	url = https://github.com/nvim-lua/completion-nvim
+[submodule "nvim/.config/nvim/pack/bundle/opt/popup.nvim"]
+	path = nvim/.config/nvim/pack/bundle/opt/popup.nvim
+	url = https://github.com/nvim-lua/popup.nvim
+[submodule "nvim/.config/nvim/pack/bundle/opt/plenary.nvim"]
+	path = nvim/.config/nvim/pack/bundle/opt/plenary.nvim
+	url = https://github.com/nvim-lua/plenary.nvim
+[submodule "nvim/.config/nvim/pack/bundle/opt/telescope.nvim"]
+	path = nvim/.config/nvim/pack/bundle/opt/telescope.nvim
+	url = https://github.com/nvim-lua/telescope.nvim
+[submodule "nvim/.config/nvim/pack/bundle/start/firenvim"]
+	path = nvim/.config/nvim/pack/bundle/start/firenvim
+	url = https://github.com/glacambre/firenvim
+[submodule "nvim/.config/nvim/pack/bundle/start/vimpeccable"]
+	path = nvim/.config/nvim/pack/bundle/start/vimpeccable
+	url = https://github.com/svermeulen/vimpeccable

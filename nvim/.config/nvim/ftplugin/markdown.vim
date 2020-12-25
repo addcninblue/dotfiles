@@ -11,7 +11,7 @@ set autoindent
 
 " plugins
 packadd vim-markdown-edit-code-block
-let g:polyglot_disabled = ['markdown']
+" let g:polyglot_disabled = ['markdown']
 
 function! MathAndLiquid()
     "" Define certain regions

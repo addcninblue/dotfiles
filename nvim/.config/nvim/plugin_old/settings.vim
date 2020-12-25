@@ -77,6 +77,7 @@ function! Filetype()
 		return ""
 	else
 		return "[" . &filetype . "] "
+	endif
 endfunction
 
 set noruler                           " statusline

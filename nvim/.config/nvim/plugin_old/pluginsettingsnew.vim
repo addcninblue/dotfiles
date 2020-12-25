@@ -36,7 +36,7 @@ nnoremap <silent> gr :LspReferences<CR>
 
 " completion-nvim
 let g:completion_enable_snippet = 'UltiSnips'
-autocmd BufEnter * lua require'completion'.on_attach()
+autocmd BufEnter * lua require'completion'.on_attach() " TODO: FIGURE OUT WHATS HAPPENING HERE
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
@@ -74,9 +74,31 @@ let g:VtrStripLeadingWhitespace = 0
 let g:vimtex_quickfix_enabled = 0
 let g:vimtex_view_method = 'zathura'
 
+" firenvim
+let g:firenvim_config = {
+    \ 'localSettings': {
+        \ '.*': {
+            \ 'cmdline': 'firenvim',
+            \ 'priority': 0,
+            \ 'selector': 'textarea:not([readonly]):not([class="handsontableInput"]), div[role="textbox"]',
+            \ 'takeover': 'always',
+        \ },
+        \ '.*notion\.so.*': { 'priority': 9, 'takeover': 'never', },
+        \ '.*docs\.google\.com.*': { 'priority': 9, 'takeover': 'never', },
+    \ }
+\ }
+
 packadd nvim-treesitter
 packadd nvim-lspconfig
 packadd completion-nvim
+" packadd popup.nvim
+" packadd plenary.nvim
+" packadd telescope.nvim
+
+if filereadable("/home/addison/.fzf/plugin/fzf.vim")
+    source ~/.fzf/plugin/fzf.vim
+    let g:fzf_layout = {'up':'~90%', 'window': { 'width': 0.8, 'height': 0.8,'yoffset':0.5,'xoffset': 0.5, 'highlight': 'fg', 'border': 'sharp' } }
+endif
 
 sign define LspDiagnosticsErrorSign text=✗ texthl=LspDiagnosticsError linehl= numhl=
 sign define LspDiagnosticsWarningSign text=‼ texthl=LspDiagnosticsWarning linehl= numhl=
@@ -110,9 +132,9 @@ require'nvim-treesitter.configs'.setup {
   },
 }
 
-require'nvim_lsp'.ccls.setup{}
+require'lspconfig'.ccls.setup{}
 
-require'nvim_lsp'.pyls.setup {
+require'lspconfig'.pyls.setup {
   settings = {
     pyls = {
       plugins = {
@@ -124,7 +146,7 @@ require'nvim_lsp'.pyls.setup {
   }
 }
 
-require'nvim_lsp'.elixirls.setup{
+require'lspconfig'.elixirls.setup{
   cmd = { "/home/addison/.local/bin/elixir-ls/release/language_server.sh" },
   settings = {
     elixirLS = {
@@ -133,15 +155,28 @@ require'nvim_lsp'.elixirls.setup{
   }
 }
 
-require'nvim_lsp'.tsserver.setup{}
+require'lspconfig'.tsserver.setup{}
 
-require'nvim_lsp'.vimls.setup{}
+require'lspconfig'.vimls.setup{}
 
-require'nvim_lsp'.rnix.setup{}
+require'lspconfig'.rnix.setup{}
 
-require'nvim_lsp'.r_language_server.setup{}
+-- require'lspconfig'.r_language_server.setup{}
 
-require'nvim_lsp'.bashls.setup{}
+require'lspconfig'.bashls.setup{}
 
-require'nvim_lsp'.texlab.setup{}
+require'lspconfig'.texlab.setup{}
+
+-- local actions = require('telescope.actions')
+--
+-- require'telescope'.setup {
+--   defaults = {
+--     mappings = {
+--       i = {
+-- 	["<C-j>"] = actions.move_selection_next,
+-- 	["<C-k>"] = actions.move_selection_previous,
+--       },
+--     },
+--   },
+-- }
 EOF

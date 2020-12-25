@@ -5,7 +5,6 @@ nnoremap <silent><leader>mt :exec "!clear;make test"<CR>
 " nnoremap <silent><leader>mr :exec "!clear;ghc % -odir ../out -hidir ../out -o ../%:r && ../%:r && rm -r ../out"<CR>
 nnoremap <silent><leader>mf :exec "!make"
 nnoremap <silent><leader>mr :call Make()<CR> :call Run()<CR>
-let g:javaCommand = "Asyncrun make clean && make"
 func! Make()
 	if &filetype == 'java'
 		exec "!clear;javac %"
@@ -31,9 +30,6 @@ endfunc
 autocmd QuickFixCmdPost [^l]* nested cwindow
 autocmd QuickFixCmdPost    l* nested lwindow
 
-" nnoremap <F5> :call Run()<CR>
-let g:jedi#rename_command = ""
-" can't let jedi take over the <leader>r keybinding
 nnoremap <leader>r :call Run()<CR>
 nnoremap <leader>i :call Interactive()<CR><CR>
 func! Run()
@@ -64,6 +60,8 @@ func! Run()
 		let l:command="elixir " . expand("%")
 	elseif &filetype == 'r'
 		let l:command="Rscript " . expand("%")
+	elseif &filetype == 'lua'
+		let l:command="lua " . expand("%")
 	else
 		return
 	endif
@@ -78,6 +76,10 @@ func! Interactive()
 		let l:command="iex " . expand("%")
 	elseif &filetype == 'r'
 		let l:command="R --no-save"
+	elseif &filetype == 'scheme'
+		let l:command="python3 scheme -i " . expand("%")
+	elseif &filetype == 'lua'
+		let l:command="lua -i " . expand("%")
 	else
 		return
 	endif
