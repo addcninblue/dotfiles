@@ -2,6 +2,13 @@ local function file_readable_3f(path)
   assert((nil ~= path), string.format("Missing argument %s on %s:%s", "path", "init.fnl", 1))
   return (1 == vim.fn.filereadable(vim.fn.expand(path)))
 end
+local function open_split(command)
+  assert((nil ~= command), string.format("Missing argument %s on %s:%s", "command", "init.fnl", 5))
+  local bufheight = vim.fn.floor((vim.fn.winheight(0) / 5))
+  return vim.cmd(("belowright " .. bufheight .. "split term://" .. command))
+end
+vim.g.polyglot_disabled = {"markdown"}
+vim.cmd("packadd vim-polyglot")
 vim.cmd("filetype indent plugin on")
 vim.cmd("syntax on")
 vim.g.mapleader = " "
@@ -27,8 +34,8 @@ vim.cmd("highlight StatusLine guibg=#002b36 guifg=#eee8d5")
 vim.cmd("highlight VertSplit guibg=#002b36")
 vim.cmd("highlight CursorLineNr guifg=#eee8d5")
 vim.o.backspace = "indent,eol,start"
-vim.cmd("set number")
-vim.cmd("set relativenumber")
+vim.wo.number = true
+vim.wo.relativenumber = true
 vim.o.hlsearch = true
 vim.o.incsearch = true
 vim.o.inccommand = "nosplit"
@@ -36,25 +43,39 @@ vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.breakindent = true
 vim.cmd("set foldlevel=99")
-vim.cmd("set noshowcmd")
-vim.cmd("set noshowmode")
+vim.o.showcmd = false
+vim.o.showmode = false
 vim.o.hidden = true
 vim.o.sidescroll = 1
 vim.o.lazyredraw = true
-vim.cmd("set signcolumn=yes")
-vim.cmd("set nowrap")
+vim.wo.signcolumn = "yes"
+vim.wo.wrap = false
 vim.o.wildmenu = true
-vim.cmd("set list")
+vim.wo.list = true
 vim.o.undofile = true
-vim.o.undodir = "$HOME/.config/nvim/undo"
+vim.o.undodir = vim.fn.expand("~/.config/nvim/undo")
 vim.o.undolevels = 1000
 vim.o.undoreload = 10000
 vim.o.listchars = "tab:  ,nbsp:\226\144\163,extends:>,precedes:<,eol: ,trail:\194\183"
-vim.g.currentmode = {R = "REPLACE", Rv = "V\194\183REPLACE", S = "S\194\183LINE", V = "V\194\183LINE", ["!"] = "SHELL", ["\19"] = "S\194\183BLOCK", ["\22"] = "V\194\183BLOCK", ["r?"] = "CONFIRM", c = "COMMAND", ce = "EX", cv = "VIM EX", i = "INSERT", n = "NORMAL", no = "N\194\183OPERATOR PENDING", r = "PROMPT", rm = "MORE", s = "SELECT", t = "TERMINAL", v = "VISUAL"}
-vim.api.nvim_exec("\nfunction! Filetype()\n\9if &filetype == ''\n\9\9return ''\n\9else\n\9\9return '[' . &filetype . '] '\n\9endif\nendfunction\n", false)
+local modetable = {R = "REPLACE", Rv = "V\194\183REPLACE", S = "S\194\183LINE", V = "V\194\183LINE", ["!"] = "SHELL", ["\19"] = "S\194\183BLOCK", ["\22"] = "V\194\183BLOCK", ["r?"] = "CONFIRM", c = "COMMAND", ce = "EX", cv = "VIM EX", i = "INSERT", n = "NORMAL", no = "N\194\183OPERATOR PENDING", r = "PROMPT", rm = "MORE", s = "SELECT", t = "TERMINAL", v = "VISUAL"}
+_G.statusline = function()
+  local filetype = vim.api.nvim_buf_get_option(0, "filetype")
+  local mode = vim.api.nvim_get_mode().mode
+  local currentmode = (modetable[mode] or "OTHER")
+  local half_width = vim.fn.floor((vim.fn.winwidth(0) / 2))
+  local lspstatus = nil
+  if ((#vim.lsp.buf_get_clients() > 0) and (#vim.lsp.diagnostic.get_line_diagnostics() > 0)) then
+    local lsp_status = require("lsp-status")
+    local message = vim.lsp.diagnostic.get_line_diagnostics()[1].message
+    lspstatus = ("[" .. string.sub(message, 1, half_width) .. "] ")
+  else
+    lspstatus = ""
+  end
+  return ("[" .. currentmode .. "]" .. " %.40t" .. " " .. lspstatus .. "%=" .. "%m " .. "[" .. filetype .. "] " .. "[%3l/%L] " .. "[%3p%%] ")
+end
+vim.o.statusline = "%!v:lua.statusline()"
 vim.cmd("set noruler")
 vim.o.laststatus = 2
-vim.o.statusline = ("[%{g:currentmode[mode()]}]" .. " %.40t" .. "%=" .. "%m " .. "%{Filetype()}" .. "[%3l/%L] " .. "[%3p%%] ")
 vim.o.mouse = "a"
 vim.o.splitright = true
 vim.g.previewheight = vim.fn.floor((vim.fn.winwidth(0) / 2))
@@ -67,8 +88,18 @@ vimp.vnoremap(";", ":")
 vimp.inoremap("jk", "<ESC>")
 vimp.cnoremap("jk", "<ESC>")
 vimp.vnoremap("jk", "<ESC>")
+vimp.tnoremap("jk", "<C-\\><C-n>")
 vimp.nnoremap("<leader>j", "gt")
 vimp.nnoremap("<leader>k", "gT")
+vimp.nnoremap("<leader>1", "1gt")
+vimp.nnoremap("<leader>2", "2gt")
+vimp.nnoremap("<leader>3", "3gt")
+vimp.nnoremap("<leader>4", "4gt")
+vimp.nnoremap("<leader>5", "5gt")
+vimp.nnoremap("<leader>6", "6gt")
+vimp.nnoremap("<leader>7", "7gt")
+vimp.nnoremap("<leader>8", "8gt")
+vimp.nnoremap("<leader>9", ":tablast<CR>")
 vimp.nnoremap("<leader>y", "\"+y")
 vimp.nnoremap("<leader>Y", "\"+y$")
 vimp.nnoremap("<leader>p", "\"+p")
@@ -80,7 +111,7 @@ vimp.nnoremap("yoe", ":set linebreak!<CR>")
 local function _0_()
   local command = nil
   do
-    local filetype = vim.api.nvim_eval("&filetype")
+    local filetype = vim.api.nvim_buf_get_option(0, "filetype")
     local filename = vim.fn.expand("%")
     local filename_no_ext = vim.fn.expand("%<")
     if (filetype == "c") then
@@ -107,12 +138,14 @@ local function _0_()
       command = ("Rscript " .. filename)
     elseif (filetype == "lua") then
       command = ("lua " .. filename)
+    elseif (filetype == "julia") then
+      command = ("julia " .. filename)
     else
       command = nil
     end
   end
   if command then
-    return vim.cmd(("!tmux split-window -v -p 20 '" .. command .. " |& nvim -u ~/.config/nvim/ftplugin/more.vim -'"))
+    return open_split(command)
   else
     return print("not supported yet!")
   end
@@ -121,44 +154,58 @@ vimp.nnoremap({"silent"}, "<leader>r", _0_)
 local function _1_()
   local command = nil
   do
-    local filetype = vim.api.nvim_eval("&filetype")
+    local filetype = vim.api.nvim_buf_get_option(0, "filetype")
     local filename = vim.fn.expand("%")
     local filename_no_ext = vim.fn.expand("%<")
     if (filetype == "python") then
       command = ("python3 -i " .. filename)
     elseif (filetype == "elixir") then
-      command = ("iex " .. filename)
+      command = "iex"
     elseif (filetype == "r") then
       command = "R --no-save"
     elseif (filetype == "scheme") then
       command = ("python3 scheme -i " .. filename)
     elseif (filetype == "lua") then
       command = ("lua -i " .. filename)
+    elseif (filetype == "julia") then
+      command = ("julia -i " .. filename)
     else
-      command = nil
+      command = "zsh"
     end
   end
   if command then
-    return vim.cmd(("!tmux split-window -v -p 20 " .. command))
+    return open_split(command)
   else
     return print("not supported yet!")
   end
 end
 vimp.nnoremap({"silent"}, "<leader>i", _1_)
 do
+  local letters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"}
+  for _, letter in ipairs(letters) do
+    local function _2_()
+      local command = string.gsub(string.match(vim.fn.getreg(letter), "^%s*(.-)%s*$"), "\"", "\\\"")
+      local bufheight = vim.fn.floor((vim.fn.winheight(0) / 5))
+      if (command == "") then
+        return print(("nothing bound to register '" .. letter .. "' !"))
+      else
+        return open_split(command)
+      end
+    end
+    vimp.nnoremap({"silent"}, ("!" .. letter), _2_)
+  end
+end
+do
   local fzf_path = "~/.fzf/plugin/fzf.vim"
   if file_readable_3f(fzf_path) then
     vim.api.nvim_command(("source " .. fzf_path))
     vim.g.fzf_layout = {up = "~90%", window = {border = "sharp", height = 0.80000000000000004, highlight = "fg", width = 0.80000000000000004, xoffset = 0.5, yoffset = 0.5}}
     vimp.nnoremap("<C-p>", ":FZF<CR>")
+    vimp.nnoremap("<C-[>", ":GFiles<CR>")
     vimp.nnoremap("<C-b>", ":Buffers<CR>")
     vimp.nnoremap("<leader>gg", ":Rg<CR>")
   end
 end
-vimp.nnoremap("<leader>va", ":VtrAttachToPane<CR>")
-vimp.nnoremap("<leader>vs", ":VtrSendLinesToRunner<CR>")
-vimp.vnoremap("<leader>vs", ":VtrSendLinesToRunner<CR>")
-vim.g.VtrStripLeadingWhitespace = 0
 vim.g.vimtex_quickfix_enabled = 0
 vim.g.vimtex_view_method = "zathura"
 vim.api.nvim_set_var("limelight_conceal_ctermfg", 240)
@@ -181,17 +228,19 @@ vim.o.shortmess = (vim.o.shortmess .. "IaT")
 vim.g.vimwiki_list = {{auto_diary_index = 1, auto_tags = 1, ext = ".md", path = "~/vimwiki/", syntax = "markdown"}}
 vim.g.vimwiki_global_ext = 0
 vim.call("vimwiki#vars#init")
+vim.g.taskwiki_disable_concealcursor = "yes"
 vim.fn.sign_define("LspDiagnosticsErrorSign", {linehl = "", numhl = "", text = "\226\156\151", texthl = "LspDiagnosticsError"})
 vim.fn.sign_define("LspDiagnosticsWarningSign", {linehl = "", numhl = "", text = "\226\128\188", texthl = "LspDiagnosticsWarning"})
 vim.fn.sign_define("LspDiagnosticsInformationSign", {linehl = "", numhl = "", text = "I", texthl = "LspDiagnosticsInformation"})
 vim.fn.sign_define("LspDiagnosticsHintSign", {linehl = "", numhl = "", text = "H", texthl = "LspDiagnosticsHint"})
-vimp.nnoremap("K", "<cmd>lua vim.lsp.buf.hover()<CR>")
-vimp.nnoremap("gD", "<cmd>lua vim.lsp.buf.implementation()<CR>")
-vimp.nnoremap("1gD", "<cmd>lua vim.lsp.buf.type_definition()<CR>")
-vimp.nnoremap("gr", "<cmd>lua vim.lsp.buf.references()<CR>")
-vimp.nnoremap("g0", "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
-vimp.nnoremap("gW", "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
-vimp.nnoremap("gd", "<cmd>lua vim.lsp.buf.definition()<CR>")
+vimp.nnoremap("K", vim.lsp.buf.hover)
+vimp.nnoremap("gs", vim.lsp.buf.signature_help)
+vimp.nnoremap("gr", vim.lsp.buf.references)
+vimp.nnoremap("g0", vim.lsp.buf.document_symbol)
+vimp.nnoremap("gW", vim.lsp.buf.workspace_symbol)
+vimp.nnoremap("gd", vim.lsp.buf.definition)
+vimp.nnoremap({"override"}, "[e", vim.lsp.diagnostic.goto_prev)
+vimp.nnoremap({"override"}, "]e", vim.lsp.diagnostic.goto_next)
 do
   local configs = require("nvim-treesitter.configs")
   configs.setup({ensure_installed = "all", highlight = {enable = true}, refactor = {navigation = {enable = true}}})
@@ -200,11 +249,29 @@ do
   local lspconfig = require("lspconfig")
   lspconfig.ccls.setup({})
   lspconfig.pyls.setup({settings = {pyls = {plugins = {pycodestyle = {enabled = false}}}}})
-  lspconfig.elixirls.setup({cmd = "/home/addison/.local/bin/elixir-ls/release/language_server.sh", settings = {elixirLS = {dialyzerEnabled = false}}})
+  lspconfig.elixirls.setup({cmd = {"/home/addison/.local/bin/elixir-ls/release/language_server.sh"}})
   lspconfig.tsserver.setup({})
   lspconfig.vimls.setup({})
   lspconfig.rnix.setup({})
   lspconfig.bashls.setup({})
   lspconfig.texlab.setup({})
+  lspconfig.ccls.setup({})
+  lspconfig.julials.setup({})
 end
+do
+  local codeAction = require("lsputil.codeAction")
+  local locations = require("lsputil.locations")
+  local symbols = require("lsputil.symbols")
+  vim.lsp.handlers["textDocument/codeAction"] = codeAction.code_action_handler
+  vim.lsp.handlers["textDocument/references"] = locations.references_handler
+  vim.lsp.handlers["textDocument/definition"] = locations.definition_handler
+  vim.lsp.handlers["textDocument/declaration"] = locations.declaration_handler
+  vim.lsp.handlers["textDocument/typeDefinition"] = locations.typeDefinition_handler
+  vim.lsp.handlers["textDocument/implementation"] = locations.implementation_handler
+  vim.lsp.handlers["textDocument/documentSymbol"] = locations.document_handler
+  vim.lsp.handlers["workplace/symbol"] = symbols.workspace_handler
+end
+vim.api.nvim_exec("autocmd BufWritePre *.ex,*.exs lua vim.lsp.buf.formatting_sync(nil, 1000)", false)
+vim.g.completion_enable_snippet = "Ultisnips"
+vim.api.nvim_exec("autocmd BufEnter * lua require'completion'.on_attach()", false)
 return nil

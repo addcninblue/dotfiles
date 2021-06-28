@@ -25,21 +25,12 @@
 [submodule "nvim/.config/nvim/pack/bundle/opt/vim-ruby"]
 	path = nvim/.config/nvim/pack/bundle/opt/vim-ruby
 	url = https://github.com/vim-ruby/vim-ruby.git
-[submodule "nvim/.config/nvim/pack/bundle/start/ack.vim"]
-	path = nvim/.config/nvim/pack/bundle/start/ack.vim
-	url = https://github.com/mileszs/ack.vim.git
-[submodule "nvim/.config/nvim/pack/bundle/start/asyncrun.vim"]
-	path = nvim/.config/nvim/pack/bundle/start/asyncrun.vim
-	url = https://github.com/skywind3000/asyncrun.vim.git
 [submodule "nvim/.config/nvim/pack/bundle/start/CamelCaseMotion"]
 	path = nvim/.config/nvim/pack/bundle/start/CamelCaseMotion
 	url = https://github.com/bkad/CamelCaseMotion.git
 [submodule "nvim/.config/nvim/pack/bundle/start/delimitMate"]
 	path = nvim/.config/nvim/pack/bundle/start/delimitMate
 	url = https://github.com/Raimondi/delimitMate.git
-[submodule "nvim/.config/nvim/pack/bundle/start/simplenote.vim"]
-	path = nvim/.config/nvim/pack/bundle/start/simplenote.vim
-	url = https://github.com/mrtazz/simplenote.vim.git
 [submodule "nvim/.config/nvim/pack/bundle/start/supertab"]
 	path = nvim/.config/nvim/pack/bundle/opt/supertab
 	url = https://github.com/ervandew/supertab.git
@@ -65,7 +56,7 @@
 	path = nvim/.config/nvim/pack/bundle/start/vim-pencil
 	url = https://github.com/reedes/vim-pencil.git
 [submodule "nvim/.config/nvim/pack/bundle/start/vim-polyglot"]
-	path = nvim/.config/nvim/pack/bundle/start/vim-polyglot
+	path = nvim/.config/nvim/pack/bundle/opt/vim-polyglot
 	url = https://github.com/sheerun/vim-polyglot.git
 [submodule "nvim/.config/nvim/pack/bundle/start/vim-repeat"]
 	path = nvim/.config/nvim/pack/bundle/start/vim-repeat
@@ -112,9 +103,6 @@
 [submodule "nvim/.config/nvim/pack/bundle/start/ncm2-vim-lsp"]
 	path = nvim/.config/nvim/pack/bundle/opt/ncm2-vim-lsp
 	url = https://github.com/ncm2/ncm2-vim-lsp
-[submodule "nvim/.config/nvim/pack/bundle/start/async.vim"]
-	path = nvim/.config/nvim/pack/bundle/start/async.vim
-	url = https://github.com/prabirshrestha/async.vim
 [submodule "nvim/.config/nvim/pack/bundle/opt/vim-elixir"]
 	path = nvim/.config/nvim/pack/bundle/opt/vim-elixir
 	url = https://github.com/elixir-lang/vim-elixir.git
@@ -157,12 +145,6 @@
 [submodule "nvim/.config/nvim/pack/bundle/start/calendar-vim"]
 	path = nvim/.config/nvim/pack/bundle/start/calendar-vim
 	url = https://github.com/mattn/calendar-vim
-[submodule "nvim/.config/nvim/pack/bundle/start/vim-grepper"]
-	path = nvim/.config/nvim/pack/bundle/start/vim-grepper
-	url = https://github.com/mhinz/vim-grepper
-[submodule "nvim/.config/nvim/pack/bundle/start/taskwiki"]
-	path = nvim/.config/nvim/pack/bundle/opt/taskwiki
-	url = https://github.com/tbabej/taskwiki
 [submodule "nvim/.config/nvim/pack/bundle/start/vim-taskwarrior"]
 	path = nvim/.config/nvim/pack/bundle/start/vim-taskwarrior
 	url = https://github.com/blindFS/vim-taskwarrior
@@ -176,11 +158,8 @@
 	path = nvim/.config/nvim/pack/bundle/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive
 [submodule "nvim/.config/nvim/pack/bundle/start/vim-tmux-runner"]
-	path = nvim/.config/nvim/pack/bundle/start/vim-tmux-runner
+	path = nvim/.config/nvim/pack/bundle/opt/vim-tmux-runner
 	url = https://github.com/christoomey/vim-tmux-runner
-[submodule "nvim/.config/nvim/pack/bundle/start/chadtree"]
-	path = nvim/.config/nvim/pack/bundle/start/chadtree
-	url = https://github.com/ms-jpq/chadtree
 [submodule "nvim/.config/nvim/pack/bundle/opt/nvim-treesitter"]
 	path = nvim/.config/nvim/pack/bundle/start/nvim-treesitter
 	url = https://github.com/nvim-treesitter/nvim-treesitter
@@ -199,9 +178,24 @@
 [submodule "nvim/.config/nvim/pack/bundle/opt/telescope.nvim"]
 	path = nvim/.config/nvim/pack/bundle/opt/telescope.nvim
 	url = https://github.com/nvim-lua/telescope.nvim
-[submodule "nvim/.config/nvim/pack/bundle/start/firenvim"]
-	path = nvim/.config/nvim/pack/bundle/start/firenvim
-	url = https://github.com/glacambre/firenvim
 [submodule "nvim/.config/nvim/pack/bundle/start/vimpeccable"]
 	path = nvim/.config/nvim/pack/bundle/start/vimpeccable
 	url = https://github.com/svermeulen/vimpeccable
+[submodule "nvim/.config/nvim/pack/bundle/start/lsp-status.nvim"]
+	path = nvim/.config/nvim/pack/bundle/start/lsp-status.nvim
+	url = https://github.com/nvim-lua/lsp-status.nvim
+[submodule "nvim/.config/nvim/pack/bundle/start/nvim-lsputils"]
+	path = nvim/.config/nvim/pack/bundle/start/nvim-lsputils
+	url = https://github.com/RishabhRD/nvim-lsputils
+[submodule "nvim/.config/nvim/pack/bundle/start/popfix"]
+	path = nvim/.config/nvim/pack/bundle/start/popfix
+	url = https://github.com/RishabhRD/popfix
+[submodule "nvim/.config/nvim/pack/bundle/start/vim-beancount"]
+	path = nvim/.config/nvim/pack/bundle/start/vim-beancount
+	url = https://github.com/nathangrigg/vim-beancount
+[submodule "nvim/.config/nvim/pack/bundle/start/julia-vim"]
+	path = nvim/.config/nvim/pack/bundle/start/julia-vim
+	url = https://github.com/JuliaEditorSupport/julia-vim
+[submodule "nvim/.config/nvim/pack/bundle/start/taskwiki"]
+	path = nvim/.config/nvim/pack/bundle/old/taskwiki
+	url = https://github.com/tools-life/taskwiki

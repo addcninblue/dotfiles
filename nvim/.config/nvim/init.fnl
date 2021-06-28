@@ -2,6 +2,16 @@
   "Check that file is readable."
   (= 1 (vim.fn.filereadable (vim.fn.expand path))))
 
+(lambda open-split [command]
+  "Opens bottom split terminal at 20% height with given command."
+  (let [bufheight (vim.fn.floor (/ (vim.fn.winheight 0) 5))]
+    (vim.cmd (.. "belowright " bufheight "split term://" command))))
+
+;; vim-polyglot disable for languages
+
+(set vim.g.polyglot_disabled ["markdown"])
+(vim.cmd "packadd vim-polyglot")
+
 ;;;; OPTIONS
 
 (vim.cmd "filetype indent plugin on")
@@ -34,10 +44,8 @@
 (vim.cmd "highlight CursorLineNr guifg=#eee8d5")
 
 (set vim.o.backspace "indent,eol,start")      ; sane backspace
-; (set vim.o.number true)                       ; shows line number on current line
-; (set vim.o.relativenumber true)               ; shows relative line numbers on all other lines
-(vim.cmd "set number")                       ; TODO: broken
-(vim.cmd "set relativenumber")               ; TODO: broken
+(set vim.wo.number true)                       ; shows line number on current line
+(set vim.wo.relativenumber true)               ; shows relative line numbers on all other lines
 (set vim.o.hlsearch true)                     ; highlight items matching in search
 (set vim.o.incsearch true)                    ; go to next matching item while typing
 (set vim.o.inccommand "nosplit")              ; live substitution
@@ -46,70 +54,66 @@
 (set vim.o.breakindent true)                  ; if wraps, same indent
 ; (set vim.o.foldlevel 99)                      ; no folds on start
 (vim.cmd "set foldlevel=99") ; TODO: broken
-; (set vim.o.noshowcmd true)                     ; show command
-; (set vim.o.noshowmode true)                    ; show command
-(vim.cmd "set noshowcmd")                     ; TODO: broken
-(vim.cmd "set noshowmode")                    ; TODO: broken
+(set vim.o.showcmd false)                     ; show command
+(set vim.o.showmode false)                    ; show command
 (set vim.o.hidden true)                       ; no write on last edit
 (set vim.o.sidescroll 1)                      ; scroll individually, not as a chunk
 (set vim.o.lazyredraw true)                   ; redraws after all macros completed             ; lots faster
-; (set vim.o.signcolumn "yes")
-(vim.cmd "set signcolumn=yes") ; TODO: broken
-; (set vim.o.nowrap true)
-(vim.cmd "set nowrap")                        ; TODO: broken
+(set vim.wo.signcolumn "yes")
+(set vim.wo.wrap false)
 
 (set vim.o.wildmenu true)                     ; allows for tab completion on edits
-; (set vim.o.list true)
-(vim.cmd "set list")                          ; TODO: broken
+(set vim.wo.list true)
 (set vim.o.undofile true)                     ; Save undo's after file closes
-(set vim.o.undodir "$HOME/.config/nvim/undo") ; where to save undo histories
+(set vim.o.undodir (vim.fn.expand "~/.config/nvim/undo")) ; where to save undo histories
 (set vim.o.undolevels 1000)                   ; How many undos
 (set vim.o.undoreload 10000)                  ; number of lines to save for undo
 ; (set vim.o.listchars "nbsp:␣,extends:>,precedes:<,trail:·") ; for setting nonprinting characters
 (set vim.o.listchars "tab:  ,nbsp:␣,extends:>,precedes:<,eol: ,trail:·") ; for setting nonprinting characters
 
-(set vim.g.currentmode {"n" "NORMAL"
-                        "no" "N·OPERATOR PENDING"
-                        "v" "VISUAL"
-                        "V" "V·LINE"
-                        "" "V·BLOCK"
-                        "s" "SELECT"
-                        "S" "S·LINE"
-                        "" "S·BLOCK"
-                        "i" "INSERT"
-                        "R" "REPLACE"
-                        "Rv" "V·REPLACE"
-                        "c" "COMMAND"
-                        "cv" "VIM EX"
-                        "ce" "EX"
-                        "r" "PROMPT"
-                        "rm" "MORE"
-                        "r?" "CONFIRM"
-                        "!" "SHELL"
-                        "t" "TERMINAL"})
+(var modetable {"n" "NORMAL"
+                "no" "N·OPERATOR PENDING"
+                "v" "VISUAL"
+                "V" "V·LINE"
+                "" "V·BLOCK"
+                "s" "SELECT"
+                "S" "S·LINE"
+                "" "S·BLOCK"
+                "i" "INSERT"
+                "R" "REPLACE"
+                "Rv" "V·REPLACE"
+                "c" "COMMAND"
+                "cv" "VIM EX"
+                "ce" "EX"
+                "r" "PROMPT"
+                "rm" "MORE"
+                "r?" "CONFIRM"
+                "!" "SHELL"
+                "t" "TERMINAL"})
 
-; TODO: rewrite as lua/fennel
-(vim.api.nvim_exec "
-function! Filetype()
-	if &filetype == ''
-		return ''
-	else
-		return '[' . &filetype . '] '
-	endif
-endfunction
-" false)
-
-; (set vim.o.noruler true)
+(lambda _G.statusline []
+  (let [filetype (vim.api.nvim_buf_get_option 0 "filetype")
+        mode (. (vim.api.nvim_get_mode) "mode")
+        currentmode (or (. modetable mode) "OTHER")
+        half-width (vim.fn.floor (/ (vim.fn.winwidth 0) 2))
+        lspstatus (if (and (> (# (vim.lsp.buf_get_clients)) 0) (> (# (vim.lsp.diagnostic.get_line_diagnostics)) 0))
+                    (let [lsp-status (require "lsp-status")
+                          message (. (. (vim.lsp.diagnostic.get_line_diagnostics) 1) "message")]
+                      (.. "[" (string.sub message 1 half-width) "] "))
+                    ""
+                    )]
+    (.. "[" currentmode "]" ; Vim Mode
+        " %.40t"            ; Filename
+        " " lspstatus
+        "%="                ; Switch to the right side
+        "%m "               ; Modified
+        "[" filetype "] "   ; Filetype
+        "[%3l/%L] "         ; line of lines
+        "[%3p%%] ")         ; percentage
+    ))
+(set vim.o.statusline "%!v:lua.statusline()")
 (vim.cmd "set noruler")                     ; TODO: broken
 (set vim.o.laststatus 2)
-(set vim.o.statusline (.. "[%{g:currentmode[mode()]}]"
-                          " %.40t"
-                          "%="            ; Switch to the right side
-                          "%m "           ; Modified
-                          "%{Filetype()}" ; Filetype
-                          "[%3l/%L] "     ; line of lines
-                          "[%3p%%] "      ; percentage
-                          ))
 
 (set vim.o.mouse "a")
 (set vim.o.splitright true)
@@ -130,10 +134,20 @@ endfunction
 (vimp.inoremap "jk" "<ESC>")
 (vimp.cnoremap "jk" "<ESC>")
 (vimp.vnoremap "jk" "<ESC>")
+(vimp.tnoremap "jk" "<C-\\><C-n>")
 
 ;; switching tabs
 (vimp.nnoremap "<leader>j" "gt")
 (vimp.nnoremap "<leader>k" "gT")
+(vimp.nnoremap "<leader>1" "1gt")
+(vimp.nnoremap "<leader>2" "2gt")
+(vimp.nnoremap "<leader>3" "3gt")
+(vimp.nnoremap "<leader>4" "4gt")
+(vimp.nnoremap "<leader>5" "5gt")
+(vimp.nnoremap "<leader>6" "6gt")
+(vimp.nnoremap "<leader>7" "7gt")
+(vimp.nnoremap "<leader>8" "8gt")
+(vimp.nnoremap "<leader>9" ":tablast<CR>")
 
 ;; X clipboard; Y -> y$
 (vimp.nnoremap "<leader>y" "\"+y")
@@ -150,7 +164,7 @@ endfunction
 ;;;; MAKE AND RUN
 (vimp.nnoremap ["silent"] "<leader>r"
                (lambda []
-                 (let [command (let [filetype (vim.api.nvim_eval "&filetype")
+                 (let [command (let [filetype (vim.api.nvim_buf_get_option 0 "filetype")
                                     filename (vim.fn.expand "%")
                                     filename-no-ext (vim.fn.expand "%<")] ; TODO: fix this in future when option works
                                 (if
@@ -178,30 +192,48 @@ endfunction
                                   (.. "Rscript " filename)
                                   (= filetype "lua")
                                   (.. "lua " filename)
+                                  (= filetype "julia")
+                                  (.. "julia " filename)
                                   nil))]
                    (if command
-                     (vim.cmd (.. "!tmux split-window -v -p 20 '" command " |& nvim -u ~/.config/nvim/ftplugin/more.vim -'"))
+                     (open-split command)
                      (print "not supported yet!")))))
 
 (vimp.nnoremap ["silent"] "<leader>i"
                (lambda []
-                 (let [command (let [filetype (vim.api.nvim_eval "&filetype")
+                 (let [command (let [filetype (vim.api.nvim_buf_get_option 0 "filetype")
                                      filename (vim.fn.expand "%")
                                      filename-no-ext (vim.fn.expand "%<")] ; TODO: fix this in future when option works
                                  (if (= filetype "python")
                                    (.. "python3 -i " filename)
                                    (= filetype "elixir")
-                                   (.. "iex " filename)
+                                   "iex"
                                    (= filetype "r")
                                    (.. "R --no-save")
                                    (= filetype "scheme")
                                    (.. "python3 scheme -i " filename)
                                    (= filetype "lua")
                                    (.. "lua -i " filename)
-                                   nil))]
+                                  (= filetype "julia")
+                                  (.. "julia -i " filename)
+                                   "zsh"))] ; Defaults to opening a terminal
                    (if command
-                     (vim.cmd (.. "!tmux split-window -v -p 20 " command))
+                     (open-split command)
                      (print "not supported yet!")))))
+
+;;;; Vim-Acmetag
+(let [letters [ "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z" ]]
+  (each [_ letter (ipairs letters)]
+    (vimp.nnoremap ["silent"] (.. "!" letter)
+                   (lambda []
+                     (let [command (-> letter
+                                       (vim.fn.getreg)
+                                       (string.match "^%s*(.-)%s*$") ; Delete whitespace
+                                       (string.gsub "\"" "\\\""))    ; Substitute " for \\" (since " is a comment in vimscript)
+                           bufheight (vim.fn.floor (/ (vim.fn.winheight 0) 5))]
+                       (if (= command "")
+                         (print (.. "nothing bound to register '" letter "' !"))
+                         (open-split command)))))))
 
 ;;;; PLUGIN BINDINGS AND SETTINGS
 
@@ -217,14 +249,9 @@ endfunction
                                      "highlight" "fg"
                                      "border" "sharp" }})
     (vimp.nnoremap "<C-p>" ":FZF<CR>")
+    (vimp.nnoremap "<C-[>" ":GFiles<CR>")
     (vimp.nnoremap "<C-b>" ":Buffers<CR>")
     (vimp.nnoremap "<leader>gg" ":Rg<CR>")))
-
-;; vim tmux runner (VTR)
-(vimp.nnoremap "<leader>va" ":VtrAttachToPane<CR>")
-(vimp.nnoremap "<leader>vs" ":VtrSendLinesToRunner<CR>")
-(vimp.vnoremap "<leader>vs" ":VtrSendLinesToRunner<CR>")
-(set vim.g.VtrStripLeadingWhitespace 0)
 
 ;; vimtex
 (set vim.g.vimtex_quickfix_enabled 0)
@@ -273,20 +300,25 @@ endfunction
 (set vim.g.vimwiki_global_ext 0)
 (vim.call "vimwiki#vars#init")
 
+;; taskwiki
+(set vim.g.taskwiki_disable_concealcursor "yes") ; Show metadata in line
+
 ;;;; LSP
 (vim.fn.sign_define "LspDiagnosticsErrorSign" {"text" "✗" "texthl" "LspDiagnosticsError" "linehl" "" "numhl" ""})
 (vim.fn.sign_define "LspDiagnosticsWarningSign" {"text" "‼" "texthl" "LspDiagnosticsWarning" "linehl" "" "numhl" ""})
 (vim.fn.sign_define "LspDiagnosticsInformationSign" {"text" "I" "texthl" "LspDiagnosticsInformation" "linehl" "" "numhl" ""})
 (vim.fn.sign_define "LspDiagnosticsHintSign" {"text" "H" "texthl" "LspDiagnosticsHint" "linehl" "" "numhl" ""})
 
-;; (vimp.nnoremap "K"    vim.lsp.buf.hover) ; TODO: LOOK AT THIS
-(vimp.nnoremap "K"    "<cmd>lua vim.lsp.buf.hover()<CR>")
-(vimp.nnoremap "gD"   "<cmd>lua vim.lsp.buf.implementation()<CR>")
-(vimp.nnoremap "1gD"  "<cmd>lua vim.lsp.buf.type_definition()<CR>")
-(vimp.nnoremap "gr"   "<cmd>lua vim.lsp.buf.references()<CR>")
-(vimp.nnoremap "g0"   "<cmd>lua vim.lsp.buf.document_symbol()<CR>")
-(vimp.nnoremap "gW"   "<cmd>lua vim.lsp.buf.workspace_symbol()<CR>")
-(vimp.nnoremap "gd"   "<cmd>lua vim.lsp.buf.definition()<CR>")
+(vimp.nnoremap "K"    vim.lsp.buf.hover)
+(vimp.nnoremap "gs" vim.lsp.buf.signature_help)
+; (vimp.nnoremap "gD"   vim.lsp.buf.implementation)
+; (vimp.nnoremap "1gD"  vim.lsp.buf.type_definition)
+(vimp.nnoremap "gr"   vim.lsp.buf.references)
+(vimp.nnoremap "g0"   vim.lsp.buf.document_symbol)
+(vimp.nnoremap "gW"   vim.lsp.buf.workspace_symbol)
+(vimp.nnoremap "gd"   vim.lsp.buf.definition)
+(vimp.nnoremap ["override"] "[e"   vim.lsp.diagnostic.goto_prev)
+(vimp.nnoremap ["override"] "]e"   vim.lsp.diagnostic.goto_next)
 
 (let [configs (require "nvim-treesitter.configs")]
   (configs.setup {"ensure_installed" "all"
@@ -295,13 +327,49 @@ endfunction
 (let [lspconfig (require "lspconfig")]
   (lspconfig.ccls.setup {})
   (lspconfig.pyls.setup {"settings" {"pyls" {"plugins" {"pycodestyle" {"enabled" false}}}}})
-  (lspconfig.elixirls.setup {"cmd" "/home/addison/.local/bin/elixir-ls/release/language_server.sh"
-                             "settings" {"elixirLS" {"dialyzerEnabled" false}}})
+  ; (lspconfig.elixirls.setup {"cmd" ["/home/addison/.local/bin/elixir-ls/release/language_server.sh"] ; Disables dialyzer
+  ;                            "settings" {"elixirLS" {"dialyzerEnabled" false}}})
+  (lspconfig.elixirls.setup {"cmd" ["/home/addison/.local/bin/elixir-ls/release/language_server.sh"]})
   (lspconfig.tsserver.setup {})
   (lspconfig.vimls.setup {})
   (lspconfig.rnix.setup {})
   ; (lspconfig.r_language_server.setup {}) ; broken
   (lspconfig.bashls.setup {})
-  (lspconfig.texlab.setup {}))
+  (lspconfig.texlab.setup {})
+  (lspconfig.ccls.setup {})
+  (lspconfig.julials.setup {}))
+
+;; nvim-lsputils
+(let [codeAction (require "lsputil.codeAction")
+      locations (require "lsputil.locations")
+      symbols (require "lsputil.symbols")]
+    (tset vim.lsp.handlers "textDocument/codeAction" codeAction.code_action_handler)
+    (tset vim.lsp.handlers "textDocument/references" locations.references_handler)
+    (tset vim.lsp.handlers "textDocument/definition" locations.definition_handler)
+    (tset vim.lsp.handlers "textDocument/declaration" locations.declaration_handler)
+    (tset vim.lsp.handlers "textDocument/typeDefinition" locations.typeDefinition_handler)
+    (tset vim.lsp.handlers "textDocument/implementation" locations.implementation_handler)
+    (tset vim.lsp.handlers "textDocument/documentSymbol" locations.document_handler)
+    (tset vim.lsp.handlers "workplace/symbol" symbols.workspace_handler))
+  ; (tset vim.lsp.handlers {"textDocument/codeAction" codeAction.code_action_handler
+  ;                        "textDocument/references"     locations.references_handler
+  ;                        "textDocument/definition"     locations.definition_handler
+  ;                        "textDocument/declaration"    locations.declaration_handler
+  ;                        "textDocument/typeDefinition" locations.typeDefinition_handler
+  ;                        "textDocument/implementation" locations.implementation_handler
+  ;                        "textDocument/documentSymbol" locations.document_handler
+  ;                        "workplace/symbol" symbols.workspace_handler}))
+; vim.lsp.handlers['textDocument/references'] = require'lsputil.locations'.references_handler
+; vim.lsp.handlers['textDocument/definition'] = require'lsputil.locations'.definition_handler
+; vim.lsp.handlers['textDocument/declaration'] = require'lsputil.locations'.declaration_handler
+; vim.lsp.handlers['textDocument/typeDefinition'] = require'lsputil.locations'.typeDefinition_handler
+; vim.lsp.handlers['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
+; vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
+; vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
+(vim.api.nvim_exec "autocmd BufWritePre *.ex,*.exs lua vim.lsp.buf.formatting_sync(nil, 1000)" false)
+
+;; completion-nvim
+(set vim.g.completion_enable_snippet "Ultisnips")
+(vim.api.nvim_exec "autocmd BufEnter * lua require'completion'.on_attach()" false)
 
 nil
