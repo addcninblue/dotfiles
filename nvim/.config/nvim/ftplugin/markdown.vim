@@ -1,13 +1,4 @@
-nnoremap <leader>t vip:Tabularize/\|<CR>
 set autoindent
-" nnoremap <silent><leader>a vip:!perl<Space>~/dotfiles/vim/ftplugin/processing.pl<CR>vip:Tabularize/\|<CR>
-
-" let s:script = "vip:!perl " . expand('<sfile>:p:h') . "/processing.pl"
-" " nnoremap <leader>a :call FinanceFormat()<CR>
-" func! FinanceFormat()
-" 	exec "normal! " . s:script
-" 	exec "normal! vip:Tabularize /|\<CR>"
-" endfunc
 
 " plugins
 packadd vim-markdown-edit-code-block

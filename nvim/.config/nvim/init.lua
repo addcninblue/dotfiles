@@ -1,9 +1,10 @@
+__fnl_global__UNNAMED_2dREGISTER = "\""
 local function file_readable_3f(path)
-  assert((nil ~= path), string.format("Missing argument %s on %s:%s", "path", "init.fnl", 1))
+  assert((nil ~= path), string.format("Missing argument %s on %s:%s", "path", "init.fnl", 3))
   return (1 == vim.fn.filereadable(vim.fn.expand(path)))
 end
 local function open_split(command)
-  assert((nil ~= command), string.format("Missing argument %s on %s:%s", "command", "init.fnl", 5))
+  assert((nil ~= command), string.format("Missing argument %s on %s:%s", "command", "init.fnl", 7))
   local bufheight = vim.fn.floor((vim.fn.winheight(0) / 5))
   return vim.cmd(("belowright " .. bufheight .. "split term://" .. command))
 end
@@ -195,6 +196,54 @@ do
     vimp.nnoremap({"silent"}, ("!" .. letter), _2_)
   end
 end
+local function get_filepath()
+  local filename = vim.api.nvim_buf_get_name(0)
+  local line = vim.fn.line(".")
+  local col = vim.fn.col(".")
+  return (filename .. ":" .. line .. ":" .. col)
+end
+local function save_error_message()
+  return vim.fn.setreg(__fnl_global__UNNAMED_2dREGISTER, (get_filepath() .. ": " .. vim.fn.input("Comment > ")))
+end
+vimp.nnoremap({"silent"}, "<leader><C-G>", save_error_message)
+local function trim_end(line, end_pos)
+  assert((nil ~= end_pos), string.format("Missing argument %s on %s:%s", "end-pos", "init.fnl", 253))
+  assert((nil ~= line), string.format("Missing argument %s on %s:%s", "line", "init.fnl", 253))
+  return (function(tgt, m, ...) return tgt[m](tgt, ...) end)("sub", 1, end_pos)
+end
+local function trim_start(line, start_pos)
+  assert((nil ~= start_pos), string.format("Missing argument %s on %s:%s", "start-pos", "init.fnl", 257))
+  assert((nil ~= line), string.format("Missing argument %s on %s:%s", "line", "init.fnl", 257))
+  return (function(tgt, m, ...) return tgt[m](tgt, ...) end)("sub", start_pos)
+end
+local function replace_line(lines, line_num, operation)
+  assert((nil ~= operation), string.format("Missing argument %s on %s:%s", "operation", "init.fnl", 261))
+  assert((nil ~= line_num), string.format("Missing argument %s on %s:%s", "line-num", "init.fnl", 261))
+  assert((nil ~= lines), string.format("Missing argument %s on %s:%s", "lines", "init.fnl", 261))
+  lines[line_num] = operation(lines[line_num])
+  return nil
+end
+local function get_visual_selection()
+  local _, line_start, column_start, _0 = unpack(vim.fn.getpos("'<"))
+  local _1, line_end, column_end, _2 = unpack(vim.fn.getpos("'>"))
+  local lines = vim.fn.getline(line_start, line_end)
+  local _2_
+  if (#lines == 0) then
+    _2_ = lines
+  else
+    replace_line(lines, 1, trim_start)
+    lines[1] = (lines[1]):sub(column_start)
+    lines[#lines] = (lines[#lines]):sub(1, column_end)
+    _2_ = lines
+  end
+  return print(table.concat(_2_, ", "))
+end
+do local _ = vim.o.selection end
+vimp.vnoremap({"silent"}, "<leader>e", get_visual_selection)
+local function _2_()
+  return print(vim.fn.mode())
+end
+vimp.vnoremap({"silent"}, "<leader>w", _2_)
 do
   local fzf_path = "~/.fzf/plugin/fzf.vim"
   if file_readable_3f(fzf_path) then
@@ -248,7 +297,7 @@ end
 do
   local lspconfig = require("lspconfig")
   lspconfig.ccls.setup({})
-  lspconfig.pyls.setup({settings = {pyls = {plugins = {pycodestyle = {enabled = false}}}}})
+  lspconfig.pylsp.setup({settings = {pylsp = {plugins = {pycodestyle = {enabled = false}}}}})
   lspconfig.elixirls.setup({cmd = {"/home/addison/.local/bin/elixir-ls/release/language_server.sh"}})
   lspconfig.tsserver.setup({})
   lspconfig.vimls.setup({})

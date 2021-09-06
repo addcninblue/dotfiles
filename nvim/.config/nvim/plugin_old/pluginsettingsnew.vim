@@ -36,7 +36,7 @@ nnoremap <silent> gr :LspReferences<CR>
 
 " completion-nvim
 let g:completion_enable_snippet = 'UltiSnips'
-autocmd BufEnter * lua require'completion'.on_attach() " TODO: FIGURE OUT WHATS HAPPENING HERE
+autocmd BufEnter * lua require'completion'.on_attach()
 
 " Use <Tab> and <S-Tab> to navigate through popup menu
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"

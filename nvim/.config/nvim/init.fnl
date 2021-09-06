@@ -1,3 +1,5 @@
+(global UNNAMED-REGISTER "\"")
+
 (lambda file-readable? [path]
   "Check that file is readable."
   (= 1 (vim.fn.filereadable (vim.fn.expand path))))
@@ -235,6 +237,54 @@
                          (print (.. "nothing bound to register '" letter "' !"))
                          (open-split command)))))))
 
+(lambda get-filepath []
+  "Returns filepath:row:col"
+  (let [filename (vim.api.nvim_buf_get_name 0)
+        line (vim.fn.line ".")
+        col (vim.fn.col ".")]
+    (.. filename ":" line ":" col)))
+
+(lambda save-error-message []
+  "Save error message to unnamed register as filepath:row:col: comment"
+  (vim.fn.setreg UNNAMED-REGISTER (.. (get-filepath) ": " (vim.fn.input "Comment > "))))
+
+(vimp.nnoremap ["silent"] "<leader><C-G>" save-error-message)
+
+(lambda trim-end [line end-pos]
+  "Trims line until end-pos, inclusive"
+  (: "sub" 1 end-pos))
+
+(lambda trim-start [line start-pos]
+  "Trims line until start-pos, inclusive"
+  (: "sub" start-pos))
+
+(lambda replace-line [lines line-num operation]
+  (tset lines line-num (operation (. lines line-num))))
+
+(lambda get-visual-selection []
+  "Returns list of visual selection"
+  (let [(_ line-start column-start _) (unpack (vim.fn.getpos "'<"))
+        (_ line-end column-end _) (unpack (vim.fn.getpos "'>"))
+        lines (vim.fn.getline line-start line-end)]
+    (->
+      (if (= (length lines) 0)
+        lines
+        (do
+          (replace-line lines 1 trim-start)
+          (tset lines 1 (: (. lines 1) "sub" column-start))
+          (tset lines (length lines) (: (. lines (length lines)) "sub" 1 column-end))
+          lines))
+      (table.concat ", ")
+      (print)
+      )))
+    
+
+vim.o.selection
+
+(vimp.vnoremap ["silent"] "<leader>e" get-visual-selection)
+(vimp.vnoremap ["silent"] "<leader>w" (lambda [] (print (vim.fn.mode))))
+
+
 ;;;; PLUGIN BINDINGS AND SETTINGS
 
 ;; FZF
@@ -326,7 +376,7 @@
                   "refactor" {"navigation" {"enable" true}}}))
 (let [lspconfig (require "lspconfig")]
   (lspconfig.ccls.setup {})
-  (lspconfig.pyls.setup {"settings" {"pyls" {"plugins" {"pycodestyle" {"enabled" false}}}}})
+  (lspconfig.pylsp.setup {"settings" {"pylsp" {"plugins" {"pycodestyle" {"enabled" false}}}}})
   ; (lspconfig.elixirls.setup {"cmd" ["/home/addison/.local/bin/elixir-ls/release/language_server.sh"] ; Disables dialyzer
   ;                            "settings" {"elixirLS" {"dialyzerEnabled" false}}})
   (lspconfig.elixirls.setup {"cmd" ["/home/addison/.local/bin/elixir-ls/release/language_server.sh"]})
@@ -366,6 +416,7 @@
 ; vim.lsp.handlers['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
 ; vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
 ; vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
+
 (vim.api.nvim_exec "autocmd BufWritePre *.ex,*.exs lua vim.lsp.buf.formatting_sync(nil, 1000)" false)
 
 ;; completion-nvim
