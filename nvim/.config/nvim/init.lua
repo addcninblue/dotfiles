@@ -1,10 +1,10 @@
 __fnl_global__UNNAMED_2dREGISTER = "\""
 local function file_readable_3f(path)
-  assert((nil ~= path), string.format("Missing argument %s on %s:%s", "path", "init.fnl", 3))
+  _G.assert((nil ~= path), "Missing argument path on init.fnl:3")
   return (1 == vim.fn.filereadable(vim.fn.expand(path)))
 end
 local function open_split(command)
-  assert((nil ~= command), string.format("Missing argument %s on %s:%s", "command", "init.fnl", 7))
+  _G.assert((nil ~= command), "Missing argument command on init.fnl:7")
   local bufheight = vim.fn.floor((vim.fn.winheight(0) / 5))
   return vim.cmd(("belowright " .. bufheight .. "split term://" .. command))
 end
@@ -58,16 +58,16 @@ vim.o.undodir = vim.fn.expand("~/.config/nvim/undo")
 vim.o.undolevels = 1000
 vim.o.undoreload = 10000
 vim.o.listchars = "tab:  ,nbsp:\226\144\163,extends:>,precedes:<,eol: ,trail:\194\183"
-local modetable = {R = "REPLACE", Rv = "V\194\183REPLACE", S = "S\194\183LINE", V = "V\194\183LINE", ["!"] = "SHELL", ["\19"] = "S\194\183BLOCK", ["\22"] = "V\194\183BLOCK", ["r?"] = "CONFIRM", c = "COMMAND", ce = "EX", cv = "VIM EX", i = "INSERT", n = "NORMAL", no = "N\194\183OPERATOR PENDING", r = "PROMPT", rm = "MORE", s = "SELECT", t = "TERMINAL", v = "VISUAL"}
+local modetable = {n = "NORMAL", no = "N\194\183OPERATOR PENDING", v = "VISUAL", V = "V\194\183LINE", ["\22"] = "V\194\183BLOCK", s = "SELECT", S = "S\194\183LINE", ["\19"] = "S\194\183BLOCK", i = "INSERT", R = "REPLACE", Rv = "V\194\183REPLACE", c = "COMMAND", cv = "VIM EX", ce = "EX", r = "PROMPT", rm = "MORE", ["r?"] = "CONFIRM", ["!"] = "SHELL", t = "TERMINAL"}
 _G.statusline = function()
   local filetype = vim.api.nvim_buf_get_option(0, "filetype")
   local mode = vim.api.nvim_get_mode().mode
   local currentmode = (modetable[mode] or "OTHER")
   local half_width = vim.fn.floor((vim.fn.winwidth(0) / 2))
-  local lspstatus = nil
+  local lspstatus
   if ((#vim.lsp.buf_get_clients() > 0) and (#vim.lsp.diagnostic.get_line_diagnostics() > 0)) then
     local lsp_status = require("lsp-status")
-    local message = vim.lsp.diagnostic.get_line_diagnostics()[1].message
+    local message = (vim.lsp.diagnostic.get_line_diagnostics()[1]).message
     lspstatus = ("[" .. string.sub(message, 1, half_width) .. "] ")
   else
     lspstatus = ""
@@ -107,10 +107,9 @@ vimp.nnoremap("<leader>p", "\"+p")
 vimp.nnoremap("<leader>P", "\"+P")
 vimp.vnoremap("<leader>y", "\"+y")
 vimp.vnoremap("<leader>Y", "\"+y$")
-vimp.nnoremap("Y", "y$")
 vimp.nnoremap("yoe", ":set linebreak!<CR>")
-local function _0_()
-  local command = nil
+local function _2_()
+  local command
   do
     local filetype = vim.api.nvim_buf_get_option(0, "filetype")
     local filename = vim.fn.expand("%")
@@ -151,9 +150,9 @@ local function _0_()
     return print("not supported yet!")
   end
 end
-vimp.nnoremap({"silent"}, "<leader>r", _0_)
-local function _1_()
-  local command = nil
+vimp.nnoremap({"silent"}, "<leader>r", _2_)
+local function _5_()
+  local command
   do
     local filetype = vim.api.nvim_buf_get_option(0, "filetype")
     local filename = vim.fn.expand("%")
@@ -180,11 +179,11 @@ local function _1_()
     return print("not supported yet!")
   end
 end
-vimp.nnoremap({"silent"}, "<leader>i", _1_)
+vimp.nnoremap({"silent"}, "<leader>i", _5_)
 do
   local letters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"}
   for _, letter in ipairs(letters) do
-    local function _2_()
+    local function _8_()
       local command = string.gsub(string.match(vim.fn.getreg(letter), "^%s*(.-)%s*$"), "\"", "\\\"")
       local bufheight = vim.fn.floor((vim.fn.winheight(0) / 5))
       if (command == "") then
@@ -193,7 +192,7 @@ do
         return open_split(command)
       end
     end
-    vimp.nnoremap({"silent"}, ("!" .. letter), _2_)
+    vimp.nnoremap({"silent"}, ("!" .. letter), _8_)
   end
 end
 local function get_filepath()
@@ -207,52 +206,53 @@ local function save_error_message()
 end
 vimp.nnoremap({"silent"}, "<leader><C-G>", save_error_message)
 local function trim_end(line, end_pos)
-  assert((nil ~= end_pos), string.format("Missing argument %s on %s:%s", "end-pos", "init.fnl", 253))
-  assert((nil ~= line), string.format("Missing argument %s on %s:%s", "line", "init.fnl", 253))
+  _G.assert((nil ~= end_pos), "Missing argument end-pos on init.fnl:252")
+  _G.assert((nil ~= line), "Missing argument line on init.fnl:252")
   return (function(tgt, m, ...) return tgt[m](tgt, ...) end)("sub", 1, end_pos)
 end
 local function trim_start(line, start_pos)
-  assert((nil ~= start_pos), string.format("Missing argument %s on %s:%s", "start-pos", "init.fnl", 257))
-  assert((nil ~= line), string.format("Missing argument %s on %s:%s", "line", "init.fnl", 257))
+  _G.assert((nil ~= start_pos), "Missing argument start-pos on init.fnl:256")
+  _G.assert((nil ~= line), "Missing argument line on init.fnl:256")
   return (function(tgt, m, ...) return tgt[m](tgt, ...) end)("sub", start_pos)
 end
 local function replace_line(lines, line_num, operation)
-  assert((nil ~= operation), string.format("Missing argument %s on %s:%s", "operation", "init.fnl", 261))
-  assert((nil ~= line_num), string.format("Missing argument %s on %s:%s", "line-num", "init.fnl", 261))
-  assert((nil ~= lines), string.format("Missing argument %s on %s:%s", "lines", "init.fnl", 261))
-  lines[line_num] = operation(lines[line_num])
+  _G.assert((nil ~= operation), "Missing argument operation on init.fnl:260")
+  _G.assert((nil ~= line_num), "Missing argument line-num on init.fnl:260")
+  _G.assert((nil ~= lines), "Missing argument lines on init.fnl:260")
+  do end (lines)[line_num] = operation(lines[line_num])
   return nil
 end
 local function get_visual_selection()
   local _, line_start, column_start, _0 = unpack(vim.fn.getpos("'<"))
   local _1, line_end, column_end, _2 = unpack(vim.fn.getpos("'>"))
   local lines = vim.fn.getline(line_start, line_end)
-  local _2_
+  local _10_
   if (#lines == 0) then
-    _2_ = lines
+    _10_ = lines
   else
     replace_line(lines, 1, trim_start)
-    lines[1] = (lines[1]):sub(column_start)
-    lines[#lines] = (lines[#lines]):sub(1, column_end)
-    _2_ = lines
+    do end (lines)[1] = (lines[1]):sub(column_start)
+    do end (lines)[#lines] = (lines[#lines]):sub(1, column_end)
+    _10_ = lines
   end
-  return print(table.concat(_2_, ", "))
+  return print(table.concat(_10_, ", "))
 end
 do local _ = vim.o.selection end
 vimp.vnoremap({"silent"}, "<leader>e", get_visual_selection)
-local function _2_()
+local function _12_()
   return print(vim.fn.mode())
 end
-vimp.vnoremap({"silent"}, "<leader>w", _2_)
+vimp.vnoremap({"silent"}, "<leader>w", _12_)
 do
   local fzf_path = "~/.fzf/plugin/fzf.vim"
   if file_readable_3f(fzf_path) then
     vim.api.nvim_command(("source " .. fzf_path))
-    vim.g.fzf_layout = {up = "~90%", window = {border = "sharp", height = 0.80000000000000004, highlight = "fg", width = 0.80000000000000004, xoffset = 0.5, yoffset = 0.5}}
+    vim.g.fzf_layout = {up = "~90%", window = {width = 0.8, height = 0.8, yoffset = 0.5, xoffset = 0.5, highlight = "fg", border = "sharp"}}
     vimp.nnoremap("<C-p>", ":FZF<CR>")
     vimp.nnoremap("<C-[>", ":GFiles<CR>")
     vimp.nnoremap("<C-b>", ":Buffers<CR>")
     vimp.nnoremap("<leader>gg", ":Rg<CR>")
+  else
   end
 end
 vim.g.vimtex_quickfix_enabled = 0
@@ -274,16 +274,15 @@ vim.api.nvim_exec("autocmd FileType nerdtree setlocal relativenumber", false)
 vimp.nnoremap("<leader>nc", ":Calendar")
 vim.o.completeopt = "menuone,noinsert,noselect"
 vim.o.shortmess = (vim.o.shortmess .. "IaT")
-vim.g.vimwiki_list = {{auto_diary_index = 1, auto_tags = 1, ext = ".md", path = "~/vimwiki/", syntax = "markdown"}}
+vim.g.vimwiki_list = {{path = "~/vimwiki/", syntax = "markdown", ext = ".md", auto_diary_index = 1, auto_tags = 1}}
 vim.g.vimwiki_global_ext = 0
 vim.call("vimwiki#vars#init")
 vim.g.taskwiki_disable_concealcursor = "yes"
-vim.fn.sign_define("LspDiagnosticsErrorSign", {linehl = "", numhl = "", text = "\226\156\151", texthl = "LspDiagnosticsError"})
-vim.fn.sign_define("LspDiagnosticsWarningSign", {linehl = "", numhl = "", text = "\226\128\188", texthl = "LspDiagnosticsWarning"})
-vim.fn.sign_define("LspDiagnosticsInformationSign", {linehl = "", numhl = "", text = "I", texthl = "LspDiagnosticsInformation"})
-vim.fn.sign_define("LspDiagnosticsHintSign", {linehl = "", numhl = "", text = "H", texthl = "LspDiagnosticsHint"})
+vim.fn.sign_define("LspDiagnosticsErrorSign", {text = "\226\156\151", texthl = "LspDiagnosticsError", linehl = "", numhl = ""})
+vim.fn.sign_define("LspDiagnosticsWarningSign", {text = "\226\128\188", texthl = "LspDiagnosticsWarning", linehl = "", numhl = ""})
+vim.fn.sign_define("LspDiagnosticsInformationSign", {text = "I", texthl = "LspDiagnosticsInformation", linehl = "", numhl = ""})
+vim.fn.sign_define("LspDiagnosticsHintSign", {text = "H", texthl = "LspDiagnosticsHint", linehl = "", numhl = ""})
 vimp.nnoremap("K", vim.lsp.buf.hover)
-vimp.nnoremap("gs", vim.lsp.buf.signature_help)
 vimp.nnoremap("gr", vim.lsp.buf.references)
 vimp.nnoremap("g0", vim.lsp.buf.document_symbol)
 vimp.nnoremap("gW", vim.lsp.buf.workspace_symbol)
@@ -297,7 +296,7 @@ end
 do
   local lspconfig = require("lspconfig")
   lspconfig.ccls.setup({})
-  lspconfig.pylsp.setup({settings = {pylsp = {plugins = {pycodestyle = {enabled = false}}}}})
+  lspconfig.pylsp.setup({settings = {pylsp = {plugins = {pycodestyle = {enabled = false}, pyflakes = {enabled = false}}}}})
   lspconfig.elixirls.setup({cmd = {"/home/addison/.local/bin/elixir-ls/release/language_server.sh"}})
   lspconfig.tsserver.setup({})
   lspconfig.vimls.setup({})
@@ -306,12 +305,13 @@ do
   lspconfig.texlab.setup({})
   lspconfig.ccls.setup({})
   lspconfig.julials.setup({})
+  lspconfig.rls.setup({})
 end
 do
   local codeAction = require("lsputil.codeAction")
   local locations = require("lsputil.locations")
   local symbols = require("lsputil.symbols")
-  vim.lsp.handlers["textDocument/codeAction"] = codeAction.code_action_handler
+  do end (vim.lsp.handlers)["textDocument/codeAction"] = codeAction.code_action_handler
   vim.lsp.handlers["textDocument/references"] = locations.references_handler
   vim.lsp.handlers["textDocument/definition"] = locations.definition_handler
   vim.lsp.handlers["textDocument/declaration"] = locations.declaration_handler
@@ -323,4 +323,8 @@ end
 vim.api.nvim_exec("autocmd BufWritePre *.ex,*.exs lua vim.lsp.buf.formatting_sync(nil, 1000)", false)
 vim.g.completion_enable_snippet = "Ultisnips"
 vim.api.nvim_exec("autocmd BufEnter * lua require'completion'.on_attach()", false)
+vim.g.scratch_autohide = 0
+vim.g.scratch_insert_autohide = 0
+vim.g.scratch_filetype = "markdown"
+vim.g.scratch_persistence_file = ".scratch.vim"
 return nil

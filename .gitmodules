@@ -5,7 +5,7 @@
 	path = nvim/.config/nvim/pack/bundle/opt/codi.vim
 	url = https://github.com/metakirby5/codi.vim.git
 [submodule "nvim/.config/nvim/pack/bundle/opt/emmet-vim"]
-	path = nvim/.config/nvim/pack/bundle/opt/emmet-vim
+	path = nvim/.config/nvim/pack/bundle/old/emmet-vim
 	url = https://github.com/mattn/emmet-vim.git
 [submodule "nvim/.config/nvim/pack/bundle/opt/goyo.vim"]
 	path = nvim/.config/nvim/pack/bundle/opt/goyo.vim
@@ -121,15 +121,9 @@
 [submodule "nvim/.config/nvim/pack/bundle/start/vim-snippets"]
 	path = nvim/.config/nvim/pack/bundle/start/vim-snippets
 	url = https://github.com/honza/vim-snippets
-[submodule "nvim/.config/nvim/pack/bundle/start/ranger.vim"]
-	path = nvim/.config/nvim/pack/bundle/start/ranger.vim
-	url = https://github.com/francoiscabrol/ranger.vim
 [submodule "nvim/.config/nvim/pack/bundle/start/nerdtree"]
 	path = nvim/.config/nvim/pack/bundle/start/nerdtree
 	url = https://github.com/scrooloose/nerdtree
-[submodule "nvim/.config/nvim/pack/bundle/opt/jupytext.vim"]
-	path = nvim/.config/nvim/pack/bundle/start/jupytext.vim
-	url = https://github.com/goerz/jupytext.vim
 [submodule "nvim/.config/nvim/pack/bundle/opt/vim-markdown-edit-code-block"]
 	path = nvim/.config/nvim/pack/bundle/opt/vim-markdown-edit-code-block
 	url = https://github.com/Chandlercjy/vim-markdown-edit-code-block
@@ -187,9 +181,6 @@
 [submodule "nvim/.config/nvim/pack/bundle/start/nvim-lsputils"]
 	path = nvim/.config/nvim/pack/bundle/start/nvim-lsputils
 	url = https://github.com/RishabhRD/nvim-lsputils
-[submodule "nvim/.config/nvim/pack/bundle/start/popfix"]
-	path = nvim/.config/nvim/pack/bundle/start/popfix
-	url = https://github.com/RishabhRD/popfix
 [submodule "nvim/.config/nvim/pack/bundle/start/vim-beancount"]
 	path = nvim/.config/nvim/pack/bundle/start/vim-beancount
 	url = https://github.com/nathangrigg/vim-beancount
@@ -199,3 +190,9 @@
 [submodule "nvim/.config/nvim/pack/bundle/start/taskwiki"]
 	path = nvim/.config/nvim/pack/bundle/old/taskwiki
 	url = https://github.com/tools-life/taskwiki
+[submodule "nvim/.config/nvim/pack/bundle/start/popfix"]
+	path = nvim/.config/nvim/pack/bundle/start/popfix
+	url = https://github.com/RishabhRD/popfix
+[submodule "nvim/.config/nvim/pack/bundle/start/vim-rhubarb"]
+	path = nvim/.config/nvim/pack/bundle/start/vim-rhubarb
+	url = https://github.com/tpope/vim-rhubarb

@@ -158,7 +158,6 @@
 (vimp.nnoremap "<leader>P" "\"+P")
 (vimp.vnoremap "<leader>y" "\"+y")
 (vimp.vnoremap "<leader>Y" "\"+y$")
-(vimp.nnoremap "Y" "y$")
 
 ;; change linebreak
 (vimp.nnoremap "yoe" ":set linebreak!<CR>")
@@ -288,7 +287,7 @@ vim.o.selection
 ;;;; PLUGIN BINDINGS AND SETTINGS
 
 ;; FZF
-(let (fzf-path "~/.fzf/plugin/fzf.vim")
+(let [fzf-path "~/.fzf/plugin/fzf.vim"]
   (when (file-readable? fzf-path)
     (vim.api.nvim_command (.. "source " fzf-path))
     (set vim.g.fzf_layout {"up" "~90%"
@@ -360,7 +359,7 @@ vim.o.selection
 (vim.fn.sign_define "LspDiagnosticsHintSign" {"text" "H" "texthl" "LspDiagnosticsHint" "linehl" "" "numhl" ""})
 
 (vimp.nnoremap "K"    vim.lsp.buf.hover)
-(vimp.nnoremap "gs" vim.lsp.buf.signature_help)
+; (vimp.nnoremap "gs" vim.lsp.buf.signature_help)
 ; (vimp.nnoremap "gD"   vim.lsp.buf.implementation)
 ; (vimp.nnoremap "1gD"  vim.lsp.buf.type_definition)
 (vimp.nnoremap "gr"   vim.lsp.buf.references)
@@ -376,7 +375,10 @@ vim.o.selection
                   "refactor" {"navigation" {"enable" true}}}))
 (let [lspconfig (require "lspconfig")]
   (lspconfig.ccls.setup {})
-  (lspconfig.pylsp.setup {"settings" {"pylsp" {"plugins" {"pycodestyle" {"enabled" false}}}}})
+  (lspconfig.pylsp.setup {"settings" {"pylsp" {"plugins" {"pycodestyle" {"enabled" false}
+                                                          "pyflakes" {"enabled" false}
+                                                          ; "flake8" {"ignore" ["F405"]}
+                                                          }}}})
   ; (lspconfig.elixirls.setup {"cmd" ["/home/addison/.local/bin/elixir-ls/release/language_server.sh"] ; Disables dialyzer
   ;                            "settings" {"elixirLS" {"dialyzerEnabled" false}}})
   (lspconfig.elixirls.setup {"cmd" ["/home/addison/.local/bin/elixir-ls/release/language_server.sh"]})
@@ -387,7 +389,8 @@ vim.o.selection
   (lspconfig.bashls.setup {})
   (lspconfig.texlab.setup {})
   (lspconfig.ccls.setup {})
-  (lspconfig.julials.setup {}))
+  (lspconfig.julials.setup {})
+  (lspconfig.rls.setup {}))
 
 ;; nvim-lsputils
 (let [codeAction (require "lsputil.codeAction")
@@ -422,5 +425,11 @@ vim.o.selection
 ;; completion-nvim
 (set vim.g.completion_enable_snippet "Ultisnips")
 (vim.api.nvim_exec "autocmd BufEnter * lua require'completion'.on_attach()" false)
+
+;; scratch.vim - I run my own custom patch
+(set vim.g.scratch_autohide 0)
+(set vim.g.scratch_insert_autohide 0)
+(set vim.g.scratch_filetype "markdown")
+(set vim.g.scratch_persistence_file ".scratch.vim")
 
 nil
