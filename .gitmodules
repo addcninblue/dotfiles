@@ -35,7 +35,7 @@
 	path = nvim/.config/nvim/pack/bundle/opt/supertab
 	url = https://github.com/ervandew/supertab.git
 [submodule "nvim/.config/nvim/pack/bundle/start/tabular"]
-	path = nvim/.config/nvim/pack/bundle/start/tabular
+	path = nvim/.config/nvim/pack/bundle/old/tabular
 	url = https://github.com/godlygeek/tabular.git
 [submodule "nvim/.config/nvim/pack/bundle/start/targets.vim"]
 	path = nvim/.config/nvim/pack/bundle/start/targets.vim
@@ -50,10 +50,10 @@
 	path = nvim/.config/nvim/pack/bundle/start/vim-commentary
 	url = https://github.com/tpope/vim-commentary.git
 [submodule "nvim/.config/nvim/pack/bundle/start/vim-dispatch"]
-	path = nvim/.config/nvim/pack/bundle/start/vim-dispatch
+	path = nvim/.config/nvim/pack/bundle/old/vim-dispatch
 	url = https://github.com/tpope/vim-dispatch.git
 [submodule "nvim/.config/nvim/pack/bundle/start/vim-pencil"]
-	path = nvim/.config/nvim/pack/bundle/start/vim-pencil
+	path = nvim/.config/nvim/pack/bundle/old/vim-pencil
 	url = https://github.com/reedes/vim-pencil.git
 [submodule "nvim/.config/nvim/pack/bundle/start/vim-polyglot"]
 	path = nvim/.config/nvim/pack/bundle/opt/vim-polyglot
@@ -86,7 +86,7 @@
 	path = nvim/.config/nvim/pack/bundle/opt/ncm2
 	url = https://github.com/ncm2/ncm2
 [submodule "nvim/.config/nvim/pack/bundle/start/nvim-yarp"]
-	path = nvim/.config/nvim/pack/bundle/start/nvim-yarp
+	path = nvim/.config/nvim/pack/bundle/old/nvim-yarp
 	url = https://github.com/roxma/nvim-yarp
 [submodule "nvim/.config/nvim/pack/bundle/start/ncm2-bufword"]
 	path = nvim/.config/nvim/pack/bundle/opt/ncm2-bufword
@@ -137,10 +137,10 @@
 	path = nvim/.config/nvim/pack/bundle/start/vimwiki
 	url = https://github.com/vimwiki/vimwiki
 [submodule "nvim/.config/nvim/pack/bundle/start/calendar-vim"]
-	path = nvim/.config/nvim/pack/bundle/start/calendar-vim
+	path = nvim/.config/nvim/pack/bundle/old/calendar-vim
 	url = https://github.com/mattn/calendar-vim
 [submodule "nvim/.config/nvim/pack/bundle/start/vim-taskwarrior"]
-	path = nvim/.config/nvim/pack/bundle/start/vim-taskwarrior
+	path = nvim/.config/nvim/pack/bundle/old/vim-taskwarrior
 	url = https://github.com/blindFS/vim-taskwarrior
 [submodule "refind/rEFInd-minimal"]
 	path = refind/rEFInd-minimal
