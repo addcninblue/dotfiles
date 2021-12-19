@@ -196,3 +196,12 @@
 [submodule "nvim/.config/nvim/pack/bundle/start/vim-rhubarb"]
 	path = nvim/.config/nvim/pack/bundle/start/vim-rhubarb
 	url = https://github.com/tpope/vim-rhubarb
+[submodule "nvim/.config/nvim/pack/bundle/start/AirLatex.vim"]
+	path = nvim/.config/nvim/pack/bundle/start/AirLatex.vim
+	url = https://github.com/da-h/AirLatex.vim
+[submodule "nvim/.config/nvim/pack/bundle/start/vim-openscad"]
+	path = nvim/.config/nvim/pack/bundle/start/vim-openscad
+	url = https://github.com/sirtaj/vim-openscad
+[submodule "nvim/.config/nvim/pack/bundle/start/vim-easy-align"]
+	path = nvim/.config/nvim/pack/bundle/start/vim-easy-align
+	url = https://github.com/junegunn/vim-easy-align

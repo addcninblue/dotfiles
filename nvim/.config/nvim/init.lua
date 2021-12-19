@@ -39,7 +39,7 @@ vim.wo.number = true
 vim.wo.relativenumber = true
 vim.o.hlsearch = true
 vim.o.incsearch = true
-vim.o.inccommand = "nosplit"
+vim.o.inccommand = "split"
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.breakindent = true
@@ -327,4 +327,6 @@ vim.g.scratch_autohide = 0
 vim.g.scratch_insert_autohide = 0
 vim.g.scratch_filetype = "markdown"
 vim.g.scratch_persistence_file = ".scratch.vim"
+vimp.xmap("ga", "<Plug>(EasyAlign)")
+vimp.nmap("ga", "<Plug>(EasyAlign)")
 return nil

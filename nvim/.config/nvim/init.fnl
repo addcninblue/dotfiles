@@ -50,7 +50,7 @@
 (set vim.wo.relativenumber true)               ; shows relative line numbers on all other lines
 (set vim.o.hlsearch true)                     ; highlight items matching in search
 (set vim.o.incsearch true)                    ; go to next matching item while typing
-(set vim.o.inccommand "nosplit")              ; live substitution
+(set vim.o.inccommand "split")                ; live substitution
 (set vim.o.ignorecase true)                   ; ignore case while searching all lowercase
 (set vim.o.smartcase true)                    ; allow cases where there are uppercase
 (set vim.o.breakindent true)                  ; if wraps, same indent
@@ -431,5 +431,9 @@ vim.o.selection
 (set vim.g.scratch_insert_autohide 0)
 (set vim.g.scratch_filetype "markdown")
 (set vim.g.scratch_persistence_file ".scratch.vim")
+
+;; EasyAlign
+(vimp.xmap "ga" "<Plug>(EasyAlign)")
+(vimp.nmap "ga" "<Plug>(EasyAlign)")
 
 nil
