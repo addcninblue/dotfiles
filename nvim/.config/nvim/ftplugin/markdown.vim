@@ -1,7 +1,7 @@
 set autoindent
 
 " plugins
-packadd vim-markdown-edit-code-block
+" packadd vim-markdown-edit-code-block
 " let g:polyglot_disabled = ['markdown']
 
 function! MathAndLiquid()
