@@ -130,34 +130,34 @@ vim.g.previewheight = vim.fn.floor((vim.fn.winwidth(0) / 2))
 vim.g.do_filetype_lua = 1
 vim.g.did_load_filetypes = 0
 vim.filetype.add({extension = {md = "markdown"}})
-vimp.nnoremap("<leader>l", ":nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>h ")
-vimp.cnoremap("w!!", "w suda://%")
-vimp.nnoremap(":", ";")
-vimp.nnoremap(";", ":")
-vimp.vnoremap(":", ";")
-vimp.vnoremap(";", ":")
-vimp.inoremap("jk", "<ESC>")
-vimp.cnoremap("jk", "<ESC>")
-vimp.vnoremap("jk", "<ESC>")
-vimp.tnoremap("jk", "<C-\\><C-n>")
-vimp.nnoremap("<leader>j", "gt")
-vimp.nnoremap("<leader>k", "gT")
-vimp.nnoremap("<leader>1", "1gt")
-vimp.nnoremap("<leader>2", "2gt")
-vimp.nnoremap("<leader>3", "3gt")
-vimp.nnoremap("<leader>4", "4gt")
-vimp.nnoremap("<leader>5", "5gt")
-vimp.nnoremap("<leader>6", "6gt")
-vimp.nnoremap("<leader>7", "7gt")
-vimp.nnoremap("<leader>8", "8gt")
-vimp.nnoremap("<leader>9", ":tablast<CR>")
-vimp.nnoremap("<leader>y", "\"+y")
-vimp.nnoremap("<leader>Y", "\"+y$")
-vimp.nnoremap("<leader>p", "\"+p")
-vimp.nnoremap("<leader>P", "\"+P")
-vimp.vnoremap("<leader>y", "\"+y")
-vimp.vnoremap("<leader>Y", "\"+y$")
-vimp.nnoremap("yoe", ":set linebreak!<CR>")
+vim.keymap.set("n", "<leader>l", ":nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>h")
+vim.keymap.set("c", "w!!", "w suda://%")
+vim.keymap.set("n", ":", ";")
+vim.keymap.set("n", ";", ":")
+vim.keymap.set("v", ":", ";")
+vim.keymap.set("v", ";", ":")
+vim.keymap.set("i", "jk", "<ESC>")
+vim.keymap.set("c", "jk", "<ESC>")
+vim.keymap.set("v", "jk", "<ESC>")
+vim.keymap.set("t", "jk", "<C-\\><C-n>")
+vim.keymap.set("n", "<leader>j", "gt")
+vim.keymap.set("n", "<leader>k", "gT")
+vim.keymap.set("n", "<leader>1", "1gt")
+vim.keymap.set("n", "<leader>2", "2gt")
+vim.keymap.set("n", "<leader>3", "3gt")
+vim.keymap.set("n", "<leader>4", "4gt")
+vim.keymap.set("n", "<leader>5", "5gt")
+vim.keymap.set("n", "<leader>6", "6gt")
+vim.keymap.set("n", "<leader>7", "7gt")
+vim.keymap.set("n", "<leader>8", "8gt")
+vim.keymap.set("n", "<leader>9", ":tablast<CR>")
+vim.keymap.set("n", "<leader>y", "\"+y")
+vim.keymap.set("n", "<leader>Y", "\"+y$")
+vim.keymap.set("n", "<leader>p", "\"+p")
+vim.keymap.set("n", "<leader>P", "\"+P")
+vim.keymap.set("v", "<leader>y", "\"+y")
+vim.keymap.set("v", "<leader>Y", "\"+y$")
+vim.keymap.set("n", "yoe", ":set linebreak!<CR>")
 do
   local letters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"}
   local acmetag = require("acmetag")
@@ -165,18 +165,19 @@ do
     local function _3_()
       return acmetag.run(letter)
     end
-    vimp.nnoremap({"silent"}, ("-" .. letter), _3_)
+    vim.keymap.set("n", ("-" .. letter), _3_, {silent = true})
   end
-  vimp.nnoremap({"silent"}, "--", acmetag.display_registers)
-  vimp.nnoremap({"silent"}, "- ", acmetag.yank_line_to_register)
+  vim.keymap.set("n", "--", acmetag.display_registers, {silent = true})
+  vim.keymap.set("n", "- ", acmetag.yank_line_to_register)
+  do local _ = {silent = true} end
 end
 vim.go.virtualedit = "block,onemore"
 do
   local runner = require("runner")
-  vimp.nnoremap({"silent"}, "<leader>r", runner.run)
-  vimp.nnoremap({"silent"}, "<leader>i", runner.interactive)
-  vimp.nnoremap({"silent", "expr"}, "<leader>-", runner.send_text)
-  vimp.vnoremap({"silent", "expr"}, "<leader>-", runner.send_text)
+  vim.keymap.set("n", "<leader>r", runner.run, {silent = true})
+  vim.keymap.set("n", "<leader>i", runner.interactive, {silent = true})
+  vim.keymap.set("n", "<leader>-", runner.send_text, {silent = true, expr = true})
+  vim.keymap.set("v", "<leader>-", runner.send_text, {silent = true, expr = true})
 end
 local function get_filepath()
   local filename = vim.api.nvim_buf_get_name(0)
@@ -187,21 +188,21 @@ end
 local function save_error_message()
   return vim.fn.setreg(__fnl_global__UNNAMED_2dREGISTER, (get_filepath() .. ": " .. vim.fn.input("Comment > ")))
 end
-vimp.nnoremap({"silent"}, "<leader><C-G>", save_error_message)
+vim.keymap.set("n", "<leader><C-G>", save_error_message, {silent = true})
 local function trim_end(line, end_pos)
-  _G.assert((nil ~= end_pos), "Missing argument end-pos on init.fnl:256")
-  _G.assert((nil ~= line), "Missing argument line on init.fnl:256")
+  _G.assert((nil ~= end_pos), "Missing argument end-pos on init.fnl:255")
+  _G.assert((nil ~= line), "Missing argument line on init.fnl:255")
   return (function(tgt, m, ...) return tgt[m](tgt, ...) end)("sub", 1, end_pos)
 end
 local function trim_start(line, start_pos)
-  _G.assert((nil ~= start_pos), "Missing argument start-pos on init.fnl:260")
-  _G.assert((nil ~= line), "Missing argument line on init.fnl:260")
+  _G.assert((nil ~= start_pos), "Missing argument start-pos on init.fnl:259")
+  _G.assert((nil ~= line), "Missing argument line on init.fnl:259")
   return (function(tgt, m, ...) return tgt[m](tgt, ...) end)("sub", start_pos)
 end
 local function replace_line(lines, line_num, operation)
-  _G.assert((nil ~= operation), "Missing argument operation on init.fnl:264")
-  _G.assert((nil ~= line_num), "Missing argument line-num on init.fnl:264")
-  _G.assert((nil ~= lines), "Missing argument lines on init.fnl:264")
+  _G.assert((nil ~= operation), "Missing argument operation on init.fnl:263")
+  _G.assert((nil ~= line_num), "Missing argument line-num on init.fnl:263")
+  _G.assert((nil ~= lines), "Missing argument lines on init.fnl:263")
   do end (lines)[line_num] = operation(lines[line_num])
   return nil
 end
@@ -221,20 +222,20 @@ local function get_visual_selection()
   return print(table.concat(_4_, ", "))
 end
 do local _ = vim.o.selection end
-vimp.vnoremap({"silent"}, "<leader>e", get_visual_selection)
+vim.keymap.set("v", "<leader>e", get_visual_selection, {silent = true})
 local function _6_()
   return print(vim.fn.mode())
 end
-vimp.vnoremap({"silent"}, "<leader>w", _6_)
+vim.keymap.set("v", "<leader>w", _6_, {silent = true})
 do
   local fzf_path = "~/.fzf/plugin/fzf.vim"
   if file_readable_3f(fzf_path) then
     vim.api.nvim_command(("source " .. fzf_path))
     vim.g.fzf_layout = {up = "~90%", window = {width = 0.8, height = 0.8, yoffset = 0.5, xoffset = 0.5, highlight = "fg", border = "sharp"}}
-    vimp.nnoremap("<C-p>", ":FZF<CR>")
-    vimp.nnoremap("<C-[>", ":GFiles<CR>")
-    vimp.nnoremap("<C-b>", ":Buffers<CR>")
-    vimp.nnoremap("<leader>gg", ":Rg<CR>")
+    vim.keymap.set("n", "<C-p>", ":FZF<CR>")
+    vim.keymap.set("n", "<C-[>", ":GFiles<CR>")
+    vim.keymap.set("n", "<C-b>", ":Buffers<CR>")
+    vim.keymap.set("n", "<leader>gg", ":Rg<CR>")
   else
   end
 end
@@ -242,22 +243,22 @@ vim.g.vimtex_quickfix_enabled = 0
 vim.g.vimtex_view_method = "zathura"
 vim.api.nvim_set_var("limelight_conceal_ctermfg", 240)
 vim.call("camelcasemotion#CreateMotionMappings", ",")
-vimp.omap(",iw", "<Plug>CamelCaseMotion_iw")
-vimp.xmap(",iw", "<Plug>CamelCaseMotion_iw")
-vimp.omap(",ib", "<Plug>CamelCaseMotion_ib")
-vimp.xmap(",ib", "<Plug>CamelCaseMotion_ib")
-vimp.omap(",ie", "<Plug>CamelCaseMotion_ie")
-vimp.xmap(",ie", "<Plug>CamelCaseMotion_ie")
-vimp.nnoremap("<leader>u", ":UndotreeToggle<CR>:wincmd h<CR>")
+vim.keymap.set("o", ",iw", "<Plug>CamelCaseMotion_iw", {remap = true})
+vim.keymap.set("x", ",iw", "<Plug>CamelCaseMotion_iw", {remap = true})
+vim.keymap.set("o", ",ib", "<Plug>CamelCaseMotion_ib", {remap = true})
+vim.keymap.set("x", ",ib", "<Plug>CamelCaseMotion_ib", {remap = true})
+vim.keymap.set("o", ",ie", "<Plug>CamelCaseMotion_ie", {remap = true})
+vim.keymap.set("x", ",ie", "<Plug>CamelCaseMotion_ie", {remap = true})
+vim.keymap.set("n", "<leader>u", ":UndotreeToggle<CR>:wincmd h<CR>")
 vim.g.delimitMate_expand_cr = 1
-vimp.nnoremap("<leader>nn", ":NERDTreeToggle<CR>")
-vimp.nnoremap("<leader>nf", ":NERDTreeFind<CR>")
+vim.keymap.set("n", "<leader>nn", ":NERDTreeToggle<CR>")
+vim.keymap.set("n", "<leader>nf", ":NERDTreeFind<CR>")
 vim.g.NERDTreeShowLineNumbers = 1
 vim.g.NERDTreeMinimalUI = 1
 vim.g.NERDTreeMarkBookmarks = 0
 vim.g.NERDTreeMapHelp = ""
 vim.api.nvim_exec("autocmd FileType nerdtree setlocal relativenumber", false)
-vimp.nnoremap("<leader>nc", ":Calendar")
+vim.keymap.set("n", "<leader>nc", ":Calendar")
 vim.o.completeopt = "menu,menuone,noinsert,noselect"
 vim.o.shortmess = (vim.o.shortmess .. "IaT")
 vim.g.vimwiki_list = {{path = "~/vimwiki/", syntax = "markdown", ext = ".md", auto_diary_index = 1, auto_tags = 1}}
@@ -268,14 +269,14 @@ vim.fn.sign_define("LspDiagnosticsErrorSign", {text = "\226\156\151", texthl = "
 vim.fn.sign_define("LspDiagnosticsWarningSign", {text = "\226\128\188", texthl = "LspDiagnosticsWarning", linehl = "", numhl = ""})
 vim.fn.sign_define("LspDiagnosticsInformationSign", {text = "I", texthl = "LspDiagnosticsInformation", linehl = "", numhl = ""})
 vim.fn.sign_define("LspDiagnosticsHintSign", {text = "H", texthl = "LspDiagnosticsHint", linehl = "", numhl = ""})
-vimp.nnoremap("K", vim.lsp.buf.hover)
-vimp.nnoremap("gr", vim.lsp.buf.references)
-vimp.nnoremap("g0", vim.lsp.buf.document_symbol)
-vimp.nnoremap("gW", vim.lsp.buf.workspace_symbol)
-vimp.nnoremap("gd", vim.lsp.buf.definition)
-vimp.nnoremap({"override"}, "[e", vim.diagnostic.goto_prev)
-vimp.nnoremap({"override"}, "]e", vim.diagnostic.goto_next)
-vimp.nnoremap("<leader>f", vim.lsp.buf.formatting)
+vim.keymap.set("n", "K", vim.lsp.buf.hover)
+vim.keymap.set("n", "gr", vim.lsp.buf.references)
+vim.keymap.set("n", "g0", vim.lsp.buf.document_symbol)
+vim.keymap.set("n", "gW", vim.lsp.buf.workspace_symbol)
+vim.keymap.set("n", "gd", vim.lsp.buf.definition)
+vim.keymap.set("n", "[e", vim.diagnostic.goto_prev)
+vim.keymap.set("n", "]e", vim.diagnostic.goto_next)
+vim.keymap.set("n", "<leader>f", vim.lsp.buf.formatting)
 do
   local configs = require("nvim-treesitter.configs")
   configs.setup({ensure_installed = {"c", "lua", "rust", "fennel", "cooklang", "elixir", "python", "nix", "bash", "css", "html", "javascript", "json", "julia", "markdown", "vim", "yaml"}, sync_install = "false", ignore_install = {"norg"}, highlight = {enable = true}, refactor = {navigation = {enable = true}}, additional_vim_regex_highlighting = false})
@@ -298,12 +299,13 @@ end
 vim.api.nvim_exec("autocmd BufWritePre *.ex,*.exs lua vim.lsp.buf.formatting_sync(nil, 1000)", false)
 do
   local scratch = require("scratch")
-  vimp.nnoremap({"override", "silent"}, "gss", scratch["open-last-scratchpad"])
-  vimp.nnoremap({"override", "silent"}, "gs.", scratch["open-current-scratchpad"])
-  vimp.nnoremap({"override", "silent"}, "gse", scratch["open-scratchpad"])
+  vim.keymap.set("n", "gss", scratch["open-last-scratchpad"], {silent = true})
+  vim.keymap.set("n", "gs.", scratch["open-current-scratchpad"], {silent = true})
+  vim.keymap.set("n", "gse", scratch["open-scratchpad"])
+  do local _ = {silent = true} end
 end
-vimp.xmap("ga", "<Plug>(EasyAlign)")
-vimp.nmap("ga", "<Plug>(EasyAlign)")
+vim.keymap.set("x", "ga", "<Plug>(EasyAlign)", {remap = true})
+vim.keymap.set("n", "ga", "<Plug>(EasyAlign)", {remap = true})
 do
   local cmp = require("cmp")
   local cmp_types = require("cmp.types")
