@@ -17,7 +17,8 @@ do
     use("preservim/nerdtree")
     use("vimwiki/vimwiki")
     use("lambdalisue/suda.vim")
-    use({run = ":TSUpdate", commit = "46dc8b8f40d506fa9267b63dac3faa95fd866362", "nvim-treesitter/nvim-treesitter"})
+    use({run = ":TSUpdate", "nvim-treesitter/nvim-treesitter"})
+    use("nvim-treesitter/nvim-treesitter-textobjects")
     use("tpope/vim-fugitive")
     use("neovim/nvim-lspconfig")
     use("svermeulen/vimpeccable")
@@ -39,23 +40,25 @@ do
     use("hrsh7th/cmp-nvim-lsp")
     use("hrsh7th/cmp-nvim-lsp-document-symbol")
     use("tamago324/cmp-zsh")
-    return use("lark-parser/vim-lark-syntax")
+    use("lark-parser/vim-lark-syntax")
+    return use({branch = "julia", "TerseTears/conjure"})
   end
   packer.startup(_1_)
 end
 __fnl_global__UNNAMED_2dREGISTER = "\""
 local function file_readable_3f(path)
-  _G.assert((nil ~= path), "Missing argument path on init.fnl:60")
+  _G.assert((nil ~= path), "Missing argument path on init.fnl:63")
   return (1 == vim.fn.filereadable(vim.fn.expand(path)))
 end
 local function open_split(command)
-  _G.assert((nil ~= command), "Missing argument command on init.fnl:64")
+  _G.assert((nil ~= command), "Missing argument command on init.fnl:67")
   local bufheight = vim.fn.floor((vim.fn.winheight(0) / 5))
   return vim.cmd(("belowright " .. bufheight .. "split term://" .. command))
 end
 vim.cmd("filetype indent plugin on")
 vim.cmd("syntax on")
 vim.g.mapleader = " "
+vim.g.maplocalleader = ","
 vim.cmd("packloadall")
 vim.cmd("silent! helptags ALL")
 vim.cmd("colorscheme solarized")
@@ -186,19 +189,19 @@ local function save_error_message()
 end
 vimp.nnoremap({"silent"}, "<leader><C-G>", save_error_message)
 local function trim_end(line, end_pos)
-  _G.assert((nil ~= end_pos), "Missing argument end-pos on init.fnl:252")
-  _G.assert((nil ~= line), "Missing argument line on init.fnl:252")
+  _G.assert((nil ~= end_pos), "Missing argument end-pos on init.fnl:256")
+  _G.assert((nil ~= line), "Missing argument line on init.fnl:256")
   return (function(tgt, m, ...) return tgt[m](tgt, ...) end)("sub", 1, end_pos)
 end
 local function trim_start(line, start_pos)
-  _G.assert((nil ~= start_pos), "Missing argument start-pos on init.fnl:256")
-  _G.assert((nil ~= line), "Missing argument line on init.fnl:256")
+  _G.assert((nil ~= start_pos), "Missing argument start-pos on init.fnl:260")
+  _G.assert((nil ~= line), "Missing argument line on init.fnl:260")
   return (function(tgt, m, ...) return tgt[m](tgt, ...) end)("sub", start_pos)
 end
 local function replace_line(lines, line_num, operation)
-  _G.assert((nil ~= operation), "Missing argument operation on init.fnl:260")
-  _G.assert((nil ~= line_num), "Missing argument line-num on init.fnl:260")
-  _G.assert((nil ~= lines), "Missing argument lines on init.fnl:260")
+  _G.assert((nil ~= operation), "Missing argument operation on init.fnl:264")
+  _G.assert((nil ~= line_num), "Missing argument line-num on init.fnl:264")
+  _G.assert((nil ~= lines), "Missing argument lines on init.fnl:264")
   do end (lines)[line_num] = operation(lines[line_num])
   return nil
 end
@@ -275,7 +278,7 @@ vimp.nnoremap({"override"}, "]e", vim.diagnostic.goto_next)
 vimp.nnoremap("<leader>f", vim.lsp.buf.formatting)
 do
   local configs = require("nvim-treesitter.configs")
-  configs.setup({ensure_installed = "maintained", sync_install = "false", ignore_install = {"norg"}, highlight = {enable = true}, refactor = {navigation = {enable = true}}, additional_vim_regex_highlighting = false})
+  configs.setup({ensure_installed = {"c", "lua", "rust", "fennel", "cooklang", "elixir", "python", "nix", "bash", "css", "html", "javascript", "json", "julia", "markdown", "vim", "yaml"}, sync_install = "false", ignore_install = {"norg"}, highlight = {enable = true}, refactor = {navigation = {enable = true}}, additional_vim_regex_highlighting = false})
 end
 do
   local lspconfig = require("lspconfig")
@@ -290,6 +293,7 @@ do
   lspconfig.ccls.setup({})
   lspconfig.julials.setup({})
   lspconfig.rust_analyzer.setup({})
+  lspconfig.clojure_lsp.setup({})
 end
 vim.api.nvim_exec("autocmd BufWritePre *.ex,*.exs lua vim.lsp.buf.formatting_sync(nil, 1000)", false)
 do

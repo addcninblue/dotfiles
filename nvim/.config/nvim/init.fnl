@@ -20,8 +20,9 @@
       ; (use "mattn/calendar-vim")
       (use "lambdalisue/suda.vim")
       (use {1 "nvim-treesitter/nvim-treesitter"
-            :run ":TSUpdate"
-            :commit "46dc8b8f40d506fa9267b63dac3faa95fd866362"})
+            :run ":TSUpdate"})
+            ; :commit "46dc8b8f40d506fa9267b63dac3faa95fd866362"})
+      (use "nvim-treesitter/nvim-treesitter-textobjects")
       (use "tpope/vim-fugitive")
       (use "neovim/nvim-lspconfig")
       (use "svermeulen/vimpeccable")
@@ -53,6 +54,8 @@
       (use "tamago324/cmp-zsh")
 
       (use "lark-parser/vim-lark-syntax")
+      (use {1 "TerseTears/conjure"
+            :branch "julia"})
 )))
 
 (global UNNAMED-REGISTER "\"")
@@ -71,6 +74,7 @@
 (vim.cmd "filetype indent plugin on")
 (vim.cmd "syntax on")
 (set vim.g.mapleader " ") ;; space for leader
+(set vim.g.maplocalleader ",") ;; space for localleader
 (vim.cmd "packloadall")
 (vim.cmd "silent! helptags ALL")
 (vim.cmd "colorscheme solarized")
@@ -390,7 +394,7 @@ vim.o.selection
 ;                                "filetype" "cook"}))
 
 (let [configs (require "nvim-treesitter.configs")]
-  (configs.setup {:ensure_installed "maintained"
+  (configs.setup {:ensure_installed [ "c" "lua" "rust" "fennel" "cooklang" "elixir" "python" "nix" "bash" "css" "html" "javascript" "json" "julia" "markdown" "vim" "yaml" ]
                   :sync_install "false"
                   :ignore_install ["norg"]
                   :highlight {"enable" true}
@@ -417,7 +421,8 @@ vim.o.selection
   (lspconfig.texlab.setup {})
   (lspconfig.ccls.setup {})
   (lspconfig.julials.setup {})
-  (lspconfig.rust_analyzer.setup {}))
+  (lspconfig.rust_analyzer.setup {})
+  (lspconfig.clojure_lsp.setup {}))
 
 ; ;; nvim-lsputils
 ; (let [codeAction (require "lsputil.codeAction")
@@ -486,5 +491,4 @@ vim.o.selection
 (let [gitsigns (require "gitsigns")] (gitsigns.setup {:numhl true
                                                       :current_line_blame false
                                                       :current_line_blame_opts {:delay 0}}))
-
 nil
