@@ -1,60 +1,70 @@
 (vim.cmd "packadd packer.nvim")
 (set vim.g.NERDTreeMapHelp "")  ; Disable ? in NERDTree. This has to go before it's loaded.
+(set vim.g.polyglot_disabled ["sensible" "ftdetect"])
+(set vim.g.conjure#mapping#doc_word false)
+(set vim.g.conjure#mapping#def_word false)
+(set vim.g.conjure#completion#omnifunc nil)
+(set vim.g.conjure#highlight#enabled true)
+
 (let [packer (require "packer")]
   (packer.startup
-    (fn []
+    (lambda [use]
       (use "wbthomason/packer.nvim")
+
+      ;;; Motions and Operator maps
       (use "bkad/CamelCaseMotion")
-      (use "Raimondi/delimitMate")
       (use "wellle/targets.vim")
-      (use "mbbill/undotree")
       (use "tpope/vim-commentary")
       (use "tpope/vim-repeat")
       (use "tpope/vim-surround")
-      (use "christoomey/vim-tmux-navigator")
       (use "tpope/vim-unimpaired")
+      (use "junegunn/vim-easy-align")
+
+      ;;; Insertion-mode magic
+      (use "Raimondi/delimitMate")
+
+      ;;; Vim external integration
+      (use "christoomey/vim-tmux-navigator")
+      (use "tpope/vim-fugitive")
+      (use "tpope/vim-rhubarb")
+      ; (use "jamestthompson3/nvim-remote-containers")
+
+      ;;; Vim enhancements
+      (use "mbbill/undotree")
       (use "junegunn/fzf.vim")
       (use "preservim/nerdtree")
-      ; (use "tpope/vim-liquid")
-      (use "vimwiki/vimwiki")
-      ; (use "mattn/calendar-vim")
       (use "lambdalisue/suda.vim")
       (use {1 "nvim-treesitter/nvim-treesitter"
             :run ":TSUpdate"})
             ; :commit "46dc8b8f40d506fa9267b63dac3faa95fd866362"})
       (use "nvim-treesitter/nvim-treesitter-textobjects")
-      (use "tpope/vim-fugitive")
       (use "neovim/nvim-lspconfig")
       (use "nvim-lua/lsp-status.nvim")
-      (use {1 "RishabhRD/nvim-lsputils"
-            :requires [["RishabhRD/popfix"]]})
-      (use "nathangrigg/vim-beancount")
-      (use "JuliaEditorSupport/julia-vim")
-      (use "tpope/vim-rhubarb")
-      (use "sirtaj/vim-openscad")
-      (use "junegunn/vim-easy-align")
-      ; (use "jamestthompson3/nvim-remote-containers")
       (use "lewis6991/gitsigns.nvim")
-
       (use "addcninblue/nvim-runner")
-      (use "addcninblue/nvim-acmetag")
-      ; (use "addcninblue/scratch.vim")
-      (use "/home/addison/xps-dotfiles/nvim/.config/nvim/pack/bundle/old_start/nvim-scratch")
-
+      (use "addcninblue/nvim-acmetag"
+            :requires [ "nvim-lua/plenary.nvim" ]})
+      (use "addcninblue/nvim-scratch")
       (use {1 "hrsh7th/nvim-cmp"
-            :commit "bb5cac4dcec3bc6ba3b569e83feeedf5c58f466c"})
-      ; (use "hrsh7th/cmp-cmdline")
-      (use "hrsh7th/cmp-buffer")
-      (use "hrsh7th/cmp-path")
-      (use "hrsh7th/cmp-nvim-lua")
-      (use "hrsh7th/cmp-nvim-lsp")
-      (use "hrsh7th/cmp-nvim-lsp-document-symbol")
-      ; (use "saadparwaiz1/cmp_luasnip")
-      (use "tamago324/cmp-zsh")
+            :commit "bb5cac4dcec3bc6ba3b569e83feeedf5c58f466c"
+            :requires [ "hrsh7th/cmp-buffer" "hrsh7th/cmp-path" "hrsh7th/cmp-nvim-lua" "hrsh7th/cmp-nvim-lsp" "hrsh7th/cmp-nvim-lsp-document-symbol" ]})
+      (use "sheerun/vim-polyglot")
+      (use "/home/addison/stuff/conjure")
+      ; (use {1 "TerseTears/conjure"
+      ;       :branch "julia"})
 
-      (use "lark-parser/vim-lark-syntax")
-      (use {1 "TerseTears/conjure"
-            :branch "julia"})
+      ;;; Genuine plugins
+      (use "vimwiki/vimwiki")
+
+      ;;; Filetype-specific plugins
+      (use {1 "nathangrigg/vim-beancount"
+            :ft [ "beancount" ]})
+      (use {1 "JuliaEditorSupport/julia-vim"
+            :ft [ "julia" ]})
+      (use {1 "sirtaj/vim-openscad"
+            :ft [ "openscad" ]})
+      (use {1 "lark-parser/vim-lark-syntax"
+            :ft [ "lark" ]})
 )))
 
 (global UNNAMED-REGISTER "\"")
@@ -179,9 +189,6 @@
 (set vim.g.do_filetype_lua 1)
 (set vim.g.did_load_filetypes 0)
 
-(vim.filetype.add {:extension {:md "markdown"}})
-
-
 ;; Keybindings
 (vim.keymap.set "n" "<leader>l" ":nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>h")
 (vim.keymap.set "c" "w!!" "w suda://%")
@@ -223,12 +230,12 @@
 (vim.keymap.set "n" "yoe" ":set linebreak!<CR>")
 
 ;;;; Vim-Acmetag
-(let [letters [ "a" "b" "c" "d" "e" "f" "g" "h" "i" "j" "k" "l" "m" "n" "o" "p" "q" "r" "s" "t" "u" "v" "w" "x" "y" "z" ]
-      acmetag (require "acmetag")]
-  (each [_ letter (ipairs letters)]
-    (vim.keymap.set "n" (.. "-" letter) (lambda [] (acmetag.run letter)) {"silent" true}))
-  (vim.keymap.set "n" "--" acmetag.display_registers {"silent" true})
-  (vim.keymap.set "n" "- " acmetag.yank_line_to_register) {"silent" true})
+
+(let [acmetag (require "acmetag")]
+  (vim.keymap.set "n" "T" acmetag.pipe_to_tags {"silent" true "expr" true})
+  (vim.keymap.set "v" "T" acmetag.pipe_to_tags {"silent" true "expr" true})
+  (vim.keymap.set "v" "t" acmetag.pipe_to_tags {"silent" true "expr" true})
+  (vim.keymap.set "n" "t" acmetag.open_tags {"silent" true}))
 
 ;;;; MAKE AND RUN
 (set vim.go.virtualedit "block,onemore")
@@ -394,12 +401,11 @@ vim.o.selection
 (let [configs (require "nvim-treesitter.configs")]
   (configs.setup {:ensure_installed [ "c" "lua" "rust" "fennel" "cooklang" "elixir" "python" "nix" "bash" "css" "html" "javascript" "json" "julia" "markdown" "vim" "yaml" ]
                   :sync_install "false"
-                  :ignore_install ["norg"]
                   :highlight {"enable" true}
                   :refactor {"navigation" {"enable" true}}
                   :additional_vim_regex_highlighting false}))
 (let [lspconfig (require "lspconfig")]
-  (lspconfig.ccls.setup {})
+  (lspconfig.ccls.setup {"cmd" ["ccls"]})
   ; (lspconfig.pylsp.setup {})
   (lspconfig.pylsp.setup {"settings" {"pylsp" {"plugins" {"pycodestyle" {"maxLineLength" 120}
                                                                          ; "enabled" false}
@@ -417,52 +423,17 @@ vim.o.selection
   ; (lspconfig.r_language_server.setup {}) ; broken
   (lspconfig.bashls.setup {})
   (lspconfig.texlab.setup {})
-  (lspconfig.ccls.setup {})
   (lspconfig.julials.setup {})
   (lspconfig.rust_analyzer.setup {})
-  (lspconfig.clojure_lsp.setup {}))
-
-; ;; nvim-lsputils
-; (let [codeAction (require "lsputil.codeAction")
-;       locations (require "lsputil.locations")
-;       symbols (require "lsputil.symbols")]
-;     (tset vim.lsp.handlers "textDocument/codeAction" codeAction.code_action_handler)
-;     (tset vim.lsp.handlers "textDocument/references" locations.references_handler)
-;     (tset vim.lsp.handlers "textDocument/definition" locations.definition_handler)
-;     (tset vim.lsp.handlers "textDocument/declaration" locations.declaration_handler)
-;     (tset vim.lsp.handlers "textDocument/typeDefinition" locations.typeDefinition_handler)
-;     (tset vim.lsp.handlers "textDocument/implementation" locations.implementation_handler)
-;     (tset vim.lsp.handlers "textDocument/documentSymbol" locations.document_handler)
-;     (tset vim.lsp.handlers "workplace/symbol" symbols.workspace_handler))
-;   ; (tset vim.lsp.handlers {"textDocument/codeAction" codeAction.code_action_handler
-;   ;                        "textDocument/references"     locations.references_handler
-;   ;                        "textDocument/definition"     locations.definition_handler
-;   ;                        "textDocument/declaration"    locations.declaration_handler
-;   ;                        "textDocument/typeDefinition" locations.typeDefinition_handler
-;   ;                        "textDocument/implementation" locations.implementation_handler
-;   ;                        "textDocument/documentSymbol" locations.document_handler
-;   ;                        "workplace/symbol" symbols.workspace_handler}))
-; ; vim.lsp.handlers['textDocument/references'] = require'lsputil.locations'.references_handler
-; ; vim.lsp.handlers['textDocument/definition'] = require'lsputil.locations'.definition_handler
-; ; vim.lsp.handlers['textDocument/declaration'] = require'lsputil.locations'.declaration_handler
-; ; vim.lsp.handlers['textDocument/typeDefinition'] = require'lsputil.locations'.typeDefinition_handler
-; ; vim.lsp.handlers['textDocument/implementation'] = require'lsputil.locations'.implementation_handler
-; ; vim.lsp.handlers['textDocument/documentSymbol'] = require'lsputil.symbols'.document_handler
-; ; vim.lsp.handlers['workspace/symbol'] = require'lsputil.symbols'.workspace_handler
+  (lspconfig.clojure_lsp.setup {})
+  (lspconfig.sumneko_lua.setup
+    {:settings {:Lua {:runtime {:version "LuaJIT"} ; Version of Lua
+                      :diagnostics {:globals ["vim"]} ; Recognize `vim` global
+                      :workspace {:library (vim.api.nvim_get_runtime_file "" true)}
+                      :telemetry {:enable false}}}}))
 
 (vim.api.nvim_exec "autocmd BufWritePre *.ex,*.exs lua vim.lsp.buf.formatting_sync(nil, 1000)" false)
 
-; ;; completion-nvim
-; (set vim.g.completion_enable_snippet "Ultisnips")
-; (vim.api.nvim_exec "autocmd BufEnter * lua require'completion'.on_attach()" false)
-
-;; scratch.vim - I run my own custom patch
-;; (set vim.g.scratch_autohide 0)
-;; (set vim.g.scratch_insert_autohide 0)
-;; (set vim.g.scratch_filetype "markdown")
-;; (set vim.g.scratch_persistence_file ".scratch.vim")
-;; (set vim.g.scratch_no_mappings 1)
-;; (vim.keymap.set "n" "gs" ":Scratch<CR>" {"override" true})
 (let [scratch (require "scratch")]
   (vim.keymap.set "n" "gss" scratch.open-last-scratchpad {"silent" true})
   (vim.keymap.set "n" "gs." scratch.open-current-scratchpad {"silent" true})
@@ -483,10 +454,13 @@ vim.o.selection
                                             {:name "path"}
                                             {:name "buffer" :keyword_length 5}])
               :experimental {:ghost_text true}
-	      :preselect cmp.PreselectMode.None})
+              :preselect cmp.PreselectMode.None})
   (cmp.setup.cmdline "/" {:sources {:name "buffer"}}))
 
-(let [gitsigns (require "gitsigns")] (gitsigns.setup {:numhl true
-                                                      :current_line_blame false
-                                                      :current_line_blame_opts {:delay 0}}))
+(let [gitsigns (require "gitsigns")]
+  (gitsigns.setup
+    {:numhl true
+     :current_line_blame false
+     :current_line_blame_opts {:delay 0}}))
+
 nil
