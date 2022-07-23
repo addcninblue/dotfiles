@@ -42,7 +42,7 @@
       (use "nvim-lua/lsp-status.nvim")
       (use "lewis6991/gitsigns.nvim")
       (use "addcninblue/nvim-runner")
-      (use "addcninblue/nvim-acmetag"
+      (use {1 "addcninblue/nvim-acmetag"
             :requires [ "nvim-lua/plenary.nvim" ]})
       (use "addcninblue/nvim-scratch")
       (use {1 "hrsh7th/nvim-cmp"
@@ -171,7 +171,7 @@
                     ""
                     )]
     (.. "[" currentmode "]" ; Vim Mode
-        " %.40t"            ; Filename
+        " %.40f"            ; Filename
         " " lspstatus
         "%="                ; Switch to the right side
         "%m "               ; Modified
@@ -190,8 +190,9 @@
 (set vim.g.did_load_filetypes 0)
 
 ;; Keybindings
-(vim.keymap.set "n" "<leader>l" ":nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>h")
+(vim.keymap.set "n" "<leader>l" ":nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>")
 (vim.keymap.set "c" "w!!" "w suda://%")
+(vim.keymap.set "n" "<C-s>" ":w<CR>")
 
 ;; ; <=> :
 (vim.keymap.set "n" ":" ";")

@@ -1,57 +1,56 @@
 vim.cmd("packadd packer.nvim")
 vim.g.NERDTreeMapHelp = ""
+vim.g.polyglot_disabled = {"sensible", "ftdetect"}
+vim.g["conjure#mapping#doc_word"] = false
+vim.g["conjure#mapping#def_word"] = false
+vim.g["conjure#completion#omnifunc"] = nil
+vim.g["conjure#highlight#enabled"] = true
 do
   local packer = require("packer")
-  local function _1_()
+  local function _1_(use)
+    _G.assert((nil ~= use), "Missing argument use on init.fnl:11")
     use("wbthomason/packer.nvim")
     use("bkad/CamelCaseMotion")
-    use("Raimondi/delimitMate")
     use("wellle/targets.vim")
-    use("mbbill/undotree")
     use("tpope/vim-commentary")
     use("tpope/vim-repeat")
     use("tpope/vim-surround")
-    use("christoomey/vim-tmux-navigator")
     use("tpope/vim-unimpaired")
+    use("junegunn/vim-easy-align")
+    use("Raimondi/delimitMate")
+    use("christoomey/vim-tmux-navigator")
+    use("tpope/vim-fugitive")
+    use("tpope/vim-rhubarb")
+    use("mbbill/undotree")
     use("junegunn/fzf.vim")
     use("preservim/nerdtree")
-    use("vimwiki/vimwiki")
     use("lambdalisue/suda.vim")
     use({run = ":TSUpdate", "nvim-treesitter/nvim-treesitter"})
     use("nvim-treesitter/nvim-treesitter-textobjects")
-    use("tpope/vim-fugitive")
     use("neovim/nvim-lspconfig")
-    use("svermeulen/vimpeccable")
     use("nvim-lua/lsp-status.nvim")
-    use({requires = {{"RishabhRD/popfix"}}, "RishabhRD/nvim-lsputils"})
-    use("nathangrigg/vim-beancount")
-    use("JuliaEditorSupport/julia-vim")
-    use("tpope/vim-rhubarb")
-    use("sirtaj/vim-openscad")
-    use("junegunn/vim-easy-align")
     use("lewis6991/gitsigns.nvim")
     use("addcninblue/nvim-runner")
-    use("addcninblue/nvim-acmetag")
-    use("/home/addison/xps-dotfiles/nvim/.config/nvim/pack/bundle/old_start/nvim-scratch")
-    use({commit = "bb5cac4dcec3bc6ba3b569e83feeedf5c58f466c", "hrsh7th/nvim-cmp"})
-    use("hrsh7th/cmp-buffer")
-    use("hrsh7th/cmp-path")
-    use("hrsh7th/cmp-nvim-lua")
-    use("hrsh7th/cmp-nvim-lsp")
-    use("hrsh7th/cmp-nvim-lsp-document-symbol")
-    use("tamago324/cmp-zsh")
-    use("lark-parser/vim-lark-syntax")
-    return use({branch = "julia", "TerseTears/conjure"})
+    use({requires = {"nvim-lua/plenary.nvim"}, "addcninblue/nvim-acmetag"})
+    use("addcninblue/nvim-scratch")
+    use({commit = "bb5cac4dcec3bc6ba3b569e83feeedf5c58f466c", requires = {"hrsh7th/cmp-buffer", "hrsh7th/cmp-path", "hrsh7th/cmp-nvim-lua", "hrsh7th/cmp-nvim-lsp", "hrsh7th/cmp-nvim-lsp-document-symbol"}, "hrsh7th/nvim-cmp"})
+    use("sheerun/vim-polyglot")
+    use("/home/addison/stuff/conjure")
+    use("vimwiki/vimwiki")
+    use({ft = {"beancount"}, "nathangrigg/vim-beancount"})
+    use({ft = {"julia"}, "JuliaEditorSupport/julia-vim"})
+    use({ft = {"openscad"}, "sirtaj/vim-openscad"})
+    return use({ft = {"lark"}, "lark-parser/vim-lark-syntax"})
   end
   packer.startup(_1_)
 end
 __fnl_global__UNNAMED_2dREGISTER = "\""
 local function file_readable_3f(path)
-  _G.assert((nil ~= path), "Missing argument path on init.fnl:63")
+  _G.assert((nil ~= path), "Missing argument path on init.fnl:72")
   return (1 == vim.fn.filereadable(vim.fn.expand(path)))
 end
 local function open_split(command)
-  _G.assert((nil ~= command), "Missing argument command on init.fnl:67")
+  _G.assert((nil ~= command), "Missing argument command on init.fnl:76")
   local bufheight = vim.fn.floor((vim.fn.winheight(0) / 5))
   return vim.cmd(("belowright " .. bufheight .. "split term://" .. command))
 end
@@ -119,7 +118,7 @@ _G.statusline = function()
   else
     lspstatus = ""
   end
-  return ("[" .. currentmode .. "]" .. " %.40t" .. " " .. lspstatus .. "%=" .. "%m " .. "[" .. filetype .. "] " .. "[%3l/%L] " .. "[%3p%%] ")
+  return ("[" .. currentmode .. "]" .. " %.40f" .. " " .. lspstatus .. "%=" .. "%m " .. "[" .. filetype .. "] " .. "[%3l/%L] " .. "[%3p%%] ")
 end
 vim.o.statusline = "%!v:lua.statusline()"
 vim.cmd("set noruler")
@@ -129,9 +128,9 @@ vim.o.splitright = true
 vim.g.previewheight = vim.fn.floor((vim.fn.winwidth(0) / 2))
 vim.g.do_filetype_lua = 1
 vim.g.did_load_filetypes = 0
-vim.filetype.add({extension = {md = "markdown"}})
-vim.keymap.set("n", "<leader>l", ":nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>h")
+vim.keymap.set("n", "<leader>l", ":nohlsearch<cr>:diffupdate<cr>:syntax sync fromstart<cr><c-l>")
 vim.keymap.set("c", "w!!", "w suda://%")
+vim.keymap.set("n", "<C-s>", ":w<CR>")
 vim.keymap.set("n", ":", ";")
 vim.keymap.set("n", ";", ":")
 vim.keymap.set("v", ":", ";")
@@ -159,17 +158,11 @@ vim.keymap.set("v", "<leader>y", "\"+y")
 vim.keymap.set("v", "<leader>Y", "\"+y$")
 vim.keymap.set("n", "yoe", ":set linebreak!<CR>")
 do
-  local letters = {"a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"}
   local acmetag = require("acmetag")
-  for _, letter in ipairs(letters) do
-    local function _3_()
-      return acmetag.run(letter)
-    end
-    vim.keymap.set("n", ("-" .. letter), _3_, {silent = true})
-  end
-  vim.keymap.set("n", "--", acmetag.display_registers, {silent = true})
-  vim.keymap.set("n", "- ", acmetag.yank_line_to_register)
-  do local _ = {silent = true} end
+  vim.keymap.set("n", "T", acmetag.pipe_to_tags, {silent = true, expr = true})
+  vim.keymap.set("v", "T", acmetag.pipe_to_tags, {silent = true, expr = true})
+  vim.keymap.set("v", "t", acmetag.pipe_to_tags, {silent = true, expr = true})
+  vim.keymap.set("n", "t", acmetag.open_tags, {silent = true})
 end
 vim.go.virtualedit = "block,onemore"
 do
@@ -190,19 +183,19 @@ local function save_error_message()
 end
 vim.keymap.set("n", "<leader><C-G>", save_error_message, {silent = true})
 local function trim_end(line, end_pos)
-  _G.assert((nil ~= end_pos), "Missing argument end-pos on init.fnl:255")
-  _G.assert((nil ~= line), "Missing argument line on init.fnl:255")
+  _G.assert((nil ~= end_pos), "Missing argument end-pos on init.fnl:262")
+  _G.assert((nil ~= line), "Missing argument line on init.fnl:262")
   return (function(tgt, m, ...) return tgt[m](tgt, ...) end)("sub", 1, end_pos)
 end
 local function trim_start(line, start_pos)
-  _G.assert((nil ~= start_pos), "Missing argument start-pos on init.fnl:259")
-  _G.assert((nil ~= line), "Missing argument line on init.fnl:259")
+  _G.assert((nil ~= start_pos), "Missing argument start-pos on init.fnl:266")
+  _G.assert((nil ~= line), "Missing argument line on init.fnl:266")
   return (function(tgt, m, ...) return tgt[m](tgt, ...) end)("sub", start_pos)
 end
 local function replace_line(lines, line_num, operation)
-  _G.assert((nil ~= operation), "Missing argument operation on init.fnl:263")
-  _G.assert((nil ~= line_num), "Missing argument line-num on init.fnl:263")
-  _G.assert((nil ~= lines), "Missing argument lines on init.fnl:263")
+  _G.assert((nil ~= operation), "Missing argument operation on init.fnl:270")
+  _G.assert((nil ~= line_num), "Missing argument line-num on init.fnl:270")
+  _G.assert((nil ~= lines), "Missing argument lines on init.fnl:270")
   do end (lines)[line_num] = operation(lines[line_num])
   return nil
 end
@@ -210,23 +203,23 @@ local function get_visual_selection()
   local _, line_start, column_start, _0 = unpack(vim.fn.getpos("'<"))
   local _1, line_end, column_end, _2 = unpack(vim.fn.getpos("'>"))
   local lines = vim.fn.getline(line_start, line_end)
-  local _4_
+  local _3_
   if (#lines == 0) then
-    _4_ = lines
+    _3_ = lines
   else
     replace_line(lines, 1, trim_start)
     do end (lines)[1] = (lines[1]):sub(column_start)
     do end (lines)[#lines] = (lines[#lines]):sub(1, column_end)
-    _4_ = lines
+    _3_ = lines
   end
-  return print(table.concat(_4_, ", "))
+  return print(table.concat(_3_, ", "))
 end
 do local _ = vim.o.selection end
 vim.keymap.set("v", "<leader>e", get_visual_selection, {silent = true})
-local function _6_()
+local function _5_()
   return print(vim.fn.mode())
 end
-vim.keymap.set("v", "<leader>w", _6_, {silent = true})
+vim.keymap.set("v", "<leader>w", _5_, {silent = true})
 do
   local fzf_path = "~/.fzf/plugin/fzf.vim"
   if file_readable_3f(fzf_path) then
@@ -279,11 +272,11 @@ vim.keymap.set("n", "]e", vim.diagnostic.goto_next)
 vim.keymap.set("n", "<leader>f", vim.lsp.buf.formatting)
 do
   local configs = require("nvim-treesitter.configs")
-  configs.setup({ensure_installed = {"c", "lua", "rust", "fennel", "cooklang", "elixir", "python", "nix", "bash", "css", "html", "javascript", "json", "julia", "markdown", "vim", "yaml"}, sync_install = "false", ignore_install = {"norg"}, highlight = {enable = true}, refactor = {navigation = {enable = true}}, additional_vim_regex_highlighting = false})
+  configs.setup({ensure_installed = {"c", "lua", "rust", "fennel", "cooklang", "elixir", "python", "nix", "bash", "css", "html", "javascript", "json", "julia", "markdown", "vim", "yaml"}, sync_install = "false", highlight = {enable = true}, refactor = {navigation = {enable = true}}, additional_vim_regex_highlighting = false})
 end
 do
   local lspconfig = require("lspconfig")
-  lspconfig.ccls.setup({})
+  lspconfig.ccls.setup({cmd = {"ccls"}})
   lspconfig.pylsp.setup({settings = {pylsp = {plugins = {pycodestyle = {maxLineLength = 120}, flake8 = {ignore = {"F405"}, maxLineLength = 120}}}}})
   lspconfig.elixirls.setup({cmd = {"/home/addison/.local/bin/elixir-ls/release/language_server.sh"}})
   lspconfig.tsserver.setup({})
@@ -291,10 +284,10 @@ do
   lspconfig.rnix.setup({})
   lspconfig.bashls.setup({})
   lspconfig.texlab.setup({})
-  lspconfig.ccls.setup({})
   lspconfig.julials.setup({})
   lspconfig.rust_analyzer.setup({})
   lspconfig.clojure_lsp.setup({})
+  lspconfig.sumneko_lua.setup({settings = {Lua = {runtime = {version = "LuaJIT"}, diagnostics = {globals = {"vim"}}, workspace = {library = vim.api.nvim_get_runtime_file("", true)}, telemetry = {enable = false}}}})
 end
 vim.api.nvim_exec("autocmd BufWritePre *.ex,*.exs lua vim.lsp.buf.formatting_sync(nil, 1000)", false)
 do
