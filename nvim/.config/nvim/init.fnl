@@ -180,6 +180,30 @@
         "[%3p%%] ")         ; percentage
     ))
 (set vim.o.statusline "%!v:lua.statusline()")
+
+(lambda tablabel [i currtab numtabs]
+  (let [buflist (vim.fn.tabpagebuflist i)
+        winnr (vim.fn.tabpagewinnr i)
+        printed-number (if (< i 9)
+                         (.. "[" i "]")
+                         (if (= i numtabs) (.. "[" 9 "]") ""))]
+    (..
+      (if (= i currtab) "%#TabLineSel#" "%#TabLine#")
+      "%" i "T" printed-number " "
+      (-> (. buflist winnr)
+          (vim.fn.bufname)
+          (vim.fn.pathshorten 3)))))
+
+(lambda _G.tabline []
+  (let [currtab (vim.fn.tabpagenr)
+        numtabs (vim.fn.tabpagenr "$")]
+    (var output "")
+    (for [i 1 numtabs]
+      (set output (.. output " " (tablabel i currtab numtabs))))
+    (set output (.. output " %#TabLineFill#%T"))
+    output))
+(set vim.o.tabline "%!v:lua.tabline()")
+
 (vim.cmd "set noruler")                     ; TODO: broken
 (set vim.o.laststatus 3)
 
